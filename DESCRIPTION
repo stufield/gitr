@@ -1,0 +1,20 @@
+Package: gitr
+Title: Lightweight API for Git
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Stu",
+           family = "Field",
+           role = c("aut", "cre"),
+           email = "stu.g.field@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: A light-weight, (nearly) dependency-free, API to access
+    system-level git commands from within R. Contains wrappers for common
+    use case defaults for my (!) workflows as well as Z-shell plugin
+    aliases. Generalized API syntax is also available.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+Imports: 
+    processx
+RoxygenNote: 7.1.1
