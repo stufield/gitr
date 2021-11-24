@@ -1,4 +1,13 @@
 
+# friendly version of ifelse
+`%||%` <- function(x, y) {
+  if ( is.null(x) || length(x) <= 0 ) {
+    y
+  } else {
+    x
+  }
+}
+
 todo <- function(...) {
   sym <- paste0("\033[31m", "\u2022", "\033[39m")
   inform(sym, ...)

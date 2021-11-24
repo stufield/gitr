@@ -12,6 +12,7 @@ Description: A light-weight, dependency-free, API to access
     use case defaults for my (!) workflows as well as Z-shell plugin
     aliases. Generalized API syntax is also available.
 License: MIT + file LICENSE
+Depends: R (>= 4.1.0)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

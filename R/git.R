@@ -41,18 +41,19 @@ git <- function(..., echo_cmd = TRUE) {
   if ( echo_cmd) {
     cat("Running git", c(...), "\n")
   }
-  res  <- list(status = 0L, stdout = "", stderr = "")
+  res  <- list(status = 0, stdout = "", stderr = "")
   call <- suppressWarnings(
     base::system2("git", c(...), stdout = TRUE, stderr = TRUE)
   )
   status <- attr(call, "status")
-  if ( !is.null(status) ) {
+  if ( is.null(status) ) {
+    res$stdout <- call %||% ""
+  } else {
     res$status <- status
     res$stderr <- as.character(call)
-  } else {
-    res$stdout <- call
+    cat("\033[031mSystem command 'git' failed:\n", res$stderr, sep = "\n")
   }
-  res
+  invisible(res)
 }
 
 #' @describeIn git
@@ -97,7 +98,7 @@ get_pr_sha <- function(branch = NULL) {
   }
   sha_vec <- git("rev-list", "--right-only",
                  paste0("remotes/origin/master..", branch), echo_cmd = FALSE)
-  if ( sha_vec$status == 1 || length(sha_vec$stdout) == 0 ) {
+  if ( sha_vec$status == 1 || sha_vec$stdout == "" ) {
     NULL
   } else {
     sha_vec$stdout
@@ -164,7 +165,7 @@ git_checkout <- function(branch = NULL) {
   if ( is_git() ) {
     br <- git("branch", "--list", branch, echo_cmd = FALSE)
     files <- git("ls-files", echo_cmd = FALSE)$stdout
-    if ( !(branch %in% files) && identical(br$stdout, character(0)) ) {
+    if ( !(branch %in% files) && identical(br$stdout, "") ) {
       out <- git("checkout", "-b", branch)   # branch doesn't yet exist
     } else {
       out <- git("checkout", branch)
