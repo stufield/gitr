@@ -15,6 +15,7 @@
 \alias{gwip}
 \alias{gclean}
 \alias{gdf}
+\alias{gpf}
 \alias{gnuke}
 \alias{gcf}
 \title{Z-shell Aliases}
@@ -44,6 +45,8 @@ gwip()
 gclean(dry.run = TRUE)
 
 gdf(file = NULL)
+
+gpf()
 
 gnuke()
 
@@ -92,6 +95,8 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \item \code{gclean}: \verb{git clean -f -d}.
 
 \item \code{gdf}: \verb{git diff <file>}.
+
+\item \code{gpf}: \verb{git push --force-with-lease}.
 
 \item \code{gnuke}: \verb{git reset --hard}.
 

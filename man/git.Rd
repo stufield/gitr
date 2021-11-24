@@ -10,9 +10,10 @@
 \alias{git_checkout}
 \alias{is_git}
 \alias{scrape_commits}
+\alias{git_version}
 \title{Git Utilities}
 \usage{
-git(..., echo_cmd = TRUE, echo = FALSE)
+git(..., echo_cmd = TRUE)
 
 get_commit_msgs(sha = NULL, n = 1)
 
@@ -29,18 +30,14 @@ git_checkout(branch = NULL)
 is_git()
 
 scrape_commits(n)
+
+git_version()
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
 command-line \verb{git <command> [<args>]} call.}
 
-\item{echo_cmd}{Whether to print the command to run to the screen.}
-
-\item{echo}{Whether to print the standard output and error
-to the screen. Note that the order of the standard output and error
-lines are not necessarily correct, as standard output is typically
-buffered. If the standard output and/or error is redirected to a
-file or they are ignored, then they also not echoed.}
+\item{echo_cmd}{Logical. Whether to print the command to run to the console.}
 
 \item{sha}{Character. Commit SHA or hash to pull messages from.
 If \code{NULL}, the most recent commit on the current branch.}
@@ -79,6 +76,8 @@ the \code{origin/master} branch in the remote.
 \item \code{is_git}: Is current working directory a \code{git} repository?
 
 \item \code{scrape_commits}: Scrape \code{n} commit message for useful changelog commits.
+
+\item \code{git_version}: Gets the version of git in use.
 }}
 
 \examples{

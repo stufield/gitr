@@ -19,8 +19,7 @@ NULL
 #' @export
 glog <- function(n = 10) {
   if ( is_git() ) {
-    log <- git("log", "--oneline", "--graph", "--decorate", "-n", n)$stdout
-    out <- strsplit(log, "\n")[[1L]]
+    out <- git("log", "--oneline", "--graph", "--decorate", "-n", n)$stdout
     out <- gsub("^\\*", "\033[33m*\033[0m", out)               # *s
     out <- gsub("( [a-f0-9]{7} )", "\033[32m\\1\033[0m", out)  # sha1
     out <- gsub("(tag: v[^\\)]+)", "\033[34m\\1\033[0m", out)  # tags
@@ -51,7 +50,7 @@ gpr <- function() {
 #' @export
 gss <- function() {
   if ( is_git() ) {
-    out <- strsplit(git("status", "-s")$stdout, "\n")[[1L]]
+    out <- git("status", "-s")$stdout
     gsub("^(.)(.)", "\033[32m\\1\033[31m\\2\033[0m", out) |> cat(sep = "\n")
   }
   invisible()
@@ -61,7 +60,7 @@ gss <- function() {
 #' @export
 gba <- function() {
   if ( is_git() ) {
-    out <- strsplit(git("branch", "-a")$stdout, "\n")[[1L]]
+    out <- git("branch", "-a")$stdout
     out <- gsub("(^\\* .+)", "\033[32m\\1\033[0m", out)
     gsub("(remotes/.+)", "\033[31m\\1\033[0m", out) |> cat(sep = "\n")
   }
@@ -92,7 +91,7 @@ gpop <- function() {
 #' @export
 gta <- function() {
   if ( is_git() ) {
-    out <- rev(strsplit(git("tag", "-n")$stdout, "\n")[[1L]])
+    out <- rev(git("tag", "-n")$stdout)
     gsub("^(v[0-9]+\\.[0-9]+\\.[0-9]+)", "\033[31m\\1\033[0m", out) |> cat(sep = "\n")
   }
   invisible()
@@ -141,7 +140,7 @@ gclean <- function(dry.run = TRUE) {
     } else {
       out <- git("clean", "-f", "-d")$stdout
     }
-    cat(out)
+    cat(out, sep = "\n")
     invisible(out)
   } else {
     invisible()
@@ -154,10 +153,22 @@ gclean <- function(dry.run = TRUE) {
 gdf <- function(file = NULL) {
   stopifnot(!is.null(file))
   if ( is_git() ) {
-    out <- strsplit(git("diff", file)$stdout, "\n")[[1L]]
+    out <- git("diff", file)$stdout
     out <- gsub("(^\\+.*$)", "\033[32m\\1\033[0m", out)
     out <- gsub("(^\\-.*$)", "\033[31m\\1\033[0m", out)
     cat(out, sep = "\n")
+    invisible(out)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git push --force-with-lease`.
+#' @export
+gpf <- function() {
+  if ( is_git() ) {
+    out <- git("push", "--force-with-lease")
+    cat(out$stdout, sep = "\n")
     invisible(out)
   } else {
     invisible()
@@ -169,7 +180,7 @@ gdf <- function(file = NULL) {
 gnuke <- function() {
   if ( is_git() ) {
     out <- git("reset", "--hard")$stdout
-    cat(out)
+    cat(out, sep = "\n")
     gclean(FALSE)
     invisible(out)
   } else {
@@ -186,8 +197,7 @@ gcf <- function(global = FALSE) {
   } else {
     out <- git("config", "--list", "--global")
   }
-  out <- strsplit(out$stdout, "\n")[[1L]]
-  gsub("(^.*)=(.*$)", "\033[31m\\1\033[0m = \033[36m\\2\033[0m", out) |>
+  gsub("(^.*)=(.*$)", "\033[31m\\1\033[0m = \033[36m\\2\033[0m", out$stdout) |>
     cat(sep = "\n")
   invisible()
 }

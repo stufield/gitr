@@ -3,9 +3,9 @@
 #' Provides functionality for system-level Git commands from within R.
 #'
 #' @name git
-#' @inheritParams processx::run
 #' @param n Numeric. How far back to go from current HEAD. Same as the
 #' command line `git log -n` parameter.
+#' @param echo_cmd Logical. Whether to print the command to run to the console.
 #' @param branch Character. The name of a branch, typically a
 #' feature branch.
 #' @param sha Character. Commit SHA or hash to pull messages from.
@@ -36,15 +36,23 @@ NULL
 
 #' @describeIn git
 #' Execute a `git` command line call from within R.
-#' @importFrom processx run
 #' @export
-git <- function(..., echo_cmd = TRUE, echo = FALSE) {
-  processx::run(
-    "git", c(...),
-    echo_cmd = echo_cmd,
-    echo = echo,
-    error_on_status = TRUE
+git <- function(..., echo_cmd = TRUE) {
+  if ( echo_cmd) {
+    cat("Running git", c(...), "\n")
+  }
+  res  <- list(status = 0L, stdout = "", stderr = "")
+  call <- suppressWarnings(
+    base::system2("git", c(...), stdout = TRUE, stderr = TRUE)
   )
+  status <- attr(call, "status")
+  if ( !is.null(status) ) {
+    res$status <- status
+    res$stderr <- as.character(call)
+  } else {
+    res$stdout <- call
+  }
+  res
 }
 
 #' @describeIn git
@@ -53,14 +61,14 @@ git <- function(..., echo_cmd = TRUE, echo = FALSE) {
 #' @export
 get_commit_msgs <- function(sha = NULL, n = 1) {
   if ( is.null(sha) ) {
-    sha <- strsplit(git("log", "--format=%H", "-n", n)$stdout, "\n")[[1L]]
+    sha <- git("log", "--format=%H", "-n", n)$stdout
   }
   stopifnot(length(sha) > 0, sha != "", !is.na(sha), is.character(sha))
   lapply(sha, function(.x) {
     structure(
-      strsplit(git("log", "--format=%B", "-1", .x, echo_cmd = FALSE)$stdout, "\n")[[1L]],
+      git("log", "--format=%B", "-1", .x, echo_cmd = FALSE)$stdout,
       sha    = substr(.x, 1, 7),
-      author = trimws(git("log", "--format=%ae", "-1", .x, echo_cmd = FALSE)$stdout)
+      author = git("log", "--format=%ae", "-1", .x, echo_cmd = FALSE)$stdout
     )
   })
 }
@@ -75,7 +83,7 @@ get_pr_msgs <- function(branch = NULL) {
   if ( is.null(sha_vec) ) {
     invisible(list(NULL))
   } else {
-    get_commit_msgs(sha = strsplit(sha_vec, "\n")[[1L]])
+    get_commit_msgs(sha = sha_vec)
   }
 }
 
@@ -85,17 +93,14 @@ get_pr_msgs <- function(branch = NULL) {
 #' @export
 get_pr_sha <- function(branch = NULL) {
   if ( is.null(branch) ) {
-    branch <- trimws(git("branch", "--show-current", echo_cmd = FALSE)$stdout)
+    branch <- git("branch", "--show-current", echo_cmd = FALSE)$stdout
   }
-  sha_vec <- try(
-    git("rev-list", "--right-only", paste0("remotes/origin/master..", branch),
-        echo_cmd = FALSE)$stdout,
-    silent = TRUE
-  )
-  if ( sha_vec == "" || inherits(sha_vec, "try-error") ) {
+  sha_vec <- git("rev-list", "--right-only",
+                 paste0("remotes/origin/master..", branch), echo_cmd = FALSE)
+  if ( sha_vec$status == 1 || length(sha_vec$stdout) == 0 ) {
     NULL
   } else {
-    strsplit(sha_vec, "\n")[[1L]]
+    sha_vec$stdout
   }
 }
 
@@ -147,7 +152,7 @@ lint_commit_msg <- function(x) {
 #' Get the *most* recent `git` tag.
 #' @export
 get_recent_tag <- function() {
-  tag <- utils::tail(strsplit(git("tag", "-n")$stdout, "\n")[[1L]], 1L)
+  tag <- utils::tail(git("tag", "-n")$stdout, 1L)
   gsub("(^v[0-9]+\\.[0-9]+\\.[0-9]+).*", "\\1", tag)
 }
 
@@ -158,14 +163,14 @@ git_checkout <- function(branch = NULL) {
   }
   if ( is_git() ) {
     br <- git("branch", "--list", branch, echo_cmd = FALSE)
-    files <- strsplit(git("ls-files", echo_cmd = FALSE)$stdout, "\n")[[1L]]
-    if ( !(branch %in% files) && identical(br$stdout, "") ) {
+    files <- git("ls-files", echo_cmd = FALSE)$stdout
+    if ( !(branch %in% files) && identical(br$stdout, character(0)) ) {
       out <- git("checkout", "-b", branch)   # branch doesn't yet exist
     } else {
       out <- git("checkout", branch)
     }
-    cat(out$stdout, "\n")
-    cat(out$stderr)
+    cat(out$stdout, sep = "\n")
+    cat(out$stderr, sep = "\n")
   }
   invisible()
 }
@@ -203,4 +208,10 @@ scrape_commits <- function(n) {
     }, FUN.VALUE = NA)
   done("Found", sum(keep_lgl), "NEWS-worthy entries")
   commit_list[keep_lgl]
+}
+
+#' @describeIn git Gets the version of git in use.
+#' @export
+git_version <- function() {
+  git("--version", echo_cmd = FALSE)$stdout
 }
