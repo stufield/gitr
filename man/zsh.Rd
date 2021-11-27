@@ -3,10 +3,18 @@
 \name{zsh}
 \alias{zsh}
 \alias{glog}
+\alias{gc}
+\alias{gcmsg}
 \alias{gco}
 \alias{gpr}
+\alias{gp}
+\alias{gpd}
 \alias{gss}
 \alias{gba}
+\alias{gbd}
+\alias{gbmm}
+\alias{gbnm}
+\alias{gbm}
 \alias{gau}
 \alias{gpop}
 \alias{gta}
@@ -18,17 +26,35 @@
 \alias{gpf}
 \alias{gnuke}
 \alias{gcf}
+\alias{gcm}
+\alias{grm}
 \title{Z-shell Aliases}
 \usage{
 glog(n = 10)
+
+gc(...)
+
+gcmsg(msg = "wip")
 
 gco(branch = NULL)
 
 gpr()
 
+gp(...)
+
+gpd()
+
 gss()
 
 gba()
+
+gbd(branch = NULL, force = FALSE)
+
+gbmm(branch = "master")
+
+gbnm(branch = "master")
+
+gbm(branch = NULL)
 
 gau()
 
@@ -44,24 +70,37 @@ gwip()
 
 gclean(dry.run = TRUE)
 
-gdf(file = NULL)
+gdf(file = NULL, staged = FALSE)
 
 gpf()
 
 gnuke()
 
 gcf(global = FALSE)
+
+gcm()
+
+grm(...)
 }
 \arguments{
 \item{n}{Numeric. How far back to go from current HEAD. Same as the
 command line \verb{git log -n} parameter.}
 
+\item{...}{Additional arguments passed to the system
+command-line \verb{git <command> [<args>]} call.}
+
+\item{msg}{Character. The message for the commit subject line.}
+
 \item{branch}{Character. The name of a branch, typically a
 feature branch.}
+
+\item{force}{Loogical. Should the branch delete be forced with the \code{-D} flag?}
 
 \item{dry.run}{Logical. Clean as dry-run?}
 
 \item{file}{A full file path within the repository to diff.}
+
+\item{staged}{Logical. Should the staged file be compared to HEAD?}
 
 \item{global}{Logical. Query global repository. Alternatively local config.}
 }
@@ -72,25 +111,41 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \itemize{
 \item \code{glog}: Get the \code{git} log in a pretty format for the \code{n} most recent commits.
 
+\item \code{gc}: \verb{git commit ...}.
+
+\item \code{gcmsg}: \verb{git commit -m <msg>}.
+
 \item \code{gco}: \verb{git checkout}.
 
 \item \code{gpr}: \verb{git pull --rebase}.
+
+\item \code{gp}: \verb{git push}.
+
+\item \code{gpd}: \verb{git push --dry-run}.
 
 \item \code{gss}: \verb{git status -s}.
 
 \item \code{gba}: \verb{git branch -a}.
 
+\item \code{gbd}: \verb{git branch -dD}.
+
+\item \code{gbmm}: \verb{git branch --merged <branch>}.
+
+\item \code{gbnm}: \verb{git branch --no-merged <branch>}.
+
+\item \code{gbm}: \verb{git branch -m}.
+
 \item \code{gau}: \verb{git add -u}.
 
-\item \code{gpop}: \verb{git stash pop}.
+\item \code{gpop}: \verb{git stash pop --index}.
 
 \item \code{gta}: \verb{git tag -n}.
 
 \item \code{gfa}: \verb{git fetch --all --prune}.
 
-\item \code{gac}: \verb{git commit --amend --no-edit}.
+\item \code{gac}: \verb{git commit --no-verify --amend --no-edit}.
 
-\item \code{gwip}: \verb{git commit -m 'wip'}.
+\item \code{gwip}: \verb{git commit --no-verify -m 'wip'}.
 
 \item \code{gclean}: \verb{git clean -f -d}.
 
@@ -101,6 +156,10 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \item \code{gnuke}: \verb{git reset --hard}.
 
 \item \code{gcf}: \verb{git config --local} or \verb{git config --global}.
+
+\item \code{gcm}: Checkout the default branch.
+
+\item \code{grm}: \verb{git rm ...}.
 }}
 
 \examples{

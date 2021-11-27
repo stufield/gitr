@@ -11,6 +11,8 @@
 \alias{is_git}
 \alias{scrape_commits}
 \alias{git_version}
+\alias{git_default_br}
+\alias{git_current_br}
 \title{Git Utilities}
 \usage{
 git(..., echo_cmd = TRUE)
@@ -32,6 +34,10 @@ is_git()
 scrape_commits(n)
 
 git_version()
+
+git_default_br()
+
+git_current_br()
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
@@ -78,6 +84,10 @@ the \code{origin/master} branch in the remote.
 \item \code{scrape_commits}: Scrape \code{n} commit message for useful changelog commits.
 
 \item \code{git_version}: Gets the version of git in use.
+
+\item \code{git_default_br}: Gets the default "main" branch.
+
+\item \code{git_current_br}: Gets the \emph{current} branch.
 }}
 
 \examples{

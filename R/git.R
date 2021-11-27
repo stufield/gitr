@@ -94,10 +94,11 @@ get_pr_msgs <- function(branch = NULL) {
 #' @export
 get_pr_sha <- function(branch = NULL) {
   if ( is.null(branch) ) {
-    branch <- git("branch", "--show-current", echo_cmd = FALSE)$stdout
+    branch <- git_current_br()
   }
   sha_vec <- git("rev-list", "--right-only",
-                 paste0("remotes/origin/master..", branch), echo_cmd = FALSE)
+                 paste0("remotes/origin/master..", branch),
+                 echo_cmd = FALSE)
   if ( sha_vec$status == 1 || sha_vec$stdout == "" ) {
     NULL
   } else {
@@ -215,4 +216,40 @@ scrape_commits <- function(n) {
 #' @export
 git_version <- function() {
   git("--version", echo_cmd = FALSE)$stdout
+}
+
+#' @describeIn git Gets the default "main" branch.
+#' @export
+git_default_br <- function() {
+  if ( is_git() ) {
+    refs <- git("show-ref", echo_cmd = FALSE)$stdout
+    refs <- gsub("[a-f0-9]{40} ", "", refs)
+    root <- c("heads/", "remotes/origin/", "remotes/upstream/")
+    for ( i in root ) {
+      if ( paste0(i, "main") %in% refs) {
+        return("main")
+      } else if ( paste0(i, "trunk") %in% refs) {
+        return("trunk")
+      } else {
+        next
+      }
+    }
+  }
+  "master"
+}
+
+#' @describeIn git Gets the *current* branch.
+#' @export
+git_current_br <- function() {
+  if ( is_git() ) {
+    ver <- git("--version", echo_cmd = FALSE)$stdout
+    ver <- gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
+    if ( ver < "2.22.0" ) {
+      git("rev-parse", "--abbrev-ref", "HEAD", echo_cmd = FALSE)$stdout
+    } else {
+      git("branch", "--show-current", echo_cmd = FALSE)$stdout
+    }
+  } else {
+    invisible()
+  }
 }

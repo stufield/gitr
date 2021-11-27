@@ -8,6 +8,7 @@
 #' @param branch Character. The name of a branch, typically a
 #' feature branch.
 #' @param dry.run Logical. Clean as dry-run?
+#' @inheritParams git
 #' @examples
 #' \dontrun{
 #' glog()
@@ -30,6 +31,19 @@ glog <- function(n = 10) {
   invisible()
 }
 
+#' @describeIn zsh `git commit ...`.
+#' @export
+gc <- function(...) {
+  git("commit", c(...))
+}
+
+#' @describeIn zsh `git commit -m <msg>`.
+#' @param msg Character. The message for the commit subject line.
+#' @export
+gcmsg <- function(msg = "wip") {
+  git("commit", "--no-verify", "-m", msg)
+}
+
 #' @describeIn zsh `git checkout`.
 #' @export
 gco <- function(branch = NULL) {
@@ -40,10 +54,28 @@ gco <- function(branch = NULL) {
 #' @export
 gpr <- function() {
   if ( is_git() ) {
-    invisible(git("pull", "--rebase", "--autostash", "-v"))
-  } else {
-    invisible()
+    git("pull", "--rebase", "--autostash", "-v")
   }
+  invisible()
+}
+
+#' @describeIn zsh `git push`.
+#' @export
+gp <- function(...) {
+  if ( is_git() ) {
+    git("push", c(...))
+  }
+  invisible()
+}
+
+#' @describeIn zsh `git push --dry-run`.
+#' @export
+gpd <- function() {
+  if ( is_git() ) {
+    out <- git("push", "--dry-run")$stdout
+    cat(out, sep = "\n")
+  }
+  invisible()
 }
 
 #' @describeIn zsh `git status -s`.
@@ -67,6 +99,47 @@ gba <- function() {
   invisible()
 }
 
+#' @describeIn zsh `git branch -dD`.
+#' @param force Loogical. Should the branch delete be forced with the `-D` flag?
+#' @export
+gbd <- function(branch = NULL, force = FALSE) {
+  if ( is_git() ) {
+    stopifnot(!is.null(branch))
+    git("branch", ifelse(force, "-D", "-d"), branch)
+  }
+  invisible()
+}
+
+#' @describeIn zsh `git branch --merged <branch>`.
+#' @export
+gbmm <- function(branch = "master") {
+  if ( is_git() ) {
+    out <- git("branch", "--merged", branch)
+    gsub("(.+)", "\033[32m\\1\033[0m", out$stdout) |> cat(sep = "\n")
+  }
+  invisible()
+}
+
+#' @describeIn zsh `git branch --no-merged <branch>`.
+#' @export
+gbnm <- function(branch = "master") {
+  if ( is_git() ) {
+    out <- git("branch", "--no-merged", branch)
+    gsub("(.+)", "\033[31m\\1\033[0m", out$stdout) |> cat(sep = "\n")
+  }
+  invisible()
+}
+
+#' @describeIn zsh `git branch -m`.
+#' @export
+gbm <- function(branch = NULL) {
+  if ( is_git() ) {
+    stopifnot(!is.null(branch))
+    git("branch", "-m", branch)
+  }
+  invisible()
+}
+
 #' @describeIn zsh `git add -u`.
 #' @export
 gau <- function() {
@@ -77,7 +150,7 @@ gau <- function() {
   }
 }
 
-#' @describeIn zsh `git stash pop`.
+#' @describeIn zsh `git stash pop --index`.
 #' @export
 gpop <- function() {
   if ( is_git() ) {
@@ -110,22 +183,22 @@ gfa <- function() {
   }
 }
 
-#' @describeIn zsh `git commit --amend --no-edit`.
+#' @describeIn zsh `git commit --no-verify --amend --no-edit`.
 #' @export
 gac <- function() {
   if ( is_git() ) {
-    invisible(git("commit", "--amend", "--no-edit"))
+    invisible(git("commit", "--no-verify", "--amend", "--no-edit"))
   } else {
     invisible()
   }
 }
 
-#' @describeIn zsh `git commit -m 'wip'`.
+#' @describeIn zsh `git commit --no-verify -m 'wip'`.
 #' @export
 gwip <- function() {
   if ( is_git() ) {
     gau()
-    invisible(git("commit", "-m", "wip"))
+    invisible(gcmsg())
   } else {
     invisible()
   }
@@ -149,14 +222,19 @@ gclean <- function(dry.run = TRUE) {
 
 #' @describeIn zsh `git diff <file>`.
 #' @param file A full file path within the repository to diff.
+#' @param staged Logical. Should the staged file be compared to HEAD?
 #' @export
-gdf <- function(file = NULL) {
+gdf <- function(file = NULL, staged = FALSE) { # sldfj
   stopifnot(!is.null(file))
   if ( is_git() ) {
-    out <- git("diff", file)$stdout
-    out <- gsub("(^\\+.*$)", "\033[32m\\1\033[0m", out)
-    out <- gsub("(^\\-.*$)", "\033[31m\\1\033[0m", out)
-    cat(out, sep = "\n")
+    if ( staged ) {
+      out <- git("diff", "--cached", file)$stdout
+    } else {
+      out <- git("diff", file)$stdout
+    }
+    tmp <- gsub("(^\\+.*$)", "\033[32m\\1\033[0m", out)
+    tmp <- gsub("(^\\-.*$)", "\033[31m\\1\033[0m", tmp)
+    cat(tmp, sep = "\n")
     invisible(out)
   } else {
     invisible()
@@ -200,4 +278,25 @@ gcf <- function(global = FALSE) {
   gsub("(^.*)=(.*$)", "\033[31m\\1\033[0m = \033[36m\\2\033[0m", out$stdout) |>
     cat(sep = "\n")
   invisible()
+}
+
+#' @describeIn zsh Checkout the default branch.
+#' @export
+gcm <- function() {
+  if ( is_git() ) {
+    git_checkout(git_default_br())
+  }
+  invisible()
+}
+
+#' @describeIn zsh `git rm ...`.
+#' @export
+grm <- function(...) {
+  if ( is_git() ) {
+    out <- git("rm", c(...))$stdout
+    cat(out, sep = "\n")
+    invisible(out)
+  } else {
+    invisible()
+  }
 }
