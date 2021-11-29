@@ -26,6 +26,7 @@
 \alias{gstaa}
 \alias{gstd}
 \alias{gstc}
+\alias{gsts}
 \alias{gpop}
 \alias{gstp}
 \alias{gtn}
@@ -93,6 +94,8 @@ gstd(n = 0)
 
 gstc()
 
+gsts(text = FALSE)
+
 gpop()
 
 gstp()
@@ -141,6 +144,8 @@ command-line \verb{git <command> [<args>]} call.}
 feature branch.}
 
 \item{force}{Loogical. Should the branch delete be forced with the \code{-D} flag?}
+
+\item{text}{Logical. Show the text diffs from the stash.}
 
 \item{dry.run}{Logical. Clean as dry-run?}
 
@@ -203,6 +208,8 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \item \code{gstd}: \verb{git stash drop}. \strong{Note}: zero-indexing!
 
 \item \code{gstc}: \verb{git stash clear}. Danger!
+
+\item \code{gsts}: \verb{git stash show}.
 
 \item \code{gpop}: \verb{git stash pop --quiet --index}.
 

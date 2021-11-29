@@ -180,6 +180,7 @@ git_checkout <- function(branch = NULL) {
 }
 
 #' @describeIn git Is current working directory a `git` repository?
+#' @export
 is_git <- function() {
   in_repo <- dir.exists(".git")
   if ( !in_repo ) {
