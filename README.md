@@ -32,7 +32,8 @@ You can include R chunks like so:
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10
-#> [33m*[0m[32m 383d702 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Updated README with ZSH aliases
+#> [33m*[0m[32m bfe87fc [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new aliases and complete README
+#> [33m*[0m[32m 44a833e [0mUpdated README with ZSH aliases
 #> [33m*[0m[32m 4d01934 [0mAdd error message cat() to git() calls
 #> [33m*[0m[32m f652710 [0mAdd gitr-package.R file for roxygen2/usethis
 #> [33m*[0m[32m ea9e8b4 [0mNow uses `system2()` over `processx::run()`
@@ -44,13 +45,14 @@ glog()
 | alias           | git command                              |
 |:----------------|:-----------------------------------------|
 | ga              | git add                                  |
+| gst             | git status                               |
+| gss             | git status -s                            |
 | gau             | git add -u                               |
 | gaa             | git add –all                             |
 | gb              | git branch                               |
 | gba             | git branch -a                            |
 | gbd             | git branch -d/-D                         |
 | gdf             | git diff <file>                          |
-| gav             | git add –verbose                         |
 | gbnm            | git branch –no-merged                    |
 | gbmm            | git branch –merged                       |
 | gbr             | git branch –remote                       |
@@ -64,25 +66,41 @@ glog()
 | gcmsg           | git commit -m                            |
 | gco             | git checkout                             |
 | gp              | git push                                 |
+| gpu             | git push -u                              |
 | gpd             | git push –dry-run                        |
 | gpf             | git push –force-with-lease               |
 | gpr             | git pull –rebase –autostash -v           |
-| gpop,gstp       | git stash pop                            |
 | glog            | git log –oneline –decorate –graph        |
 | gwip            | git add -u && commit –no-verify -m “wip” |
+| gclean          | git clean -id                            |
+| grm             | git rm                                   |
+| grmc            | git rm –cached                           |
+| gsta            | git stash                                |
+| gpop,gstp       | git stash pop                            |
+| gstaa           | git stash apply                          |
+| gstc            | git stash clear                          |
+| gstd            | git stash drop                           |
+| gstl            | git stash list                           |
+| gsts            | git stash show –text                     |
+| gtn             | git tag -n                               |
+| grba            | git rebase –abort                        |
+| grbc            | git rebase –continue                     |
+| grbs            | git rebase –skip                         |
+| grbm            | git rebase `git_default_br()`            |
 
 ------------------------------------------------------------------------
 
 ## Full list of ZSH-aliases
 
-Here is a list of the available aliases via the `git-plugin` from
-[Oh-My-Zsh](https://github.com/ohmyzsh/ohmyzsh).
+For general reference, here is a list of the available aliases via the
+`git-plugin` from [Oh-My-Zsh](https://github.com/ohmyzsh/ohmyzsh).
 
 See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 
 | alias                         | git command                                                                                     |
 |:------------------------------|:------------------------------------------------------------------------------------------------|
 | gapa                          | git add –patch                                                                                  |
+| gav                           | git add –verbose                                                                                |
 | gloga                         | git log –oneline –decorate –graph –all                                                          |
 | gup                           | git pull –rebase                                                                                |
 | gupv                          | git pull –rebase -v                                                                             |
@@ -118,24 +136,17 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gma                           | git merge –abort                                                                                |
 | gpf!                          | git push –force                                                                                 |
 | gpoat                         | git push origin –all && git push origin –tags                                                   |
-| gpu                           | git push upstream                                                                               |
 | gpv                           | git push -v                                                                                     |
 | gr                            | git remote                                                                                      |
 | gra                           | git remote add                                                                                  |
 | grb                           | git rebase                                                                                      |
-| grba                          | git rebase –abort                                                                               |
-| grbc                          | git rebase –continue                                                                            |
 | grbd                          | git rebase $(git\_develop\_branch)                                                              |
 | grbi                          | git rebase -i                                                                                   |
-| grbm                          | git rebase $(git\_main\_branch)                                                                 |
 | grbo                          | git rebase –onto                                                                                |
-| grbs                          | git rebase –skip                                                                                |
 | grev                          | git revert                                                                                      |
 | grh                           | git reset                                                                                       |
 | grhh                          | git reset –hard                                                                                 |
 | groh                          | git reset origin/$(git\_current\_branch) –hard                                                  |
-| grm                           | git rm                                                                                          |
-| grmc                          | git rm –cached                                                                                  |
 | grmv                          | git remote rename                                                                               |
 | grrm                          | git remote remove                                                                               |
 | grs                           | git restore                                                                                     |
@@ -152,12 +163,6 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gsi                           | git submodule init                                                                              |
 | gsps                          | git show –pretty=short –show-signature                                                          |
 | gsr                           | git svn rebase                                                                                  |
-| gss                           | git status -s                                                                                   |
-| gst                           | git status                                                                                      |
-| gstaa                         | git stash apply                                                                                 |
-| gstc                          | git stash clear                                                                                 |
-| gstd                          | git stash drop                                                                                  |
-| gstl                          | git stash list                                                                                  |
 | gsts                          | git stash show –text                                                                            |
 | gstu                          | gsta –include-untracked                                                                         |
 | gstall                        | git stash –all                                                                                  |

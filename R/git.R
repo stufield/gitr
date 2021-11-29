@@ -215,7 +215,8 @@ scrape_commits <- function(n) {
 #' @describeIn git Gets the version of git in use.
 #' @export
 git_version <- function() {
-  git("--version", echo_cmd = FALSE)$stdout
+  ver <- git("--version", echo_cmd = FALSE)$stdout
+  gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
 }
 
 #' @describeIn git Gets the default "main" branch.
@@ -242,13 +243,9 @@ git_default_br <- function() {
 #' @export
 git_current_br <- function() {
   if ( is_git() ) {
-    ver <- git("--version", echo_cmd = FALSE)$stdout
-    ver <- gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
-    if ( ver < "2.22.0" ) {
-      git("rev-parse", "--abbrev-ref", "HEAD", echo_cmd = FALSE)$stdout
-    } else {
-      git("branch", "--show-current", echo_cmd = FALSE)$stdout
-    }
+    #git("rev-parse", "--abbrev-ref", "HEAD", echo_cmd = FALSE)$stdout
+    ref <- git("symbolic-ref --quiet HEAD", echo_cmd = FALSE)$stdout
+    gsub("refs/heads/", "", ref)
   } else {
     invisible()
   }

@@ -4,7 +4,8 @@
 #'
 #' @name zsh
 #' @param n Numeric. How far back to go from current HEAD. Same as the
-#' command line `git log -n` parameter.
+#' command line `git log -n` parameter. For `git stash` commands, zero-index
+#' into the stash list.
 #' @param branch Character. The name of a branch, typically a
 #' feature branch.
 #' @param dry.run Logical. Clean as dry-run?
@@ -68,6 +69,15 @@ gp <- function(...) {
   invisible()
 }
 
+#' @describeIn zsh `git push -u`.
+#' @export
+gpu <- function() {
+  if ( is_git() ) {
+    git("push", "-u")
+  }
+  invisible()
+}
+
 #' @describeIn zsh `git push --dry-run`.
 #' @export
 gpd <- function() {
@@ -78,6 +88,16 @@ gpd <- function() {
   invisible()
 }
 
+#' @describeIn zsh `git status`.
+#' @export
+gst <- function() {
+  if ( is_git() ) {
+    out <- git("status")$stdout
+    cat(out, sep = "\n")
+  }
+  invisible(out)
+}
+
 #' @describeIn zsh `git status -s`.
 #' @export
 gss <- function() {
@@ -85,7 +105,7 @@ gss <- function() {
     out <- git("status", "-s")$stdout
     gsub("^(.)(.)", "\033[32m\\1\033[31m\\2\033[0m", out) |> cat(sep = "\n")
   }
-  invisible()
+  invisible(out)
 }
 
 #' @describeIn zsh `git branch -a`.
@@ -140,6 +160,26 @@ gbm <- function(branch = NULL) {
   invisible()
 }
 
+#' @describeIn zsh `git add ...`.
+#' @export
+ga <- function(...) {
+  if ( is_git() ) {
+    invisible(git("add", c(...)))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git add --all`.
+#' @export
+gaa <- function() {
+  if ( is_git() ) {
+    invisible(git("add", "--all"))
+  } else {
+    invisible()
+  }
+}
+
 #' @describeIn zsh `git add -u`.
 #' @export
 gau <- function() {
@@ -150,19 +190,96 @@ gau <- function() {
   }
 }
 
-#' @describeIn zsh `git stash pop --index`.
+#' @describeIn zsh `git stash`.
 #' @export
-gpop <- function() {
+gsta <- function() {
   if ( is_git() ) {
-    invisible(git("stash", "pop", "--index"))
+    invisible(git("stash"))
   } else {
     invisible()
   }
 }
 
+#' @describeIn zsh `git stash list`.
+#' @export
+gstl <- function() {
+  if ( is_git() ) {
+    out <- git("stash", "list")
+    cat(out$stdout, sep = "\n")
+    invisible(out)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git stash apply`. **Note**: zero-indexing!
+#' @export
+gstaa <- function(n = 0) {
+  if ( is_git() ) {
+    invisible(git("stash", "apply", paste0("stash@{", n, "}")))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git stash drop`. **Note**: zero-indexing!
+#' @export
+gstd <- function(n = 0) {
+  if ( is_git() ) {
+    invisible(git("stash", "drop", paste0("stash@{", n, "}")))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git stash clear`. Danger!
+#' @export
+gstc <- function() {
+  if ( is_git() ) {
+    invisible(git("stash", "clear"))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git stash show`.
+#' @param text Logical. Show the text diffs from the stash.
+#' @export
+gsts <- function(text = FALSE) {
+  if ( is_git() ) {
+    if ( text ) {
+      out <- git("stash", "show", "--text")$stdout
+      tmp <- gsub("(^\\+.*$)", "\033[32m\\1\033[0m", out)
+      tmp <- gsub("(^\\-.*$)", "\033[31m\\1\033[0m", tmp)
+    } else {
+      out <- git("stash", "show")$stdout
+      tmp <- gsub("(\\+)", "\033[32m\\1\033[0m", out)
+      tmp <- gsub("(\\-)", "\033[31m\\1\033[0m", tmp)
+    }
+    cat(tmp, sep = "\n")
+    invisible(out)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git stash pop --quiet --index`.
+#' @export
+gpop <- function() {
+  if ( is_git() ) {
+    invisible(git("stash", "pop", "--quiet", "--index"))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh See `gpop()`.
+#' @export
+gstp <- gpop
+
 #' @describeIn zsh `git tag -n`.
 #' @export
-gta <- function() {
+gtn <- function() {
   if ( is_git() ) {
     out <- rev(git("tag", "-n")$stdout)
     gsub("^(v[0-9]+\\.[0-9]+\\.[0-9]+)", "\033[31m\\1\033[0m", out) |> cat(sep = "\n")
@@ -222,9 +339,10 @@ gclean <- function(dry.run = TRUE) {
 
 #' @describeIn zsh `git diff <file>`.
 #' @param file A full file path within the repository to diff.
-#' @param staged Logical. Should the staged file be compared to HEAD?
+#' @param staged Logical. Compare a staged file to HEAD? Otherwise the
+#' working directory is compared to the index (staged or HEAD).
 #' @export
-gdf <- function(file = NULL, staged = FALSE) { # sldfj
+gdf <- function(file = NULL, staged = FALSE) {
   stopifnot(!is.null(file))
   if ( is_git() ) {
     if ( staged ) {
@@ -296,6 +414,46 @@ grm <- function(...) {
     out <- git("rm", c(...))$stdout
     cat(out, sep = "\n")
     invisible(out)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git rebase --continue`.
+#' @export
+grbc <- function() {
+  if ( is_git() ) {
+    invisible(git("rebase", "--continue"))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git rebase --abort`.
+#' @export
+grba <- function() {
+  if ( is_git() ) {
+    invisible(git("rebase", "--abort"))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git rebase --skip`.
+#' @export
+grbs <- function() {
+  if ( is_git() ) {
+    invisible(git("rebase", "--skip"))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git rebase git_default_br()`.
+#' @export
+grbm <- function() {
+  if ( is_git() ) {
+    invisible(git("rebase", git_default_br()))
   } else {
     invisible()
   }

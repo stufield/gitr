@@ -8,16 +8,26 @@
 \alias{gco}
 \alias{gpr}
 \alias{gp}
+\alias{gpu}
 \alias{gpd}
+\alias{gst}
 \alias{gss}
 \alias{gba}
 \alias{gbd}
 \alias{gbmm}
 \alias{gbnm}
 \alias{gbm}
+\alias{ga}
+\alias{gaa}
 \alias{gau}
+\alias{gsta}
+\alias{gstl}
+\alias{gstaa}
+\alias{gstd}
+\alias{gstc}
 \alias{gpop}
-\alias{gta}
+\alias{gstp}
+\alias{gtn}
 \alias{gfa}
 \alias{gac}
 \alias{gwip}
@@ -28,6 +38,10 @@
 \alias{gcf}
 \alias{gcm}
 \alias{grm}
+\alias{grbc}
+\alias{grba}
+\alias{grbs}
+\alias{grbm}
 \title{Z-shell Aliases}
 \usage{
 glog(n = 10)
@@ -42,7 +56,11 @@ gpr()
 
 gp(...)
 
+gpu()
+
 gpd()
+
+gst()
 
 gss()
 
@@ -56,11 +74,27 @@ gbnm(branch = "master")
 
 gbm(branch = NULL)
 
+ga(...)
+
+gaa()
+
 gau()
+
+gsta()
+
+gstl()
+
+gstaa(n = 0)
+
+gstd(n = 0)
+
+gstc()
 
 gpop()
 
-gta()
+gstp()
+
+gtn()
 
 gfa()
 
@@ -81,10 +115,19 @@ gcf(global = FALSE)
 gcm()
 
 grm(...)
+
+grbc()
+
+grba()
+
+grbs()
+
+grbm()
 }
 \arguments{
 \item{n}{Numeric. How far back to go from current HEAD. Same as the
-command line \verb{git log -n} parameter.}
+command line \verb{git log -n} parameter. For \verb{git stash} commands, zero-index
+into the stash list.}
 
 \item{...}{Additional arguments passed to the system
 command-line \verb{git <command> [<args>]} call.}
@@ -100,7 +143,8 @@ feature branch.}
 
 \item{file}{A full file path within the repository to diff.}
 
-\item{staged}{Logical. Should the staged file be compared to HEAD?}
+\item{staged}{Logical. Compare a staged file to HEAD? Otherwise the
+working directory is compared to the index (staged or HEAD).}
 
 \item{global}{Logical. Query global repository. Alternatively local config.}
 }
@@ -121,7 +165,11 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 
 \item \code{gp}: \verb{git push}.
 
+\item \code{gpu}: \verb{git push -u}.
+
 \item \code{gpd}: \verb{git push --dry-run}.
+
+\item \code{gst}: \verb{git status}.
 
 \item \code{gss}: \verb{git status -s}.
 
@@ -135,11 +183,27 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 
 \item \code{gbm}: \verb{git branch -m}.
 
+\item \code{ga}: \verb{git add ...}.
+
+\item \code{gaa}: \verb{git add --all}.
+
 \item \code{gau}: \verb{git add -u}.
 
-\item \code{gpop}: \verb{git stash pop --index}.
+\item \code{gsta}: \verb{git stash}.
 
-\item \code{gta}: \verb{git tag -n}.
+\item \code{gstl}: \verb{git stash list}.
+
+\item \code{gstaa}: \verb{git stash apply}. \strong{Note}: zero-indexing!
+
+\item \code{gstd}: \verb{git stash drop}. \strong{Note}: zero-indexing!
+
+\item \code{gstc}: \verb{git stash clear}. Danger!
+
+\item \code{gpop}: \verb{git stash pop --quiet --index}.
+
+\item \code{gstp}: See \code{gpop()}.
+
+\item \code{gtn}: \verb{git tag -n}.
 
 \item \code{gfa}: \verb{git fetch --all --prune}.
 
@@ -160,6 +224,14 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \item \code{gcm}: Checkout the default branch.
 
 \item \code{grm}: \verb{git rm ...}.
+
+\item \code{grbc}: \verb{git rebase --continue}.
+
+\item \code{grba}: \verb{git rebase --abort}.
+
+\item \code{grbs}: \verb{git rebase --skip}.
+
+\item \code{grbm}: \verb{git rebase git_default_br()}.
 }}
 
 \examples{
