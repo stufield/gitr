@@ -32,7 +32,8 @@ You can include R chunks like so:
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10
-#> [33m*[0m[32m bfe87fc [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new aliases and complete README
+#> [33m*[0m[32m 18a05a8 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) update README with function links
+#> [33m*[0m[32m 77ba5e0 [0mAdd new aliases and complete README
 #> [33m*[0m[32m 44a833e [0mUpdated README with ZSH aliases
 #> [33m*[0m[32m 4d01934 [0mAdd error message cat() to git() calls
 #> [33m*[0m[32m f652710 [0mAdd gitr-package.R file for roxygen2/usethis
@@ -42,51 +43,50 @@ glog()
 
 ## ZSH-aliases available in `gitr`
 
-| alias           | git command                              |
-|:----------------|:-----------------------------------------|
-| ga              | git add                                  |
-| gst             | git status                               |
-| gss             | git status -s                            |
-| gau             | git add -u                               |
-| gaa             | git add –all                             |
-| gb              | git branch                               |
-| gba             | git branch -a                            |
-| gbd             | git branch -d/-D                         |
-| gdf             | git diff <file>                          |
-| gbnm            | git branch –no-merged                    |
-| gbmm            | git branch –merged                       |
-| gbr             | git branch –remote                       |
-| gac,gcn         | git commit –no-verify –no-edit –amend    |
-| gc              | git commit -v                            |
-| gcb             | git checkout -b                          |
-| gcf             | git config –list                         |
-| gnuke,gpristine | git reset –hard && git clean -dfx        |
-| gcm             | git checkout $(git\_main\_branch)        |
-| gcd             | git checkout $(git\_develop\_branch)     |
-| gcmsg           | git commit -m                            |
-| gco             | git checkout                             |
-| gp              | git push                                 |
-| gpu             | git push -u                              |
-| gpd             | git push –dry-run                        |
-| gpf             | git push –force-with-lease               |
-| gpr             | git pull –rebase –autostash -v           |
-| glog            | git log –oneline –decorate –graph        |
-| gwip            | git add -u && commit –no-verify -m “wip” |
-| gclean          | git clean -id                            |
-| grm             | git rm                                   |
-| grmc            | git rm –cached                           |
-| gsta            | git stash                                |
-| gpop,gstp       | git stash pop                            |
-| gstaa           | git stash apply                          |
-| gstc            | git stash clear                          |
-| gstd            | git stash drop                           |
-| gstl            | git stash list                           |
-| gsts            | git stash show –text                     |
-| gtn             | git tag -n                               |
-| grba            | git rebase –abort                        |
-| grbc            | git rebase –continue                     |
-| grbs            | git rebase –skip                         |
-| grbm            | git rebase `git_default_br()`            |
+| alias               | git command                              |
+|:--------------------|:-----------------------------------------|
+| `ga()`              | git add                                  |
+| `gst()`             | git status                               |
+| `gss()`             | git status -s                            |
+| `gau()`             | git add -u                               |
+| `gaa()`             | git add –all                             |
+| `gb()`              | git branch                               |
+| `gba()`             | git branch -a                            |
+| `gbd()`             | git branch -d/-D                         |
+| `gdf()`             | git diff <file>                          |
+| `gbnm()`            | git branch –no-merged                    |
+| `gbmm()`            | git branch –merged                       |
+| `gbr()`             | git branch –remote                       |
+| `gac()`,gcn         | git commit –no-verify –no-edit –amend    |
+| `gc()`              | git commit                               |
+| `gco()`             | git checkout                             |
+| `gcb()`             | git checkout -b                          |
+| `gcm()`             | git checkout `git_default_br()`          |
+| `gcf()`             | git config –list                         |
+| `gnuke()`,gpristine | git reset –hard && git clean -dfx        |
+| `gcmsg()`           | git commit -m                            |
+| `gp()`              | git push                                 |
+| `gpu()`             | git push -u                              |
+| `gpd()`             | git push –dry-run                        |
+| `gpf()`             | git push –force-with-lease               |
+| `gpr()`             | git pull –rebase –autostash -v           |
+| `glog()`            | git log –oneline –decorate –graph        |
+| `gwip()`            | git add -u && commit –no-verify -m “wip” |
+| `gclean()`          | git clean -id                            |
+| `grm()`             | git rm                                   |
+| `grmc()`            | git rm –cached                           |
+| `gsta()`            | git stash                                |
+| `gstl()`            | git stash list                           |
+| `gpop()`,`gstp()`   | git stash pop                            |
+| `gstaa()`           | git stash apply                          |
+| `gstd()`            | git stash drop                           |
+| `gstc()`            | git stash clear                          |
+| `gsts()`            | git stash show `--text`                  |
+| `gtn()`             | git tag -n                               |
+| `grba()`            | git rebase –abort                        |
+| `grbc()`            | git rebase –continue                     |
+| `grbs()`            | git rebase –skip                         |
+| `grbm()`            | git rebase `git_default_br()`            |
 
 ------------------------------------------------------------------------
 
@@ -163,7 +163,6 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gsi                           | git submodule init                                                                              |
 | gsps                          | git show –pretty=short –show-signature                                                          |
 | gsr                           | git svn rebase                                                                                  |
-| gsts                          | git stash show –text                                                                            |
 | gstu                          | gsta –include-untracked                                                                         |
 | gstall                        | git stash –all                                                                                  |
 | gsu                           | git submodule update                                                                            |

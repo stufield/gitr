@@ -6,6 +6,7 @@
 \alias{gc}
 \alias{gcmsg}
 \alias{gco}
+\alias{gcb}
 \alias{gpr}
 \alias{gp}
 \alias{gpu}
@@ -52,6 +53,8 @@ gcmsg(msg = "wip")
 
 gco(branch = NULL)
 
+gcb(branch = NULL)
+
 gpr()
 
 gp(...)
@@ -68,9 +71,9 @@ gba()
 
 gbd(branch = NULL, force = FALSE)
 
-gbmm(branch = "master")
+gbmm(branch = git_default_br())
 
-gbnm(branch = "master")
+gbnm(branch = git_default_br())
 
 gbm(branch = NULL)
 
@@ -160,6 +163,8 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \item \code{gcmsg}: \verb{git commit -m <msg>}.
 
 \item \code{gco}: \verb{git checkout}.
+
+\item \code{gcb}: \verb{git checkout -b <branch>}.
 
 \item \code{gpr}: \verb{git pull --rebase}.
 

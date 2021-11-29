@@ -51,6 +51,13 @@ gco <- function(branch = NULL) {
   git_checkout(branch)
 }
 
+#' @describeIn zsh `git checkout -b <branch>`.
+#' @export
+gcb <- function(branch = NULL) {
+  stopifnot(!is.null(branch))
+  git("checkout", "-b", branch)
+}
+
 #' @describeIn zsh `git pull --rebase`.
 #' @export
 gpr <- function() {
@@ -132,7 +139,7 @@ gbd <- function(branch = NULL, force = FALSE) {
 
 #' @describeIn zsh `git branch --merged <branch>`.
 #' @export
-gbmm <- function(branch = "master") {
+gbmm <- function(branch = git_default_br()) {
   if ( is_git() ) {
     out <- git("branch", "--merged", branch)
     gsub("(.+)", "\033[32m\\1\033[0m", out$stdout) |> cat(sep = "\n")
@@ -142,7 +149,7 @@ gbmm <- function(branch = "master") {
 
 #' @describeIn zsh `git branch --no-merged <branch>`.
 #' @export
-gbnm <- function(branch = "master") {
+gbnm <- function(branch = git_default_br()) {
   if ( is_git() ) {
     out <- git("branch", "--no-merged", branch)
     gsub("(.+)", "\033[31m\\1\033[0m", out$stdout) |> cat(sep = "\n")

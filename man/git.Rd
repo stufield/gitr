@@ -77,7 +77,8 @@ the \code{origin/master} branch in the remote.
 
 \item \code{get_recent_tag}: Get the \emph{most} recent \code{git} tag.
 
-\item \code{git_checkout}: \verb{git checkout} as a branch if doesnt' exist.
+\item \code{git_checkout}: \verb{git checkout} as a branch if doesn't exist. Branch
+oriented workflow for switching between branches.
 
 \item \code{is_git}: Is current working directory a \code{git} repository?
 

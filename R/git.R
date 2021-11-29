@@ -158,7 +158,9 @@ get_recent_tag <- function() {
   gsub("(^v[0-9]+\\.[0-9]+\\.[0-9]+).*", "\\1", tag)
 }
 
-#' @describeIn git `git checkout` as a branch if doesnt' exist.
+#' @describeIn git `git checkout` as a branch if doesn't exist. Branch
+#' oriented workflow for switching between branches.
+#' @export
 git_checkout <- function(branch = NULL) {
   if ( is.null(branch) ) {
     stop("You must pass a branch to checkout.", call. = FALSE)
