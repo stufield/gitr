@@ -42,7 +42,7 @@ gc <- function(...) {
 #' @param msg Character. The message for the commit subject line.
 #' @export
 gcmsg <- function(msg = "wip") {
-  git("commit", "--no-verify", "-m", msg)
+  git("commit", "--no-verify", "-m", encodeString(msg, quote = "'"))
 }
 
 #' @describeIn zsh `git checkout`.
