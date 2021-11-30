@@ -32,7 +32,9 @@ You can include R chunks like so:
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10
-#> [33m*[0m[32m 18a05a8 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) update README with function links
+#> [33m*[0m[32m 2b904b5 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new reset and unstage functions
+#> [33m*[0m[32m 8f7d81f [0mAdd new `gsts()` and export `is_git()`
+#> [33m*[0m[32m 41086e5 [0mupdate README with function links
 #> [33m*[0m[32m 77ba5e0 [0mAdd new aliases and complete README
 #> [33m*[0m[32m 44a833e [0mUpdated README with ZSH aliases
 #> [33m*[0m[32m 4d01934 [0mAdd error message cat() to git() calls
@@ -87,6 +89,7 @@ glog()
 | `grbc()`            | git rebase –continue                     |
 | `grbs()`            | git rebase –skip                         |
 | `grbm()`            | git rebase `git_default_br()`            |
+| `grv()`             | git remote -v                            |
 
 ------------------------------------------------------------------------
 
@@ -156,7 +159,6 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | grt                           | cd $(git rev-parse –show-toplevel \|\| echo .)                                                  |
 | gru                           | git reset –                                                                                     |
 | grup                          | git remote update                                                                               |
-| grv                           | git remote -v                                                                                   |
 | gsb                           | git status -sb                                                                                  |
 | gsd                           | git svn dcommit                                                                                 |
 | gsh                           | git show                                                                                        |
