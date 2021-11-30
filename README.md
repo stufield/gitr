@@ -8,6 +8,8 @@
 
 The goal of `gitr` is to …
 
+## Disclaimer
+
 ## Installation
 
 Currently you can only install development version of `gitr` via:
@@ -24,15 +26,34 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(gitr)
+#> 
+#> Attaching package: 'gitr'
+#> The following object is masked from 'package:base':
+#> 
+#>     gc
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+``` r
+git_default_br()
+#> [1] "master"
+```
+
+``` r
+git_current_br()
+#> [1] "master"
+```
+
+``` r
+git_version()
+#> [1] "2.34.0"
+```
 
 ``` r
 glog()
-#> Running git log --oneline --graph --decorate -n 10
-#> [33m*[0m[32m 2b904b5 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new reset and unstage functions
+#> Running git log --oneline --graph --decorate -n 10 
+#> [33m*[0m[32m 3c72608 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new git_sitrep() function
+#> [33m*[0m[32m 254479f [0mNow wrap quotes around string for gcmsg()
+#> [33m*[0m[32m ba960d9 [0mAdd new reset and unstage functions
 #> [33m*[0m[32m 8f7d81f [0mAdd new `gsts()` and export `is_git()`
 #> [33m*[0m[32m 41086e5 [0mupdate README with function links
 #> [33m*[0m[32m 77ba5e0 [0mAdd new aliases and complete README
@@ -40,7 +61,37 @@ glog()
 #> [33m*[0m[32m 4d01934 [0mAdd error message cat() to git() calls
 #> [33m*[0m[32m f652710 [0mAdd gitr-package.R file for roxygen2/usethis
 #> [33m*[0m[32m ea9e8b4 [0mNow uses `system2()` over `processx::run()`
-#> [33m*[0m[32m 9a8429a [0mInitial commit
+```
+
+``` r
+git_sitrep()
+#> Using Git version:[34m 2.34.0 [0m
+#> 
+#> Current Branch:[32m master [0m
+#> 
+#> Branches:
+#> [32m* master[0m
+#>   testbr
+#>   [31mremotes/origin/master[0m
+#>   [31mremotes/origin/testbr[0m
+#> 
+#> Repo status:
+#> Running git status -s 
+#> [32m [31mM[0m README.Rmd
+#> [32m [31mM[0m README.md
+#> 
+#> Upstream remote:
+#>   branch ahead behind
+#> 1 master     0      0
+#> 2 testbr     2      3
+#> 
+#> Commit[32m master [0mLog:
+#> Running git log --oneline --graph --decorate -n 5 
+#> [33m*[0m[32m 3c72608 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new git_sitrep() function
+#> [33m*[0m[32m 254479f [0mNow wrap quotes around string for gcmsg()
+#> [33m*[0m[32m ba960d9 [0mAdd new reset and unstage functions
+#> [33m*[0m[32m 8f7d81f [0mAdd new `gsts()` and export `is_git()`
+#> [33m*[0m[32m 41086e5 [0mupdate README with function links
 ```
 
 ## ZSH-aliases available in `gitr`

@@ -20,6 +20,10 @@ knitr::opts_chunk$set(
 
 The goal of `gitr` is to ...
 
+
+## Disclaimer
+
+
 ## Installation
 
 Currently you can only install development version of `gitr` via:
@@ -38,11 +42,24 @@ This is a basic example which shows you how to solve a common problem:
 library(gitr)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+```{r default}
+git_default_br()
+```
+
+```{r current}
+git_current_br()
+```
+
+```{r ver}
+git_version()
+```
 
 ```{r glog}
 glog()
+```
+
+```{r sitrep}
+git_sitrep()
 ```
 
 
