@@ -16,6 +16,7 @@
 \alias{git_unstage}
 \alias{git_reset_soft}
 \alias{git_reset_hard}
+\alias{git_sitrep}
 \title{Git Utilities}
 \usage{
 git(..., echo_cmd = TRUE)
@@ -47,6 +48,8 @@ git_unstage(file = NULL)
 git_reset_soft()
 
 git_reset_hard()
+
+git_sitrep()
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
@@ -106,6 +109,8 @@ Default unstages \emph{all} files.
 add them to the staging area.
 
 \item \code{git_reset_hard}: \verb{git reset --hard origin/<branch>}.
+
+\item \code{git_sitrep}: Get a situation report of the current git repository.
 }}
 
 \examples{

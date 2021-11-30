@@ -47,7 +47,7 @@ git <- function(..., echo_cmd = TRUE) {
   )
   status <- attr(call, "status")
   if ( is.null(status) ) {
-    res$stdout <- call %||% ""
+    res$stdout <- call %||% ""   # character(0) -> ""
   } else {
     res$status <- status
     res$stderr <- as.character(call)
@@ -291,6 +291,38 @@ git_reset_hard <- function() {
     out <- git("reset", "--hard", paste0("origin/", git_current_br()))
     cat(out$stdout, sep = "\n")
     invisible(out)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn git Get a situation report of the current git repository.
+#' @export
+git_sitrep <- function() {
+  if ( is_git() ) {
+    cat("Using Git version:\033[34m", git_version(), "\033[0m\n")
+    cat("\nCurrent Branch:\033[32m", git_current_br(), "\033[0m\n")
+    cat("\nBranches:\n")
+    .gba <- git("branch", "-a", echo_cmd = FALSE)$stdout
+    .gba <- gsub("(^\\* .+)", "\033[32m\\1\033[0m", .gba)
+    gsub("(remotes/.+)", "\033[31m\\1\033[0m", .gba) |> cat(sep = "\n")
+    cat("\nRepo status:\n")
+    gss()
+    br <- trimws(gsub("\\*", "", git("branch", echo_cmd = FALSE)$stdout))
+    rt <- trimws(git("branch", "-r", echo_cmd = FALSE)$stdout)
+    lgl <- vapply(br, function(.x) any(grepl(paste0(.x, "$"), rt)), NA)
+    br <- br[lgl]
+    up <- lapply(br, function(branch) {
+      be <- git("rev-list", "--count", paste0(branch, "..@{upstream}"),
+                echo_cmd = FALSE)$stdout
+      ah <- git("rev-list", "--count", paste0("@{upstream}..", branch),
+                echo_cmd = FALSE)$stdout
+      data.frame(branch = branch, ahead = ah, behind = be)
+    })
+    cat("\nUpstream remote:\n")
+    print(do.call(rbind, up))
+    cat("\nCommit\033[32m", git_current_br(), "\033[0mLog:\n")
+    glog(5)
   } else {
     invisible()
   }
