@@ -253,3 +253,45 @@ git_current_br <- function() {
     invisible()
   }
 }
+
+#' @describeIn git Unstage file from the index to the working directory.
+#' Default unstages *all* files.
+#' @export
+git_unstage <- function(file = NULL) {
+  if ( is_git() ) {
+    if ( is.null(file) ) {
+      out <- git("reset", "HEAD")
+    } else {
+      out <- git("reset", "HEAD", file)
+    }
+    cat(out$stdout, sep = "\n")
+    invisible(out)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn git Uncommit the most recently committed file(s) and
+#' add them to the staging area.
+#' @export
+git_reset_soft <- function() {
+  if ( is_git() ) {
+    out <- git("reset", "--soft", "HEAD~1")
+    cat(out$stdout, sep = "\n")
+    invisible(out)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn git `git reset --hard origin/<branch>`.
+#' @export
+git_reset_hard <- function() {
+  if ( is_git() ) {
+    out <- git("reset", "--hard", paste0("origin/", git_current_br()))
+    cat(out$stdout, sep = "\n")
+    invisible(out)
+  } else {
+    invisible()
+  }
+}

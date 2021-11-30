@@ -92,6 +92,7 @@ glog()
 | `grbc()`            | git rebase --continue                    |
 | `grbs()`            | git rebase --skip                        |
 | `grbm()`            | git rebase `git_default_br()`            |
+| `grv()`             | git remote -v                            |
 
 
 
@@ -204,7 +205,6 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | grt             | cd \$(git rev-parse --show-toplevel \|\| echo .) |
 | gru             | git reset --                             |
 | grup            | git remote update                        |
-| grv             | git remote -v                            |
 | gsb             | git status -sb                           |
 | gsd             | git svn dcommit                          |
 | gsh             | git show                                 |

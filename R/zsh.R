@@ -76,11 +76,11 @@ gp <- function(...) {
   invisible()
 }
 
-#' @describeIn zsh `git push -u`.
+#' @describeIn zsh `git push -u origin`.
 #' @export
 gpu <- function() {
   if ( is_git() ) {
-    git("push", "-u")
+    git("push", "-u", "origin")
   }
   invisible()
 }
@@ -461,6 +461,18 @@ grbs <- function() {
 grbm <- function() {
   if ( is_git() ) {
     invisible(git("rebase", git_default_br()))
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn zsh `git remote -v`.
+#' @export
+grv <- function() {
+  if ( is_git() ) {
+    out <- git("remote", "-v")
+    cat(out$stdout, sep = "\n")
+    invisible(out)
   } else {
     invisible()
   }

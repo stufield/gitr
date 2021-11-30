@@ -13,6 +13,9 @@
 \alias{git_version}
 \alias{git_default_br}
 \alias{git_current_br}
+\alias{git_unstage}
+\alias{git_reset_soft}
+\alias{git_reset_hard}
 \title{Git Utilities}
 \usage{
 git(..., echo_cmd = TRUE)
@@ -38,6 +41,12 @@ git_version()
 git_default_br()
 
 git_current_br()
+
+git_unstage(file = NULL)
+
+git_reset_soft()
+
+git_reset_hard()
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
@@ -89,6 +98,14 @@ oriented workflow for switching between branches.
 \item \code{git_default_br}: Gets the default "main" branch.
 
 \item \code{git_current_br}: Gets the \emph{current} branch.
+
+\item \code{git_unstage}: Unstage file from the index to the working directory.
+Default unstages \emph{all} files.
+
+\item \code{git_reset_soft}: Uncommit the most recently committed file(s) and
+add them to the staging area.
+
+\item \code{git_reset_hard}: \verb{git reset --hard origin/<branch>}.
 }}
 
 \examples{

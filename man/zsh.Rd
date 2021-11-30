@@ -44,6 +44,7 @@
 \alias{grba}
 \alias{grbs}
 \alias{grbm}
+\alias{grv}
 \title{Z-shell Aliases}
 \usage{
 glog(n = 10)
@@ -129,6 +130,8 @@ grba()
 grbs()
 
 grbm()
+
+grv()
 }
 \arguments{
 \item{n}{Numeric. How far back to go from current HEAD. Same as the
@@ -175,7 +178,7 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 
 \item \code{gp}: \verb{git push}.
 
-\item \code{gpu}: \verb{git push -u}.
+\item \code{gpu}: \verb{git push -u origin}.
 
 \item \code{gpd}: \verb{git push --dry-run}.
 
@@ -244,6 +247,8 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \item \code{grbs}: \verb{git rebase --skip}.
 
 \item \code{grbm}: \verb{git rebase git_default_br()}.
+
+\item \code{grv}: \verb{git remote -v}.
 }}
 
 \examples{
