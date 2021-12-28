@@ -5,8 +5,7 @@
 \alias{get_commit_msgs}
 \alias{get_pr_msgs}
 \alias{get_pr_sha}
-\alias{lint_commit_msg}
-\alias{get_recent_tag}
+\alias{git_recent_tag}
 \alias{git_checkout}
 \alias{is_git}
 \alias{scrape_commits}
@@ -27,9 +26,7 @@ get_pr_msgs(branch = NULL)
 
 get_pr_sha(branch = NULL)
 
-lint_commit_msg(x)
-
-get_recent_tag()
+git_recent_tag()
 
 git_checkout(branch = NULL)
 
@@ -63,8 +60,6 @@ If \code{NULL}, the most recent commit on the current branch.}
 \item{n}{Numeric. How far back to go from current HEAD. Same as the
 command line \verb{git log -n} parameter.}
 
-\item{x}{A single commit message from \code{get_commit_msgs()}.}
-
 \item{file, branch}{Character. The name of a file or branch, typically a
 feature branch.}
 }
@@ -85,9 +80,7 @@ that would be merged as part of a PR to \code{origin/master}.
 \item \code{get_pr_sha}: Gets the commit SHA1 \emph{current} branch relative to
 the \code{origin/master} branch in the remote.
 
-\item \code{lint_commit_msg}: Lint a commit message for typical commit style best practices for \code{git}.
-
-\item \code{get_recent_tag}: Get the \emph{most} recent \code{git} tag.
+\item \code{git_recent_tag}: Get the \emph{most} recent \code{git} tag.
 
 \item \code{git_checkout}: \verb{git checkout} as a branch if doesn't exist. Branch
 oriented workflow for switching between branches.

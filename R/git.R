@@ -106,10 +106,10 @@ get_pr_sha <- function(branch = NULL) {
   }
 }
 
-#' @describeIn git
 #' Lint a commit message for typical commit style best practices for `git`.
+#'
 #' @param x A single commit message from `get_commit_msgs()`.
-#' @export
+#' @noRd
 lint_commit_msg <- function(x) {
   if ( length(x) == 0 ) {
     return(0)
@@ -153,7 +153,7 @@ lint_commit_msg <- function(x) {
 #' @describeIn git
 #' Get the *most* recent `git` tag.
 #' @export
-get_recent_tag <- function() {
+git_recent_tag <- function() {
   tag <- utils::tail(git("tag", "-n")$stdout, 1L)
   gsub("(^v[0-9]+\\.[0-9]+\\.[0-9]+).*", "\\1", tag)
 }
