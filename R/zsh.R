@@ -36,9 +36,10 @@ glog <- function(n = 10) {
   invisible()
 }
 
-#' @describeIn zsh `git commit ...`.
+#' @describeIn zsh `git commit ...`. To avoid masking the [base::gc()] function,
+#' this alias has been re-mapped to [gcc()].
 #' @export
-gc <- function(...) {
+gcc <- function(...) {
   git("commit", c(...))
 }
 

@@ -3,7 +3,7 @@
 \name{zsh}
 \alias{zsh}
 \alias{glog}
-\alias{gc}
+\alias{gcc}
 \alias{gcmsg}
 \alias{gco}
 \alias{gcb}
@@ -49,7 +49,7 @@
 \usage{
 glog(n = 10)
 
-gc(...)
+gcc(...)
 
 gcmsg(msg = "wip")
 
@@ -166,7 +166,8 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 \itemize{
 \item \code{glog}: Get the \code{git} log in a pretty format for the \code{n} most recent commits.
 
-\item \code{gc}: \verb{git commit ...}.
+\item \code{gcc}: \verb{git commit ...}. To avoid masking the \code{\link[base:gc]{base::gc()}} function,
+this alias has been re-mapped to \code{\link[=gcc]{gcc()}}.
 
 \item \code{gcmsg}: \verb{git commit -m <msg>}.
 
