@@ -77,11 +77,12 @@ Provides functionality for system-level Git commands from within R.
 Adds author and \code{sha} attributes to each commit for downstream use.
 
 \item \code{get_pr_msgs}: Gets the commit messages for the \emph{current} branch relative to
-the \code{origin/master} branch in the remote. Typically these "new" commits
-that would be merged as part of a PR to \code{origin/master}.
+the \verb{origin/\{main,master\}} branch in the remote. Typically these "new" commits
+that would be merged as part of a PR to \verb{origin/\{main,master\}}.
 
 \item \code{get_pr_sha}: Gets the commit SHA1 \emph{current} branch relative to
-the \code{origin/master} branch in the remote.
+the \code{default} branch in the remote, usually either \code{origin/main} or
+\code{origin/master}. See \code{\link[=git_default_br]{git_default_br()}}.
 
 \item \code{git_recent_tag}: Get the \emph{most} recent \code{git} tag.
 
@@ -94,7 +95,8 @@ oriented workflow for switching between branches.
 
 \item \code{git_version}: Gets the version of git in use.
 
-\item \code{git_default_br}: Gets the default "main" branch.
+\item \code{git_default_br}: Gets the default "main" branch, typically either
+\code{master}, \code{main}, or \code{trunk}.
 
 \item \code{git_current_br}: Gets the \emph{current} branch.
 
@@ -125,7 +127,7 @@ get_pr_msgs()
 # lint most recent 3 commit message
 lapply(get_commit_msgs(n = 3), lint_commit_msg)
 
-# for a PR `branch` -> `remotes/origin/master`
+# for a PR `branch` -> `remotes/origin/{main,master}`
 lapply(get_pr_msgs(), lint_commit_msg)           # current branch
 lapply(get_pr_msgs("feature"), lint_commit_msg)  # `feature` branch
 

@@ -25,7 +25,7 @@
 #' # lint most recent 3 commit message
 #' lapply(get_commit_msgs(n = 3), lint_commit_msg)
 #'
-#' # for a PR `branch` -> `remotes/origin/master`
+#' # for a PR `branch` -> `remotes/origin/{main,master}`
 #' lapply(get_pr_msgs(), lint_commit_msg)           # current branch
 #' lapply(get_pr_msgs("feature"), lint_commit_msg)  # `feature` branch
 #'
@@ -77,8 +77,8 @@ get_commit_msgs <- function(sha = NULL, n = 1) {
 
 #' @describeIn git
 #' Gets the commit messages for the *current* branch relative to
-#' the `origin/master` branch in the remote. Typically these "new" commits
-#' that would be merged as part of a PR to `origin/master`.
+#' the `origin/{main,master}` branch in the remote. Typically these "new" commits
+#' that would be merged as part of a PR to `origin/{main,master}`.
 #' @export
 get_pr_msgs <- function(branch = NULL) {
   sha_vec <- get_pr_sha(branch)
@@ -91,14 +91,16 @@ get_pr_msgs <- function(branch = NULL) {
 
 #' @describeIn git
 #' Gets the commit SHA1 *current* branch relative to
-#' the `origin/master` branch in the remote.
+#' the `default` branch in the remote, usually either `origin/main` or
+#' `origin/master`. See [git_default_br()].
 #' @export
 get_pr_sha <- function(branch = NULL) {
   if ( is.null(branch) ) {
     branch <- git_current_br()
   }
+  default <- git_default_br()
   sha_vec <- git("rev-list", "--right-only",
-                 paste0("remotes/origin/master..", branch),
+                 paste0("remotes/origin/", default, "..", branch),
                  echo_cmd = FALSE)
   if ( sha_vec$status == 1 || sha_vec$stdout == "" ) {
     NULL
@@ -223,7 +225,8 @@ git_version <- function() {
   gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
 }
 
-#' @describeIn git Gets the default "main" branch.
+#' @describeIn git Gets the default "main" branch, typically either
+#' `master`, `main`, or `trunk`.
 #' @export
 git_default_br <- function() {
   if ( is_git() ) {
