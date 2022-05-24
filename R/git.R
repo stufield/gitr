@@ -51,7 +51,8 @@ git <- function(..., echo_cmd = TRUE) {
   } else {
     res$status <- status
     res$stderr <- as.character(call)
-    cat("\033[031mSystem command 'git' failed:\n", res$stderr, sep = "\n")
+    cat(slug_color("System command 'git' failed:\n"),
+        slug_color(res$stderr, "\033[036m"), sep = "\n")
   }
   invisible(res)
 }
@@ -297,14 +298,16 @@ git_reset_hard <- function() {
 #' @export
 git_sitrep <- function() {
   if ( is_git() ) {
-    cat("Using Git version:\033[34m", git_version(), "\033[0m\n")
-    cat("\nCurrent Branch:\033[32m", git_current_br(), "\033[0m\n")
+    cat("Using Git version:", slug_color(git_version(), "\033[34m"), "\n")
+    cat("\nCurrent Branch:", slug_color(git_current_br(),"\033[32m"), "\n")
+    cat("\nDefault Branch:", slug_color(git_default_br(),"\033[36m"), "\n")
+
     cat("\nBranches:\n")
-    .gba <- git("branch", "-a", echo_cmd = FALSE)$stdout
-    .gba <- gsub("(^\\* .+)", "\033[32m\\1\033[0m", .gba)
-    gsub("(remotes/.+)", "\033[31m\\1\033[0m", .gba) |> cat(sep = "\n")
+    gba()
+
     cat("\nRepo status:\n")
     gss()
+
     br <- trimws(gsub("\\*", "", git("branch", echo_cmd = FALSE)$stdout))
     rt <- trimws(git("branch", "-r", echo_cmd = FALSE)$stdout)
     lgl <- vapply(br, function(.x) any(grepl(paste0(.x, "$"), rt)), NA)
@@ -318,7 +321,8 @@ git_sitrep <- function() {
     })
     cat("\nUpstream remote:\n")
     print(do.call(rbind, up))
-    cat("\nCommit\033[32m", git_current_br(), "\033[0mLog:\n")
+
+    cat("\nCommit", slug_color(git_current_br(), "\033[32m"), "Log:\n")
     glog(5)
   } else {
     invisible()

@@ -22,12 +22,16 @@ NULL
 glog <- function(n = 10) {
   if ( is_git() ) {
     out <- git("log", "--oneline", "--graph", "--decorate", "-n", n)$stdout
-    out <- gsub("^\\*", "\033[33m*\033[0m", out)               # *s
-    out <- gsub("( [a-f0-9]{7} )", "\033[32m\\1\033[0m", out)  # sha1
-    out <- gsub("(tag: v[^\\)]+)", "\033[34m\\1\033[0m", out)  # tags
-    out <- gsub("(origin/[^\\)]+)", "\033[31m\\1\033[0m", out) # remote branches
-    out <- gsub("HEAD -> ([^,\\)]+)", "\033[36mHEAD -> \033[32m\\1\033[0m", out)
-    cat(out, sep = "\n")
+    if ( not_interactive() ) {
+      cat(out, sep = "\n")
+    } else {
+      out <- gsub("^\\*", "\033[33m*\033[0m", out)               # *s
+      out <- gsub("( [a-f0-9]{7} )", "\033[32m\\1\033[0m", out)  # sha1
+      out <- gsub("(tag: v[^\\)]+)", "\033[34m\\1\033[0m", out)  # tags
+      out <- gsub("(origin/[^\\)]+)", "\033[31m\\1\033[0m", out) # remote branches
+      out <- gsub("HEAD -> ([^,\\)]+)", "\033[36mHEAD -> \033[32m\\1\033[0m", out)
+      cat(out, sep = "\n")
+    }
   }
   invisible()
 }
@@ -110,7 +114,11 @@ gst <- function() {
 gss <- function() {
   if ( is_git() ) {
     out <- git("status", "-s")$stdout
-    gsub("^(.)(.)", "\033[32m\\1\033[31m\\2\033[0m", out) |> cat(sep = "\n")
+    if ( not_interactive() ) {
+      cat(out, sep = "\n")
+    } else {
+      gsub("^(.)(.)", "\033[32m\\1\033[31m\\2\033[0m", out) |> cat(sep = "\n")
+    }
   }
   invisible(out)
 }
@@ -120,8 +128,13 @@ gss <- function() {
 gba <- function() {
   if ( is_git() ) {
     out <- git("branch", "-a")$stdout
-    out <- gsub("(^\\* .+)", "\033[32m\\1\033[0m", out)
-    gsub("(remotes/.+)", "\033[31m\\1\033[0m", out) |> cat(sep = "\n")
+    if ( not_interactive() ) {
+      cat(out, sep = "\n")
+    } else {
+      out <- gsub("(^\\* .+)", "\033[32m\\1\033[0m", out)
+      out <- gsub("(remotes/.+)", "\033[31m\\1\033[0m", out)
+      cat(out, sep = "\n")
+    }
   }
   invisible()
 }
@@ -142,7 +155,11 @@ gbd <- function(branch = NULL, force = FALSE) {
 gbmm <- function(branch = git_default_br()) {
   if ( is_git() ) {
     out <- git("branch", "--merged", branch)
-    gsub("(.+)", "\033[32m\\1\033[0m", out$stdout) |> cat(sep = "\n")
+    if ( not_interactive() ) {
+      cat(out$stdout, sep = "\n")
+    } else {
+      gsub("(.+)", "\033[32m\\1\033[0m", out$stdout) |> cat(sep = "\n")
+    }
   }
   invisible()
 }
@@ -152,7 +169,11 @@ gbmm <- function(branch = git_default_br()) {
 gbnm <- function(branch = git_default_br()) {
   if ( is_git() ) {
     out <- git("branch", "--no-merged", branch)
-    gsub("(.+)", "\033[31m\\1\033[0m", out$stdout) |> cat(sep = "\n")
+    if ( not_interactive() ) {
+      cat(out$stdout, sep = "\n")
+    } else {
+      gsub("(.+)", "\033[31m\\1\033[0m", out$stdout) |> cat(sep = "\n")
+    }
   }
   invisible()
 }
@@ -289,7 +310,12 @@ gstp <- gpop
 gtn <- function() {
   if ( is_git() ) {
     out <- rev(git("tag", "-n")$stdout)
-    gsub("^(v[0-9]+\\.[0-9]+\\.[0-9]+)", "\033[31m\\1\033[0m", out) |> cat(sep = "\n")
+    if ( not_interactive() ) {
+      cat(out, sep = "\n")
+    } else {
+      out <- gsub("^(v[0-9]+\\.[0-9]+\\.[0-9]+)", "\033[31m\\1\033[0m", out)
+      cat(out, sep = "\n")
+    }
   }
   invisible()
 }

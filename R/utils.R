@@ -9,18 +9,29 @@
 }
 
 todo <- function(...) {
-  sym <- paste0("\033[31m", "\u2022", "\033[39m")
-  inform(sym, ...)
+  inform(slug_color("\u2022"), ...)
 }
 
 oops <- function(...) {
-  sym <- paste0("\033[31m", "\u2716", "\033[39m")
-  inform(sym, ...)
+  inform(slug_color("\u2716"), ...)
 }
 
 done <- function(...) {
-  sym <- paste0("\033[32m", "\u2713", "\033[39m")
-  inform(sym, ...)
+  inform(slug_color("\u2713", "\033[32m"), ...)
+}
+
+not_interactive <- function() {
+  is_testing  <- identical(Sys.getenv("TESTTHAT"), "true")
+  is_knitting <- isTRUE(getOption("knitr.in.progress"))
+  is_testing || is_knitting || !interactive()
+}
+
+slug_color <- function(x, color = "\033[31m") { # default red
+  if ( not_interactive() ) {
+    x
+  } else {
+    paste0(color, x, "\033[39m")
+  }
 }
 
 inform <- function(..., quiet = getOption("signal.quiet", default = FALSE)) {
