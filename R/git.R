@@ -226,20 +226,17 @@ git_version <- function() {
 #' @export
 git_default_br <- function() {
   if ( is_git() ) {
-    refs <- git("show-ref", echo_cmd = FALSE)$stdout
-    refs <- gsub("[a-f0-9]{40} ", "", refs)
-    root <- c("heads/", "remotes/origin/", "remotes/upstream/")
-    for ( i in root ) {
-      if ( paste0(i, "main") %in% refs) {
-        return("main")
-      } else if ( paste0(i, "trunk") %in% refs) {
-        return("trunk")
-      } else {
-        next
-      }
+    sink(tempfile())
+    on.exit(sink())
+    root <- c("refs/heads/", "refs/remotes/origin/", "refs/remotes/upstream/")
+    refs <- paste0(rep(root, each = 3L), c("main", "trunk", "master"))
+    for ( ref in refs ) {
+      st <- git("show-ref", "-q", "--verify", ref, echo_cmd = FALSE)$status
+      if ( st == 0L ) return(basename(ref)) else next
     }
+    stop("Unable to determine default branch.", call. = FALSE)
   }
-  "master"
+  invisible()
 }
 
 #' @describeIn git Gets the *current* branch.
