@@ -6,9 +6,20 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `gitr` is to …
+The goal of `gitr` is to provide a light-weight, dependency-free, API to
+access system-level git commands from within `R`. It contains wrappers
+for common use case defaults for my (!) workflows which are heavily
+influenced by `RStudio` projects and
+[Z-shell](https://github.com/ohmyzsh/ohmyzsh) and it’s plugins (see
+below).
 
 ## Disclaimer
+
+Use at own risk :smiley\_cat:, however, PRs are encouraged for ideas
+that I’ve missed. The functionality contained in `gitr` are *heavily*
+influenced by **my** personal workflows and may not suit all users.
+However, if you have an idea that would make the package better, more
+widely usable, and/or efficient, please submit an Issue or Pull Request.
 
 ## Installation
 
@@ -26,72 +37,70 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(gitr)
-#> 
-#> Attaching package: 'gitr'
-#> The following object is masked from 'package:base':
-#> 
-#>     gc
 ```
 
 ``` r
 git_default_br()
-#> [1] "master"
+#> [1] "main"
 ```
 
 ``` r
 git_current_br()
-#> [1] "master"
+#> [1] "main"
 ```
 
 ``` r
 git_version()
-#> [1] "2.34.0"
+#> [1] "2.35.1"
 ```
 
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10 
-#> [33m*[0m[32m 3c72608 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new git_sitrep() function
-#> [33m*[0m[32m 254479f [0mNow wrap quotes around string for gcmsg()
-#> [33m*[0m[32m ba960d9 [0mAdd new reset and unstage functions
-#> [33m*[0m[32m 8f7d81f [0mAdd new `gsts()` and export `is_git()`
-#> [33m*[0m[32m 41086e5 [0mupdate README with function links
-#> [33m*[0m[32m 77ba5e0 [0mAdd new aliases and complete README
-#> [33m*[0m[32m 44a833e [0mUpdated README with ZSH aliases
-#> [33m*[0m[32m 4d01934 [0mAdd error message cat() to git() calls
-#> [33m*[0m[32m f652710 [0mAdd gitr-package.R file for roxygen2/usethis
-#> [33m*[0m[32m ea9e8b4 [0mNow uses `system2()` over `processx::run()`
+#> * e377222 (HEAD -> main, origin/main, origin/HEAD) Add generalized Makefile
+#> * 028f5e1 Clean up README
+#> * 92582cf Name change `gc()` -> `gcc()` to avoid mask
+#> * 810b837 Move away from assuming `master` as default branch
+#> * 2682a8f Clean up coloring for non-interactive sessions
+#> * 9ca3134 Bugfix in `git_default_br()`
+#> * 3e3afd3 Add new `git_tag_info()`
+#> * 5c2ec81 Rename get_recent_tag() -> git_recent_tag()
+#> * 6c1fb3e Update README files
+#> * 3c72608 Add new git_sitrep() function
 ```
 
 ``` r
 git_sitrep()
-#> Using Git version:[34m 2.34.0 [0m
+#> Using Git version: 2.35.1 
 #> 
-#> Current Branch:[32m master [0m
+#> Current Branch: main 
+#> 
+#> Default Branch: main 
 #> 
 #> Branches:
-#> [32m* master[0m
+#> Running git branch -a 
+#> * main
 #>   testbr
-#>   [31mremotes/origin/master[0m
-#>   [31mremotes/origin/testbr[0m
+#>   remotes/origin/HEAD -> origin/main
+#>   remotes/origin/main
+#>   remotes/origin/testbr
 #> 
 #> Repo status:
 #> Running git status -s 
-#> [32m [31mM[0m README.Rmd
-#> [32m [31mM[0m README.md
+#>  M README.Rmd
 #> 
 #> Upstream remote:
 #>   branch ahead behind
-#> 1 master     0      0
-#> 2 testbr     2      3
+#> 1   main     0      0
+#> 2 testbr     2     12
 #> 
-#> Commit[32m master [0mLog:
+#> Commit main Log:
 #> Running git log --oneline --graph --decorate -n 5 
-#> [33m*[0m[32m 3c72608 [0m([36mHEAD -> [32mmaster[0m, [31morigin/master[0m) Add new git_sitrep() function
-#> [33m*[0m[32m 254479f [0mNow wrap quotes around string for gcmsg()
-#> [33m*[0m[32m ba960d9 [0mAdd new reset and unstage functions
-#> [33m*[0m[32m 8f7d81f [0mAdd new `gsts()` and export `is_git()`
-#> [33m*[0m[32m 41086e5 [0mupdate README with function links
+#> * e377222 (HEAD -> main, origin/main, origin/HEAD) Add generalized Makefile
+#> * 028f5e1 Clean up README
+#> * 92582cf Name change `gc()` -> `gcc()` to avoid mask
+#> * 810b837 Move away from assuming `master` as default branch
+#> * 2682a8f Clean up coloring for non-interactive sessions
 ```
 
 ## ZSH-aliases available in `gitr`
@@ -110,8 +119,8 @@ git_sitrep()
 | `gbnm()`            | git branch –no-merged                    |
 | `gbmm()`            | git branch –merged                       |
 | `gbr()`             | git branch –remote                       |
-| `gac()`,gcn         | git commit –no-verify –no-edit –amend    |
-| `gc()`              | git commit                               |
+| `gac()`, `gcn`      | git commit –no-verify –no-edit –amend    |
+| `gcc()`             | git commit                               |
 | `gco()`             | git checkout                             |
 | `gcb()`             | git checkout -b                          |
 | `gcm()`             | git checkout `git_default_br()`          |
@@ -235,3 +244,14 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gams                          | git am –skip                                                                                    |
 | gama                          | git am –abort                                                                                   |
 | gamscp                        | git am –show-current-patch                                                                      |
+
+#### LICENSE
+
+Please note that this package package is released with a
+[LICENSE](LICENSE). By using in this package you agree to abide by its
+terms.
+
+------------------------------------------------------------------------
+
+Created by [Rmarkdown](https://github.com/rstudio/rmarkdown) (v2.8) and
+R version 4.1.0 (2021-05-18).

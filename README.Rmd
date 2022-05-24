@@ -18,17 +18,26 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `gitr` is to ...
+The goal of `gitr` is to provide a light-weight, dependency-free,
+API to access system-level git commands from within `R`.
+It contains wrappers for common use case defaults for my (!) workflows
+which are heavily influenced by `RStudio` projects and
+[Z-shell](https://github.com/ohmyzsh/ohmyzsh) and it's plugins (see below).
 
 
 ## Disclaimer
 
+Use at own risk :smiley_cat:, however, PRs are encouraged for ideas that I've missed.
+The functionality contained in `gitr` are *heavily* influenced by **my**
+personal workflows and may not suit all users. However, if you have an idea
+that would make the package better, more widely usable, and/or efficient,
+please submit an Issue or Pull Request.
 
 ## Installation
 
 Currently you can only install development version of `gitr` via:
 
-``` r
+```r
 remotes::install_github("stufield/gitr")
 ```
 
@@ -79,8 +88,8 @@ git_sitrep()
 | `gbnm()`            | git branch --no-merged                   |
 | `gbmm()`            | git branch --merged                      |
 | `gbr()`             | git branch --remote                      |
-| `gac()`,gcn         | git commit --no-verify --no-edit --amend |
-| `gc()`              | git commit                               |
+| `gac()`, `gcn`      | git commit --no-verify --no-edit --amend |
+| `gcc()`             | git commit                               |
 | `gco()`             | git checkout                             |
 | `gcb()`             | git checkout -b                          |
 | `gcm()`             | git checkout `git_default_br()`          |
@@ -247,3 +256,16 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gams            | git am --skip                            |
 | gama            | git am --abort                           |
 | gamscp          | git am --show-current-patch              |
+
+
+
+#### LICENSE
+
+Please note that this package package is released with
+a [LICENSE](LICENSE). By using in this package you agree to abide by its terms.
+
+
+----------
+
+Created by [Rmarkdown](https://github.com/rstudio/rmarkdown)
+(v`r utils::packageVersion("rmarkdown")`) and `r R.version$version.string`.
