@@ -5,10 +5,10 @@ Authors@R: c(
     person("Stu", "Field", email = "stu.g.field@gmail.com", role = c("aut", "cre", "cph")) 
     )
 Description: A light-weight, dependency-free, API to access
-    system-level 'git' commands from within R. Contains wrappers
+    system-level git commands from within R. Contains wrappers
     and defaults for common data science workflows as well as
     Z-shell plugin aliases. Generalized API syntax is also available.
-    A system installation of 'git' is required.
+    A system installation of git is required.
 License: MIT + file LICENSE
 URL: https://github.io/gitr/
 BugReports: https://github.com/stufield/gitr/issues

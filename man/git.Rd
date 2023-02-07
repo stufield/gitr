@@ -63,7 +63,7 @@ command-line \verb{git <command> [<args>]} call.}
 
 \item{echo_cmd}{Logical. Whether to print the command to run to the console.}
 
-\item{sha}{Character. Commit SHA or hash to pull messages from.
+\item{sha}{Character. The commit SHA-1 hash to pull messages from.
 If \code{NULL}, the most recent commit on the current branch.}
 
 \item{n}{Numeric. How far back to go from current HEAD. Same as the
@@ -97,7 +97,8 @@ oriented workflow for switching between branches.
 
 \item \code{is_git()}: Is current working directory a \code{git} repository?
 
-\item \code{scrape_commits()}: Scrape \code{n} commit message for useful changelog commits.
+\item \code{scrape_commits()}: Scrape \code{n} commit messages for useful change log commits
+to be used to create a \code{NEWS.md}.
 
 \item \code{git_version()}: Gets the version of git in use.
 
@@ -105,10 +106,10 @@ oriented workflow for switching between branches.
 
 \item \code{git_current_br()}: Gets the \emph{current} branch.
 
-\item \code{git_unstage()}: Unstage file from the index to the working directory.
-Default unstages \emph{all} files.
+\item \code{git_unstage()}: Un-stage file from the index to the working directory.
+Default un-stages \emph{all} files.
 
-\item \code{git_reset_soft()}: Uncommit the most recently committed file(s) and
+\item \code{git_reset_soft()}: Un-commit the most recently committed file(s) and
 add them to the staging area.
 
 \item \code{git_uncommit()}: Un-commit the most recently committed file(s) and

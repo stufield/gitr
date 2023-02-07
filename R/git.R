@@ -8,7 +8,7 @@
 #' @param echo_cmd Logical. Whether to print the command to run to the console.
 #' @param file,branch Character. The name of a file or branch, typically a
 #'   feature branch.
-#' @param sha Character. Commit SHA or hash to pull messages from.
+#' @param sha Character. The commit SHA-1 hash to pull messages from.
 #'   If `NULL`, the most recent commit on the current branch.
 #' @param ... Additional arguments passed to the system
 #'   command-line `git <command> [<args>]` call.
@@ -195,7 +195,8 @@ is_git <- function() {
 }
 
 #' @describeIn git
-#'   Scrape `n` commit message for useful changelog commits.
+#'   Scrape `n` commit messages for useful change log commits
+#'   to be used to create a `NEWS.md`.
 #' @export
 scrape_commits <- function(n) {
   commit_list <- get_commit_msgs(n = n)
@@ -261,8 +262,8 @@ git_current_br <- function() {
 }
 
 #' @describeIn git
-#'   Unstage file from the index to the working directory.
-#'   Default unstages *all* files.
+#'   Un-stage file from the index to the working directory.
+#'   Default un-stages *all* files.
 #' @export
 git_unstage <- function(file = NULL) {
   if ( is_git() ) {
@@ -279,7 +280,7 @@ git_unstage <- function(file = NULL) {
 }
 
 #' @describeIn git
-#'   Uncommit the most recently committed file(s) and
+#'   Un-commit the most recently committed file(s) and
 #'   add them to the staging area.
 #' @export
 git_reset_soft <- function(n = 1) {

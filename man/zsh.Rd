@@ -146,7 +146,7 @@ command-line \verb{git <command> [<args>]} call.}
 \item{branch}{Character. The name of a branch, typically a
 feature branch.}
 
-\item{force}{Loogical. Should the branch delete be forced with the \code{-D} flag?}
+\item{force}{Logical. Should the branch delete be forced with the \code{-D} flag?}
 
 \item{text}{Logical. Show the text diffs from the stash.}
 
@@ -157,7 +157,8 @@ feature branch.}
 \item{staged}{Logical. Compare a staged file to HEAD? Otherwise the
 working directory is compared to the index (staged or HEAD).}
 
-\item{global}{Logical. Query global repository. Alternatively local config.}
+\item{global}{Logical. Query global repository. Alternatively
+local configuration only.}
 }
 \description{
 Provides ZSH-like aliases to common Z-shell plugin aliases.
