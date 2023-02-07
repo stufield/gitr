@@ -370,3 +370,20 @@ git_tag_info <- function() {
   ret$path       <- file.path(normalizePath("."), ".git")
   ret
 }
+
+
+#' @describeIn git
+#'   Gets the diff of the corresponding 2 commits. Order matters.
+#' @export
+git_diffcommits <- function(n1 = 1, n = 2) {
+  if ( is_git() ) {
+    out <- git("diff", paste0("HEAD~", n, "..HEAD~", n1))
+    if ( not_interactive() ) {
+      return(cat(out$stdout, sep = "\n"))
+    } else {
+      tmp <- gsub("(^\\+.*$)", "\033[32m\\1\033[0m", out$stdout)
+      gsub("(^\\-.*$)", "\033[31m\\1\033[0m", tmp) |> cat(sep = "\n")
+    }
+  }
+  invisible()
+}

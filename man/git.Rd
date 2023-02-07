@@ -18,6 +18,7 @@
 \alias{git_reset_hard}
 \alias{git_sitrep}
 \alias{git_tag_info}
+\alias{git_diffcommits}
 \title{Git Utilities}
 \usage{
 git(..., echo_cmd = TRUE)
@@ -53,6 +54,8 @@ git_reset_hard()
 git_sitrep()
 
 git_tag_info()
+
+git_diffcommits(n1 = 1, n = 2)
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
@@ -116,6 +119,8 @@ add them to the staging area. Wrapper around \code{\link[=git_reset_soft]{git_re
 \item \code{git_sitrep()}: Get a situation report of the current git repository.
 
 \item \code{git_tag_info()}: Gets a data frame summary of the current git repository tags.
+
+\item \code{git_diffcommits()}: Gets the diff of the corresponding 2 commits. Order matters.
 
 }}
 \examples{
