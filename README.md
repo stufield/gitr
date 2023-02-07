@@ -6,20 +6,22 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `gitr` is to provide a light-weight, dependency-free, API to
-access system-level git commands from within `R`. It contains wrappers
-for common use case defaults for my (!) workflows which are heavily
-influenced by `RStudio` projects and
+A light-weight, dependency-free, API to access system-level ‘git’
+commands from within `R`. It contains wrappers and defaults for common
+data science workflows as well as
 [Z-shell](https://github.com/ohmyzsh/ohmyzsh) and it’s plugins (see
-below).
+below). Generalized API syntax is also available. A system installation
+of ‘git’ is required.
 
 ## Disclaimer
 
 Use at own risk :smiley\_cat:, however, PRs are encouraged for ideas
 that I’ve missed. The functionality contained in `gitr` are *heavily*
-influenced by **my** personal workflows and may not suit all users.
-However, if you have an idea that would make the package better, more
-widely usable, and/or efficient, please submit an Issue or Pull Request.
+influenced by **my** personal data scienct workflows and may not suit
+all users. However, if you have an idea that would make the package
+better, more widely usable, and/or efficient, please submit an
+[issue](https://github.com/SomaLogic/SomaDataIO/issues/) or [Pull
+Request](https://github.com/SomaLogic/SomaDataIO/pulls/).
 
 ## Installation
 
@@ -51,27 +53,27 @@ git_current_br()
 
 ``` r
 git_version()
-#> [1] "2.35.1"
+#> [1] "2.39.0"
 ```
 
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10 
-#> * e377222 (HEAD -> main, origin/main, origin/HEAD) Add generalized Makefile
-#> * 028f5e1 Clean up README
-#> * 92582cf Name change `gc()` -> `gcc()` to avoid mask
-#> * 810b837 Move away from assuming `master` as default branch
-#> * 2682a8f Clean up coloring for non-interactive sessions
-#> * 9ca3134 Bugfix in `git_default_br()`
+#> * cfdd08f (HEAD -> main) Add new `git_uncommit()` wrapper
+#> * 7f9be14 Upgrades to new roxygen2 version v7.2.3
+#> * e575d97 (origin/main, origin/HEAD) Add generalized Makefile
+#> * 05048c8 Clean up README
+#> * 71c4e7b Name change `gc()` -> `gcc()` to avoid mask
+#> * 066deb5 Move away from assuming `master` as default branch
+#> * 8bb1f36 Clean up coloring for non-interactive sessions
+#> * 549cb14 Bugfix in `git_default_br()`
 #> * 3e3afd3 Add new `git_tag_info()`
 #> * 5c2ec81 Rename get_recent_tag() -> git_recent_tag()
-#> * 6c1fb3e Update README files
-#> * 3c72608 Add new git_sitrep() function
 ```
 
 ``` r
 git_sitrep()
-#> Using Git version: 2.35.1 
+#> Using Git version: 2.39.0 
 #> 
 #> Current Branch: main 
 #> 
@@ -87,21 +89,26 @@ git_sitrep()
 #> 
 #> Repo status:
 #> Running git status -s 
+#>  M DESCRIPTION
+#>  M LICENSE.md
 #>  M README.Rmd
+#> ?? inst/
 #> 
 #> Upstream remote:
 #>   branch ahead behind
-#> 1   main     0      0
+#> 1   main     2      0
 #> 2 testbr     2     12
 #> 
 #> Commit main Log:
 #> Running git log --oneline --graph --decorate -n 5 
-#> * e377222 (HEAD -> main, origin/main, origin/HEAD) Add generalized Makefile
-#> * 028f5e1 Clean up README
-#> * 92582cf Name change `gc()` -> `gcc()` to avoid mask
-#> * 810b837 Move away from assuming `master` as default branch
-#> * 2682a8f Clean up coloring for non-interactive sessions
+#> * cfdd08f (HEAD -> main) Add new `git_uncommit()` wrapper
+#> * 7f9be14 Upgrades to new roxygen2 version v7.2.3
+#> * e575d97 (origin/main, origin/HEAD) Add generalized Makefile
+#> * 05048c8 Clean up README
+#> * 71c4e7b Name change `gc()` -> `gcc()` to avoid mask
 ```
+
+------------------------------------------------------------------------
 
 ## ZSH-aliases available in `gitr`
 
@@ -134,7 +141,7 @@ git_sitrep()
 | `gpr()`             | git pull –rebase –autostash -v           |
 | `glog()`            | git log –oneline –decorate –graph        |
 | `gwip()`            | git add -u && commit –no-verify -m “wip” |
-| `gclean()`          | git clean -id                            |
+| `gclean()`          | git clean -f -d                          |
 | `grm()`             | git rm                                   |
 | `grmc()`            | git rm –cached                           |
 | `gsta()`            | git stash                                |
@@ -172,13 +179,13 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gap                           | git apply                                                                                       |
 | gapt                          | git apply –3way’                                                                                |
 | gbda                          | git branch –no-color –merged                                                                    |
-| gpsup                         | git push –set-upstream origin $(git\_current\_branch)                                           |
+| gpsup                         | git push –set-upstream origin \$(git\_current\_branch)                                          |
 | ghh                           | git help                                                                                        |
 | gignore                       | git update-index –assume-unchanged                                                              |
 | gignored                      | git ls-files -v                                                                                 |
-| git-svn-dcommit-push          | git svn dcommit && git push github $(git\_main\_branch):svntrunk                                |
+| git-svn-dcommit-push          | git svn dcommit && git push github \$(git\_main\_branch):svntrunk                               |
 | gk                            | –all –branches &!                                                                               |
-| gke                           | –all $(git log -g –pretty=%h) &!                                                                |
+| gke                           | –all \$(git log -g –pretty=%h) &!                                                               |
 | gl                            | git pull                                                                                        |
 | glg                           | git log –stat                                                                                   |
 | glgp                          | git log –stat -p                                                                                |
@@ -192,10 +199,10 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | glods="git log –graph –pretty | %Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)&lt;%an&gt;%Creset’ –date=short" |
 | glola="git log –graph –pretty | %Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)&lt;%an&gt;%Creset’ –all"        |
 | gm                            | git merge                                                                                       |
-| gmom                          | git merge origin/$(git\_main\_branch)                                                           |
+| gmom                          | git merge origin/\$(git\_main\_branch)                                                          |
 | gmtl                          | git mergetool –no-prompt                                                                        |
 | gmtlvim                       | git mergetool –no-prompt –tool=vimdiff                                                          |
-| gmum                          | git merge upstream/$(git\_main\_branch)                                                         |
+| gmum                          | git merge upstream/\$(git\_main\_branch)                                                        |
 | gma                           | git merge –abort                                                                                |
 | gpf!                          | git push –force                                                                                 |
 | gpoat                         | git push origin –all && git push origin –tags                                                   |
@@ -203,20 +210,20 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gr                            | git remote                                                                                      |
 | gra                           | git remote add                                                                                  |
 | grb                           | git rebase                                                                                      |
-| grbd                          | git rebase $(git\_develop\_branch)                                                              |
+| grbd                          | git rebase \$(git\_develop\_branch)                                                             |
 | grbi                          | git rebase -i                                                                                   |
 | grbo                          | git rebase –onto                                                                                |
 | grev                          | git revert                                                                                      |
 | grh                           | git reset                                                                                       |
 | grhh                          | git reset –hard                                                                                 |
-| groh                          | git reset origin/$(git\_current\_branch) –hard                                                  |
+| groh                          | git reset origin/\$(git\_current\_branch) –hard                                                 |
 | grmv                          | git remote rename                                                                               |
 | grrm                          | git remote remove                                                                               |
 | grs                           | git restore                                                                                     |
 | grset                         | git remote set-url                                                                              |
 | grss                          | git restore –source                                                                             |
 | grst                          | git restore –staged                                                                             |
-| grt                           | cd $(git rev-parse –show-toplevel \|\| echo .)                                                  |
+| grt                           | cd \$(git rev-parse –show-toplevel \|\| echo .)                                                 |
 | gru                           | git reset –                                                                                     |
 | grup                          | git remote update                                                                               |
 | gsb                           | git status -sb                                                                                  |
@@ -230,14 +237,14 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | gsu                           | git submodule update                                                                            |
 | gsw                           | git switch                                                                                      |
 | gswc                          | git switch -c                                                                                   |
-| gswm                          | git switch $(git\_main\_branch)                                                                 |
-| gswd                          | git switch $(git\_develop\_branch)                                                              |
+| gswm                          | git switch \$(git\_main\_branch)                                                                |
+| gswd                          | git switch \$(git\_develop\_branch)                                                             |
 | gts                           | git tag -s                                                                                      |
 | gtv                           | git tag                                                                                         |
-| gtl                           | gtl(){ git tag –sort=-v:refname -n -l ${1}\* }; noglob gtl                                      |
+| gtl                           | gtl(){ git tag –sort=-v:refname -n -l \${1}\* }; noglob gtl                                     |
 | gunignore                     | git update-index –no-assume-unchanged                                                           |
 | gunwip                        | git log -n 1                                                                                    |
-| glum                          | git pull upstream $(git\_main\_branch)                                                          |
+| glum                          | git pull upstream \$(git\_main\_branch)                                                         |
 | gwch                          | git whatchanged -p –abbrev-commit –pretty=medium                                                |
 | gam                           | git am                                                                                          |
 | gamc                          | git am –continue                                                                                |
@@ -253,5 +260,5 @@ terms.
 
 ------------------------------------------------------------------------
 
-Created by [Rmarkdown](https://github.com/rstudio/rmarkdown) (v2.8) and
-R version 4.1.0 (2021-05-18).
+Created by [Rmarkdown](https://github.com/rstudio/rmarkdown) (v2.20) and
+R version 4.2.2 (2022-10-31).
