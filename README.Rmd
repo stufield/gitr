@@ -18,20 +18,25 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `gitr` is to provide a light-weight, dependency-free,
-API to access system-level git commands from within `R`.
-It contains wrappers for common use case defaults for my (!) workflows
-which are heavily influenced by `RStudio` projects and
+A light-weight, dependency-free, API to access system-level 'git'
+commands from within `R`.
+It contains wrappers and defaults for common data science workflows as well as
 [Z-shell](https://github.com/ohmyzsh/ohmyzsh) and it's plugins (see below).
+Generalized API syntax is also available.
+A system installation of 'git' is required.
 
 
 ## Disclaimer
 
 Use at own risk :smiley_cat:, however, PRs are encouraged for ideas that I've missed.
-The functionality contained in `gitr` are *heavily* influenced by **my**
-personal workflows and may not suit all users. However, if you have an idea
-that would make the package better, more widely usable, and/or efficient,
-please submit an Issue or Pull Request.
+The functionality contained in `gitr` are _heavily_ influenced by __my__
+personal data scienct workflows and may not suit all users.
+However, if you have an idea that would make the package better,
+more widely usable, and/or efficient, please submit an
+[issue](https://github.com/SomaLogic/SomaDataIO/issues/)
+or
+[Pull Request](https://github.com/SomaLogic/SomaDataIO/pulls/).
+
 
 ## Installation
 
