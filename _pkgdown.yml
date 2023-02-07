@@ -1,0 +1,42 @@
+url: https://github.com/stufield/gitr
+
+home:
+  strip_header: true
+  links:
+  - text: Report a bug
+    href: https://github.com/stufield/gitr/issues
+  - text: Learn more about me
+    href: https://github.com/stufield
+
+template:
+  params:
+    ganalytics: UA-115082821-1
+
+authors:
+  "Stu Field":
+    href: https://github.com/stufield
+
+development:
+  mode: auto
+
+articles:
+  - title: Getting Started
+    navbar: ~
+    contents:
+    - gitr
+
+reference:
+  - title: Git Wrappers
+    desc: >
+      A listing of the most common 'git' commands available in 'gitr'.
+    contents:
+    - starts_with("git")
+
+  - title: Z-Shell
+    desc: >
+      Commonly use ZSH plugin aliases.
+    contents:
+    - glog
+
+news:
+  - one_page: true
