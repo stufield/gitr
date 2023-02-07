@@ -1,0 +1,48 @@
+[user]
+	name = User Name
+	email = user.name@gmail.com
+[core]
+	excludefile = $HOME/.gitignore_global
+	excludesfile = $HOME/.gitignore_global
+	editor = vim
+[color]
+	ui = true
+[format]
+	pretty = fuller
+[merge]
+	tool = vimdiff
+	conflictstyle = merge
+	# conflictstyle = diff3
+[diff]
+	renames = copies
+	renamelimit = 0
+	prompt = false
+	tool = vimdiff
+[alias]
+	uncommit = reset --soft HEAD~1
+	diffcommit = "!f() { git diff HEAD~$(($1-1))..HEAD~$(($2-1)); }; f"
+	unstage = restore --staged 
+	plog = log --graph --pretty=format:'%h -%d %s %n' --abbrev-commit --date=relative --branches
+	taglog = log --pretty=oneline --decorate --tags --no-walk
+	pull-submodules = submodule update --remote --merge
+	subpush = push --recurse-submodules=on-demand
+	no-merged = !git branch --no-merged $git_main_branch
+	merged = !git branch --merged $git_main_branch
+[pager]
+	diff = false
+	log = false
+	tag = false
+	branch = false
+[push]
+	default = current
+[uploadpack]
+	allowFilter = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[commit]
+	template = $HOME/commit-msg-template
+[init]
+	defaultBranch = main
