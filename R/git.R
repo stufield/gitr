@@ -1,6 +1,6 @@
 #' Git Utilities
 #'
-#' Provides functionality for system-level Git commands from within R.
+#' Provides functionality for system-level git commands from within R.
 #'
 #' @name git
 #' @param n Numeric. How far back to go from current HEAD. Same as the
@@ -38,10 +38,10 @@ NULL
 #'   Execute a `git` command line call from within R.
 #' @export
 git <- function(..., echo_cmd = TRUE) {
-  if ( echo_cmd) {
+  if ( echo_cmd ) {
     cat("Running git", c(...), "\n")
   }
-  res  <- list(status = 0, stdout = "", stderr = "")
+  res  <- list(status = 0L, stdout = "", stderr = "")
   call <- suppressWarnings(
     base::system2("git", c(...), stdout = TRUE, stderr = TRUE)
   )
@@ -55,6 +55,18 @@ git <- function(..., echo_cmd = TRUE) {
         slug_color(res$stderr, "\033[036m"), sep = "\n")
   }
   invisible(res)
+}
+
+#' @describeIn git
+#'   Is current working directory a `git` repository?
+#' @export
+is_git <- function() {
+  dir <- base::system2("git", "rev-parse --git-dir", stdout = FALSE, stderr = FALSE)
+  in_repo  <- dir.exists(".git") || (dir == 0L)
+  if ( !in_repo ) {
+    oops("not a git repository")
+  }
+  in_repo
 }
 
 #' @describeIn git
@@ -181,17 +193,6 @@ git_checkout <- function(branch = NULL) {
     cat(out$stderr, sep = "\n")
   }
   invisible()
-}
-
-#' @describeIn git
-#'   Is current working directory a `git` repository?
-#' @export
-is_git <- function() {
-  in_repo <- dir.exists(".git")
-  if ( !in_repo ) {
-    oops("not a git repository")
-  }
-  in_repo
 }
 
 #' @describeIn git
