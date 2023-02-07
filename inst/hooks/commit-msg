@@ -1,0 +1,70 @@
+#!/usr/bin/env Rscript --vanilla
+#
+# This hook is called by "git commit" to prepare 
+# the commit message.
+# It can be used to quickly scan the commit message
+# for expected (or unexpected) formatting. 
+# This hook can be bypassed by envoking the --no-verify flag
+#
+# To enable this hook, rename this file to "commit-msg"
+# To disable this hook, rename this file to "commit-msg.sample"
+# author: Stu Field
+
+file  <- commandArgs(trailingOnly = TRUE)[1L]
+lines <- readLines(file, encoding = "UTF-8", warn = FALSE)
+n     <- which(grepl("^#", lines))[1L]
+lines <- utils::head(lines, min(n - 1, length(lines), na.rm = TRUE))
+
+lint_commit_msg <- function(x) {
+  if ( length(x) == 0L ) {
+    return(0L)
+  }
+  sha <- "\u2716"
+  cnt <- 0L
+  if ( grepl("^[a-z]", x[1L]) ) {
+    warning("Title should begin with a capital (", sha, ")", call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  if ( grepl("\\.$", x[1L]) ) {
+    warning("Title should not end with a period (", sha, ")", call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  if ( nchar(x[1L]) > 60 ) {
+    warning("Title is too long (", nchar(x[1L]), ") for (", sha, ")", call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  if ( isTRUE(x[2L] != "") ) {
+    warning("Title should be followed by empty line (", sha, ")", call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  star <- vapply(x, grepl, pattern = "^\\*", NA)
+  if ( any(star) ) {
+    warning("Please use `-` for bullets (", sha, ")", call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  bullet_space <- vapply(x, grepl, pattern = "^-[a-zA-Z]", NA)
+  if ( any(bullet_space) ) {
+    warning("Please place space following `-` bullet (", sha, ")", call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  wip <- vapply(x, grepl, pattern = "WIP", ignore.case = TRUE, NA)
+  if ( any(wip) ) {
+    warning("Work in progress (wip) commit detected! (", sha, ")", call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  x <- paste(x, collapse = "\n")
+  jira <- grepl("[A-Z]{2,10}-[0-9]{1,4}", x)
+  gh   <- grepl("fixes .*#[0-9]{1,4}|closes .*#[0-9]{1,4}", x, ignore.case = TRUE)
+  if ( !(jira || gh) ) {
+    warning("Could not find an issue number in commit message (", sha, ")",
+            call. = FALSE)
+    cnt <- cnt + 1L
+  }
+  invisible(sum(cnt))
+}
+
+# not commit with `git commit -m` or single line commit
+if ( length(lines) > 1L ) {
+  n <- lint_commit_msg(lines)
+  if ( n > 0 ) cat("Possible issues with commit message (", n, ")\n", sep = "")
+}

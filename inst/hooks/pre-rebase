@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# This hook is aplied prior to `git rebase`
+#
+# To enable this hook, rename this file to "pre-rebase"
+# To disable this hook, rename this file to "pre-rebase.sample"
+# author: Stu Field
+
+echo "\xE2\x9C\x94 Welcome to git rebase \033[34m$USER\033[0m ... it will change your life!"

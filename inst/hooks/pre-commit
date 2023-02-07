@@ -1,0 +1,34 @@
+#!/usr/bin/env Rscript --vanilla
+
+# To enable this hook, rename this file to "pre-commit"
+# To disable this hook, rename this file to "pre-commit.sample"
+# author: Stu Field
+
+if (requireNamespace("spelling", quietly = TRUE) && file.exists("DESCRIPTION")) {
+  words <- spelling::spell_check_package()
+  L <- length(words$word)
+  if (L > 0L) {
+    warning("Spelling errors (", L, ") detected!", call. = FALSE)
+  }
+}
+
+# check .lintr file
+#if (git2r::in_repository()) {
+# git_status <- git2r::status(staged = FALSE)
+# if (any(unlist(git_status) == ".lintr")) {
+#   stop("Unstaged changes to .lintr file. Stage the .lintr ",
+#        "file or discard the changes to it. ", call. = FALSE)
+# }
+#}
+
+#files <- list.files("R", full.names = TRUE)
+
+# check lints
+#lints <- lapply(files, function(path) {
+#  lints <- somaverse::lintFile(path)
+#  if (length(lints) > 0) {
+#    stop("File ", basename(path), " is not lint free\n",
+#         "Run somaverse::lintFile('", basename(path),
+#         "') to check the lintr output.", call. = FALSE)
+#  }
+#})
