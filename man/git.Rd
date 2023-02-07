@@ -2,12 +2,12 @@
 % Please edit documentation in R/git.R
 \name{git}
 \alias{git}
+\alias{is_git}
 \alias{get_commit_msgs}
 \alias{get_pr_msgs}
 \alias{get_pr_sha}
 \alias{git_recent_tag}
 \alias{git_checkout}
-\alias{is_git}
 \alias{scrape_commits}
 \alias{git_version}
 \alias{git_default_br}
@@ -23,6 +23,8 @@
 \usage{
 git(..., echo_cmd = TRUE)
 
+is_git()
+
 get_commit_msgs(sha = NULL, n = 1)
 
 get_pr_msgs(branch = NULL)
@@ -32,8 +34,6 @@ get_pr_sha(branch = NULL)
 git_recent_tag()
 
 git_checkout(branch = NULL)
-
-is_git()
 
 scrape_commits(n)
 
@@ -55,7 +55,7 @@ git_sitrep()
 
 git_tag_info()
 
-git_diffcommits(n1 = 1, n = 2)
+git_diffcommits(top = 1, n = 2)
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
@@ -66,18 +66,23 @@ command-line \verb{git <command> [<args>]} call.}
 \item{sha}{Character. The commit SHA-1 hash to pull messages from.
 If \code{NULL}, the most recent commit on the current branch.}
 
-\item{n}{Numeric. How far back to go from current HEAD. Same as the
+\item{n}{Numeric. How far back to go from current \code{HEAD}. Same as the
 command line \verb{git log -n} parameter.}
 
 \item{file, branch}{Character. The name of a file or branch, typically a
 feature branch.}
+
+\item{top}{Numeric. The commit to consider the "top" of the commit stack.
+Defaults to \code{HEAD} or \code{n = 1}.}
 }
 \description{
-Provides functionality for system-level Git commands from within R.
+Provides functionality for system-level git commands from within R.
 }
 \section{Functions}{
 \itemize{
 \item \code{git()}: Execute a \code{git} command line call from within R.
+
+\item \code{is_git()}: Is current working directory a \code{git} repository?
 
 \item \code{get_commit_msgs()}: Get the commit messages corresponding to the commit \code{sha}.
 Adds author and \code{sha} attributes to each commit for downstream use.
@@ -94,8 +99,6 @@ the \code{default} branch in the remote, usually either \code{origin/main} or
 
 \item \code{git_checkout()}: \verb{git checkout} as a branch if doesn't exist. Branch
 oriented workflow for switching between branches.
-
-\item \code{is_git()}: Is current working directory a \code{git} repository?
 
 \item \code{scrape_commits()}: Scrape \code{n} commit messages for useful change log commits
 to be used to create a \code{NEWS.md}.
