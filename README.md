@@ -4,7 +4,21 @@
 # The `gitr` Package
 
 <!-- badges: start -->
+
+![GitHub
+version](https://img.shields.io/badge/Version-0.0.0.9000-success.svg?style=flat&logo=github)
+[![CRAN
+status](http://www.r-pkg.org/badges/version/gitr)](https://cran.r-project.org/package=gitr)
+[![R-CMD-check](https://github.com/stufield/gitr/workflows/R-CMD-check/badge.svg)](https://github.com/stufield/gitr/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/stufield/gitr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/stufield/gitr?branch=main)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![License:
+MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
 <!-- badges: end -->
+
+## Overview
 
 A light-weight, dependency-free, API to access system-level ‘git’
 commands from within `R`. It contains wrappers and defaults for common
@@ -20,15 +34,27 @@ that I’ve missed. The functionality contained in `gitr` are *heavily*
 influenced by **my** personal data scienct workflows and may not suit
 all users. However, if you have an idea that would make the package
 better, more widely usable, and/or efficient, please submit an
-[issue](https://github.com/SomaLogic/SomaDataIO/issues/) or [Pull
-Request](https://github.com/SomaLogic/SomaDataIO/pulls/).
+[issue](https://github.com/stufield/gitr/issues/) or [Pull
+Request](https://github.com/stufield/gitr/pulls/).
 
 ## Installation
 
-Currently you can only install development version of `gitr` via:
+The easiest way to install `gitr` is to install directly from CRAN:
+
+``` r
+install.packages("gitr")
+```
+
+Alternatively install the development version from GitHub:
 
 ``` r
 remotes::install_github("stufield/gitr")
+```
+
+To install a *specific* tagged release, use:
+
+``` r
+remotes::install_github("stufield/gitr@v0.0.1")
 ```
 
 ------------------------------------------------------------------------
@@ -59,16 +85,16 @@ git_version()
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10 
-#> * cfdd08f (HEAD -> main) Add new `git_uncommit()` wrapper
+#> * a18f6a6 (HEAD -> main) Add git hooks to inst/
+#> * b967dec Add SECURITY.md
+#> * 36e01e7 Add new `diff_commits()`
+#> * e790721 Structural cleanup
+#> * fc4a6ce Streamline Makefile
+#> * 77d513e Update README and dates in LICENSE
+#> * cfdd08f Add new `git_uncommit()` wrapper
 #> * 7f9be14 Upgrades to new roxygen2 version v7.2.3
 #> * e575d97 (origin/main, origin/HEAD) Add generalized Makefile
 #> * 05048c8 Clean up README
-#> * 71c4e7b Name change `gc()` -> `gcc()` to avoid mask
-#> * 066deb5 Move away from assuming `master` as default branch
-#> * 8bb1f36 Clean up coloring for non-interactive sessions
-#> * 549cb14 Bugfix in `git_default_br()`
-#> * 3e3afd3 Add new `git_tag_info()`
-#> * 5c2ec81 Rename get_recent_tag() -> git_recent_tag()
 ```
 
 ``` r
@@ -89,23 +115,22 @@ git_sitrep()
 #> 
 #> Repo status:
 #> Running git status -s 
-#>  M DESCRIPTION
-#>  M LICENSE.md
 #>  M README.Rmd
-#> ?? inst/
+#>  M README.md
+#> ?? .github/
 #> 
 #> Upstream remote:
 #>   branch ahead behind
-#> 1   main     2      0
+#> 1   main     8      0
 #> 2 testbr     2     12
 #> 
 #> Commit main Log:
 #> Running git log --oneline --graph --decorate -n 5 
-#> * cfdd08f (HEAD -> main) Add new `git_uncommit()` wrapper
-#> * 7f9be14 Upgrades to new roxygen2 version v7.2.3
-#> * e575d97 (origin/main, origin/HEAD) Add generalized Makefile
-#> * 05048c8 Clean up README
-#> * 71c4e7b Name change `gc()` -> `gcc()` to avoid mask
+#> * a18f6a6 (HEAD -> main) Add git hooks to inst/
+#> * b967dec Add SECURITY.md
+#> * 36e01e7 Add new `diff_commits()`
+#> * e790721 Structural cleanup
+#> * fc4a6ce Streamline Makefile
 ```
 
 ------------------------------------------------------------------------
@@ -255,8 +280,8 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 #### LICENSE
 
 Please note that this package package is released with a
-[LICENSE](LICENSE). By using in this package you agree to abide by its
-terms.
+[LICENSE](https://github.com/stufield/gitr/blob/main/LICENSE.md). By
+using in this package you agree to abide by its terms.
 
 ------------------------------------------------------------------------
 
