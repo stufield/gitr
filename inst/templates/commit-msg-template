@@ -1,0 +1,11 @@
+# Subject:
+[name of feature] | [what is the fix] & [where fix is applied]
+
+# Body:
+- [description of what you did to resolve]
+- [what is described in the Subject line]
+- [JIRA issue]
+
+# Guidelines: writing useful git messages ensures that your
+# git commits remain useful and keep your team members happy
+# Happy coding! :)
