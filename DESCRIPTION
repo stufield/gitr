@@ -1,19 +1,31 @@
 Package: gitr
-Title: Lightweight API for Git
+Title: A Lightweight API for Git
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "Stu",
-           family = "Field",
-           role = c("aut", "cre"),
-           email = "stu.g.field@gmail.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Authors@R: c(
+    person("Stu", "Field", email = "stu.g.field@gmail.com", role = c("aut", "cre", "cph")) 
+    )
 Description: A light-weight, dependency-free, API to access
     system-level 'git' commands from within R. Contains wrappers
     and defaults for common data science workflows as well as
     Z-shell plugin aliases. Generalized API syntax is also available.
+    A system installation of 'git' is required.
 License: MIT + file LICENSE
-Depends: R (>= 4.1.0)
+URL: https://github.io/gitr/
+BugReports: https://github.com/stufield/gitr/issues
+Depends:
+    R (>= 4.1.0)
+Suggests:
+    knitr,
+    rmarkdown,
+    spelling,
+    testthat (>= 3.0.0),
+    withr
+VignetteBuilder:
+    knitr
 Encoding: UTF-8
 LazyData: true
+LazyLoad: true
+Copyright: Stu Field 2023
+Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
