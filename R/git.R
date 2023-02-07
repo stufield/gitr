@@ -3,8 +3,10 @@
 #' Provides functionality for system-level git commands from within R.
 #'
 #' @name git
-#' @param n Numeric. How far back to go from current HEAD. Same as the
+#' @param n Numeric. How far back to go from current `HEAD`. Same as the
 #'   command line `git log -n` parameter.
+#' @param top Numeric. The commit to consider the "top" of the commit stack.
+#'   Defaults to `HEAD` or `n = 1`.
 #' @param echo_cmd Logical. Whether to print the command to run to the console.
 #' @param file,branch Character. The name of a file or branch, typically a
 #'   feature branch.
@@ -377,9 +379,9 @@ git_tag_info <- function() {
 #' @describeIn git
 #'   Gets the diff of the corresponding 2 commits. Order matters.
 #' @export
-git_diffcommits <- function(n1 = 1, n = 2) {
+git_diffcommits <- function(top = 1, n = 2) {
   if ( is_git() ) {
-    out <- git("diff", paste0("HEAD~", n, "..HEAD~", n1))
+    out <- git("diff", paste0("HEAD~", n, "..HEAD~", top))
     if ( not_interactive() ) {
       return(cat(out$stdout, sep = "\n"))
     } else {
