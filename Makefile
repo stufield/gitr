@@ -10,7 +10,7 @@ RCMD = R --vanilla CMD
 RSCRIPT = Rscript --vanilla
 
 
-all: roxygen check clean
+all: check clean
 
 roxygen:
 	@ $(RSCRIPT) \
@@ -26,7 +26,13 @@ readme:
 test:
 	@ $(RSCRIPT) \
 	-e "Sys.setenv(ON_JENKINS = 'true', TZ = 'America/Denver')" \
-	-e "devtools::test(reporter = 'check', stop_on_failure = TRUE)"
+	-e "devtools::test(reporter = 'summary', stop_on_failure = TRUE)"
+
+test_file:
+	@ $(RSCRIPT) \
+	-e "Sys.setenv(TZ = 'America/Denver')" \
+	-e "devtools::load_all()" \
+	-e "testthat::test_file('$(FILE)', reporter = 'progress', stop_on_failure = TRUE)"
 
 build: roxygen
 	@ cd ..;\
@@ -44,10 +50,8 @@ install_deps:
 	-e "if (!requireNamespace('remotes')) install.packages('remotes')" \
 	-e "remotes::install_deps(dependencies = TRUE)"
 
-install: build
-	@ cd ..;\
-	  time R CMD INSTALL --use-vanilla --preclean --resave-data $(PKGNAME)_$(PKGVERS).tar.gz
-	@ $(RM) ../$(PKGNAME)_$(PKGVERS).tar.gz
+install:
+	@ R CMD INSTALL --use-vanilla --preclean --resave-data .
 
 clean:
 	@ cd ..;\
