@@ -4,14 +4,14 @@
 #'
 #' @name git
 #' @param n Numeric. How far back to go from current HEAD. Same as the
-#' command line `git log -n` parameter.
+#'   command line `git log -n` parameter.
 #' @param echo_cmd Logical. Whether to print the command to run to the console.
 #' @param file,branch Character. The name of a file or branch, typically a
-#' feature branch.
+#'   feature branch.
 #' @param sha Character. Commit SHA or hash to pull messages from.
-#' If `NULL`, the most recent commit on the current branch.
+#'   If `NULL`, the most recent commit on the current branch.
 #' @param ... Additional arguments passed to the system
-#' command-line `git <command> [<args>]` call.
+#'   command-line `git <command> [<args>]` call.
 #' @examples
 #' \dontrun{
 #' git("status", "-s")
@@ -35,7 +35,7 @@ NULL
 
 
 #' @describeIn git
-#' Execute a `git` command line call from within R.
+#'   Execute a `git` command line call from within R.
 #' @export
 git <- function(..., echo_cmd = TRUE) {
   if ( echo_cmd) {
@@ -58,8 +58,8 @@ git <- function(..., echo_cmd = TRUE) {
 }
 
 #' @describeIn git
-#' Get the commit messages corresponding to the commit `sha`.
-#' Adds author and `sha` attributes to each commit for downstream use.
+#'   Get the commit messages corresponding to the commit `sha`.
+#'   Adds author and `sha` attributes to each commit for downstream use.
 #' @export
 get_commit_msgs <- function(sha = NULL, n = 1) {
   if ( is.null(sha) ) {
@@ -76,9 +76,9 @@ get_commit_msgs <- function(sha = NULL, n = 1) {
 }
 
 #' @describeIn git
-#' Gets the commit messages for the *current* branch relative to
-#' the `origin/{main,master}` branch in the remote. Typically these "new" commits
-#' that would be merged as part of a PR to `origin/{main,master}`.
+#'   Gets the commit messages for the *current* branch relative to
+#'   the `origin/{main,master}` branch in the remote. Typically these "new" commits
+#'   that would be merged as part of a PR to `origin/{main,master}`.
 #' @export
 get_pr_msgs <- function(branch = NULL) {
   sha_vec <- get_pr_sha(branch)
@@ -90,9 +90,9 @@ get_pr_msgs <- function(branch = NULL) {
 }
 
 #' @describeIn git
-#' Gets the commit SHA1 *current* branch relative to
-#' the `default` branch in the remote, usually either `origin/main` or
-#' `origin/master`. See [git_default_br()].
+#'   Gets the commit SHA1 *current* branch relative to
+#'   the `default` branch in the remote, usually either `origin/main` or
+#'   `origin/master`. See [git_default_br()].
 #' @export
 get_pr_sha <- function(branch = NULL) {
   if ( is.null(branch) ) {
@@ -154,15 +154,16 @@ lint_commit_msg <- function(x) {
 }
 
 #' @describeIn git
-#' Get the *most* recent `git` tag.
+#'   Get the *most* recent `git` tag.
 #' @export
 git_recent_tag <- function() {
   tag <- utils::tail(git("tag", "-n")$stdout, 1L)
   gsub("(^v[0-9]+\\.[0-9]+\\.[0-9]+).*", "\\1", tag)
 }
 
-#' @describeIn git `git checkout` as a branch if doesn't exist. Branch
-#' oriented workflow for switching between branches.
+#' @describeIn git
+#'   `git checkout` as a branch if doesn't exist. Branch
+#'   oriented workflow for switching between branches.
 #' @export
 git_checkout <- function(branch = NULL) {
   if ( is.null(branch) ) {
@@ -182,7 +183,8 @@ git_checkout <- function(branch = NULL) {
   invisible()
 }
 
-#' @describeIn git Is current working directory a `git` repository?
+#' @describeIn git
+#'   Is current working directory a `git` repository?
 #' @export
 is_git <- function() {
   in_repo <- dir.exists(".git")
@@ -192,7 +194,8 @@ is_git <- function() {
   in_repo
 }
 
-#' @describeIn git Scrape `n` commit message for useful changelog commits.
+#' @describeIn git
+#'   Scrape `n` commit message for useful changelog commits.
 #' @export
 scrape_commits <- function(n) {
   commit_list <- get_commit_msgs(n = n)
@@ -218,15 +221,16 @@ scrape_commits <- function(n) {
   commit_list[keep_lgl]
 }
 
-#' @describeIn git Gets the version of git in use.
+#' @describeIn git
+#'   Gets the version of git in use.
 #' @export
 git_version <- function() {
   ver <- git("--version", echo_cmd = FALSE)$stdout
   gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
 }
 
-#' @describeIn git Gets the default "main" branch, typically either
-#' `master`, `main`, or `trunk`.
+#' @describeIn git
+#'   Gets the default "main" branch, typically either `master`, `main`, or `trunk`.
 #' @export
 git_default_br <- function() {
   if ( is_git() ) {
@@ -243,7 +247,8 @@ git_default_br <- function() {
   invisible()
 }
 
-#' @describeIn git Gets the *current* branch.
+#' @describeIn git
+#'   Gets the *current* branch.
 #' @export
 git_current_br <- function() {
   if ( is_git() ) {
@@ -255,8 +260,9 @@ git_current_br <- function() {
   }
 }
 
-#' @describeIn git Unstage file from the index to the working directory.
-#' Default unstages *all* files.
+#' @describeIn git
+#'   Unstage file from the index to the working directory.
+#'   Default unstages *all* files.
 #' @export
 git_unstage <- function(file = NULL) {
   if ( is_git() ) {
@@ -272,12 +278,13 @@ git_unstage <- function(file = NULL) {
   }
 }
 
-#' @describeIn git Uncommit the most recently committed file(s) and
-#' add them to the staging area.
+#' @describeIn git
+#'   Uncommit the most recently committed file(s) and
+#'   add them to the staging area.
 #' @export
-git_reset_soft <- function() {
+git_reset_soft <- function(n = 1) {
   if ( is_git() ) {
-    out <- git("reset", "--soft", "HEAD~1")
+    out <- git("reset", "--soft", paste0("HEAD~", n))
     cat(out$stdout, sep = "\n")
     invisible(out)
   } else {
@@ -285,7 +292,16 @@ git_reset_soft <- function() {
   }
 }
 
-#' @describeIn git `git reset --hard origin/<branch>`.
+#' @describeIn git
+#'   Un-commit the most recently committed file(s) and
+#'   add them to the staging area. Wrapper around [git_reset_soft()]
+#' @export
+git_uncommit <- function() {
+  git_reset_soft("1")
+}
+
+#' @describeIn git
+#'   `git reset --hard origin/<branch>`.
 #' @export
 git_reset_hard <- function() {
   if ( is_git() ) {
@@ -297,7 +313,8 @@ git_reset_hard <- function() {
   }
 }
 
-#' @describeIn git Get a situation report of the current git repository.
+#' @describeIn git
+#'   Get a situation report of the current git repository.
 #' @export
 git_sitrep <- function() {
   if ( is_git() ) {
@@ -332,8 +349,8 @@ git_sitrep <- function() {
   }
 }
 
-#' @describeIn git Gets a data frame summary of the current
-#' git repository tags.
+#' @describeIn git
+#'   Gets a data frame summary of the current git repository tags.
 #' @export
 git_tag_info <- function() {
   is_git()
