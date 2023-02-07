@@ -164,94 +164,94 @@ Provides ZSH-like aliases to common Z-shell plugin aliases.
 }
 \section{Functions}{
 \itemize{
-\item \code{glog}: Get the \code{git} log in a pretty format for the \code{n} most recent commits.
+\item \code{glog()}: Get the \code{git} log in a pretty format for the \code{n} most recent commits.
 
-\item \code{gcc}: \verb{git commit ...}. To avoid masking the \code{\link[base:gc]{base::gc()}} function,
+\item \code{gcc()}: \verb{git commit ...}. To avoid masking the \code{\link[base:gc]{base::gc()}} function,
 this alias has been re-mapped to \code{\link[=gcc]{gcc()}}.
 
-\item \code{gcmsg}: \verb{git commit -m <msg>}.
+\item \code{gcmsg()}: \verb{git commit -m <msg>}.
 
-\item \code{gco}: \verb{git checkout}.
+\item \code{gco()}: \verb{git checkout}.
 
-\item \code{gcb}: \verb{git checkout -b <branch>}.
+\item \code{gcb()}: \verb{git checkout -b <branch>}.
 
-\item \code{gpr}: \verb{git pull --rebase}.
+\item \code{gpr()}: \verb{git pull --rebase}.
 
-\item \code{gp}: \verb{git push}.
+\item \code{gp()}: \verb{git push}.
 
-\item \code{gpu}: \verb{git push -u origin}.
+\item \code{gpu()}: \verb{git push -u origin}.
 
-\item \code{gpd}: \verb{git push --dry-run}.
+\item \code{gpd()}: \verb{git push --dry-run}.
 
-\item \code{gst}: \verb{git status}.
+\item \code{gst()}: \verb{git status}.
 
-\item \code{gss}: \verb{git status -s}.
+\item \code{gss()}: \verb{git status -s}.
 
-\item \code{gba}: \verb{git branch -a}.
+\item \code{gba()}: \verb{git branch -a}.
 
-\item \code{gbd}: \verb{git branch -dD}.
+\item \code{gbd()}: \verb{git branch -dD}.
 
-\item \code{gbmm}: \verb{git branch --merged <branch>}.
+\item \code{gbmm()}: \verb{git branch --merged <branch>}.
 
-\item \code{gbnm}: \verb{git branch --no-merged <branch>}.
+\item \code{gbnm()}: \verb{git branch --no-merged <branch>}.
 
-\item \code{gbm}: \verb{git branch -m}.
+\item \code{gbm()}: \verb{git branch -m}.
 
-\item \code{ga}: \verb{git add ...}.
+\item \code{ga()}: \verb{git add ...}.
 
-\item \code{gaa}: \verb{git add --all}.
+\item \code{gaa()}: \verb{git add --all}.
 
-\item \code{gau}: \verb{git add -u}.
+\item \code{gau()}: \verb{git add -u}.
 
-\item \code{gsta}: \verb{git stash}.
+\item \code{gsta()}: \verb{git stash}.
 
-\item \code{gstl}: \verb{git stash list}.
+\item \code{gstl()}: \verb{git stash list}.
 
-\item \code{gstaa}: \verb{git stash apply}. \strong{Note}: zero-indexing!
+\item \code{gstaa()}: \verb{git stash apply}. \strong{Note}: zero-indexing!
 
-\item \code{gstd}: \verb{git stash drop}. \strong{Note}: zero-indexing!
+\item \code{gstd()}: \verb{git stash drop}. \strong{Note}: zero-indexing!
 
-\item \code{gstc}: \verb{git stash clear}. Danger!
+\item \code{gstc()}: \verb{git stash clear}. Danger!
 
-\item \code{gsts}: \verb{git stash show}.
+\item \code{gsts()}: \verb{git stash show}.
 
-\item \code{gpop}: \verb{git stash pop --quiet --index}.
+\item \code{gpop()}: \verb{git stash pop --quiet --index}.
 
-\item \code{gstp}: See \code{gpop()}.
+\item \code{gstp()}: See \code{gpop()}.
 
-\item \code{gtn}: \verb{git tag -n}.
+\item \code{gtn()}: \verb{git tag -n}.
 
-\item \code{gfa}: \verb{git fetch --all --prune}.
+\item \code{gfa()}: \verb{git fetch --all --prune}.
 
-\item \code{gac}: \verb{git commit --no-verify --amend --no-edit}.
+\item \code{gac()}: \verb{git commit --no-verify --amend --no-edit}.
 
-\item \code{gwip}: \verb{git commit --no-verify -m 'wip'}.
+\item \code{gwip()}: \verb{git commit --no-verify -m 'wip'}.
 
-\item \code{gclean}: \verb{git clean -f -d}.
+\item \code{gclean()}: \verb{git clean -f -d}.
 
-\item \code{gdf}: \verb{git diff <file>}.
+\item \code{gdf()}: \verb{git diff <file>}.
 
-\item \code{gpf}: \verb{git push --force-with-lease}.
+\item \code{gpf()}: \verb{git push --force-with-lease}.
 
-\item \code{gnuke}: \verb{git reset --hard}.
+\item \code{gnuke()}: \verb{git reset --hard}.
 
-\item \code{gcf}: \verb{git config --local} or \verb{git config --global}.
+\item \code{gcf()}: \verb{git config --local} or \verb{git config --global}.
 
-\item \code{gcm}: Checkout the default branch.
+\item \code{gcm()}: Checkout the default branch.
 
-\item \code{grm}: \verb{git rm ...}.
+\item \code{grm()}: \verb{git rm ...}.
 
-\item \code{grbc}: \verb{git rebase --continue}.
+\item \code{grbc()}: \verb{git rebase --continue}.
 
-\item \code{grba}: \verb{git rebase --abort}.
+\item \code{grba()}: \verb{git rebase --abort}.
 
-\item \code{grbs}: \verb{git rebase --skip}.
+\item \code{grbs()}: \verb{git rebase --skip}.
 
-\item \code{grbm}: \verb{git rebase git_default_br()}.
+\item \code{grbm()}: \verb{git rebase git_default_br()}.
 
-\item \code{grv}: \verb{git remote -v}.
+\item \code{grv()}: \verb{git remote -v}.
+
 }}
-
 \examples{
 \dontrun{
 glog()

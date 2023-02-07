@@ -71,6 +71,8 @@ glog()
 git_sitrep()
 ```
 
+--------
+
 
 ## ZSH-aliases available in `gitr`
 
@@ -103,7 +105,7 @@ git_sitrep()
 | `gpr()`             | git pull --rebase --autostash -v         |
 | `glog()`            | git log --oneline --decorate --graph     |
 | `gwip()`            | git add -u && commit --no-verify -m "wip"|
-| `gclean()`          | git clean -id                            |
+| `gclean()`          | git clean -f -d                          |
 | `grm()`             | git rm                                   |
 | `grmc()`            | git rm --cached                          |
 | `gsta()`            | git stash                                |

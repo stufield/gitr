@@ -6,10 +6,7 @@
 \alias{gitr-package}
 \title{gitr: Lightweight API for Git}
 \description{
-A light-weight, dependency-free, API to access
-    system-level git commands from within R. Contains wrappers for common
-    use case defaults for my (!) workflows as well as Z-shell plugin
-    aliases. Generalized API syntax is also available.
+A light-weight, dependency-free, API to access system-level git commands from within R. Contains wrappers for common use case defaults for my (!) workflows as well as Z-shell plugin aliases. Generalized API syntax is also available.
 }
 \author{
 \strong{Maintainer}: Stu Field \email{stu.g.field@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
