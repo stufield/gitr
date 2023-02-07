@@ -1,5 +1,12 @@
 ^gitr\.Rproj$
 ^\.Rproj\.user$
-^LICENSE\.md$
+^pkgdown$
 ^README\.Rmd$
+^LICENSE\.md$
+^SECURITY\.md$
+^_pkgdown\.yml$
+^\.covrignore$
+^\.github$
 ^Makefile$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
