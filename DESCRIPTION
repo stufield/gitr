@@ -29,3 +29,4 @@ Copyright: Stu Field 2023
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
+Language: en-US
