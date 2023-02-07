@@ -4,12 +4,20 @@
 \name{gitr-package}
 \alias{gitr}
 \alias{gitr-package}
-\title{gitr: Lightweight API for Git}
+\title{gitr: A Lightweight API for Git}
 \description{
-A light-weight, dependency-free, API to access system-level git commands from within R. Contains wrappers for common use case defaults for my (!) workflows as well as Z-shell plugin aliases. Generalized API syntax is also available.
+A light-weight, dependency-free, API to access system-level 'git' commands from within R. Contains wrappers and defaults for common data science workflows as well as Z-shell plugin aliases. Generalized API syntax is also available. A system installation of 'git' is required.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.io/gitr/}
+  \item Report bugs at \url{https://github.com/stufield/gitr/issues}
+}
+
 }
 \author{
-\strong{Maintainer}: Stu Field \email{stu.g.field@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Stu Field \email{stu.g.field@gmail.com} [copyright holder]
 
 }
 \keyword{internal}

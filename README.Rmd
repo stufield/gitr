@@ -33,9 +33,9 @@ The functionality contained in `gitr` are _heavily_ influenced by __my__
 personal data scienct workflows and may not suit all users.
 However, if you have an idea that would make the package better,
 more widely usable, and/or efficient, please submit an
-[issue](https://github.com/SomaLogic/SomaDataIO/issues/)
+[issue](https://github.com/stufield/gitr/issues/)
 or
-[Pull Request](https://github.com/SomaLogic/SomaDataIO/pulls/).
+[Pull Request](https://github.com/stufield/gitr/pulls/).
 
 
 ## Installation
