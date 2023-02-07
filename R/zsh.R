@@ -141,7 +141,7 @@ gba <- function() {
 }
 
 #' @describeIn zsh `git branch -dD`.
-#' @param force Loogical. Should the branch delete be forced with the `-D` flag?
+#' @param force Logical. Should the branch delete be forced with the `-D` flag?
 #' @export
 gbd <- function(branch = NULL, force = FALSE) {
   if ( is_git() ) {
@@ -419,7 +419,8 @@ gnuke <- function() {
 }
 
 #' @describeIn zsh `git config --local` or `git config --global`.
-#' @param global Logical. Query global repository. Alternatively local config.
+#' @param global Logical. Query global repository. Alternatively
+#'   local configuration only.
 #' @export
 gcf <- function(global = FALSE) {
   if ( !global && is_git() ) {
