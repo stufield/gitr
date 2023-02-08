@@ -10,7 +10,7 @@ Description: A light-weight, dependency-free, API to access
     Z-shell plugin aliases. Generalized API syntax is also available.
     A system installation of git is required.
 License: MIT + file LICENSE
-URL: https://github.io/gitr/
+URL: https://stufield.github.io/gitr/
 BugReports: https://github.com/stufield/gitr/issues
 Depends:
     R (>= 4.1.0)
