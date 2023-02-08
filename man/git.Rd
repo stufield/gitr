@@ -3,59 +3,17 @@
 \name{git}
 \alias{git}
 \alias{is_git}
-\alias{get_commit_msgs}
-\alias{get_pr_msgs}
-\alias{get_pr_sha}
-\alias{git_recent_tag}
-\alias{git_checkout}
-\alias{scrape_commits}
 \alias{git_version}
-\alias{git_default_br}
-\alias{git_current_br}
-\alias{git_unstage}
-\alias{git_reset_soft}
-\alias{git_uncommit}
-\alias{git_reset_hard}
-\alias{git_sitrep}
-\alias{git_tag_info}
-\alias{git_diffcommits}
+\alias{git_checkout}
 \title{Git Utilities}
 \usage{
 git(..., echo_cmd = TRUE)
 
 is_git()
 
-get_commit_msgs(sha = NULL, n = 1)
-
-get_pr_msgs(branch = NULL)
-
-get_pr_sha(branch = NULL)
-
-git_recent_tag()
-
-git_checkout(branch = NULL)
-
-scrape_commits(n)
-
 git_version()
 
-git_default_br()
-
-git_current_br()
-
-git_unstage(file = NULL)
-
-git_reset_soft(n = 1)
-
-git_uncommit()
-
-git_reset_hard()
-
-git_sitrep()
-
-git_tag_info()
-
-git_diffcommits(top = 1, n = 2)
+git_checkout(branch = NULL)
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
@@ -63,17 +21,7 @@ command-line \verb{git <command> [<args>]} call.}
 
 \item{echo_cmd}{Logical. Whether to print the command to run to the console.}
 
-\item{sha}{Character. The commit SHA-1 hash to pull messages from.
-If \code{NULL}, the most recent commit on the current branch.}
-
-\item{n}{Numeric. How far back to go from current \code{HEAD}. Same as the
-command line \verb{git log -n} parameter.}
-
-\item{file, branch}{Character. The name of a file or branch, typically a
-feature branch.}
-
-\item{top}{Numeric. The commit to consider the "top" of the commit stack.
-Defaults to \code{HEAD} or \code{n = 1}.}
+\item{branch}{Character. The path name to a file.}
 }
 \description{
 Provides functionality for system-level git commands from within R.
@@ -84,47 +32,10 @@ Provides functionality for system-level git commands from within R.
 
 \item \code{is_git()}: Is current working directory a \code{git} repository?
 
-\item \code{get_commit_msgs()}: Get the commit messages corresponding to the commit \code{sha}.
-Adds author and \code{sha} attributes to each commit for downstream use.
-
-\item \code{get_pr_msgs()}: Gets the commit messages for the \emph{current} branch relative to
-the \verb{origin/\{main,master\}} branch in the remote. Typically these "new" commits
-that would be merged as part of a PR to \verb{origin/\{main,master\}}.
-
-\item \code{get_pr_sha()}: Gets the commit SHA1 \emph{current} branch relative to
-the \code{default} branch in the remote, usually either \code{origin/main} or
-\code{origin/master}. See \code{\link[=git_default_br]{git_default_br()}}.
-
-\item \code{git_recent_tag()}: Get the \emph{most} recent \code{git} tag.
+\item \code{git_version()}: Gets the version of git in use.
 
 \item \code{git_checkout()}: \verb{git checkout} as a branch if doesn't exist. Branch
 oriented workflow for switching between branches.
-
-\item \code{scrape_commits()}: Scrape \code{n} commit messages for useful change log commits
-to be used to create a \code{NEWS.md}.
-
-\item \code{git_version()}: Gets the version of git in use.
-
-\item \code{git_default_br()}: Gets the default "main" branch, typically either \code{master}, \code{main}, or \code{trunk}.
-
-\item \code{git_current_br()}: Gets the \emph{current} branch.
-
-\item \code{git_unstage()}: Un-stage file from the index to the working directory.
-Default un-stages \emph{all} files.
-
-\item \code{git_reset_soft()}: Un-commit the most recently committed file(s) and
-add them to the staging area.
-
-\item \code{git_uncommit()}: Un-commit the most recently committed file(s) and
-add them to the staging area. Wrapper around \code{\link[=git_reset_soft]{git_reset_soft()}}
-
-\item \code{git_reset_hard()}: \verb{git reset --hard origin/<branch>}.
-
-\item \code{git_sitrep()}: Get a situation report of the current git repository.
-
-\item \code{git_tag_info()}: Gets a data frame summary of the current git repository tags.
-
-\item \code{git_diffcommits()}: Gets the diff of the corresponding 2 commits. Order matters.
 
 }}
 \examples{
