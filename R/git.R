@@ -3,7 +3,6 @@
 #' Provides functionality for system-level git commands from within R.
 #'
 #' @name git
-#' @order 1
 #' @examples
 #' \dontrun{
 #' git("status", "-s")
