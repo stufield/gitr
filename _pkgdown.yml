@@ -31,12 +31,18 @@ reference:
       A listing of the most common 'git' commands available in 'gitr'.
     contents:
     - starts_with("git")
+    - pr
+    - branch
+    - commit
+    - lint
+    - params
 
   - title: Z-Shell
     desc: >
       Commonly use ZSH plugin aliases.
     contents:
-    - glog
+    - matches("^g[a-z]{2,4}")
+    - -contains("git_")
 
 news:
   - one_page: true

@@ -127,7 +127,7 @@ git_sitrep()
 | `gcb()`               | `git checkout -b`                         |
 | `gcm()`               | `git checkout git_default_br()`           |
 | `gcf()`               | `git config --list`                       |
-| `gnuke()`,`gpristine` | `git reset --hard && git clean -dfx`      |
+| `gnuke()`             | `git reset --hard && git clean -dfx`      |
 | `gcmsg()`             | `git commit -m`                           |
 | `gp()`                | `git push`                                |
 | `gpu()`               | `git push -u`                             |

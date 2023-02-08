@@ -84,16 +84,16 @@ git_version()
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10 
-#> * 2ca43c3 (HEAD -> prep-for-cran) Clean up spelling typos
-#> * 172cd85 (origin/prep-for-cran) Add a simple unit test and testthat suite
-#> * ad0b9f3 Add NEWS.md and _pkgdown.yml; update workflows
-#> * 2fd5cee (main) Update .Rbuildignore
-#> * 687fcab Add GitHub action workflows and templates
-#> * 56a6c4b Re-build README.Rmd
-#> * a18f6a6 Add git hooks to inst/
-#> * b967dec Add SECURITY.md
-#> * 36e01e7 Add new `diff_commits()`
-#> * e790721 Structural cleanup
+#> * 6d4f56d (HEAD -> prep-for-cran, origin/prep-for-cran) Add package vignette
+#> * c5dee31 Fix pkgdown.yaml
+#> * 9fe2078 Rename git config file templates to avoid R CMD check note
+#> * 92b4a94 Repository restructuring
+#> * 9cbd5ec Fix argument name and documentation for diffcommits()
+#> * 16355bf Add gitconfig and gitignore templates
+#> * 9051b63 Flow control unit test
+#> * 113078d Clean up is_git()
+#> * e3ba969 Set up spelling
+#> * 172cd85 Add a simple unit test and testthat suite
 ```
 
 ``` r
@@ -117,71 +117,73 @@ git_sitrep()
 #> Repo status:
 #> Running git status -s 
 #>  M README.Rmd
+#>  M _pkgdown.yml
+#> ?? docs/
 #> 
 #> Upstream remote:
 #>          branch ahead behind
-#> 1          main     0      2
-#> 2 prep-for-cran     1      0
-#> 3        testbr     2     25
+#> 1          main     0     11
+#> 2 prep-for-cran     0      0
+#> 3        testbr     2     34
 #> 
 #> Commit prep-for-cran Log:
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 2ca43c3 (HEAD -> prep-for-cran) Clean up spelling typos
-#> * 172cd85 (origin/prep-for-cran) Add a simple unit test and testthat suite
-#> * ad0b9f3 Add NEWS.md and _pkgdown.yml; update workflows
-#> * 2fd5cee (main) Update .Rbuildignore
-#> * 687fcab Add GitHub action workflows and templates
+#> * 6d4f56d (HEAD -> prep-for-cran, origin/prep-for-cran) Add package vignette
+#> * c5dee31 Fix pkgdown.yaml
+#> * 9fe2078 Rename git config file templates to avoid R CMD check note
+#> * 92b4a94 Repository restructuring
+#> * 9cbd5ec Fix argument name and documentation for diffcommits()
 ```
 
 ------------------------------------------------------------------------
 
 ## ZSH-aliases available in `gitr`
 
-| alias                 | git command                                 |
-|:----------------------|:--------------------------------------------|
-| `ga()`                | `git add`                                   |
-| `gst()`               | `git status`                                |
-| `gss()`               | `git status -s`                             |
-| `gau()`               | `git add -u`                                |
-| `gaa()`               | `git add --all`                             |
-| `gb()`                | `git branch`                                |
-| `gba()`               | `git branch -a`                             |
-| `gbd()`               | `git branch -d/-D`                          |
-| `gdf()`               | `git diff <file>`                           |
-| `gbnm()`              | `git branch --no-merged`                    |
-| `gbmm()`              | `git branch --merged`                       |
-| `gbr()`               | `git branch --remote`                       |
-| `gac()`, `gcn`        | `git commit --no-verify --no-edit --amend`  |
-| `gcc()`               | `git commit`                                |
-| `gco()`               | `git checkout`                              |
-| `gcb()`               | `git checkout -b`                           |
-| `gcm()`               | `git checkout git_default_br()`             |
-| `gcf()`               | `git config --list`                         |
-| `gnuke()`,`gpristine` | `git reset --hard && git clean -dfx`        |
-| `gcmsg()`             | `git commit -m`                             |
-| `gp()`                | `git push`                                  |
-| `gpu()`               | `git push -u`                               |
-| `gpd()`               | `git push --dry-run`                        |
-| `gpf()`               | `git push --force-with-lease`               |
-| `gpr()`               | `git pull --rebase --autostash -v`          |
-| `glog()`              | `git log --oneline --decorate --graph`      |
-| `gwip()`              | `git add -u && commit --no-verify -m "wip"` |
-| `gclean()`            | `git clean -f -d`                           |
-| `grm()`               | `git rm`                                    |
-| `grmc()`              | `git rm --cached`                           |
-| `gsta()`              | `git stash`                                 |
-| `gstl()`              | `git stash list`                            |
-| `gpop()`,`gstp()`     | `git stash pop`                             |
-| `gstaa()`             | `git stash apply`                           |
-| `gstd()`              | `git stash drop`                            |
-| `gstc()`              | `git stash clear`                           |
-| `gsts()`              | `git stash show --text`                     |
-| `gtn()`               | `git tag -n`                                |
-| `grba()`              | `git rebase --abort`                        |
-| `grbc()`              | `git rebase --continue`                     |
-| `grbs()`              | `git rebase --skip`                         |
-| `grbm()`              | `git rebase git_default_br()`               |
-| `grv()`               | `git remote -v`                             |
+| alias             | git command                                 |
+|:------------------|:--------------------------------------------|
+| `ga()`            | `git add`                                   |
+| `gst()`           | `git status`                                |
+| `gss()`           | `git status -s`                             |
+| `gau()`           | `git add -u`                                |
+| `gaa()`           | `git add --all`                             |
+| `gb()`            | `git branch`                                |
+| `gba()`           | `git branch -a`                             |
+| `gbd()`           | `git branch -d/-D`                          |
+| `gdf()`           | `git diff <file>`                           |
+| `gbnm()`          | `git branch --no-merged`                    |
+| `gbmm()`          | `git branch --merged`                       |
+| `gbr()`           | `git branch --remote`                       |
+| `gac()`, `gcn`    | `git commit --no-verify --no-edit --amend`  |
+| `gcc()`           | `git commit`                                |
+| `gco()`           | `git checkout`                              |
+| `gcb()`           | `git checkout -b`                           |
+| `gcm()`           | `git checkout git_default_br()`             |
+| `gcf()`           | `git config --list`                         |
+| `gnuke()`         | `git reset --hard && git clean -dfx`        |
+| `gcmsg()`         | `git commit -m`                             |
+| `gp()`            | `git push`                                  |
+| `gpu()`           | `git push -u`                               |
+| `gpd()`           | `git push --dry-run`                        |
+| `gpf()`           | `git push --force-with-lease`               |
+| `gpr()`           | `git pull --rebase --autostash -v`          |
+| `glog()`          | `git log --oneline --decorate --graph`      |
+| `gwip()`          | `git add -u && commit --no-verify -m "wip"` |
+| `gclean()`        | `git clean -f -d`                           |
+| `grm()`           | `git rm`                                    |
+| `grmc()`          | `git rm --cached`                           |
+| `gsta()`          | `git stash`                                 |
+| `gstl()`          | `git stash list`                            |
+| `gpop()`,`gstp()` | `git stash pop`                             |
+| `gstaa()`         | `git stash apply`                           |
+| `gstd()`          | `git stash drop`                            |
+| `gstc()`          | `git stash clear`                           |
+| `gsts()`          | `git stash show --text`                     |
+| `gtn()`           | `git tag -n`                                |
+| `grba()`          | `git rebase --abort`                        |
+| `grbc()`          | `git rebase --continue`                     |
+| `grbs()`          | `git rebase --skip`                         |
+| `grbm()`          | `git rebase git_default_br()`               |
+| `grv()`           | `git remote -v`                             |
 
 ------------------------------------------------------------------------
 
