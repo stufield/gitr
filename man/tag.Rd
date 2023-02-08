@@ -10,13 +10,18 @@ git_recent_tag()
 
 git_tag_info()
 }
+\value{
+Character.
+
+A data frame.
+}
 \description{
 Git Tag Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{git_recent_tag()}: Get the \emph{most} recent \code{git} tag.
+\item \code{git_recent_tag()}: gets the \emph{most} recent \code{git} tag.
 
-\item \code{git_tag_info()}: Gets a data frame summary of the current git repository tags.
+\item \code{git_tag_info()}: gets a data frame summary of the current git repository tags.
 
 }}

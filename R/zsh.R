@@ -5,7 +5,7 @@
 #' @name zsh
 #' @inheritParams params
 #' @inheritParams git
-#' @param dry.run Logical. Clean as dry-run?
+#' @return Most aliases return `NULL` ... invisibly, with some exceptions.
 #' @examples
 #' \dontrun{
 #'   glog()
@@ -353,6 +353,7 @@ gwip <- function() {
 }
 
 #' @describeIn zsh `git clean -f -d`.
+#' @param dry.run Logical. Clean as dry-run?
 #' @export
 gclean <- function(dry.run = TRUE) {
   if ( is_git() ) {

@@ -5,7 +5,7 @@
 NULL
 
 #' @describeIn branch
-#'   Gets the default "main" branch, typically either `master`, `main`, or `trunk`.
+#'   gets the default "main" branch, typically either `master`, `main`, or `trunk`.
 #' @export
 git_default_br <- function() {
   if ( is_git() ) {
@@ -23,7 +23,7 @@ git_default_br <- function() {
 }
 
 #' @describeIn branch
-#'   Gets the *current* branch.
+#'   gets the *current* branch.
 #' @export
 git_current_br <- function() {
   if ( is_git() ) {

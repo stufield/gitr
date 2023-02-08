@@ -2,6 +2,7 @@
 #'
 #' Get a situation report of the current git repository.
 #'
+#' @inherit params return
 #' @export
 git_sitrep <- function() {
   if ( is_git() ) {

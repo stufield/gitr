@@ -27,10 +27,11 @@ NULL
 
 
 #' @describeIn git
-#'   Execute a `git` command line call from within R.
+#'   executes a `git` command line call from within R.
 #' @param echo_cmd Logical. Whether to print the command to run to the console.
 #' @param ... Additional arguments passed to the system
 #'   command-line `git <command> [<args>]` call.
+#' @return [git()]: The system call ... invisibly.
 #' @export
 git <- function(..., echo_cmd = TRUE) {
   if ( echo_cmd ) {
@@ -53,7 +54,8 @@ git <- function(..., echo_cmd = TRUE) {
 }
 
 #' @describeIn git
-#'   Is current working directory a `git` repository?
+#'   is current working directory a `git` repository?
+#' @return `is_git()`: Logical.
 #' @export
 is_git <- function() {
   dir <- base::system2("git", "rev-parse --git-dir", stdout = FALSE, stderr = FALSE)
@@ -65,7 +67,8 @@ is_git <- function() {
 }
 
 #' @describeIn git
-#'   Gets the version of git in use.
+#'   gets the version of git in use.
+#' @return `git_version()`: Character. The system version of `git`.
 #' @export
 git_version <- function() {
   ver <- git("--version", echo_cmd = FALSE)$stdout
@@ -76,6 +79,7 @@ git_version <- function() {
 #'   `git checkout` as a branch if doesn't exist. Branch
 #'   oriented workflow for switching between branches.
 #' @inheritParams params
+#' @return `git_checkout()`: `NULL` ... invisibly.
 #' @export
 git_checkout <- function(branch = NULL) {
   if ( is.null(branch) ) {

@@ -3,8 +3,6 @@ url: https://github.com/stufield/gitr
 home:
   strip_header: true
   links:
-  - text: Report a bug
-    href: https://github.com/stufield/gitr/issues
   - text: Learn more about me
     href: https://github.com/stufield
 
@@ -30,12 +28,14 @@ reference:
     desc: >
       A listing of the most common 'git' commands available in 'gitr'.
     contents:
-    - starts_with("git")
+    - git
+    - git_sitrep
     - pr
     - branch
     - commit
     - lint
     - params
+    - tag
 
   - title: Z-Shell
     desc: >

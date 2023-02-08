@@ -15,8 +15,8 @@ Git Branch Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{git_default_br()}: Gets the default "main" branch, typically either \code{master}, \code{main}, or \code{trunk}.
+\item \code{git_default_br()}: gets the default "main" branch, typically either \code{master}, \code{main}, or \code{trunk}.
 
-\item \code{git_current_br()}: Gets the \emph{current} branch.
+\item \code{git_current_br()}: gets the \emph{current} branch.
 
 }}

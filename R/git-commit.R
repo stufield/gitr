@@ -6,7 +6,7 @@
 NULL
 
 #' @describeIn commit
-#'   Get the commit messages corresponding to the commit `sha`.
+#'   gets the commit messages corresponding to the commit `sha`.
 #'   Adds author and `sha` attributes to each commit for downstream use.
 #' @export
 get_commit_msgs <- function(sha = NULL, n = 1) {
@@ -24,7 +24,7 @@ get_commit_msgs <- function(sha = NULL, n = 1) {
 }
 
 #' @describeIn commit
-#'   Scrape `n` commit messages for useful change log commits
+#'   scrapes `n` commit messages for useful change log commits
 #'   to be used to create a `NEWS.md`.
 #' @export
 scrape_commits <- function(n) {
@@ -52,7 +52,7 @@ scrape_commits <- function(n) {
 }
 
 #' @describeIn commit
-#'   Un-stage file from the index to the working directory.
+#'   un-stages a file from the index to the working directory.
 #'   Default un-stages *all* files.
 #' @inheritParams params
 #' @export
@@ -71,7 +71,7 @@ git_unstage <- function(file = NULL) {
 }
 
 #' @describeIn commit
-#'   Un-commit the most recently committed file(s) and
+#'   un-commits the most recently committed file(s) and
 #'   add them to the staging area.
 #' @export
 git_reset_soft <- function(n = 1) {
@@ -85,7 +85,7 @@ git_reset_soft <- function(n = 1) {
 }
 
 #' @describeIn commit
-#'   Un-commit the most recently committed file(s) and
+#'   un-commits the most recently committed file(s) and
 #'   add them to the staging area. Wrapper around [git_reset_soft()]
 #' @export
 git_uncommit <- function() {
@@ -106,7 +106,7 @@ git_reset_hard <- function() {
 }
 
 #' @describeIn commit
-#'   Gets the diff of the corresponding 2 commits. Order matters.
+#'   gets the diff of the corresponding 2 commits. Order matters.
 #' @param top Numeric. The commit to consider the "top" of the commit stack.
 #'   Defaults to `HEAD` or `n = 1`.
 #' @export

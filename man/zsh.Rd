@@ -143,7 +143,8 @@ command-line \verb{git <command> [<args>]} call.}
 
 \item{msg}{Character. The message for the commit subject line.}
 
-\item{branch}{Character. The path name to a file.}
+\item{branch}{Character. The name of a branch, typically a
+feature branch.}
 
 \item{force}{Logical. Should the branch delete be forced with the \code{-D} flag?}
 
@@ -158,6 +159,9 @@ working directory is compared to the index (staged or HEAD).}
 
 \item{global}{Logical. Query global repository. Alternatively
 local configuration only.}
+}
+\value{
+Most aliases return \code{NULL} ... invisibly, with some exceptions.
 }
 \description{
 Provides functions to common Z-shell git plugin aliases.

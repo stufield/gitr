@@ -2,20 +2,20 @@
 % Please edit documentation in R/params.R
 \name{params}
 \alias{params}
-\title{Params for gitr}
+\title{Common Parameters for gitr}
 \arguments{
 \item{n}{Numeric. How far back to go from current \code{HEAD}.
 Same as the command line \verb{git log -n} parameter.
 For \verb{git stash} commands, zero-index into the stash list.}
 
-\item{branch}{Character. The path name to a file.}
+\item{file}{Character. The path name to a file.}
 
-\item{file}{Character. The name of a branch, typically a
+\item{branch}{Character. The name of a branch, typically a
 feature branch.}
 
 \item{sha}{Character. The commit SHA-1 hash to pull messages from.
 If \code{NULL}, the most recent commit on the current branch.}
 }
 \description{
-Params for gitr
+Common Parameters for gitr
 }
