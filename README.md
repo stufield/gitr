@@ -33,8 +33,8 @@ that I’ve missed. The functionality contained in `gitr` are *heavily*
 influenced by **my** personal data science workflows and may not suit
 all users. However, if you have an idea that would make the package
 better, more widely usable, and/or efficient, please submit an
-[issue](https://github.com/stufield/gitr/issues/) or [Pull
-Request](https://github.com/stufield/gitr/pulls/).
+[issue](https://github.com/stufield/gitr/issues/) or [pull
+request](https://github.com/stufield/gitr/pulls/).
 
 ## Installation
 
@@ -67,33 +67,8 @@ library(gitr)
 ```
 
 ``` r
-git_default_br()
-#> [1] "main"
-```
-
-``` r
-git_current_br()
-#> [1] "prep-for-cran"
-```
-
-``` r
 git_version()
 #> [1] "2.39.0"
-```
-
-``` r
-glog()
-#> Running git log --oneline --graph --decorate -n 10 
-#> * 6d4f56d (HEAD -> prep-for-cran, origin/prep-for-cran) Add package vignette
-#> * c5dee31 Fix pkgdown.yaml
-#> * 9fe2078 Rename git config file templates to avoid R CMD check note
-#> * 92b4a94 Repository restructuring
-#> * 9cbd5ec Fix argument name and documentation for diffcommits()
-#> * 16355bf Add gitconfig and gitignore templates
-#> * 9051b63 Flow control unit test
-#> * 113078d Clean up is_git()
-#> * e3ba969 Set up spelling
-#> * 172cd85 Add a simple unit test and testthat suite
 ```
 
 ``` r
@@ -117,22 +92,45 @@ git_sitrep()
 #> Repo status:
 #> Running git status -s 
 #>  M README.Rmd
-#>  M _pkgdown.yml
-#> ?? docs/
 #> 
 #> Upstream remote:
 #>          branch ahead behind
-#> 1          main     0     11
-#> 2 prep-for-cran     0      0
-#> 3        testbr     2     34
+#> 1          main     0     23
+#> 2 prep-for-cran     1      0
+#> 3        testbr     2     35
 #> 
 #> Commit prep-for-cran Log:
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 6d4f56d (HEAD -> prep-for-cran, origin/prep-for-cran) Add package vignette
-#> * c5dee31 Fix pkgdown.yaml
+#> * 53fde78 (HEAD -> prep-for-cran) Update roxygen docs @return values
+#> * 61df9dc (origin/prep-for-cran) update gnuke() docs
+#> * 721cce9 Add basic package vignette skeleton
+#> * 3245351 Fix pkgdown.yaml
+#> * 9fe2078 Rename git config file templates to avoid R CMD check note
+```
+
+``` r
+git_current_br()
+#> [1] "prep-for-cran"
+```
+
+``` r
+git_default_br()
+#> [1] "main"
+```
+
+``` r
+glog()
+#> Running git log --oneline --graph --decorate -n 10 
+#> * 53fde78 (HEAD -> prep-for-cran) Update roxygen docs @return values
+#> * 61df9dc (origin/prep-for-cran) update gnuke() docs
+#> * 721cce9 Add basic package vignette skeleton
+#> * 3245351 Fix pkgdown.yaml
 #> * 9fe2078 Rename git config file templates to avoid R CMD check note
 #> * 92b4a94 Repository restructuring
 #> * 9cbd5ec Fix argument name and documentation for diffcommits()
+#> * 16355bf Add gitconfig and gitignore templates
+#> * 9051b63 Flow control unit test
+#> * 113078d Clean up is_git()
 ```
 
 ------------------------------------------------------------------------

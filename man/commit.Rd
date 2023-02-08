@@ -33,8 +33,7 @@ If \code{NULL}, the most recent commit on the current branch.}
 Same as the command line \verb{git log -n} parameter.
 For \verb{git stash} commands, zero-index into the stash list.}
 
-\item{file}{Character. The name of a branch, typically a
-feature branch.}
+\item{file}{Character. The path name to a file.}
 
 \item{top}{Numeric. The commit to consider the "top" of the commit stack.
 Defaults to \code{HEAD} or \code{n = 1}.}
@@ -44,23 +43,23 @@ Git Commit Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{get_commit_msgs()}: Get the commit messages corresponding to the commit \code{sha}.
+\item \code{get_commit_msgs()}: gets the commit messages corresponding to the commit \code{sha}.
 Adds author and \code{sha} attributes to each commit for downstream use.
 
-\item \code{scrape_commits()}: Scrape \code{n} commit messages for useful change log commits
+\item \code{scrape_commits()}: scrapes \code{n} commit messages for useful change log commits
 to be used to create a \code{NEWS.md}.
 
-\item \code{git_unstage()}: Un-stage file from the index to the working directory.
+\item \code{git_unstage()}: un-stages a file from the index to the working directory.
 Default un-stages \emph{all} files.
 
-\item \code{git_reset_soft()}: Un-commit the most recently committed file(s) and
+\item \code{git_reset_soft()}: un-commits the most recently committed file(s) and
 add them to the staging area.
 
-\item \code{git_uncommit()}: Un-commit the most recently committed file(s) and
+\item \code{git_uncommit()}: un-commits the most recently committed file(s) and
 add them to the staging area. Wrapper around \code{\link[=git_reset_soft]{git_reset_soft()}}
 
 \item \code{git_reset_hard()}: \verb{git reset --hard origin/<branch>}.
 
-\item \code{git_diffcommits()}: Gets the diff of the corresponding 2 commits. Order matters.
+\item \code{git_diffcommits()}: gets the diff of the corresponding 2 commits. Order matters.
 
 }}

@@ -5,7 +5,7 @@ output: github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r setup, include = FALSE}
-options(width = 101)
+options(width = 100)
 Sys.setlocale("LC_COLLATE", "en_US.UTF-8") # ensure common sorting envir
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -13,7 +13,6 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
-
 ver <- desc::desc_get_version(".")
 ver <- paste0("https://img.shields.io/badge/Version-", ver,
               "-success.svg?style=flat&logo=github")
@@ -48,7 +47,7 @@ However, if you have an idea that would make the package better,
 more widely usable, and/or efficient, please submit an
 [issue](https://github.com/stufield/gitr/issues/)
 or
-[Pull Request](https://github.com/stufield/gitr/pulls/).
+[pull request](https://github.com/stufield/gitr/pulls/).
 
 
 ## Installation
@@ -82,25 +81,26 @@ This is a basic example which shows you how to solve a common problem:
 library(gitr)
 ```
 
-```{r default}
-git_default_br()
+```{r ver}
+git_version()
+```
+
+```{r sitrep}
+git_sitrep()
 ```
 
 ```{r current}
 git_current_br()
 ```
 
-```{r ver}
-git_version()
+```{r default}
+git_default_br()
 ```
 
 ```{r glog}
 glog()
 ```
 
-```{r sitrep}
-git_sitrep()
-```
 
 --------
 

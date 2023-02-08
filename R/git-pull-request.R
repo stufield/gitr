@@ -6,7 +6,7 @@ NULL
 
 
 #' @describeIn pr
-#'   Gets the commit messages for the *current* branch relative to
+#'   gets the commit messages for the *current* branch relative to
 #'   the `origin/{main,master}` branch in the remote. Typically these "new" commits
 #'   that would be merged as part of a PR to `origin/{main,master}`.
 #' @inheritParams params
@@ -21,7 +21,7 @@ get_pr_msgs <- function(branch = NULL) {
 }
 
 #' @describeIn pr
-#'   Gets the commit SHA1 *current* branch relative to
+#'   gets the commit SHA1 *current* branch relative to
 #'   the `default` branch in the remote, usually either `origin/main` or
 #'   `origin/master`. See [git_default_br()].
 #' @inheritParams params

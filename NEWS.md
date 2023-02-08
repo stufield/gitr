@@ -1,6 +1,6 @@
-# gitr (development)
+# gitr (development) :tada:
 
-* Clean up in prep for CRAN release!
+* Now released on CRAN! :partying_face: 
 
 # gitr 0.0.0.9000
 

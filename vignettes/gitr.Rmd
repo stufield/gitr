@@ -49,8 +49,7 @@ A system installation of `git` is required.
 ## Workflows and examples (TODO)
 This section will become more fleshed out in future versions of `gitr`
 
-#### In the meantime please see the package
-[README](https://github.com/stufield/gitr/blob/main/README.md)
+In the meantime please see the package [README](https://github.com/stufield/gitr/blob/main/README.md)
 
 
 ---------------------

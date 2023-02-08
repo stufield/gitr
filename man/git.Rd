@@ -21,18 +21,28 @@ command-line \verb{git <command> [<args>]} call.}
 
 \item{echo_cmd}{Logical. Whether to print the command to run to the console.}
 
-\item{branch}{Character. The path name to a file.}
+\item{branch}{Character. The name of a branch, typically a
+feature branch.}
+}
+\value{
+\code{\link[=git]{git()}}: The system call ... invisibly.
+
+\code{is_git()}: Logical.
+
+\code{git_version()}: Character. The system version of \code{git}.
+
+\code{git_checkout()}: \code{NULL} ... invisibly.
 }
 \description{
 Provides functionality for system-level git commands from within R.
 }
 \section{Functions}{
 \itemize{
-\item \code{git()}: Execute a \code{git} command line call from within R.
+\item \code{git()}: executes a \code{git} command line call from within R.
 
-\item \code{is_git()}: Is current working directory a \code{git} repository?
+\item \code{is_git()}: is current working directory a \code{git} repository?
 
-\item \code{git_version()}: Gets the version of git in use.
+\item \code{git_version()}: gets the version of git in use.
 
 \item \code{git_checkout()}: \verb{git checkout} as a branch if doesn't exist. Branch
 oriented workflow for switching between branches.

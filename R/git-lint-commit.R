@@ -7,10 +7,10 @@
 #' @param x A single commit message from [get_commit_msgs()].
 #' @export
 lint_commit_msg <- function(x) {
-  if ( length(x) == 0 ) {
+  if ( length(x) == 0L ) {
     return(0)
   }
-  sha <- attr(x, "sha")
+  sha <- attr(x, "sha") %||% "\u2716"
   cnt <- 0
   if ( grepl("^[a-z]", x[1L]) ) {
     warning("Title should begin with a capital (", sha, ")", call. = FALSE)
@@ -20,7 +20,7 @@ lint_commit_msg <- function(x) {
     warning("Title should not end with a period (", sha, ")", call. = FALSE)
     cnt <- cnt + 1
   }
-  if ( nchar(x[1L]) > 60 ) {
+  if ( nchar(x[1L]) > 60L ) {
     warning("Title is too long (", nchar(x[1L]), ") for (", sha, ")", call. = FALSE)
     cnt <- cnt + 1
   }
@@ -42,6 +42,14 @@ lint_commit_msg <- function(x) {
   if ( any(wip) ) {
     warning("Work in progress commit detected! (", sha, ")", call. = FALSE)
     cnt <- cnt + 1
+  }
+  y <- paste(x, collapse = "\n")
+  jira <- grepl("[A-Z]{2,10}-[0-9]{1,4}", y)
+  gh   <- grepl("fixes .*#[0-9]{1,4}|closes .*#[0-9]{1,4}", y, ignore.case = TRUE)
+  if ( !(jira || gh) ) {
+    warning("Could not find an issue number in commit message (", sha, ")",
+            call. = FALSE)
+    cnt <- cnt + 1L
   }
   invisible(sum(cnt))
 }
