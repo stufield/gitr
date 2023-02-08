@@ -402,7 +402,7 @@ gpf <- function() {
   }
 }
 
-#' @describeIn zsh `git reset --hard`.
+#' @describeIn zsh `git reset --hard && git clean -df`.
 #' @export
 gnuke <- function() {
   if ( is_git() ) {

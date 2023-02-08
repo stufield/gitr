@@ -41,7 +41,7 @@ reference:
     desc: >
       Commonly use ZSH plugin aliases.
     contents:
-    - matches("^g[a-z]{2,4}")
+    - matches("^g[a-z]{2,6}")
     - -contains("git_")
 
 news:
