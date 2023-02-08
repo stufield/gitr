@@ -28,8 +28,8 @@ system installation of git is required.
 
 ## Disclaimer
 
-Use at own risk :smiley\_cat:, however, PRs are encouraged for ideas
-that I’ve missed. The functionality contained in `gitr` are *heavily*
+Use at own risk :smiley_cat:, however, PRs are encouraged for ideas that
+I’ve missed. The functionality contained in `gitr` are *heavily*
 influenced by **my** personal data science workflows and may not suit
 all users. However, if you have an idea that would make the package
 better, more widely usable, and/or efficient, please submit an
@@ -68,49 +68,45 @@ library(gitr)
 
 ``` r
 git_version()
-#> [1] "2.39.0"
+#> [1] "2.39.1"
 ```
 
 ``` r
 git_sitrep()
-#> Using Git version: 2.39.0 
+#> Using Git version: 2.39.1 
 #> 
-#> Current Branch: prep-for-cran 
+#> Current Branch: main 
 #> 
 #> Default Branch: main 
 #> 
 #> Branches:
 #> Running git branch -a 
-#>   main
-#> * prep-for-cran
-#>   testbr
-#>   remotes/origin/HEAD -> origin/main
+#> * main
+#>   remotes/origin/gh-pages
 #>   remotes/origin/main
 #>   remotes/origin/prep-for-cran
 #>   remotes/origin/testbr
 #> 
 #> Repo status:
 #> Running git status -s 
-#>  M README.Rmd
+#> 
 #> 
 #> Upstream remote:
-#>          branch ahead behind
-#> 1          main     0     23
-#> 2 prep-for-cran     1      0
-#> 3        testbr     2     35
+#>   branch ahead behind
+#> 1   main     0      0
 #> 
-#> Commit prep-for-cran Log:
+#> Commit main Log:
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 53fde78 (HEAD -> prep-for-cran) Update roxygen docs @return values
-#> * 61df9dc (origin/prep-for-cran) update gnuke() docs
-#> * 721cce9 Add basic package vignette skeleton
-#> * 3245351 Fix pkgdown.yaml
-#> * 9fe2078 Rename git config file templates to avoid R CMD check note
+#> * 6ae38e0 (HEAD -> main, origin/main) Clean up URLs
+#> * 83f1b32 Update roxygen docs @return values
+#> * bce5567 update gnuke() docs
+#> * 003c4de Add basic package vignette skeleton
+#> * b935693 Fix pkgdown.yaml
 ```
 
 ``` r
 git_current_br()
-#> [1] "prep-for-cran"
+#> [1] "main"
 ```
 
 ``` r
@@ -121,16 +117,16 @@ git_default_br()
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10 
-#> * 53fde78 (HEAD -> prep-for-cran) Update roxygen docs @return values
-#> * 61df9dc (origin/prep-for-cran) update gnuke() docs
-#> * 721cce9 Add basic package vignette skeleton
-#> * 3245351 Fix pkgdown.yaml
-#> * 9fe2078 Rename git config file templates to avoid R CMD check note
-#> * 92b4a94 Repository restructuring
-#> * 9cbd5ec Fix argument name and documentation for diffcommits()
-#> * 16355bf Add gitconfig and gitignore templates
-#> * 9051b63 Flow control unit test
-#> * 113078d Clean up is_git()
+#> * 6ae38e0 (HEAD -> main, origin/main) Clean up URLs
+#> * 83f1b32 Update roxygen docs @return values
+#> * bce5567 update gnuke() docs
+#> * 003c4de Add basic package vignette skeleton
+#> * b935693 Fix pkgdown.yaml
+#> * b6ea505 Rename git config file templates to avoid R CMD check note
+#> * 170450c Repository restructuring
+#> * bd5d767 Fix argument name and documentation for diffcommits()
+#> * c1d0214 Add gitconfig and gitignore templates
+#> * 05b0ee4 Flow control unit test
 ```
 
 ------------------------------------------------------------------------
