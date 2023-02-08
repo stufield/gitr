@@ -11,7 +11,7 @@ A light-weight, dependency-free, API to access system-level git commands from wi
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.io/gitr/}
+  \item \url{https://stufield.github.io/gitr/}
   \item Report bugs at \url{https://github.com/stufield/gitr/issues}
 }
 
