@@ -1,23 +1,19 @@
 #' Z-shell Aliases
 #'
-#' Provides ZSH-like aliases to common Z-shell plugin aliases.
+#' Provides functions to common Z-shell git plugin aliases.
 #'
 #' @name zsh
-#' @param n Numeric. How far back to go from current HEAD. Same as the
-#' command line `git log -n` parameter. For `git stash` commands, zero-index
-#' into the stash list.
-#' @param branch Character. The name of a branch, typically a
-#' feature branch.
-#' @param dry.run Logical. Clean as dry-run?
+#' @inheritParams params
 #' @inheritParams git
+#' @param dry.run Logical. Clean as dry-run?
 #' @examples
 #' \dontrun{
-#' glog()
+#'   glog()
 #' }
 NULL
 
 #' @describeIn zsh
-#' Get the `git` log in a pretty format for the `n` most recent commits.
+#'   Get the `git` log in a pretty format for the `n` most recent commits.
 #' @export
 glog <- function(n = 10) {
   if ( is_git() ) {
@@ -36,8 +32,9 @@ glog <- function(n = 10) {
   invisible()
 }
 
-#' @describeIn zsh `git commit ...`. To avoid masking the [base::gc()] function,
-#' this alias has been re-mapped to [gcc()].
+#' @describeIn zsh
+#'   `git commit ...`. To avoid masking the [base::gc()] function,
+#'   this alias has been re-mapped to [gcc()].
 #' @export
 gcc <- function(...) {
   git("commit", c(...))

@@ -134,17 +134,16 @@ grbm()
 grv()
 }
 \arguments{
-\item{n}{Numeric. How far back to go from current HEAD. Same as the
-command line \verb{git log -n} parameter. For \verb{git stash} commands, zero-index
-into the stash list.}
+\item{n}{Numeric. How far back to go from current \code{HEAD}.
+Same as the command line \verb{git log -n} parameter.
+For \verb{git stash} commands, zero-index into the stash list.}
 
 \item{...}{Additional arguments passed to the system
 command-line \verb{git <command> [<args>]} call.}
 
 \item{msg}{Character. The message for the commit subject line.}
 
-\item{branch}{Character. The name of a branch, typically a
-feature branch.}
+\item{branch}{Character. The path name to a file.}
 
 \item{force}{Logical. Should the branch delete be forced with the \code{-D} flag?}
 
@@ -161,7 +160,7 @@ working directory is compared to the index (staged or HEAD).}
 local configuration only.}
 }
 \description{
-Provides ZSH-like aliases to common Z-shell plugin aliases.
+Provides functions to common Z-shell git plugin aliases.
 }
 \section{Functions}{
 \itemize{
@@ -255,6 +254,6 @@ this alias has been re-mapped to \code{\link[=gcc]{gcc()}}.
 }}
 \examples{
 \dontrun{
-glog()
+  glog()
 }
 }
