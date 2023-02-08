@@ -233,7 +233,7 @@ this alias has been re-mapped to \code{\link[=gcc]{gcc()}}.
 
 \item \code{gpf()}: \verb{git push --force-with-lease}.
 
-\item \code{gnuke()}: \verb{git reset --hard}.
+\item \code{gnuke()}: \verb{git reset --hard && git clean -df}.
 
 \item \code{gcf()}: \verb{git config --local} or \verb{git config --global}.
 
