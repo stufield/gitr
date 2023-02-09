@@ -29,6 +29,7 @@ ver <- paste0("https://img.shields.io/badge/Version-", ver,
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
 <!-- badges: end -->
 
+
 ## Overview
 
 A light-weight, dependency-free, API to access system-level git
@@ -37,6 +38,16 @@ It contains wrappers and defaults for common data science workflows as well as
 [Z-shell](https://github.com/ohmyzsh/ohmyzsh) and it's plugins (see below).
 Generalized API syntax is also available.
 A system installation of git is required.
+
+If you run into any issues/problems with `gitr` full documentation
+of the most recent
+[release](https://github.com/stufield/gitr/releases)
+can be found at the
+[pkgdown website](https://stufield.github.io/gitr/).
+If the issue persists I encourage you to consult the
+[issues](https://github.com/stufield/gitr/issues/)
+page and, if appropriate, submit an issue and/or feature request.
+
 
 ## Disclaimer
 
