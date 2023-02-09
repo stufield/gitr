@@ -26,6 +26,13 @@ workflows as well as [Z-shell](https://github.com/ohmyzsh/ohmyzsh) and
 it’s plugins (see below). Generalized API syntax is also available. A
 system installation of git is required.
 
+If you run into any issues/problems with `gitr` full documentation of
+the most recent [release](https://github.com/stufield/gitr/releases) can
+be found at the [pkgdown website](https://stufield.github.io/gitr/). If
+the issue persists I encourage you to consult the
+[issues](https://github.com/stufield/gitr/issues/) page and, if
+appropriate, submit an issue and/or feature request.
+
 ## Disclaimer
 
 Use at own risk :smiley_cat:, however, PRs are encouraged for ideas that
@@ -97,11 +104,11 @@ git_sitrep()
 #> 
 #> Commit main Log:
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 6ae38e0 (HEAD -> main, origin/main) Clean up URLs
+#> * f8c570f (HEAD -> main, origin/main) Add pkgdown and issues links to README.Rmd
+#> * 2195643 Add cran-comments.md
+#> * f088f6c Re-build README.Rmd
+#> * 6ae38e0 Clean up URLs
 #> * 83f1b32 Update roxygen docs @return values
-#> * bce5567 update gnuke() docs
-#> * 003c4de Add basic package vignette skeleton
-#> * b935693 Fix pkgdown.yaml
 ```
 
 ``` r
@@ -117,16 +124,16 @@ git_default_br()
 ``` r
 glog()
 #> Running git log --oneline --graph --decorate -n 10 
-#> * 6ae38e0 (HEAD -> main, origin/main) Clean up URLs
+#> * f8c570f (HEAD -> main, origin/main) Add pkgdown and issues links to README.Rmd
+#> * 2195643 Add cran-comments.md
+#> * f088f6c Re-build README.Rmd
+#> * 6ae38e0 Clean up URLs
 #> * 83f1b32 Update roxygen docs @return values
 #> * bce5567 update gnuke() docs
 #> * 003c4de Add basic package vignette skeleton
 #> * b935693 Fix pkgdown.yaml
 #> * b6ea505 Rename git config file templates to avoid R CMD check note
 #> * 170450c Repository restructuring
-#> * bd5d767 Fix argument name and documentation for diffcommits()
-#> * c1d0214 Add gitconfig and gitignore templates
-#> * 05b0ee4 Flow control unit test
 ```
 
 ------------------------------------------------------------------------
