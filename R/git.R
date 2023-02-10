@@ -60,7 +60,7 @@ is_git <- function() {
   dir <- base::system2("git", "rev-parse --git-dir", stdout = FALSE, stderr = FALSE)
   in_repo  <- dir.exists(".git") || (dir == 0L)
   if ( !in_repo ) {
-    oops("not a git repository")
+    oops("Not a git repository")
   }
   in_repo
 }

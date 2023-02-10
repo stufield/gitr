@@ -19,6 +19,10 @@ done <- function(...) {
   inform(slug_color("\u2713", "\033[32m"), ...)
 }
 
+info <- function(...) {
+  inform(slug_color("\u2139", "\033[36m"), ...)
+}
+
 not_interactive <- function() {
   is_testing  <- identical(Sys.getenv("TESTTHAT"), "true")
   is_knitting <- isTRUE(getOption("knitr.in.progress"))

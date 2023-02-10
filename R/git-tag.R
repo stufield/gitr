@@ -22,7 +22,8 @@ git_tag_info <- function() {
   is_git()
   no_tags <- identical(git("tag", "-l", echo_cmd = FALSE)$stdout, "")
   if ( no_tags ) {
-    stop("No tags in repository ...", call. = FALSE)
+    info("No tags in repository ...")
+    return(invisible(NULL))
   }
   tags <- git("tag", "--sort=-v:refname",
     "--format='%(tag)\t%(objectname:short)\t%(object)\t%(subject)\t%(taggername)\t%(taggeremail)\t%(taggeremail:localpart)\t%(taggerdate)\t%(objectsize)'",
