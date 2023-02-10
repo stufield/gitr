@@ -96,10 +96,6 @@ library(gitr)
 git_version()
 ```
 
-```{r sitrep}
-git_sitrep()
-```
-
 ```{r current}
 git_current_br()
 ```
@@ -110,6 +106,14 @@ git_default_br()
 
 ```{r glog}
 glog()
+```
+
+```{r sitrep}
+git_sitrep()
+```
+
+```{r tag-info}
+git_tag_info()
 ```
 
 
