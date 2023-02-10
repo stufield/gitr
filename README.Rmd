@@ -84,14 +84,19 @@ remotes::install_github("stufield/gitr@v0.0.1")
 
 -----------
 
-## Example
+## Load
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
+```{r load}
 library(gitr)
 ```
 
+
+## Example
+
+Here are some basic examples of the functionality grouped by common
+actions:
+
+#### Basics
 ```{r ver}
 git_version()
 ```
@@ -104,17 +109,67 @@ git_current_br()
 git_default_br()
 ```
 
-```{r glog}
-glog()
+#### Core Engine
+```{r git-core}
+(git("branch", "foo"))
+
+git("branch", "-av")$stdout |>
+  cat(sep = "\n")
+
+git("branch", "-D", "foo")$stdout
 ```
 
-```{r sitrep}
-git_sitrep()
+
+#### Commits
+```{r commit-msgs}
+get_commit_msgs(n = 3)
+```
+
+```{r glog}
+glog(5)
+```
+
+```{r commit-diff}
+git_diffcommits()
+```
+
+```{r reset-hard, eval = FALSE}
+git_reset_hard()
+```
+
+```{r reset-soft, eval = FALSE}
+git_reset_soft()
+```
+
+```{r uncommit, eval = FALSE}
+git_uncommit()
+```
+
+```{r unstage, eval = FALSE}
+git_unstage("DESCRIPTION")
+```
+
+
+#### SHA
+```{r trim}
+trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
+```
+
+
+#### Tags
+```{r tag-recent}
+git_recent_tag()
 ```
 
 ```{r tag-info}
 git_tag_info()
 ```
+
+#### Situation Report
+```{r sitrep}
+git_sitrep()
+```
+
 
 
 --------
