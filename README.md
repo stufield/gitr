@@ -65,50 +65,22 @@ remotes::install_github("stufield/gitr@v0.0.1")
 
 ------------------------------------------------------------------------
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+## Load
 
 ``` r
 library(gitr)
 ```
 
+## Example
+
+Here are some basic examples of the functionality grouped by common
+actions:
+
+#### Basics
+
 ``` r
 git_version()
 #> [1] "2.39.1"
-```
-
-``` r
-git_sitrep()
-#> Using Git version: 2.39.1 
-#> 
-#> Current Branch: main 
-#> 
-#> Default Branch: main 
-#> 
-#> Branches:
-#> Running git branch -a 
-#> * main
-#>   remotes/origin/gh-pages
-#>   remotes/origin/main
-#>   remotes/origin/prep-for-cran
-#>   remotes/origin/testbr
-#> 
-#> Repo status:
-#> Running git status -s 
-#> 
-#> 
-#> Upstream remote:
-#>   branch ahead behind
-#> 1   main     0      0
-#> 
-#> Commit main Log:
-#> Running git log --oneline --graph --decorate -n 5 
-#> * f8c570f (HEAD -> main, origin/main) Add pkgdown and issues links to README.Rmd
-#> * 2195643 Add cran-comments.md
-#> * f088f6c Re-build README.Rmd
-#> * 6ae38e0 Clean up URLs
-#> * 83f1b32 Update roxygen docs @return values
 ```
 
 ``` r
@@ -121,19 +93,176 @@ git_default_br()
 #> [1] "main"
 ```
 
+#### Core Engine
+
 ``` r
-glog()
-#> Running git log --oneline --graph --decorate -n 10 
-#> * f8c570f (HEAD -> main, origin/main) Add pkgdown and issues links to README.Rmd
-#> * 2195643 Add cran-comments.md
-#> * f088f6c Re-build README.Rmd
-#> * 6ae38e0 Clean up URLs
-#> * 83f1b32 Update roxygen docs @return values
-#> * bce5567 update gnuke() docs
-#> * 003c4de Add basic package vignette skeleton
-#> * b935693 Fix pkgdown.yaml
-#> * b6ea505 Rename git config file templates to avoid R CMD check note
-#> * 170450c Repository restructuring
+(git("branch", "foo"))
+#> Running git branch foo
+#> $status
+#> [1] 0
+#> 
+#> $stdout
+#> [1] ""
+#> 
+#> $stderr
+#> [1] ""
+
+git("branch", "-av")$stdout |>
+  cat(sep = "\n")
+#> Running git branch -av 
+#>   foo                          0c9ac89 Elaborate examples in README.Rmd
+#> * main                         0c9ac89 Elaborate examples in README.Rmd
+#>   remotes/origin/gh-pages      592df67 Built site for gitr: 0.0.0.9000@0c9ac89
+#>   remotes/origin/main          0c9ac89 Elaborate examples in README.Rmd
+#>   remotes/origin/prep-for-cran bb5a9bf Clean up URLs
+
+git("branch", "-D", "foo")$stdout
+#> Running git branch -D foo
+#> [1] "Deleted branch foo (was 0c9ac89)."
+```
+
+#### Commits
+
+``` r
+get_commit_msgs(n = 3)
+#> Running git log --format=%H -n 3
+#> [[1]]
+#> [1] "Elaborate examples in README.Rmd" ""                                
+#> attr(,"sha")
+#> [1] "0c9ac89"
+#> attr(,"author")
+#> [1] "stu.g.field@gmail.com"
+#> 
+#> [[2]]
+#> [1] "Update README.Rmd to include `git_tag_info()`" ""                                             
+#> attr(,"sha")
+#> [1] "d670c93"
+#> attr(,"author")
+#> [1] "stu.g.field@gmail.com"
+#> 
+#> [[3]]
+#> [1] "Git tag info no longer errors out" ""                                 
+#> [3] "- informs user and returns NULL"   ""                                 
+#> attr(,"sha")
+#> [1] "45fc4c7"
+#> attr(,"author")
+#> [1] "stu.g.field@gmail.com"
+```
+
+``` r
+glog(5)
+#> Running git log --oneline --graph --decorate -n 5 
+#> * 0c9ac89 (HEAD -> main, origin/main) Elaborate examples in README.Rmd
+#> * d670c93 Update README.Rmd to include `git_tag_info()`
+#> * 45fc4c7 Git tag info no longer errors out
+#> * 892e59f Ensure `git_sitrep()` doesn't return color non-interactive
+#> * 2016312 Update '_pkgdown.yml' with new 'sha' topic
+```
+
+``` r
+git_diffcommits()
+#> Running git diff HEAD~2..HEAD~1 
+#> diff --git a/README.Rmd b/README.Rmd
+#> index 7feba10..8960baf 100644
+#> --- a/README.Rmd
+#> +++ b/README.Rmd
+#> @@ -96,10 +96,6 @@ library(gitr)
+#>  git_version()
+#>  ```
+#>  
+#> -```{r sitrep}
+#> -git_sitrep()
+#> -```
+#> -
+#>  ```{r current}
+#>  git_current_br()
+#>  ```
+#> @@ -112,6 +108,14 @@ git_default_br()
+#>  glog()
+#>  ```
+#>  
+#> +```{r sitrep}
+#> +git_sitrep()
+#> +```
+#> +
+#> +```{r tag-info}
+#> +git_tag_info()
+#> +```
+#> +
+#>  
+#>  --------
+#> 
+```
+
+``` r
+git_reset_hard()
+```
+
+``` r
+git_reset_soft()
+```
+
+``` r
+git_uncommit()
+```
+
+``` r
+git_unstage("DESCRIPTION")
+```
+
+#### SHA
+
+``` r
+trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
+#> [1] "d670c93"
+```
+
+#### Tags
+
+``` r
+git_recent_tag()
+#> Running git tag -n
+#> [1] ""
+```
+
+``` r
+git_tag_info()
+#> ℹ No tags in repository ...
+```
+
+#### Situation Report
+
+``` r
+git_sitrep()
+#> Using Git version: 2.39.1 
+#> 
+#> Current branch: main
+#> Default branch: main 
+#> 
+#> Repo status:
+#> Running git status -s 
+#> 
+#> 
+#> Branches:
+#> Running git branch -a 
+#> * main
+#>   remotes/origin/gh-pages
+#>   remotes/origin/main
+#>   remotes/origin/prep-for-cran
+#> 
+#> Local status:
+#> ✓ OK
+#> 
+#> Upstream remotes: origin 
+#> * main 0c9ac89 [origin/main] Elaborate examples in README.Rmd
+#> 
+#> Commit log: main 
+#> Running git log --oneline --graph --decorate -n 5 
+#> * 0c9ac89 (HEAD -> main, origin/main) Elaborate examples in README.Rmd
+#> * d670c93 Update README.Rmd to include `git_tag_info()`
+#> * 45fc4c7 Git tag info no longer errors out
+#> * 892e59f Ensure `git_sitrep()` doesn't return color non-interactive
+#> * 2016312 Update '_pkgdown.yml' with new 'sha' topic
 ```
 
 ------------------------------------------------------------------------
