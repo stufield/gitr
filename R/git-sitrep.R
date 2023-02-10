@@ -2,7 +2,6 @@
 #'
 #' Get a situation report of the current git repository.
 #'
-#' @inherit params return
 #' @return `NULL` ... invisibly.
 #' @export
 git_sitrep <- function() {
@@ -41,10 +40,14 @@ git_sitrep <- function() {
 
     cat("\nUpstream remotes:", slug_color(remote, "\033[33m"), "\n")
     br_verb <- git("branch", "-vv", echo_cmd = FALSE)$stdout
-    br_verb |>
-      gsub(pattern = "(^\\* [[:alnum:]|_-]+ )", replacement = "\033[32m\\1\033[0m") |>
-      gsub(pattern = "(origin/[[:alnum:]|_-]+)", replacement = "\033[34m\\1\033[0m") |>
-      cat(sep = "\n")
+    if ( not_interactive() ) {
+      cat(br_verb, sep = "\n")
+    } else {
+      br_verb |>
+        gsub(pattern = "(^\\* [[:alnum:]|_-]+ )", replacement = "\033[32m\\1\033[0m") |>
+        gsub(pattern = "(origin/[[:alnum:]|_-]+)", replacement = "\033[34m\\1\033[0m") |>
+        cat(sep = "\n")
+    }
 
     cat("\nCommit log:", slug_color(br, "\033[32m"), "\n")
     glog(5)
