@@ -26,7 +26,7 @@ articles:
 reference:
   - title: Git Wrappers
     desc: >
-      A listing of the most common 'git' commands available in 'gitr'.
+      A listing of the most common Git commands available in 'gitr'.
     contents:
     - git
     - git_sitrep
@@ -35,6 +35,7 @@ reference:
     - commit
     - lint
     - params
+    - sha
     - tag
 
   - title: Z-Shell
@@ -42,7 +43,7 @@ reference:
       Commonly use ZSH plugin aliases.
     contents:
     - matches("^g[a-z]{2,6}")
-    - -contains("git_")
+    - -contains("^git_")
 
 news:
   - one_page: true
