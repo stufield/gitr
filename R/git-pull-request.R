@@ -37,10 +37,9 @@ get_pr_sha <- function(branch = NULL) {
   sha_vec <- git("rev-list", "--right-only",
                  paste0("remotes/origin/", default, "..", branch),
                  echo_cmd = FALSE)
-  if ( sha_vec$status == 1 || sha_vec$stdout == "" ) {
+  if ( sha_vec$status != 0L || isTRUE(sha_vec == "") ) {
     NULL
   } else {
     sha_vec$stdout
   }
 }
-
