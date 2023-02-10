@@ -11,9 +11,9 @@ git_recent_tag()
 git_tag_info()
 }
 \value{
-Character.
+\code{\link[=git_recent_tag]{git_recent_tag()}}: Character. The most recent tag.
 
-A data frame.
+\code{\link[=git_tag_info]{git_tag_info()}}: A data frame summarizing the repository tags.
 }
 \description{
 Git Tag Utilities

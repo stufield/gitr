@@ -2,6 +2,7 @@
 
 
 #' @name branch
+#' @return Character. The name of the respective branch if found, otherwise `NULL`.
 NULL
 
 #' @describeIn branch
@@ -15,7 +16,11 @@ git_default_br <- function() {
     refs <- paste0(rep(root, each = 3L), c("main", "trunk", "master"))
     for ( ref in refs ) {
       st <- git("show-ref", "-q", "--verify", ref, echo_cmd = FALSE)$status
-      if ( st == 0L ) return(basename(ref)) else next
+      if ( st == 0L ) {
+        return(basename(ref))
+      } else {
+        next
+      }
     }
     stop("Unable to determine default branch.", call. = FALSE)
   }

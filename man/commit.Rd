@@ -38,13 +38,18 @@ For \verb{git stash} commands, zero-index into the stash list.}
 \item{top}{Numeric. The commit to consider the "top" of the commit stack.
 Defaults to \code{HEAD} or \code{n = 1}.}
 }
+\value{
+\code{NULL} ... invisibly.
+
+A list containing commit message entries. The \code{sha} and \code{author}
+of each commit is added as attributes.
+}
 \description{
 Git Commit Utilities
 }
 \section{Functions}{
 \itemize{
 \item \code{get_commit_msgs()}: gets the commit messages corresponding to the commit \code{sha}.
-Adds author and \code{sha} attributes to each commit for downstream use.
 
 \item \code{scrape_commits()}: scrapes \code{n} commit messages for useful change log commits
 to be used to create a \code{NEWS.md}.

@@ -3,11 +3,13 @@
 
 #' @name commit
 #' @inheritParams params
+#' @return `NULL` ... invisibly.
 NULL
 
 #' @describeIn commit
 #'   gets the commit messages corresponding to the commit `sha`.
-#'   Adds author and `sha` attributes to each commit for downstream use.
+#' @return A list containing commit message entries. The `sha` and `author`
+#'   of each commit is added as attributes.
 #' @export
 get_commit_msgs <- function(sha = NULL, n = 1) {
   if ( is.null(sha) ) {

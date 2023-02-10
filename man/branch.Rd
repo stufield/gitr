@@ -10,6 +10,9 @@ git_default_br()
 
 git_current_br()
 }
+\value{
+Character. The name of the respective branch if found, otherwise \code{NULL}.
+}
 \description{
 Git Branch Utilities
 }

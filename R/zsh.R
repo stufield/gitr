@@ -5,7 +5,7 @@
 #' @name zsh
 #' @inheritParams params
 #' @inheritParams git
-#' @return Most aliases return `NULL` ... invisibly, with some exceptions.
+#' @return Most aliases invisibly return `NULL` ... with some exceptions.
 #' @examples
 #' \dontrun{
 #'   glog()

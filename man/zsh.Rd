@@ -161,7 +161,7 @@ working directory is compared to the index (staged or HEAD).}
 local configuration only.}
 }
 \value{
-Most aliases return \code{NULL} ... invisibly, with some exceptions.
+Most aliases invisibly return \code{NULL} ... with some exceptions.
 }
 \description{
 Provides functions to common Z-shell git plugin aliases.

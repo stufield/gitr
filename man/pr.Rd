@@ -14,6 +14,12 @@ get_pr_sha(branch = NULL)
 \item{branch}{Character. The name of a branch, typically a
 feature branch.}
 }
+\value{
+\code{\link[=get_pr_msgs]{get_pr_msgs()}}: see \code{\link[=get_commit_msgs]{get_commit_msgs()}}.
+
+\code{\link[=get_pr_sha]{get_pr_sha()}}: character vector of \code{sha}s corresponding to the PR
+(relative to the default branch).
+}
 \description{
 Git PR Utilities
 }

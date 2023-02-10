@@ -6,6 +6,9 @@
 \usage{
 git_sitrep()
 }
+\value{
+\code{NULL} ... invisibly.
+}
 \description{
 Get a situation report of the current git repository.
 }

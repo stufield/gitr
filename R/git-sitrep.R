@@ -3,6 +3,7 @@
 #' Get a situation report of the current git repository.
 #'
 #' @inherit params return
+#' @return `NULL` ... invisibly.
 #' @export
 git_sitrep <- function() {
   if ( is_git() ) {
@@ -33,6 +34,6 @@ git_sitrep <- function() {
     cat("\nCommit", slug_color(git_current_br(), "\033[32m"), "Log:\n")
     glog(5)
   } else {
-    invisible()
+    invisible(NULL)
   }
 }

@@ -7,7 +7,7 @@ NULL
 
 #' @describeIn tag
 #'   gets the *most* recent `git` tag.
-#' @return Character.
+#' @return [git_recent_tag()]: Character. The most recent tag.
 #' @export
 git_recent_tag <- function() {
   tag <- utils::tail(git("tag", "-n")$stdout, 1L)
@@ -16,7 +16,7 @@ git_recent_tag <- function() {
 
 #' @describeIn tag
 #'   gets a data frame summary of the current git repository tags.
-#' @return A data frame.
+#' @return [git_tag_info()]: A data frame summarizing the repository tags.
 #' @export
 git_tag_info <- function() {
   is_git()
