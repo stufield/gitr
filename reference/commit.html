@@ -99,11 +99,22 @@ For <code>git stash</code> commands, zero-index into the stash list.</p></dd>
 Defaults to <code>HEAD</code> or <code>n = 1</code>.</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+<p><code>NULL</code> ... invisibly.</p>
+
+
+<p>A list containing commit message entries. The <code>sha</code> and <code>author</code></p>
+
+
+<p>of each commit is added as attributes.</p>
+    </div>
     <div id="functions">
     <h2>Functions</h2>
     
-<ul><li><p><code>get_commit_msgs()</code>: gets the commit messages corresponding to the commit <code>sha</code>.
-Adds author and <code>sha</code> attributes to each commit for downstream use.</p></li>
+<ul><li><p><code>get_commit_msgs()</code>: gets the commit messages corresponding to the commit <code>sha</code>.</p></li>
 <li><p><code>scrape_commits()</code>: scrapes <code>n</code> commit messages for useful change log commits
 to be used to create a <code>NEWS.md</code>.</p></li>
 <li><p><code>git_unstage()</code>: un-stages a file from the index to the working directory.
