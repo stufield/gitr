@@ -19,7 +19,7 @@ get_commit_msgs <- function(sha = NULL, n = 1) {
   lapply(sha, function(.x) {
     structure(
       git("log", "--format=%B", "-1", .x, echo_cmd = FALSE)$stdout,
-      sha    = substr(.x, 1, 7),
+      sha    = trim_sha(.x),
       author = git("log", "--format=%ae", "-1", .x, echo_cmd = FALSE)$stdout
     )
   })

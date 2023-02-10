@@ -39,5 +39,6 @@ Collate:
     'git-pull-request.R'
     'git-sitrep.R'
     'git-tag.R'
+    'trim-sha.R'
     'utils.R'
     'zsh.R'

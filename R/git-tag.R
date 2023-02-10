@@ -32,7 +32,7 @@ git_tag_info <- function() {
   names(ret) <- c("tag", "tag_sha", "target_sha", "message",
                   "author", "email", "user", "tagdate", "size")
   rownames(ret)  <- ret$tag
-  ret$target_sha <- substr(ret$target_sha, 1, 7)
+  ret$target_sha <- trim_sha(ret$target_sha)
   ret$path       <- file.path(normalizePath("."), ".git")
   ret
 }
