@@ -1,3 +1,5 @@
+# gitr (development version)
+
 # gitr 0.0.1 :tada:
 
 * Now released on CRAN! :partying_face: 
