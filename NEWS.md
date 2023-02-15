@@ -1,8 +1,10 @@
 # gitr (development version)
 
+* `is_sha()` now exported to test regex of expected `SHA1` pattern (@stufield, #9)
+
 # gitr 0.0.1 :tada:
 
-* Now released on CRAN! :partying_face: 
+* Now released (#7) on CRAN! :partying_face: 
 
 * The package repository was restructured
   - now functions should be easier to find

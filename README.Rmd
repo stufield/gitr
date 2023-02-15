@@ -152,9 +152,15 @@ git_unstage("DESCRIPTION")
 ```
 
 
-#### SHA
+#### SHA1
 ```{r trim}
+is_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
+
+is_sha("foo")
+
 trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
+
+trim_sha("foo")
 ```
 
 
