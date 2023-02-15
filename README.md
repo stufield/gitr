@@ -6,10 +6,11 @@
 <!-- badges: start -->
 
 ![GitHub
-version](https://img.shields.io/badge/Version-0.0.0.9000-success.svg?style=flat&logo=github)
+version](https://img.shields.io/badge/Version-0.0.1.9000-success.svg?style=flat&logo=github)
 [![CRAN
 status](http://www.r-pkg.org/badges/version/gitr)](https://cran.r-project.org/package=gitr)
 [![R-CMD-check](https://github.com/stufield/gitr/workflows/R-CMD-check/badge.svg)](https://github.com/stufield/gitr/actions)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/gitr)](https://cran.r-project.org/package=gitr)
 [![Codecov test
 coverage](https://codecov.io/gh/stufield/gitr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/stufield/gitr?branch=main)
 [![Lifecycle:
@@ -20,11 +21,12 @@ MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.
 
 ## Overview
 
-A light-weight, dependency-free, API to access system-level git commands
-from within R. It contains wrappers and defaults for common data science
-workflows as well as [Z-shell](https://github.com/ohmyzsh/ohmyzsh) and
-it’s plugins (see below). Generalized API syntax is also available. A
-system installation of git is required.
+A light-weight, dependency-free, application programming interface (API)
+to access system-level [Git](https://git-scm.com/downloads) commands
+from within `R`. Contains wrappers and defaults for common data science
+workflows as well as [Zsh](https://github.com/ohmyzsh/ohmyzsh) plugin
+aliases (see below). A generalized API syntax is also available. A
+system installation of [Git](https://git-scm.com/downloads) is required.
 
 If you run into any issues/problems with `gitr` full documentation of
 the most recent [release](https://github.com/stufield/gitr/releases) can
@@ -110,15 +112,16 @@ git_default_br()
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                          0c9ac89 Elaborate examples in README.Rmd
-#> * main                         0c9ac89 Elaborate examples in README.Rmd
-#>   remotes/origin/gh-pages      592df67 Built site for gitr: 0.0.0.9000@0c9ac89
-#>   remotes/origin/main          0c9ac89 Elaborate examples in README.Rmd
+#>   foo                          06ee33e Minor tweak to trim_sha() and export is_sha()
+#> * main                         06ee33e Minor tweak to trim_sha() and export is_sha()
+#>   remotes/origin/gh-pages      dd2529d Built site for gitr: 0.0.1@5e98f89
+#>   remotes/origin/main          06ee33e Minor tweak to trim_sha() and export is_sha()
 #>   remotes/origin/prep-for-cran bb5a9bf Clean up URLs
+#>   remotes/origin/submit-cran   378ef59 Increment version number to 0.0.1
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was 0c9ac89)."
+#> [1] "Deleted branch foo (was 06ee33e)."
 ```
 
 #### Commits
@@ -127,24 +130,33 @@ git("branch", "-D", "foo")$stdout
 get_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Elaborate examples in README.Rmd" ""                                
+#> [1] "Minor tweak to trim_sha() and export is_sha()"   
+#> [2] ""                                                
+#> [3] "- now returns 'sha' if not a sha or empty string"
+#> [4] "- new function `is_sha()`"                       
+#> [5] "- added new unit tests"                          
+#> [6] "- fixes #9"                                      
+#> [7] ""                                                
 #> attr(,"sha")
-#> [1] "0c9ac89"
+#> [1] "06ee33e"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Update README.Rmd to include `git_tag_info()`" ""                                             
+#> [1] "Tweak DESCRIPTION and README.Rmd pkg descriptions"
+#> [2] ""                                                 
+#> [3] "- added new link to 'Zsh'"                        
+#> [4] ""                                                 
 #> attr(,"sha")
-#> [1] "d670c93"
+#> [1] "e2789f3"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Git tag info no longer errors out" ""                                 
-#> [3] "- informs user and returns NULL"   ""                                 
+#> [1] "Update README badge"         ""                            "- add new 'downloads' badge"
+#> [4] ""                           
 #> attr(,"sha")
-#> [1] "45fc4c7"
+#> [1] "8f19ea7"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 ```
@@ -152,46 +164,71 @@ get_commit_msgs(n = 3)
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 0c9ac89 (HEAD -> main, origin/main) Elaborate examples in README.Rmd
-#> * d670c93 Update README.Rmd to include `git_tag_info()`
-#> * 45fc4c7 Git tag info no longer errors out
-#> * 892e59f Ensure `git_sitrep()` doesn't return color non-interactive
-#> * 2016312 Update '_pkgdown.yml' with new 'sha' topic
+#> * 06ee33e (HEAD -> main, origin/main) Minor tweak to trim_sha() and export is_sha()
+#> * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions
+#> * 8f19ea7 Update README badge
+#> * aa7333d Update PR template
+#> * d15f3f8 Increment version number to 0.0.1.9000
 ```
 
 ``` r
 git_diffcommits()
 #> Running git diff HEAD~2..HEAD~1 
+#> diff --git a/DESCRIPTION b/DESCRIPTION
+#> index 1f59fde..28fdc29 100644
+#> --- a/DESCRIPTION
+#> +++ b/DESCRIPTION
+#> @@ -9,9 +9,10 @@ Authors@R: c(
+#>             comment = c(ORCID = "0000-0002-1024-5859"))
+#>      )
+#>  Description: A light-weight, dependency-free, application programming interface
+#> -    (API) to access system-level 'Git' commands from within 'R'. Contains wrappers
+#> -    and defaults for common data science workflows as well as
+#> -    'Zsh' plugin aliases. A generalized API syntax is also available.
+#> +    (API) to access system-level 'Git' commands from within 'R'.
+#> +    Contains wrappers and defaults for common data science workflows as well as
+#> +    'Zsh' <https://github.com/ohmyzsh/ohmyzsh> plugin aliases.
+#> +    A generalized API syntax is also available.
+#>      A system installation of 'Git' <https://git-scm.com/downloads> is required.
+#>  License: MIT + file LICENSE
+#>  URL: https://stufield.github.io/gitr/
 #> diff --git a/README.Rmd b/README.Rmd
-#> index 7feba10..8960baf 100644
+#> index adf598d..d8a6e67 100644
 #> --- a/README.Rmd
 #> +++ b/README.Rmd
-#> @@ -96,10 +96,6 @@ library(gitr)
-#>  git_version()
-#>  ```
+#> @@ -33,12 +33,13 @@ ver <- paste0("https://img.shields.io/badge/Version-", ver,
 #>  
-#> -```{r sitrep}
-#> -git_sitrep()
-#> -```
-#> -
-#>  ```{r current}
-#>  git_current_br()
-#>  ```
-#> @@ -112,6 +108,14 @@ git_default_br()
-#>  glog()
-#>  ```
+#>  ## Overview
 #>  
-#> +```{r sitrep}
-#> +git_sitrep()
-#> +```
-#> +
-#> +```{r tag-info}
-#> +git_tag_info()
-#> +```
+#> -A light-weight, dependency-free, API to access system-level git
+#> -commands from within R.
+#> -It contains wrappers and defaults for common data science workflows as well as
+#> -[Z-shell](https://github.com/ohmyzsh/ohmyzsh) and it's plugins (see below).
+#> -Generalized API syntax is also available.
+#> -A system installation of git is required.
+#> +A light-weight, dependency-free, application programming interface
+#> +(API) to access system-level [Git](https://git-scm.com/downloads) commands from within `R`.
+#> +Contains wrappers and defaults for common data science workflows as well as
+#> +[Zsh](https://github.com/ohmyzsh/ohmyzsh) plugin aliases (see below).
+#> +A generalized API syntax is also available.
+#> +A system installation of [Git](https://git-scm.com/downloads) is required.
 #> +
 #>  
-#>  --------
-#> 
+#>  If you run into any issues/problems with `gitr` full documentation
+#>  of the most recent
+#> diff --git a/man/gitr-package.Rd b/man/gitr-package.Rd
+#> index c890a20..abd2858 100644
+#> --- a/man/gitr-package.Rd
+#> +++ b/man/gitr-package.Rd
+#> @@ -6,7 +6,7 @@
+#>  \alias{gitr-package}
+#>  \title{gitr: A Lightweight API for 'Git'}
+#>  \description{
+#> -A light-weight, dependency-free, application programming interface (API) to access system-level 'Git' commands from within 'R'. Contains wrappers and defaults for common data science workflows as well as 'Zsh' plugin aliases. A generalized API syntax is also available. A system installation of 'Git' \url{https://git-scm.com/downloads} is required.
+#> +A light-weight, dependency-free, application programming interface (API) to access system-level 'Git' commands from within 'R'. Contains wrappers and defaults for common data science workflows as well as 'Zsh' \url{https://github.com/ohmyzsh/ohmyzsh} plugin aliases. A generalized API syntax is also available. A system installation of 'Git' \url{https://git-scm.com/downloads} is required.
+#>  }
+#>  \seealso{
+#>  Useful links:
 ```
 
 ``` r
@@ -210,11 +247,20 @@ git_uncommit()
 git_unstage("DESCRIPTION")
 ```
 
-#### SHA
+#### SHA1
 
 ``` r
+is_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
+#> [1] TRUE
+
+is_sha("foo")
+#> [1] FALSE
+
 trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 #> [1] "d670c93"
+
+trim_sha("foo")
+#> [1] "foo"
 ```
 
 #### Tags
@@ -222,12 +268,15 @@ trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 ``` r
 git_recent_tag()
 #> Running git tag -n
-#> [1] ""
+#> [1] "v0.0.1"
 ```
 
 ``` r
 git_tag_info()
-#> ℹ No tags in repository ...
+#>           tag tag_sha target_sha           message    author                   email        user
+#> v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field <stu.g.field@gmail.com> stu.g.field
+#>                               tagdate size                              path
+#> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git
 ```
 
 #### Situation Report
@@ -249,20 +298,21 @@ git_sitrep()
 #>   remotes/origin/gh-pages
 #>   remotes/origin/main
 #>   remotes/origin/prep-for-cran
+#>   remotes/origin/submit-cran
 #> 
 #> Local status:
 #> ✓ OK
 #> 
 #> Upstream remotes: origin 
-#> * main 0c9ac89 [origin/main] Elaborate examples in README.Rmd
+#> * main 06ee33e [origin/main] Minor tweak to trim_sha() and export is_sha()
 #> 
 #> Commit log: main 
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 0c9ac89 (HEAD -> main, origin/main) Elaborate examples in README.Rmd
-#> * d670c93 Update README.Rmd to include `git_tag_info()`
-#> * 45fc4c7 Git tag info no longer errors out
-#> * 892e59f Ensure `git_sitrep()` doesn't return color non-interactive
-#> * 2016312 Update '_pkgdown.yml' with new 'sha' topic
+#> * 06ee33e (HEAD -> main, origin/main) Minor tweak to trim_sha() and export is_sha()
+#> * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions
+#> * 8f19ea7 Update README badge
+#> * aa7333d Update PR template
+#> * d15f3f8 Increment version number to 0.0.1.9000
 ```
 
 ------------------------------------------------------------------------
