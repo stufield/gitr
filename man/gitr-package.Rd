@@ -6,7 +6,7 @@
 \alias{gitr-package}
 \title{gitr: A Lightweight API for 'Git'}
 \description{
-A light-weight, dependency-free, application programming interface (API) to access system-level 'Git' commands from within 'R'. Contains wrappers and defaults for common data science workflows as well as 'Zsh' plugin aliases. A generalized API syntax is also available. A system installation of 'Git' \url{https://git-scm.com/downloads} is required.
+A light-weight, dependency-free, application programming interface (API) to access system-level 'Git' commands from within 'R'. Contains wrappers and defaults for common data science workflows as well as 'Zsh' \url{https://github.com/ohmyzsh/ohmyzsh} plugin aliases. A generalized API syntax is also available. A system installation of 'Git' \url{https://git-scm.com/downloads} is required.
 }
 \seealso{
 Useful links:
