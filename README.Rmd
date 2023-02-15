@@ -24,6 +24,7 @@ ver <- paste0("https://img.shields.io/badge/Version-", ver,
 ![GitHub version](`r ver`)
 [![CRAN status](http://www.r-pkg.org/badges/version/gitr)](https://cran.r-project.org/package=gitr)
 [![R-CMD-check](https://github.com/stufield/gitr/workflows/R-CMD-check/badge.svg)](https://github.com/stufield/gitr/actions)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/gitr)](https://cran.r-project.org/package=gitr)
 [![Codecov test coverage](https://codecov.io/gh/stufield/gitr/branch/main/graph/badge.svg)](https://app.codecov.io/gh/stufield/gitr?branch=main)
 [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
