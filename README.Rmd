@@ -63,9 +63,10 @@ or
 [pull request](https://github.com/stufield/gitr/pulls/).
 
 
-## Installation
+## Installing
 
-The easiest way to install `gitr` is to install directly from CRAN:
+The easiest way to install `gitr` is to install directly from
+[CRAN](https://cran.r-project.org/web/packages/gitr/index.html):
 
 ```{r install-cran, eval = FALSE}
 install.packages("gitr")
@@ -86,14 +87,14 @@ remotes::install_github("stufield/gitr@v0.0.1")
 
 -----------
 
-## Load
+## Loading
 
 ```{r load}
 library(gitr)
 ```
 
 
-## Example
+## Examples
 
 Here are some basic examples of the functionality grouped by common
 actions:
@@ -111,7 +112,7 @@ git_current_br()
 git_default_br()
 ```
 
-#### Core Engine
+#### The Core Engine
 ```{r git-core}
 (git("branch", "foo"))
 
@@ -122,7 +123,7 @@ git("branch", "-D", "foo")$stdout
 ```
 
 
-#### Commits
+#### Committing
 ```{r commit-msgs}
 get_commit_msgs(n = 3)
 ```
@@ -172,6 +173,7 @@ git_recent_tag()
 ```{r tag-info}
 git_tag_info()
 ```
+
 
 #### Situation Report
 ```{r sitrep}
@@ -369,6 +371,7 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | `gamscp`         | `git am --show-current-patch`                    |
 
 
+----------
 
 #### LICENSE
 
