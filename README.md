@@ -45,9 +45,10 @@ better, more widely usable, and/or efficient, please submit an
 [issue](https://github.com/stufield/gitr/issues/) or [pull
 request](https://github.com/stufield/gitr/pulls/).
 
-## Installation
+## Installing
 
-The easiest way to install `gitr` is to install directly from CRAN:
+The easiest way to install `gitr` is to install directly from
+[CRAN](https://cran.r-project.org/web/packages/gitr/index.html):
 
 ``` r
 install.packages("gitr")
@@ -67,13 +68,13 @@ remotes::install_github("stufield/gitr@v0.0.1")
 
 ------------------------------------------------------------------------
 
-## Load
+## Loading
 
 ``` r
 library(gitr)
 ```
 
-## Example
+## Examples
 
 Here are some basic examples of the functionality grouped by common
 actions:
@@ -82,7 +83,7 @@ actions:
 
 ``` r
 git_version()
-#> [1] "2.39.1"
+#> [1] "2.39.2"
 ```
 
 ``` r
@@ -95,7 +96,7 @@ git_default_br()
 #> [1] "main"
 ```
 
-#### Core Engine
+#### The Core Engine
 
 ``` r
 (git("branch", "foo"))
@@ -112,123 +113,94 @@ git_default_br()
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                          06ee33e Minor tweak to trim_sha() and export is_sha()
-#> * main                         06ee33e Minor tweak to trim_sha() and export is_sha()
-#>   remotes/origin/gh-pages      dd2529d Built site for gitr: 0.0.1@5e98f89
-#>   remotes/origin/main          06ee33e Minor tweak to trim_sha() and export is_sha()
+#>   foo                          90eaa95 Tweak README.Rmd
+#> * main                         90eaa95 Tweak README.Rmd
+#>   remotes/origin/gh-pages      16f3e84 Built site for gitr: 0.0.1.9000@06ee33e
+#>   remotes/origin/main          90eaa95 Tweak README.Rmd
 #>   remotes/origin/prep-for-cran bb5a9bf Clean up URLs
 #>   remotes/origin/submit-cran   378ef59 Increment version number to 0.0.1
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was 06ee33e)."
+#> [1] "Deleted branch foo (was 90eaa95)."
 ```
 
-#### Commits
+#### Committing
 
 ``` r
 get_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Minor tweak to trim_sha() and export is_sha()"   
-#> [2] ""                                                
-#> [3] "- now returns 'sha' if not a sha or empty string"
-#> [4] "- new function `is_sha()`"                       
-#> [5] "- added new unit tests"                          
-#> [6] "- fixes #9"                                      
-#> [7] ""                                                
+#> [1] "Tweak README.Rmd" ""                
 #> attr(,"sha")
-#> [1] "06ee33e"
+#> [1] "90eaa95"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Tweak DESCRIPTION and README.Rmd pkg descriptions"
-#> [2] ""                                                 
-#> [3] "- added new link to 'Zsh'"                        
-#> [4] ""                                                 
+#> [1] "Minor clean up of hooks" ""                       
 #> attr(,"sha")
-#> [1] "e2789f3"
+#> [1] "b51b8a9"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Update README badge"         ""                            "- add new 'downloads' badge"
-#> [4] ""                           
+#> [1] "Re-build README.Rmd" ""                   
 #> attr(,"sha")
-#> [1] "8f19ea7"
+#> [1] "8a015b2"
 #> attr(,"author")
-#> [1] "stu.g.field@gmail.com"
+#> [1] "stufield@users.noreply.github.com"
 ```
 
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 06ee33e (HEAD -> main, origin/main) Minor tweak to trim_sha() and export is_sha()
+#> * 90eaa95 (HEAD -> main, origin/main) Tweak README.Rmd
+#> * b51b8a9 Minor clean up of hooks
+#> * 8a015b2 Re-build README.Rmd
+#> * 06ee33e Minor tweak to trim_sha() and export is_sha()
 #> * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions
-#> * 8f19ea7 Update README badge
-#> * aa7333d Update PR template
-#> * d15f3f8 Increment version number to 0.0.1.9000
 ```
 
 ``` r
 git_diffcommits()
 #> Running git diff HEAD~2..HEAD~1 
-#> diff --git a/DESCRIPTION b/DESCRIPTION
-#> index 1f59fde..28fdc29 100644
-#> --- a/DESCRIPTION
-#> +++ b/DESCRIPTION
-#> @@ -9,9 +9,10 @@ Authors@R: c(
-#>             comment = c(ORCID = "0000-0002-1024-5859"))
-#>      )
-#>  Description: A light-weight, dependency-free, application programming interface
-#> -    (API) to access system-level 'Git' commands from within 'R'. Contains wrappers
-#> -    and defaults for common data science workflows as well as
-#> -    'Zsh' plugin aliases. A generalized API syntax is also available.
-#> +    (API) to access system-level 'Git' commands from within 'R'.
-#> +    Contains wrappers and defaults for common data science workflows as well as
-#> +    'Zsh' <https://github.com/ohmyzsh/ohmyzsh> plugin aliases.
-#> +    A generalized API syntax is also available.
-#>      A system installation of 'Git' <https://git-scm.com/downloads> is required.
-#>  License: MIT + file LICENSE
-#>  URL: https://stufield.github.io/gitr/
-#> diff --git a/README.Rmd b/README.Rmd
-#> index adf598d..d8a6e67 100644
-#> --- a/README.Rmd
-#> +++ b/README.Rmd
-#> @@ -33,12 +33,13 @@ ver <- paste0("https://img.shields.io/badge/Version-", ver,
-#>  
-#>  ## Overview
-#>  
-#> -A light-weight, dependency-free, API to access system-level git
-#> -commands from within R.
-#> -It contains wrappers and defaults for common data science workflows as well as
-#> -[Z-shell](https://github.com/ohmyzsh/ohmyzsh) and it's plugins (see below).
-#> -Generalized API syntax is also available.
-#> -A system installation of git is required.
-#> +A light-weight, dependency-free, application programming interface
-#> +(API) to access system-level [Git](https://git-scm.com/downloads) commands from within `R`.
-#> +Contains wrappers and defaults for common data science workflows as well as
-#> +[Zsh](https://github.com/ohmyzsh/ohmyzsh) plugin aliases (see below).
-#> +A generalized API syntax is also available.
-#> +A system installation of [Git](https://git-scm.com/downloads) is required.
-#> +
-#>  
-#>  If you run into any issues/problems with `gitr` full documentation
-#>  of the most recent
-#> diff --git a/man/gitr-package.Rd b/man/gitr-package.Rd
-#> index c890a20..abd2858 100644
-#> --- a/man/gitr-package.Rd
-#> +++ b/man/gitr-package.Rd
-#> @@ -6,7 +6,7 @@
-#>  \alias{gitr-package}
-#>  \title{gitr: A Lightweight API for 'Git'}
-#>  \description{
-#> -A light-weight, dependency-free, application programming interface (API) to access system-level 'Git' commands from within 'R'. Contains wrappers and defaults for common data science workflows as well as 'Zsh' plugin aliases. A generalized API syntax is also available. A system installation of 'Git' \url{https://git-scm.com/downloads} is required.
-#> +A light-weight, dependency-free, application programming interface (API) to access system-level 'Git' commands from within 'R'. Contains wrappers and defaults for common data science workflows as well as 'Zsh' \url{https://github.com/ohmyzsh/ohmyzsh} plugin aliases. A generalized API syntax is also available. A system installation of 'Git' \url{https://git-scm.com/downloads} is required.
+#> diff --git a/inst/hooks/pre-commit b/inst/hooks/pre-commit
+#> index 44593b7..3648cac 100755
+#> --- a/inst/hooks/pre-commit
+#> +++ b/inst/hooks/pre-commit
+#> @@ -12,18 +12,8 @@ if (requireNamespace("spelling", quietly = TRUE) && file.exists("DESCRIPTION"))
+#>    }
 #>  }
-#>  \seealso{
-#>  Useful links:
+#>  
+#> -# check .lintr file
+#> -#if (git2r::in_repository()) {
+#> -# git_status <- git2r::status(staged = FALSE)
+#> -# if (any(unlist(git_status) == ".lintr")) {
+#> -#   stop("Unstaged changes to .lintr file. Stage the .lintr ",
+#> -#        "file or discard the changes to it. ", call. = FALSE)
+#> -# }
+#> -#}
+#> -
+#> -#files <- list.files("R", full.names = TRUE)
+#> -
+#>  # check lints
+#> +#files <- list.files("R", full.names = TRUE)
+#>  #lints <- lapply(files, function(path) {
+#>  #  lints <- somaverse::lintFile(path)
+#>  #  if (length(lints) > 0) {
+#> diff --git a/inst/hooks/prepare-commit-msg b/inst/hooks/prepare-commit-msg
+#> index 0d6e149..4948d5c 100755
+#> --- a/inst/hooks/prepare-commit-msg
+#> +++ b/inst/hooks/prepare-commit-msg
+#> @@ -26,7 +26,6 @@ SHA1=$3
+#>  
+#>  echo "commit message file:"
+#>  echo $COMMIT_MSG_FILE
+#> -cat $COMMIT_MSG_FILE
+#>  
+#>  echo "commit message source:"
+#>  echo $COMMIT_SOURCE
 ```
 
 ``` r
@@ -283,7 +255,7 @@ git_tag_info()
 
 ``` r
 git_sitrep()
-#> Using Git version: 2.39.1 
+#> Using Git version: 2.39.2 
 #> 
 #> Current branch: main
 #> Default branch: main 
@@ -304,15 +276,15 @@ git_sitrep()
 #> ✓ OK
 #> 
 #> Upstream remotes: origin 
-#> * main 06ee33e [origin/main] Minor tweak to trim_sha() and export is_sha()
+#> * main 90eaa95 [origin/main] Tweak README.Rmd
 #> 
 #> Commit log: main 
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 06ee33e (HEAD -> main, origin/main) Minor tweak to trim_sha() and export is_sha()
+#> * 90eaa95 (HEAD -> main, origin/main) Tweak README.Rmd
+#> * b51b8a9 Minor clean up of hooks
+#> * 8a015b2 Re-build README.Rmd
+#> * 06ee33e Minor tweak to trim_sha() and export is_sha()
 #> * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions
-#> * 8f19ea7 Update README badge
-#> * aa7333d Update PR template
-#> * d15f3f8 Increment version number to 0.0.1.9000
 ```
 
 ------------------------------------------------------------------------
@@ -498,6 +470,8 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | `gams`                            | `git am --skip`                                                                                                                                         |
 | `gama`                            | `git am --abort`                                                                                                                                        |
 | `gamscp`                          | `git am --show-current-patch`                                                                                                                           |
+
+------------------------------------------------------------------------
 
 #### LICENSE
 
