@@ -7,11 +7,17 @@ home:
     href: https://github.com/stufield
 
 template:
-  params:
-    ganalytics: UA-115082821-1
+  bootstrap: 5
+  bslib:
+    bg: "#202123"      # dark theme
+    fg: "#B8BCC2"      # dark theme
+    primary: "#0054AD"
+    border-radius: 0.5rem
+    btn-border-radius: 0.25rem
+    base_font: {google: "Roboto"}
 
 authors:
-  "Stu Field":
+  Stu Field:
     href: https://github.com/stufield
 
 development:
