@@ -1,18 +1,20 @@
 on:
   push:
-    branches: [main, master]
+    branches:
+      - main
+      - force-pkgdown
     paths:
       - 'man/**'
+      - 'DESCRIPTION'
       - 'vignettes/**'
       - '_pkgdown.yml'
-      - 'NEWS.md'
       - 'README.md'
 
 name: Deploy pkgdown -> gh-pages
 
 jobs:
   pkgdown:
-    runs-on: ubuntu-latest
+    runs-on: macOS-12
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
