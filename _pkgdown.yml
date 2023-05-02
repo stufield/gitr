@@ -1,13 +1,20 @@
 url: https://github.com/stufield/gitr
 
+development:
+  mode: auto
+
+authors:
+  Stu Field:
+    href: https://github.com/stufield
+
 home:
-  strip_header: true
   links:
   - text: Learn more about me
     href: https://github.com/stufield
 
 template:
   bootstrap: 5
+  package: tidytemplate
   bslib:
     bg: "#202123"      # dark theme
     fg: "#B8BCC2"      # dark theme
@@ -15,13 +22,6 @@ template:
     border-radius: 0.5rem
     btn-border-radius: 0.25rem
     base_font: {google: "Roboto"}
-
-authors:
-  Stu Field:
-    href: https://github.com/stufield
-
-development:
-  mode: auto
 
 articles:
   - title: Getting Started
