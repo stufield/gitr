@@ -15,6 +15,7 @@
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.5/font.css" rel="stylesheet">
+<link href="deps/Source_Code_Pro-0.4.5/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="A Lightweight API for Git">
@@ -30,10 +31,10 @@
 <![endif]-->
 </head>
 <body>
-    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-none"><div class="container">
     
     <a class="navbar-brand me-2" href="index.html">gitr</a>
 
@@ -72,18 +73,15 @@
 
     
   </div>
-</nav><div class="container template-home">
+</nav><div class="container template-home" id="container">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-
+<div class="page-header"><h1 id="gitr">gitr<a class="anchor" aria-label="anchor" href="#gitr"></a>
+</h1></div>
 <!-- badges: start -->
 
-<div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
 <p>A light-weight, dependency-free, application programming interface (API) to access system-level <a href="https://git-scm.com/downloads" class="external-link">Git</a> commands from within <code>R</code>. Contains wrappers and defaults for common data science workflows as well as <a href="https://github.com/ohmyzsh/ohmyzsh" class="external-link">Zsh</a> plugin aliases (see below). A generalized API syntax is also available. A system installation of <a href="https://git-scm.com/downloads" class="external-link">Git</a> is required.</p>
 <p>If you run into any issues/problems with <code>gitr</code> full documentation of the most recent <a href="https://github.com/stufield/gitr/releases">release</a> can be found at the <a href="https://stufield.github.io/gitr/" class="external-link">pkgdown website</a>. If the issue persists I encourage you to consult the <a href="https://github.com/stufield/gitr/issues/">issues</a> page and, if appropriate, submit an issue and/or feature request.</p>
-</div>
 <div class="section level2">
 <h2 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
 </h2>
@@ -118,7 +116,7 @@
 </h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/git.html">git_version</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2.39.2"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2.39.0"</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">git_current_br</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "main"</span></span></code></pre></div>
@@ -144,16 +142,21 @@
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch -av </span></span>
-<span><span class="co">#&gt;   foo                          90eaa95 Tweak README.Rmd</span></span>
-<span><span class="co">#&gt; * main                         90eaa95 Tweak README.Rmd</span></span>
-<span><span class="co">#&gt;   remotes/origin/gh-pages      16f3e84 Built site for gitr: 0.0.1.9000@06ee33e</span></span>
-<span><span class="co">#&gt;   remotes/origin/main          90eaa95 Tweak README.Rmd</span></span>
-<span><span class="co">#&gt;   remotes/origin/prep-for-cran bb5a9bf Clean up URLs</span></span>
-<span><span class="co">#&gt;   remotes/origin/submit-cran   378ef59 Increment version number to 0.0.1</span></span>
+<span><span class="co">#&gt;   foo                                    d6cbbb9 Update DESCRIPTION with tidytemplate Needs</span></span>
+<span><span class="co">#&gt;   force-pkgdown                          72ad53a wip</span></span>
+<span><span class="co">#&gt; * main                                   d6cbbb9 Update DESCRIPTION with tidytemplate Needs</span></span>
+<span><span class="co">#&gt;   remotes/origin/HEAD                    -&gt; origin/main</span></span>
+<span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)</span></span>
+<span><span class="co">#&gt;   remotes/origin/force-pkgdown           72ad53a wip</span></span>
+<span><span class="co">#&gt;   remotes/origin/gh-pages                be5ce29 Built site for gitr: 0.0.1@dbedad6</span></span>
+<span><span class="co">#&gt;   remotes/origin/main                    d6cbbb9 Update DESCRIPTION with tidytemplate Needs</span></span>
+<span><span class="co">#&gt;   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs</span></span>
+<span><span class="co">#&gt;   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1</span></span>
+<span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-D"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
 <span><span class="co">#&gt; Running git branch -D foo</span></span>
-<span><span class="co">#&gt; [1] "Deleted branch foo (was 90eaa95)."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Deleted branch foo (was d6cbbb9)."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="committing">Committing<a class="anchor" aria-label="anchor" href="#committing"></a>
@@ -162,72 +165,76 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">get_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --format=%H -n 3</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "Tweak README.Rmd" ""                </span></span>
+<span><span class="co">#&gt; [1] "Update DESCRIPTION with tidytemplate Needs" ""                                          </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "90eaa95"</span></span>
+<span><span class="co">#&gt; [1] "d6cbbb9"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "Minor clean up of hooks" ""                       </span></span>
+<span><span class="co">#&gt; [1] "New pkgdown tidy theme and bootstrap 5" ""                                      </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "b51b8a9"</span></span>
+<span><span class="co">#&gt; [1] "0ae6d0c"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "Re-build README.Rmd" ""                   </span></span>
+<span><span class="co">#&gt; [1] "Improve GHA triggers" ""                    </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "8a015b2"</span></span>
+<span><span class="co">#&gt; [1] "9d669f2"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
-<span><span class="co">#&gt; [1] "stufield@users.noreply.github.com"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 90eaa95 (HEAD -&gt; main, origin/main) Tweak README.Rmd</span></span>
-<span><span class="co">#&gt; * b51b8a9 Minor clean up of hooks</span></span>
-<span><span class="co">#&gt; * 8a015b2 Re-build README.Rmd</span></span>
-<span><span class="co">#&gt; * 06ee33e Minor tweak to trim_sha() and export is_sha()</span></span>
-<span><span class="co">#&gt; * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions</span></span></code></pre></div>
+<span><span class="co">#&gt; * d6cbbb9 (HEAD -&gt; main, origin/main, origin/HEAD) Update DESCRIPTION with tidytemplate Needs</span></span>
+<span><span class="co">#&gt; * 0ae6d0c New pkgdown tidy theme and bootstrap 5</span></span>
+<span><span class="co">#&gt; * 9d669f2 Improve GHA triggers</span></span>
+<span><span class="co">#&gt; * 179896e fix test-coverage.yaml to upload to Codecov</span></span>
+<span><span class="co">#&gt; * 0d17278 correct .gitignore</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_diffcommits</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git diff HEAD~2..HEAD~1 </span></span>
-<span><span class="co">#&gt; diff --git a/inst/hooks/pre-commit b/inst/hooks/pre-commit</span></span>
-<span><span class="co">#&gt; index 44593b7..3648cac 100755</span></span>
-<span><span class="co">#&gt; --- a/inst/hooks/pre-commit</span></span>
-<span><span class="co">#&gt; +++ b/inst/hooks/pre-commit</span></span>
-<span><span class="co">#&gt; @@ -12,18 +12,8 @@ if (requireNamespace("spelling", quietly = TRUE) &amp;&amp; file.exists("DESCRIPTION"))</span></span>
-<span><span class="co">#&gt;    }</span></span>
-<span><span class="co">#&gt;  }</span></span>
+<span><span class="co">#&gt; diff --git a/_pkgdown.yml b/_pkgdown.yml</span></span>
+<span><span class="co">#&gt; index 65a4632..a09b3e3 100644</span></span>
+<span><span class="co">#&gt; --- a/_pkgdown.yml</span></span>
+<span><span class="co">#&gt; +++ b/_pkgdown.yml</span></span>
+<span><span class="co">#&gt; @@ -1,13 +1,20 @@</span></span>
+<span><span class="co">#&gt;  url: https://github.com/stufield/gitr</span></span>
 <span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt; -# check .lintr file</span></span>
-<span><span class="co">#&gt; -#if (git2r::in_repository()) {</span></span>
-<span><span class="co">#&gt; -# git_status &lt;- git2r::status(staged = FALSE)</span></span>
-<span><span class="co">#&gt; -# if (any(unlist(git_status) == ".lintr")) {</span></span>
-<span><span class="co">#&gt; -#   stop("Unstaged changes to .lintr file. Stage the .lintr ",</span></span>
-<span><span class="co">#&gt; -#        "file or discard the changes to it. ", call. = FALSE)</span></span>
-<span><span class="co">#&gt; -# }</span></span>
-<span><span class="co">#&gt; -#}</span></span>
+<span><span class="co">#&gt; +development:</span></span>
+<span><span class="co">#&gt; +  mode: auto</span></span>
+<span><span class="co">#&gt; +</span></span>
+<span><span class="co">#&gt; +authors:</span></span>
+<span><span class="co">#&gt; +  Stu Field:</span></span>
+<span><span class="co">#&gt; +    href: https://github.com/stufield</span></span>
+<span><span class="co">#&gt; +</span></span>
+<span><span class="co">#&gt;  home:</span></span>
+<span><span class="co">#&gt; -  strip_header: true</span></span>
+<span><span class="co">#&gt;    links:</span></span>
+<span><span class="co">#&gt;    - text: Learn more about me</span></span>
+<span><span class="co">#&gt;      href: https://github.com/stufield</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt;  template:</span></span>
+<span><span class="co">#&gt;    bootstrap: 5</span></span>
+<span><span class="co">#&gt; +  package: tidytemplate</span></span>
+<span><span class="co">#&gt;    bslib:</span></span>
+<span><span class="co">#&gt;      bg: "#202123"      # dark theme</span></span>
+<span><span class="co">#&gt;      fg: "#B8BCC2"      # dark theme</span></span>
+<span><span class="co">#&gt; @@ -16,13 +23,6 @@ template:</span></span>
+<span><span class="co">#&gt;      btn-border-radius: 0.25rem</span></span>
+<span><span class="co">#&gt;      base_font: {google: "Roboto"}</span></span>
+<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; -authors:</span></span>
+<span><span class="co">#&gt; -  Stu Field:</span></span>
+<span><span class="co">#&gt; -    href: https://github.com/stufield</span></span>
 <span><span class="co">#&gt; -</span></span>
-<span><span class="co">#&gt; -#files &lt;- list.files("R", full.names = TRUE)</span></span>
+<span><span class="co">#&gt; -development:</span></span>
+<span><span class="co">#&gt; -  mode: auto</span></span>
 <span><span class="co">#&gt; -</span></span>
-<span><span class="co">#&gt;  # check lints</span></span>
-<span><span class="co">#&gt; +#files &lt;- list.files("R", full.names = TRUE)</span></span>
-<span><span class="co">#&gt;  #lints &lt;- lapply(files, function(path) {</span></span>
-<span><span class="co">#&gt;  #  lints &lt;- somaverse::lintFile(path)</span></span>
-<span><span class="co">#&gt;  #  if (length(lints) &gt; 0) {</span></span>
-<span><span class="co">#&gt; diff --git a/inst/hooks/prepare-commit-msg b/inst/hooks/prepare-commit-msg</span></span>
-<span><span class="co">#&gt; index 0d6e149..4948d5c 100755</span></span>
-<span><span class="co">#&gt; --- a/inst/hooks/prepare-commit-msg</span></span>
-<span><span class="co">#&gt; +++ b/inst/hooks/prepare-commit-msg</span></span>
-<span><span class="co">#&gt; @@ -26,7 +26,6 @@ SHA1=$3</span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  echo "commit message file:"</span></span>
-<span><span class="co">#&gt;  echo $COMMIT_MSG_FILE</span></span>
-<span><span class="co">#&gt; -cat $COMMIT_MSG_FILE</span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt;  echo "commit message source:"</span></span>
-<span><span class="co">#&gt;  echo $COMMIT_SOURCE</span></span></code></pre></div>
+<span><span class="co">#&gt;  articles:</span></span>
+<span><span class="co">#&gt;    - title: Getting Started</span></span>
+<span><span class="co">#&gt;      navbar: ~</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_reset_hard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -264,44 +271,51 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">git_tag_info</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           tag tag_sha target_sha           message    author                   email        user</span></span>
 <span><span class="co">#&gt; v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
-<span><span class="co">#&gt;                               tagdate size                              path</span></span>
-<span><span class="co">#&gt; v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git</span></span></code></pre></div>
+<span><span class="co">#&gt;                               tagdate size                       path</span></span>
+<span><span class="co">#&gt; v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/sfield/gh/gitr/.git</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="situation-report">Situation Report<a class="anchor" aria-label="anchor" href="#situation-report"></a>
 </h4>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/git_sitrep.html">git_sitrep</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Using Git version: 2.39.2 </span></span>
+<span><span class="co">#&gt; Using Git version: 2.39.0 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Current branch: main</span></span>
 <span><span class="co">#&gt; Default branch: main </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Repo status:</span></span>
 <span><span class="co">#&gt; Running git status -s </span></span>
-<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;  M Makefile</span></span>
+<span><span class="co">#&gt;  M README.Rmd</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Branches:</span></span>
 <span><span class="co">#&gt; Running git branch -a </span></span>
+<span><span class="co">#&gt;   force-pkgdown</span></span>
 <span><span class="co">#&gt; * main</span></span>
+<span><span class="co">#&gt;   remotes/origin/HEAD -&gt; origin/main</span></span>
+<span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha</span></span>
+<span><span class="co">#&gt;   remotes/origin/force-pkgdown</span></span>
 <span><span class="co">#&gt;   remotes/origin/gh-pages</span></span>
 <span><span class="co">#&gt;   remotes/origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran</span></span>
 <span><span class="co">#&gt;   remotes/origin/submit-cran</span></span>
+<span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Local status:</span></span>
 <span><span class="co">#&gt; ✓ OK</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Upstream remotes: origin </span></span>
-<span><span class="co">#&gt; * main 90eaa95 [origin/main] Tweak README.Rmd</span></span>
+<span><span class="co">#&gt;   force-pkgdown 72ad53a [origin/force-pkgdown] wip</span></span>
+<span><span class="co">#&gt; * main          d6cbbb9 [origin/main] Update DESCRIPTION with tidytemplate Needs</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Commit log: main </span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 90eaa95 (HEAD -&gt; main, origin/main) Tweak README.Rmd</span></span>
-<span><span class="co">#&gt; * b51b8a9 Minor clean up of hooks</span></span>
-<span><span class="co">#&gt; * 8a015b2 Re-build README.Rmd</span></span>
-<span><span class="co">#&gt; * 06ee33e Minor tweak to trim_sha() and export is_sha()</span></span>
-<span><span class="co">#&gt; * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions</span></span></code></pre></div>
+<span><span class="co">#&gt; * d6cbbb9 (HEAD -&gt; main, origin/main, origin/HEAD) Update DESCRIPTION with tidytemplate Needs</span></span>
+<span><span class="co">#&gt; * 0ae6d0c New pkgdown tidy theme and bootstrap 5</span></span>
+<span><span class="co">#&gt; * 9d669f2 Improve GHA triggers</span></span>
+<span><span class="co">#&gt; * 179896e fix test-coverage.yaml to upload to Codecov</span></span>
+<span><span class="co">#&gt; * 0d17278 correct .gitignore</span></span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -1001,8 +1015,6 @@
 <h4 id="license">LICENSE<a class="anchor" aria-label="anchor" href="#license"></a>
 </h4>
 <p>Please note that this package package is released with a <a href="https://github.com/stufield/gitr/blob/main/LICENSE.md">LICENSE</a>. By using in this package you agree to abide by its terms.</p>
-<hr>
-<p>Created by <a href="https://github.com/rstudio/rmarkdown" class="external-link">Rmarkdown</a> (v2.20) and R version 4.2.2 (2022-10-31).</p>
 </div>
 </div>
 </div>
@@ -1052,7 +1064,9 @@
 </div>
 
 
-    <footer><div class="pkgdown-footer-left">
+   </div>
+  <footer><div class="container">
+  <div class="pkgdown-footer-left">
   <p></p>
 <p>Developed by <a href="https://github.com/stufield" class="external-link">Stu Field</a>.</p>
 </div>
@@ -1062,12 +1076,6 @@
 <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
-    </footer>
-</div>
-
-  
-
-  
-
-  </body>
+  </div></footer>
+</body>
 </html>
