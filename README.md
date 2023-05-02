@@ -81,7 +81,7 @@ actions:
 
 ``` r
 git_version()
-#> [1] "2.39.0"
+#> [1] "2.40.1"
 ```
 
 ``` r
@@ -111,21 +111,18 @@ git_default_br()
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                                    d6cbbb9 Update DESCRIPTION with tidytemplate Needs
-#>   force-pkgdown                          72ad53a wip
-#> * main                                   d6cbbb9 Update DESCRIPTION with tidytemplate Needs
-#>   remotes/origin/HEAD                    -> origin/main
+#>   foo                                    185ebb6 Remove rmarkdown footer for README and vignette
+#> * main                                   185ebb6 Remove rmarkdown footer for README and vignette
 #>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
-#>   remotes/origin/force-pkgdown           72ad53a wip
-#>   remotes/origin/gh-pages                be5ce29 Built site for gitr: 0.0.1@dbedad6
-#>   remotes/origin/main                    d6cbbb9 Update DESCRIPTION with tidytemplate Needs
+#>   remotes/origin/gh-pages                334a885 Built site for gitr: 0.0.1@68b3652
+#>   remotes/origin/main                    185ebb6 Remove rmarkdown footer for README and vignette
 #>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
 #>   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1
 #>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was d6cbbb9)."
+#> [1] "Deleted branch foo (was 185ebb6)."
 ```
 
 #### Committing
@@ -134,23 +131,24 @@ git("branch", "-D", "foo")$stdout
 get_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
+#> [1] "Remove rmarkdown footer for README and vignette"
+#> [2] ""                                               
+#> attr(,"sha")
+#> [1] "185ebb6"
+#> attr(,"author")
+#> [1] "stu.g.field@gmail.com"
+#> 
+#> [[2]]
 #> [1] "Update DESCRIPTION with tidytemplate Needs" ""                                          
 #> attr(,"sha")
 #> [1] "d6cbbb9"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
-#> [[2]]
+#> [[3]]
 #> [1] "New pkgdown tidy theme and bootstrap 5" ""                                      
 #> attr(,"sha")
 #> [1] "0ae6d0c"
-#> attr(,"author")
-#> [1] "stu.g.field@gmail.com"
-#> 
-#> [[3]]
-#> [1] "Improve GHA triggers" ""                    
-#> attr(,"sha")
-#> [1] "9d669f2"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 ```
@@ -158,56 +156,28 @@ get_commit_msgs(n = 3)
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * d6cbbb9 (HEAD -> main, origin/main, origin/HEAD) Update DESCRIPTION with tidytemplate Needs
+#> * 185ebb6 (HEAD -> main, origin/main) Remove rmarkdown footer for README and vignette
+#> * d6cbbb9 Update DESCRIPTION with tidytemplate Needs
 #> * 0ae6d0c New pkgdown tidy theme and bootstrap 5
 #> * 9d669f2 Improve GHA triggers
 #> * 179896e fix test-coverage.yaml to upload to Codecov
-#> * 0d17278 correct .gitignore
 ```
 
 ``` r
 git_diffcommits()
 #> Running git diff HEAD~2..HEAD~1 
-#> diff --git a/_pkgdown.yml b/_pkgdown.yml
-#> index 65a4632..a09b3e3 100644
-#> --- a/_pkgdown.yml
-#> +++ b/_pkgdown.yml
-#> @@ -1,13 +1,20 @@
-#>  url: https://github.com/stufield/gitr
-#>  
-#> +development:
-#> +  mode: auto
-#> +
-#> +authors:
-#> +  Stu Field:
-#> +    href: https://github.com/stufield
-#> +
-#>  home:
-#> -  strip_header: true
-#>    links:
-#>    - text: Learn more about me
-#>      href: https://github.com/stufield
-#>  
-#>  template:
-#>    bootstrap: 5
-#> +  package: tidytemplate
-#>    bslib:
-#>      bg: "#202123"      # dark theme
-#>      fg: "#B8BCC2"      # dark theme
-#> @@ -16,13 +23,6 @@ template:
-#>      btn-border-radius: 0.25rem
-#>      base_font: {google: "Roboto"}
-#>  
-#> -authors:
-#> -  Stu Field:
-#> -    href: https://github.com/stufield
-#> -
-#> -development:
-#> -  mode: auto
-#> -
-#>  articles:
-#>    - title: Getting Started
-#>      navbar: ~
+#> diff --git a/DESCRIPTION b/DESCRIPTION
+#> index 28fdc29..fb0a5da 100644
+#> --- a/DESCRIPTION
+#> +++ b/DESCRIPTION
+#> @@ -31,6 +31,7 @@ Encoding: UTF-8
+#>  LazyLoad: true
+#>  Copyright: Stu Field 2023
+#>  Config/testthat/edition: 3
+#> +Config/Needs/website: tidyverse/tidytemplate
+#>  Roxygen: list(markdown = TRUE)
+#>  RoxygenNote: 7.2.3
+#>  Language: en-US
 ```
 
 ``` r
@@ -254,31 +224,27 @@ git_recent_tag()
 git_tag_info()
 #>           tag tag_sha target_sha           message    author                   email        user
 #> v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field <stu.g.field@gmail.com> stu.g.field
-#>                               tagdate size                       path
-#> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/sfield/gh/gitr/.git
+#>                               tagdate size                              path
+#> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git
 ```
 
 #### Situation Report
 
 ``` r
 git_sitrep()
-#> Using Git version: 2.39.0 
+#> Using Git version: 2.40.1 
 #> 
 #> Current branch: main
 #> Default branch: main 
 #> 
 #> Repo status:
 #> Running git status -s 
-#>  M Makefile
-#>  M README.Rmd
+#> 
 #> 
 #> Branches:
 #> Running git branch -a 
-#>   force-pkgdown
 #> * main
-#>   remotes/origin/HEAD -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha
-#>   remotes/origin/force-pkgdown
 #>   remotes/origin/gh-pages
 #>   remotes/origin/main
 #>   remotes/origin/prep-for-cran
@@ -289,16 +255,15 @@ git_sitrep()
 #> ✓ OK
 #> 
 #> Upstream remotes: origin 
-#>   force-pkgdown 72ad53a [origin/force-pkgdown] wip
-#> * main          d6cbbb9 [origin/main] Update DESCRIPTION with tidytemplate Needs
+#> * main 185ebb6 [origin/main] Remove rmarkdown footer for README and vignette
 #> 
 #> Commit log: main 
 #> Running git log --oneline --graph --decorate -n 5 
-#> * d6cbbb9 (HEAD -> main, origin/main, origin/HEAD) Update DESCRIPTION with tidytemplate Needs
+#> * 185ebb6 (HEAD -> main, origin/main) Remove rmarkdown footer for README and vignette
+#> * d6cbbb9 Update DESCRIPTION with tidytemplate Needs
 #> * 0ae6d0c New pkgdown tidy theme and bootstrap 5
 #> * 9d669f2 Improve GHA triggers
 #> * 179896e fix test-coverage.yaml to upload to Codecov
-#> * 0d17278 correct .gitignore
 ```
 
 ------------------------------------------------------------------------
