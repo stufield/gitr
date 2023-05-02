@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# The `gitr` Package
+# gitr
 
 <!-- badges: start -->
 
@@ -18,8 +18,6 @@ stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
 <!-- badges: end -->
-
-## Overview
 
 A light-weight, dependency-free, application programming interface (API)
 to access system-level [Git](https://git-scm.com/downloads) commands
@@ -83,7 +81,7 @@ actions:
 
 ``` r
 git_version()
-#> [1] "2.39.2"
+#> [1] "2.39.0"
 ```
 
 ``` r
@@ -113,16 +111,21 @@ git_default_br()
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                          90eaa95 Tweak README.Rmd
-#> * main                         90eaa95 Tweak README.Rmd
-#>   remotes/origin/gh-pages      16f3e84 Built site for gitr: 0.0.1.9000@06ee33e
-#>   remotes/origin/main          90eaa95 Tweak README.Rmd
-#>   remotes/origin/prep-for-cran bb5a9bf Clean up URLs
-#>   remotes/origin/submit-cran   378ef59 Increment version number to 0.0.1
+#>   foo                                    d6cbbb9 Update DESCRIPTION with tidytemplate Needs
+#>   force-pkgdown                          72ad53a wip
+#> * main                                   d6cbbb9 Update DESCRIPTION with tidytemplate Needs
+#>   remotes/origin/HEAD                    -> origin/main
+#>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
+#>   remotes/origin/force-pkgdown           72ad53a wip
+#>   remotes/origin/gh-pages                be5ce29 Built site for gitr: 0.0.1@dbedad6
+#>   remotes/origin/main                    d6cbbb9 Update DESCRIPTION with tidytemplate Needs
+#>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
+#>   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1
+#>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was 90eaa95)."
+#> [1] "Deleted branch foo (was d6cbbb9)."
 ```
 
 #### Committing
@@ -131,76 +134,80 @@ git("branch", "-D", "foo")$stdout
 get_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Tweak README.Rmd" ""                
+#> [1] "Update DESCRIPTION with tidytemplate Needs" ""                                          
 #> attr(,"sha")
-#> [1] "90eaa95"
+#> [1] "d6cbbb9"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Minor clean up of hooks" ""                       
+#> [1] "New pkgdown tidy theme and bootstrap 5" ""                                      
 #> attr(,"sha")
-#> [1] "b51b8a9"
+#> [1] "0ae6d0c"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Re-build README.Rmd" ""                   
+#> [1] "Improve GHA triggers" ""                    
 #> attr(,"sha")
-#> [1] "8a015b2"
+#> [1] "9d669f2"
 #> attr(,"author")
-#> [1] "stufield@users.noreply.github.com"
+#> [1] "stu.g.field@gmail.com"
 ```
 
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 90eaa95 (HEAD -> main, origin/main) Tweak README.Rmd
-#> * b51b8a9 Minor clean up of hooks
-#> * 8a015b2 Re-build README.Rmd
-#> * 06ee33e Minor tweak to trim_sha() and export is_sha()
-#> * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions
+#> * d6cbbb9 (HEAD -> main, origin/main, origin/HEAD) Update DESCRIPTION with tidytemplate Needs
+#> * 0ae6d0c New pkgdown tidy theme and bootstrap 5
+#> * 9d669f2 Improve GHA triggers
+#> * 179896e fix test-coverage.yaml to upload to Codecov
+#> * 0d17278 correct .gitignore
 ```
 
 ``` r
 git_diffcommits()
 #> Running git diff HEAD~2..HEAD~1 
-#> diff --git a/inst/hooks/pre-commit b/inst/hooks/pre-commit
-#> index 44593b7..3648cac 100755
-#> --- a/inst/hooks/pre-commit
-#> +++ b/inst/hooks/pre-commit
-#> @@ -12,18 +12,8 @@ if (requireNamespace("spelling", quietly = TRUE) && file.exists("DESCRIPTION"))
-#>    }
-#>  }
+#> diff --git a/_pkgdown.yml b/_pkgdown.yml
+#> index 65a4632..a09b3e3 100644
+#> --- a/_pkgdown.yml
+#> +++ b/_pkgdown.yml
+#> @@ -1,13 +1,20 @@
+#>  url: https://github.com/stufield/gitr
 #>  
-#> -# check .lintr file
-#> -#if (git2r::in_repository()) {
-#> -# git_status <- git2r::status(staged = FALSE)
-#> -# if (any(unlist(git_status) == ".lintr")) {
-#> -#   stop("Unstaged changes to .lintr file. Stage the .lintr ",
-#> -#        "file or discard the changes to it. ", call. = FALSE)
-#> -# }
-#> -#}
+#> +development:
+#> +  mode: auto
+#> +
+#> +authors:
+#> +  Stu Field:
+#> +    href: https://github.com/stufield
+#> +
+#>  home:
+#> -  strip_header: true
+#>    links:
+#>    - text: Learn more about me
+#>      href: https://github.com/stufield
+#>  
+#>  template:
+#>    bootstrap: 5
+#> +  package: tidytemplate
+#>    bslib:
+#>      bg: "#202123"      # dark theme
+#>      fg: "#B8BCC2"      # dark theme
+#> @@ -16,13 +23,6 @@ template:
+#>      btn-border-radius: 0.25rem
+#>      base_font: {google: "Roboto"}
+#>  
+#> -authors:
+#> -  Stu Field:
+#> -    href: https://github.com/stufield
 #> -
-#> -#files <- list.files("R", full.names = TRUE)
+#> -development:
+#> -  mode: auto
 #> -
-#>  # check lints
-#> +#files <- list.files("R", full.names = TRUE)
-#>  #lints <- lapply(files, function(path) {
-#>  #  lints <- somaverse::lintFile(path)
-#>  #  if (length(lints) > 0) {
-#> diff --git a/inst/hooks/prepare-commit-msg b/inst/hooks/prepare-commit-msg
-#> index 0d6e149..4948d5c 100755
-#> --- a/inst/hooks/prepare-commit-msg
-#> +++ b/inst/hooks/prepare-commit-msg
-#> @@ -26,7 +26,6 @@ SHA1=$3
-#>  
-#>  echo "commit message file:"
-#>  echo $COMMIT_MSG_FILE
-#> -cat $COMMIT_MSG_FILE
-#>  
-#>  echo "commit message source:"
-#>  echo $COMMIT_SOURCE
+#>  articles:
+#>    - title: Getting Started
+#>      navbar: ~
 ```
 
 ``` r
@@ -247,44 +254,51 @@ git_recent_tag()
 git_tag_info()
 #>           tag tag_sha target_sha           message    author                   email        user
 #> v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field <stu.g.field@gmail.com> stu.g.field
-#>                               tagdate size                              path
-#> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git
+#>                               tagdate size                       path
+#> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/sfield/gh/gitr/.git
 ```
 
 #### Situation Report
 
 ``` r
 git_sitrep()
-#> Using Git version: 2.39.2 
+#> Using Git version: 2.39.0 
 #> 
 #> Current branch: main
 #> Default branch: main 
 #> 
 #> Repo status:
 #> Running git status -s 
-#> 
+#>  M Makefile
+#>  M README.Rmd
 #> 
 #> Branches:
 #> Running git branch -a 
+#>   force-pkgdown
 #> * main
+#>   remotes/origin/HEAD -> origin/main
+#>   remotes/origin/bugfix-get-pr-sha
+#>   remotes/origin/force-pkgdown
 #>   remotes/origin/gh-pages
 #>   remotes/origin/main
 #>   remotes/origin/prep-for-cran
 #>   remotes/origin/submit-cran
+#>   remotes/origin/update-pkgdown-new-look
 #> 
 #> Local status:
 #> ✓ OK
 #> 
 #> Upstream remotes: origin 
-#> * main 90eaa95 [origin/main] Tweak README.Rmd
+#>   force-pkgdown 72ad53a [origin/force-pkgdown] wip
+#> * main          d6cbbb9 [origin/main] Update DESCRIPTION with tidytemplate Needs
 #> 
 #> Commit log: main 
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 90eaa95 (HEAD -> main, origin/main) Tweak README.Rmd
-#> * b51b8a9 Minor clean up of hooks
-#> * 8a015b2 Re-build README.Rmd
-#> * 06ee33e Minor tweak to trim_sha() and export is_sha()
-#> * e2789f3 Tweak DESCRIPTION and README.Rmd pkg descriptions
+#> * d6cbbb9 (HEAD -> main, origin/main, origin/HEAD) Update DESCRIPTION with tidytemplate Needs
+#> * 0ae6d0c New pkgdown tidy theme and bootstrap 5
+#> * 9d669f2 Improve GHA triggers
+#> * 179896e fix test-coverage.yaml to upload to Codecov
+#> * 0d17278 correct .gitignore
 ```
 
 ------------------------------------------------------------------------
@@ -478,8 +492,3 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 Please note that this package package is released with a
 [LICENSE](https://github.com/stufield/gitr/blob/main/LICENSE.md). By
 using in this package you agree to abide by its terms.
-
-------------------------------------------------------------------------
-
-Created by [Rmarkdown](https://github.com/rstudio/rmarkdown) (v2.20) and
-R version 4.2.2 (2022-10-31).
