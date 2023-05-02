@@ -78,7 +78,7 @@ Alternatively install the development version from GitHub:
 remotes::install_github("stufield/gitr")
 ```
 
-To install a *specific* tagged release, use:
+To install a _specific_ tagged release, use:
 
 ```{r install-version, eval = FALSE}
 remotes::install_github("stufield/gitr@v0.0.1")
