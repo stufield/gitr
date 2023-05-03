@@ -1,4 +1,4 @@
-url: https://github.com/stufield/gitr
+url: https://stufield.github.io/gitr/ 
 
 development:
   mode: auto
@@ -23,9 +23,17 @@ template:
     btn-border-radius: 0.25rem
     base_font: {google: "Roboto"}
 
+navbar:
+  structure:
+    left: [intro, reference, articles, workflows, news]
+    right: [search, github]
+  components:
+    intro:
+      text: Git Started
+      href: articles/gitr.html
+
 articles:
-  - title: Getting Started
-    navbar: ~
+  - title: Git Started
     contents:
     - gitr
 
