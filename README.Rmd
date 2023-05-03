@@ -369,11 +369,9 @@ See also [Oh-My-Zsh](https://ohmyz.sh) for general installation.
 | `gamscp`         | `git am --show-current-patch`                    |
 
 
-----------
-
 #### LICENSE
 
-Please note that this package package is released with
+Please note that this package is released with
 a [LICENSE](https://github.com/stufield/gitr/blob/main/LICENSE.md).
 By using in this package you agree to abide by its terms.
 
