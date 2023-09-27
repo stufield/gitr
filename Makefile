@@ -12,7 +12,7 @@ RSCRIPT = Rscript --vanilla
 
 all: check clean
 
-roxygen:
+docs:
 	@ $(RSCRIPT) -e "roxygen2::roxygenise()"
 
 readme:
@@ -36,9 +36,6 @@ test_file:
 build: roxygen
 	@ cd ..;\
 	$(RCMD) build --resave-data $(PKGSRC)
-
-pkgdown: roxygen
-	@ $(RSCRIPT) inst/deploy-pkgdown.R
 
 check: build
 	@ cd ..;\
