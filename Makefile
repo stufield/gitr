@@ -33,7 +33,7 @@ test_file:
 	-e "devtools::load_all()" \
 	-e "testthat::test_file('$(FILE)', reporter = 'progress', stop_on_failure = TRUE)"
 
-build: roxygen
+build: docs
 	@ cd ..;\
 	$(RCMD) build --resave-data $(PKGSRC)
 
