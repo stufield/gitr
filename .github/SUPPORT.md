@@ -1,13 +1,13 @@
-# Getting help with SomaDataIO
+# Getting help with gitr
 
-Thanks for using SomaDataIO!
+Thanks for using gitr!
 
 Before filing an issue, there are a few places to explore
 and pieces to put together to make the process as smooth as possible.
 
 ## Make a reprex
 
-If we can’t reproduce the bug, we can’t fix it!
+If I can’t reproduce the bug, I can’t fix it!
 Start by making a minimal **repr**oducible **ex**ample using the  [reprex](https://reprex.tidyverse.org/) package. 
 If you haven't heard of or used `reprex` before, you're in for a treat! 
 Seriously, `reprex` will make all of your R-question-asking endeavors easier
@@ -16,7 +16,7 @@ For additional `reprex` pointers, check out the [Get help!](https://www.tidyvers
 
 ## Where to ask?
 
-Armed with your `reprex`, the next step is to figure out [where to ask](https://www.tidyverse.org/help/#where-to-ask). 
+Armed with your `reprex`, the next step is to figure out where to ask:
 
 * If it's a question: start with [community.rstudio.com](https://community.rstudio.com/)
   and/or [StackOverflow](https://stackoverflow.com). There are more people there to answer questions.  
