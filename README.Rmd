@@ -130,7 +130,7 @@ get_commit_msgs(n = 3)
 glog(5)
 ```
 
-```{r commit-diff}
+```{r commit-diff, eval = FALSE}
 git_diffcommits()
 ```
 
