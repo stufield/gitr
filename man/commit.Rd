@@ -11,19 +11,19 @@
 \alias{git_diffcommits}
 \title{Git Commit Utilities}
 \usage{
-get_commit_msgs(sha = NULL, n = 1)
+get_commit_msgs(sha = NULL, n = 1L)
 
 scrape_commits(n)
 
 git_unstage(file = NULL)
 
-git_reset_soft(n = 1)
+git_reset_soft(n = 1L)
 
 git_uncommit()
 
 git_reset_hard()
 
-git_diffcommits(top = 1, n = 2)
+git_diffcommits(top = 1L, n = 2L)
 }
 \arguments{
 \item{sha}{Character. The commit SHA-1 hash to pull messages from.
@@ -36,7 +36,7 @@ For \verb{git stash} commands, zero-index into the stash list.}
 \item{file}{Character. The path name to a file.}
 
 \item{top}{Numeric. The commit to consider the "top" of the commit stack.
-Defaults to \code{HEAD} or \code{n = 1}.}
+Defaults to \code{HEAD~0} or \code{top = 1}.}
 }
 \value{
 \code{NULL} ... invisibly.

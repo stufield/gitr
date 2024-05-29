@@ -11,7 +11,7 @@ NULL
 #' @return A list containing commit message entries. The `sha` and `author`
 #'   of each commit is added as attributes.
 #' @export
-get_commit_msgs <- function(sha = NULL, n = 1) {
+get_commit_msgs <- function(sha = NULL, n = 1L) {
   if ( is.null(sha) ) {
     sha <- git("log", "--format=%H", "-n", n)$stdout
   }
@@ -76,7 +76,7 @@ git_unstage <- function(file = NULL) {
 #'   un-commits the most recently committed file(s) and
 #'   add them to the staging area.
 #' @export
-git_reset_soft <- function(n = 1) {
+git_reset_soft <- function(n = 1L) {
   if ( is_git() ) {
     out <- git("reset", "--soft", paste0("HEAD~", n))
     cat(out$stdout, sep = "\n")
@@ -110,11 +110,11 @@ git_reset_hard <- function() {
 #' @describeIn commit
 #'   gets the diff of the corresponding 2 commits. Order matters.
 #' @param top Numeric. The commit to consider the "top" of the commit stack.
-#'   Defaults to `HEAD` or `n = 1`.
+#'   Defaults to `HEAD~0` or `top = 1`.
 #' @export
-git_diffcommits <- function(top = 1, n = 2) {
+git_diffcommits <- function(top = 1L, n = 2L) {
   if ( is_git() ) {
-    out <- git("diff", paste0("HEAD~", n, "..HEAD~", top))
+    out <- git("diff", sprintf("HEAD~%i..HEAD~%i", n - 1L, top - 1L))
     if ( not_interactive() ) {
       return(cat(out$stdout, sep = "\n"))
     } else {
