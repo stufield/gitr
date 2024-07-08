@@ -19,7 +19,8 @@ git_checkout(branch = NULL)
 \item{...}{Additional arguments passed to the system
 command-line \verb{git <command> [<args>]} call.}
 
-\item{echo_cmd}{Logical. Whether to print the command to run to the console.}
+\item{echo_cmd}{Logical. Whether to print the command to run to the console.
+Can be over-ridden globally via \code{option(gitr.echo_cmd = FALSE)}.}
 
 \item{branch}{Character. The name of a branch, typically a
 feature branch.}

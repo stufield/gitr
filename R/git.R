@@ -28,13 +28,14 @@ NULL
 #' @describeIn git
 #'   executes a `git` command line call from within R.
 #' @param echo_cmd Logical. Whether to print the command to run to the console.
+#'   Can be over-ridden globally via `option(gitr.echo_cmd = FALSE)`.
 #' @param ... Additional arguments passed to the system
 #'   command-line `git <command> [<args>]` call.
 #' @return [git()]: The system call ... invisibly.
 #' @export
 git <- function(..., echo_cmd = TRUE) {
-  if ( echo_cmd ) {
-    cat("Running git", c(...), "\n")
+  if ( getOption("gitr.echo_cmd", echo_cmd) ) {
+    cat("Running", slug_color(c("git", c(...)), "\033[034m"), "\n")
   }
   res  <- list(status = 0L, stdout = "", stderr = "")
   call <- suppressWarnings(
