@@ -10,8 +10,7 @@ NULL
 #' @return [git_recent_tag()]: Character. The most recent tag.
 #' @export
 git_recent_tag <- function() {
-  tag <- utils::tail(git("tag", "-n")$stdout, 1L)
-  gsub("(^v[0-9]+\\.[0-9]+\\.[0-9]+).*", "\\1", tag)
+  utils::head(git("tag", "--sort=-taggerdate")$stdout, 1L)
 }
 
 #' @describeIn tag
