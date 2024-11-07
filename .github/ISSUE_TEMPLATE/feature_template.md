@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Make a case for a new feature in SomaDataIO
+about: Make a case for a new feature in gitr
 labels: feature
 ---
 
