@@ -7,7 +7,7 @@ test_that("the basic functionality of `git()` works as expected", {
   expect_equal(out$stderr, "")
 })
 
-test_that("silencing the git echo is possible via the `gitr.echo_cmd` global option", {
+test_that("silencing the git echo is possible via the `gitr_echo_cmd` global option", {
   # use `git("--version")` for testing b/c doesn't require a git repository
   # default; TRUE
   true <- system2("git", "--version", stdout = TRUE)
@@ -15,15 +15,21 @@ test_that("silencing the git echo is possible via the `gitr.echo_cmd` global opt
 
   # over-ride default; FALSE
   withr::with_options(
-    list(gitr.echo_cmd = FALSE),
+    list(gitr_echo_cmd = FALSE),
     ver <- git("--version")$stdout
   )
   expect_equal(ver, true)
 
   # over-ride passed param; TRUE
   withr::with_options(
-    list(gitr.echo_cmd = TRUE),
+    list(gitr_echo_cmd = TRUE),
     expect_snapshot(ver <- git("--version", echo_cmd = FALSE)$stdout)
   )
   expect_equal(ver, true)
+})
+
+test_that("git_version() returns the correct expected value", {
+  true <- system2("git", "--version", stdout = TRUE)
+  true <- gsub("git version *([^ ]*)", "\\1", true)
+  expect_equal(git_version(), true)
 })

@@ -3,9 +3,12 @@
 #' Provides functions to common Z-shell git plugin aliases.
 #'
 #' @name zsh
+#'
 #' @inheritParams params
 #' @inheritParams git
+#'
 #' @return Most aliases invisibly return `NULL` ... with some exceptions.
+#'
 #' @examples
 #' \dontrun{
 #'   glog()
@@ -13,9 +16,11 @@
 NULL
 
 #' @describeIn zsh
-#'   Get the `git` log in a pretty format for the `n` most recent commits.
+#'   Get the `git` log in a pretty format for the
+#'   `n` most recent commits.
+#'
 #' @export
-glog <- function(n = 10) {
+glog <- function(n = 10L) {
   if ( is_git() ) {
     out <- git("log", "--oneline", "--graph", "--decorate", "-n", n)$stdout
     if ( not_interactive() ) {
@@ -35,25 +40,30 @@ glog <- function(n = 10) {
 #' @describeIn zsh
 #'   `git commit ...`. To avoid masking the [base::gc()] function,
 #'   this alias has been re-mapped to [gcc()].
+#'
 #' @export
 gcc <- function(...) {
   git("commit", c(...))
 }
 
 #' @describeIn zsh `git commit -m <msg>`.
-#' @param msg Character. The message for the commit subject line.
+#'
+#' @param msg `character(1)`. The message for the commit subject line.
+#'
 #' @export
 gcmsg <- function(msg = "wip") {
   git("commit", "--no-verify", "-m", encodeString(msg, quote = "'"))
 }
 
 #' @describeIn zsh `git checkout`.
+#'
 #' @export
 gco <- function(branch = NULL) {
   git_checkout(branch)
 }
 
 #' @describeIn zsh `git checkout -b <branch>`.
+#'
 #' @export
 gcb <- function(branch = NULL) {
   stopifnot(!is.null(branch))
@@ -61,6 +71,7 @@ gcb <- function(branch = NULL) {
 }
 
 #' @describeIn zsh `git pull --rebase`.
+#'
 #' @export
 gpr <- function() {
   if ( is_git() ) {
@@ -70,6 +81,7 @@ gpr <- function() {
 }
 
 #' @describeIn zsh `git push`.
+#'
 #' @export
 gp <- function(...) {
   if ( is_git() ) {
@@ -79,6 +91,7 @@ gp <- function(...) {
 }
 
 #' @describeIn zsh `git push -u origin`.
+#'
 #' @export
 gpu <- function() {
   if ( is_git() ) {
@@ -88,6 +101,7 @@ gpu <- function() {
 }
 
 #' @describeIn zsh `git push --dry-run`.
+#'
 #' @export
 gpd <- function() {
   if ( is_git() ) {
@@ -98,6 +112,7 @@ gpd <- function() {
 }
 
 #' @describeIn zsh `git status`.
+#'
 #' @export
 gst <- function() {
   if ( is_git() ) {
@@ -108,6 +123,7 @@ gst <- function() {
 }
 
 #' @describeIn zsh `git status -s`.
+#'
 #' @export
 gss <- function() {
   if ( is_git() ) {
@@ -122,6 +138,7 @@ gss <- function() {
 }
 
 #' @describeIn zsh `git branch -a`.
+#'
 #' @export
 gba <- function() {
   if ( is_git() ) {
@@ -138,7 +155,10 @@ gba <- function() {
 }
 
 #' @describeIn zsh `git branch -dD`.
-#' @param force Logical. Should the branch delete be forced with the `-D` flag?
+#'
+#' @param force `logical(1)`. Should the branch
+#'   delete be forced with the `-D` flag?
+#'
 #' @export
 gbd <- function(branch = NULL, force = FALSE) {
   if ( is_git() ) {
@@ -149,6 +169,7 @@ gbd <- function(branch = NULL, force = FALSE) {
 }
 
 #' @describeIn zsh `git branch --merged <branch>`.
+#'
 #' @export
 gbmm <- function(branch = git_default_br()) {
   if ( is_git() ) {
@@ -163,6 +184,7 @@ gbmm <- function(branch = git_default_br()) {
 }
 
 #' @describeIn zsh `git branch --no-merged <branch>`.
+#'
 #' @export
 gbnm <- function(branch = git_default_br()) {
   if ( is_git() ) {
@@ -177,6 +199,7 @@ gbnm <- function(branch = git_default_br()) {
 }
 
 #' @describeIn zsh `git branch -m`.
+#'
 #' @export
 gbm <- function(branch = NULL) {
   if ( is_git() ) {
@@ -187,6 +210,7 @@ gbm <- function(branch = NULL) {
 }
 
 #' @describeIn zsh `git add ...`.
+#'
 #' @export
 ga <- function(...) {
   if ( is_git() ) {
@@ -197,6 +221,7 @@ ga <- function(...) {
 }
 
 #' @describeIn zsh `git add --all`.
+#'
 #' @export
 gaa <- function() {
   if ( is_git() ) {
@@ -207,6 +232,7 @@ gaa <- function() {
 }
 
 #' @describeIn zsh `git add -u`.
+#'
 #' @export
 gau <- function() {
   if ( is_git() ) {
@@ -217,6 +243,7 @@ gau <- function() {
 }
 
 #' @describeIn zsh `git stash`.
+#'
 #' @export
 gsta <- function() {
   if ( is_git() ) {
@@ -227,6 +254,7 @@ gsta <- function() {
 }
 
 #' @describeIn zsh `git stash list`.
+#'
 #' @export
 gstl <- function() {
   if ( is_git() ) {
@@ -238,7 +266,9 @@ gstl <- function() {
   }
 }
 
-#' @describeIn zsh `git stash apply`. **Note**: zero-indexing!
+#' @describeIn zsh `git stash apply`.
+#'   **Note** zero-indexing!
+#'
 #' @export
 gstaa <- function(n = 0) {
   if ( is_git() ) {
@@ -248,7 +278,9 @@ gstaa <- function(n = 0) {
   }
 }
 
-#' @describeIn zsh `git stash drop`. **Note**: zero-indexing!
+#' @describeIn zsh `git stash drop`.
+#'   **Note** zero-indexing!
+#'
 #' @export
 gstd <- function(n = 0) {
   if ( is_git() ) {
@@ -259,6 +291,7 @@ gstd <- function(n = 0) {
 }
 
 #' @describeIn zsh `git stash clear`. Danger!
+#'
 #' @export
 gstc <- function() {
   if ( is_git() ) {
@@ -269,7 +302,9 @@ gstc <- function() {
 }
 
 #' @describeIn zsh `git stash show`.
-#' @param text Logical. Show the text diffs from the stash.
+#'
+#' @param text `logical(1)`. Show the text diffs from the stash.
+#'
 #' @export
 gsts <- function(text = FALSE) {
   if ( is_git() ) {
@@ -290,6 +325,7 @@ gsts <- function(text = FALSE) {
 }
 
 #' @describeIn zsh `git stash pop --quiet --index`.
+#'
 #' @export
 gpop <- function() {
   if ( is_git() ) {
@@ -300,10 +336,12 @@ gpop <- function() {
 }
 
 #' @describeIn zsh See `gpop()`.
+#'
 #' @export
 gstp <- gpop
 
 #' @describeIn zsh `git tag -n`.
+#'
 #' @export
 gtn <- function() {
   if ( is_git() ) {
@@ -319,6 +357,7 @@ gtn <- function() {
 }
 
 #' @describeIn zsh `git fetch --all --prune`.
+#'
 #' @export
 gfa <- function() {
   if ( is_git() ) {
@@ -332,6 +371,7 @@ gfa <- function() {
 }
 
 #' @describeIn zsh `git commit --no-verify --amend --no-edit`.
+#'
 #' @export
 gac <- function() {
   if ( is_git() ) {
@@ -342,6 +382,7 @@ gac <- function() {
 }
 
 #' @describeIn zsh `git commit --no-verify -m 'wip'`.
+#'
 #' @export
 gwip <- function() {
   if ( is_git() ) {
@@ -353,11 +394,13 @@ gwip <- function() {
 }
 
 #' @describeIn zsh `git clean -f -d`.
-#' @param dry.run Logical. Clean as dry-run?
+#'
+#' @param dry_run `logical(1)`. Clean as dry-run?
+#'
 #' @export
-gclean <- function(dry.run = TRUE) {
+gclean <- function(dry_run = TRUE) {
   if ( is_git() ) {
-    if ( dry.run ) {
+    if ( dry_run ) {
       out <- git("clean", "-f", "-d", "-n")$stdout
     } else {
       out <- git("clean", "-f", "-d")$stdout
@@ -370,9 +413,13 @@ gclean <- function(dry.run = TRUE) {
 }
 
 #' @describeIn zsh `git diff <file>`.
+#'
 #' @param file A full file path within the repository to diff.
-#' @param staged Logical. Compare a staged file to HEAD? Otherwise the
-#' working directory is compared to the index (staged or HEAD).
+#'
+#' @param staged `logical(1)`. Compare a staged file to `HEAD`?
+#'   Otherwise the working directory is compared to the
+#'   index (`staged` or `HEAD`).
+#'
 #' @export
 gdf <- function(file = NULL, staged = FALSE) {
   stopifnot(!is.null(file))
@@ -392,6 +439,7 @@ gdf <- function(file = NULL, staged = FALSE) {
 }
 
 #' @describeIn zsh `git push --force-with-lease`.
+#'
 #' @export
 gpf <- function() {
   if ( is_git() ) {
@@ -404,6 +452,7 @@ gpf <- function() {
 }
 
 #' @describeIn zsh `git reset --hard && git clean -df`.
+#'
 #' @export
 gnuke <- function() {
   if ( is_git() ) {
@@ -417,8 +466,10 @@ gnuke <- function() {
 }
 
 #' @describeIn zsh `git config --local` or `git config --global`.
-#' @param global Logical. Query global repository. Alternatively
-#'   local configuration only.
+#'
+#' @param global `logical(1)`. Query global repository.
+#'   Alternatively local configuration only.
+#'
 #' @export
 gcf <- function(global = FALSE) {
   if ( !global && is_git() ) {
@@ -432,6 +483,7 @@ gcf <- function(global = FALSE) {
 }
 
 #' @describeIn zsh Checkout the default branch.
+#'
 #' @export
 gcm <- function() {
   if ( is_git() ) {
@@ -441,6 +493,7 @@ gcm <- function() {
 }
 
 #' @describeIn zsh `git rm ...`.
+#'
 #' @export
 grm <- function(...) {
   if ( is_git() ) {
@@ -453,6 +506,7 @@ grm <- function(...) {
 }
 
 #' @describeIn zsh `git rebase --continue`.
+#'
 #' @export
 grbc <- function() {
   if ( is_git() ) {
@@ -463,6 +517,7 @@ grbc <- function() {
 }
 
 #' @describeIn zsh `git rebase --abort`.
+#'
 #' @export
 grba <- function() {
   if ( is_git() ) {
@@ -473,6 +528,7 @@ grba <- function() {
 }
 
 #' @describeIn zsh `git rebase --skip`.
+#'
 #' @export
 grbs <- function() {
   if ( is_git() ) {
@@ -483,6 +539,7 @@ grbs <- function() {
 }
 
 #' @describeIn zsh `git rebase git_default_br()`.
+#'
 #' @export
 grbm <- function() {
   if ( is_git() ) {
@@ -493,6 +550,7 @@ grbm <- function() {
 }
 
 #' @describeIn zsh `git remote -v`.
+#'
 #' @export
 grv <- function() {
   if ( is_git() ) {
