@@ -109,8 +109,10 @@ git_checkout <- function(branch = NULL) {
     } else {
       out <- git("checkout", branch)
     }
-    cat(out$stdout, sep = "\n")
-    cat(out$stderr, sep = "\n")
+    if ( getOption("gitr_echo_cmd", TRUE) ) {
+      cat(out$stdout, sep = "\n")
+      cat(out$stderr, sep = "\n")
+    }
   }
   invisible()
 }
