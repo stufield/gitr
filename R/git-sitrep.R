@@ -7,9 +7,9 @@
 #' @export
 git_sitrep <- function() {
   if ( is_git() ) {
-    cat("Using Git version:", slug_color(git_version(), "\033[34m"), "\n")
-    cat("\nCurrent branch:", slug_color(git_current_br(),"\033[32m"))
-    cat("\nDefault branch:", slug_color(git_default_br(),"\033[36m"), "\n")
+    cat("Using Git version: ", slug_color(git_version(), "\033[34m"), "\n\n", sep = "")
+    cat("Current branch: ", slug_color(git_current_br(), "\033[32m"), "\n", sep = "")
+    cat("Default branch: ", slug_color(git_default_br(), "\033[36m"), "\n", sep = "")
 
     cat("\nRepo status:\n")
     gss()
@@ -31,15 +31,15 @@ git_sitrep <- function() {
     if ( ah > "0" ) {
       cat("Your local branch", slug_color(br),
           "is ahead of", slug_color(paste0(remote, "/", br), "\033[34m"),
-          "by", ah, "commits.\n")
+          "by", ah, "commit(s).\n")
     }
     if ( be > "0" ) {
       cat("Your local branch", slug_color(br),
           "is behind", slug_color(paste0(remote, "/", br), "\033[34m"),
-          "by", be, "commits.\n")
+          "by", be, "commit(s).\n")
     }
 
-    cat("\nUpstream remotes:", slug_color(remote, "\033[33m"), "\n")
+    cat("\nUpstream remotes: ", slug_color(remote, "\033[33m"), "\n", sep = "")
     br_verb <- git("branch", "-vv", echo_cmd = FALSE)$stdout
     if ( not_interactive() ) {
       cat(br_verb, sep = "\n")
@@ -50,7 +50,7 @@ git_sitrep <- function() {
         cat(sep = "\n")
     }
 
-    cat("\nCommit log:", slug_color(br, "\033[32m"), "\n")
+    cat("\nCommit log: ", slug_color(br, "\033[32m"), "\n", sep = "")
     glog(5L)
   } else {
     invisible(NULL)
