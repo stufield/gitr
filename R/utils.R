@@ -8,19 +8,19 @@
 }
 
 todo <- function(...) {
-  inform(slug_color("\u2022"), ...)
+  .inform(slug_color("\u2022"), ...)
 }
 
 oops <- function(...) {
-  inform(slug_color("\u2716"), ...)
+  .inform(slug_color("\u2716"), ...)
 }
 
 done <- function(...) {
-  inform(slug_color("\u2713", "\033[32m"), ...)
+  .inform(slug_color("\u2713", "\033[32m"), ...)
 }
 
 info <- function(...) {
-  inform(slug_color("\u2139", "\033[36m"), ...)
+  .inform(slug_color("\u2139", "\033[36m"), ...)
 }
 
 not_interactive <- function() {
@@ -37,15 +37,15 @@ slug_color <- function(x, color = "\033[31m") { # default red
   }
 }
 
-inform <- function(..., quiet = getOption("signal.quiet", default = FALSE)) {
+.inform <- function(..., class = c("message", "condition"),
+                   quiet = getOption("gitr_quiet", default = FALSE)) {
   if ( !quiet ) {
     msg <- paste0(paste(...), "\n")
+    cnd <- structure(list(message = msg), class = class)
     withRestarts(muffleMessage = function() NULL, {
-      signalCondition(
-        structure(list(message = msg), class = c("message", "condition"))
-      )
+      signalCondition(cnd)
       cat(msg, sep = "", file = stdout())
     })
   }
-  invisible()
+  invisible(NULL)
 }
