@@ -11,7 +11,7 @@ git_recent_tag()
 git_tag_info()
 }
 \value{
-\code{\link[=git_recent_tag]{git_recent_tag()}}: Character. The most recent tag.
+\code{\link[=git_recent_tag]{git_recent_tag()}}: \code{character(1)}. The most recent tag.
 
 \code{\link[=git_tag_info]{git_tag_info()}}: A data frame summarizing the repository tags.
 }
@@ -22,6 +22,7 @@ Git Tag Utilities
 \itemize{
 \item \code{git_recent_tag()}: gets the \emph{most} recent \code{git} tag.
 
-\item \code{git_tag_info()}: gets a data frame summary of the current git repository tags.
+\item \code{git_tag_info()}: gets a data frame summary of
+the current git repository tags.
 
 }}

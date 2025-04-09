@@ -1,15 +1,18 @@
 #' Git Commit Utilities
-
-
+#'
 #' @name commit
+#'
 #' @inheritParams params
+#'
 #' @return `NULL` ... invisibly.
 NULL
 
 #' @describeIn commit
 #'   gets the commit messages corresponding to the commit `sha`.
-#' @return A list containing commit message entries. The `sha` and `author`
-#'   of each commit is added as attributes.
+#'
+#' @return A list containing commit message entries.
+#'   The `sha` and `author` of each commit is added as attributes.
+#'
 #' @export
 get_commit_msgs <- function(sha = NULL, n = 1L) {
   if ( is.null(sha) ) {
@@ -28,6 +31,7 @@ get_commit_msgs <- function(sha = NULL, n = 1L) {
 #' @describeIn commit
 #'   scrapes `n` commit messages for useful change log commits
 #'   to be used to create a `NEWS.md`.
+#'
 #' @export
 scrape_commits <- function(n) {
   commit_list <- get_commit_msgs(n = n)
@@ -56,7 +60,9 @@ scrape_commits <- function(n) {
 #' @describeIn commit
 #'   un-stages a file from the index to the working directory.
 #'   Default un-stages *all* files.
+#'
 #' @inheritParams params
+#'
 #' @export
 git_unstage <- function(file = NULL) {
   if ( is_git() ) {
@@ -75,6 +81,7 @@ git_unstage <- function(file = NULL) {
 #' @describeIn commit
 #'   un-commits the most recently committed file(s) and
 #'   add them to the staging area.
+#'
 #' @export
 git_reset_soft <- function(n = 1L) {
   if ( is_git() ) {
@@ -87,8 +94,10 @@ git_reset_soft <- function(n = 1L) {
 }
 
 #' @describeIn commit
-#'   un-commits the most recently committed file(s) and
-#'   add them to the staging area. Wrapper around [git_reset_soft()]
+#'   un-commits the most recently committed
+#'   file(s) and add them to the staging area.
+#'   Wrapper around [git_reset_soft()]
+#'
 #' @export
 git_uncommit <- function() {
   git_reset_soft("1")
@@ -96,6 +105,7 @@ git_uncommit <- function() {
 
 #' @describeIn commit
 #'   `git reset --hard origin/<branch>`.
+#'
 #' @export
 git_reset_hard <- function() {
   if ( is_git() ) {
@@ -109,8 +119,11 @@ git_reset_hard <- function() {
 
 #' @describeIn commit
 #'   gets the diff of the corresponding 2 commits. Order matters.
-#' @param top Numeric. The commit to consider the "top" of the commit stack.
+#'
+#' @param top `integer(1)`The commit to consider the
+#'   "top" of the commit stack.
 #'   Defaults to `HEAD~0` or `top = 1`.
+#'
 #' @export
 git_diffcommits <- function(top = 1L, n = 2L) {
   if ( is_git() ) {

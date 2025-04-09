@@ -47,7 +47,7 @@
 \alias{grv}
 \title{Z-shell Aliases}
 \usage{
-glog(n = 10)
+glog(n = 10L)
 
 gcc(...)
 
@@ -109,7 +109,7 @@ gac()
 
 gwip()
 
-gclean(dry.run = TRUE)
+gclean(dry_run = TRUE)
 
 gdf(file = NULL, staged = FALSE)
 
@@ -134,31 +134,33 @@ grbm()
 grv()
 }
 \arguments{
-\item{n}{Numeric. How far back to go from current \code{HEAD}.
+\item{n}{\code{integer(1)}How far back to go from current \code{HEAD}.
 Same as the command line \verb{git log -n} parameter.
 For \verb{git stash} commands, zero-index into the stash list.}
 
 \item{...}{Additional arguments passed to the system
 command-line \verb{git <command> [<args>]} call.}
 
-\item{msg}{Character. The message for the commit subject line.}
+\item{msg}{\code{character(1)}. The message for the commit subject line.}
 
-\item{branch}{Character. The name of a branch, typically a
+\item{branch}{\code{character(1)}. The name of a branch, typically a
 feature branch.}
 
-\item{force}{Logical. Should the branch delete be forced with the \code{-D} flag?}
+\item{force}{\code{logical(1)}. Should the branch
+delete be forced with the \code{-D} flag?}
 
-\item{text}{Logical. Show the text diffs from the stash.}
+\item{text}{\code{logical(1)}. Show the text diffs from the stash.}
 
-\item{dry.run}{Logical. Clean as dry-run?}
+\item{dry_run}{\code{logical(1)}. Clean as dry-run?}
 
 \item{file}{A full file path within the repository to diff.}
 
-\item{staged}{Logical. Compare a staged file to HEAD? Otherwise the
-working directory is compared to the index (staged or HEAD).}
+\item{staged}{\code{logical(1)}. Compare a staged file to \code{HEAD}?
+Otherwise the working directory is compared to the
+index (\code{staged} or \code{HEAD}).}
 
-\item{global}{Logical. Query global repository. Alternatively
-local configuration only.}
+\item{global}{\code{logical(1)}. Query global repository.
+Alternatively local configuration only.}
 }
 \value{
 Most aliases invisibly return \code{NULL} ... with some exceptions.
@@ -168,7 +170,8 @@ Provides functions to common Z-shell git plugin aliases.
 }
 \section{Functions}{
 \itemize{
-\item \code{glog()}: Get the \code{git} log in a pretty format for the \code{n} most recent commits.
+\item \code{glog()}: Get the \code{git} log in a pretty format for the
+\code{n} most recent commits.
 
 \item \code{gcc()}: \verb{git commit ...}. To avoid masking the \code{\link[base:gc]{base::gc()}} function,
 this alias has been re-mapped to \code{\link[=gcc]{gcc()}}.
@@ -211,9 +214,11 @@ this alias has been re-mapped to \code{\link[=gcc]{gcc()}}.
 
 \item \code{gstl()}: \verb{git stash list}.
 
-\item \code{gstaa()}: \verb{git stash apply}. \strong{Note}: zero-indexing!
+\item \code{gstaa()}: \verb{git stash apply}.
+\strong{Note} zero-indexing!
 
-\item \code{gstd()}: \verb{git stash drop}. \strong{Note}: zero-indexing!
+\item \code{gstd()}: \verb{git stash drop}.
+\strong{Note} zero-indexing!
 
 \item \code{gstc()}: \verb{git stash clear}. Danger!
 

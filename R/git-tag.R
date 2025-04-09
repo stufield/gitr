@@ -1,21 +1,24 @@
 #' Git Tag Utilities
-
-
+#'
 #' @name tag
 NULL
 
-
 #' @describeIn tag
 #'   gets the *most* recent `git` tag.
-#' @return [git_recent_tag()]: Character. The most recent tag.
+#'
+#' @return [git_recent_tag()]: `character(1)`. The most recent tag.
+#'
 #' @export
 git_recent_tag <- function() {
   utils::head(git("tag", "--sort=-taggerdate", echo_cmd = FALSE)$stdout, 1L)
 }
 
 #' @describeIn tag
-#'   gets a data frame summary of the current git repository tags.
+#'   gets a data frame summary of
+#'   the current git repository tags.
+#'
 #' @return [git_tag_info()]: A data frame summarizing the repository tags.
+#'
 #' @export
 git_tag_info <- function() {
   is_git()

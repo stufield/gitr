@@ -1,12 +1,15 @@
 #' Git Branch Utilities
-
-
+#'
 #' @name branch
-#' @return Character. The name of the respective branch if found, otherwise `NULL`.
+#'
+#' @return `character(1)`. The name of the respective
+#'   branch if found, otherwise `NULL`.
 NULL
 
 #' @describeIn branch
-#'   gets the default "main" branch, typically either `master`, `main`, or `trunk`.
+#'   gets the default "main" branch, typically either
+#'   `master`, `main`, or `trunk`.
+#'
 #' @export
 git_default_br <- function() {
   if ( is_git() ) {
@@ -29,6 +32,7 @@ git_default_br <- function() {
 
 #' @describeIn branch
 #'   gets the *current* branch.
+#'
 #' @export
 git_current_br <- function() {
   if ( is_git() ) {

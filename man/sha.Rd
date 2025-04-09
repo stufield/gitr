@@ -11,22 +11,23 @@ trim_sha(sha)
 is_sha(sha)
 }
 \arguments{
-\item{sha}{Character. The commit SHA-1 hash to pull messages from.
+\item{sha}{\code{character(1)}. The commit SHA-1 hash to pull messages from.
 If \code{NULL}, the most recent commit on the current branch.}
 }
 \value{
-\code{\link[=trim_sha]{trim_sha()}}: Character. The trimmed \code{sha}.
+\code{\link[=trim_sha]{trim_sha()}}: \code{character(1)}. The trimmed \code{sha}.
 If \code{sha} is not a \code{SHA1} hash, the identical string unchanged.
 
-\code{\link[=is_sha]{is_sha()}}: Logical. If \code{sha} matches the \code{SHA1} expected pattern.
+\code{\link[=is_sha]{is_sha()}}: \code{logical(1)}. If \code{sha} matches the
+\code{SHA1} expected pattern.
 }
 \description{
 SHA1 Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{trim_sha()}: trims the \code{SHA-1} hash from the default full length to the
-human-readable short version.
+\item \code{trim_sha()}: trims the \code{SHA-1} hash from the default full
+length to the human-readable short version.
 
 \item \code{is_sha()}: determines whether strings to be tested are a \code{SHA1} hash
 via regular expression (\code{"^[a-f0-9]{5,40}$"}) match.

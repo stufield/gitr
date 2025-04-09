@@ -1,12 +1,15 @@
 #' Common Lints for Commit Messages
 #'
 #' Lint a commit message for typical commit style and
-#' best practices for git.
+#'   best practices for git.
 #'
 #' @name lint
+#'
 #' @param x A single commit message from [get_commit_msgs()].
-#' @return Integer. Invisibly returns the number of detected lints
-#'   in the message.
+#'
+#' @return `integer(1)`. Invisibly returns the
+#'   number of detected lints in the message.
+#'
 #' @export
 lint_commit_msg <- function(x) {
   if ( length(x) == 0L ) {

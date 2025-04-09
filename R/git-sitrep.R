@@ -3,6 +3,7 @@
 #' Get a situation report of the current git repository.
 #'
 #' @return `NULL` ... invisibly.
+#'
 #' @export
 git_sitrep <- function() {
   if ( is_git() ) {

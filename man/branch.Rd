@@ -11,14 +11,16 @@ git_default_br()
 git_current_br()
 }
 \value{
-Character. The name of the respective branch if found, otherwise \code{NULL}.
+\code{character(1)}. The name of the respective
+branch if found, otherwise \code{NULL}.
 }
 \description{
 Git Branch Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{git_default_br()}: gets the default "main" branch, typically either \code{master}, \code{main}, or \code{trunk}.
+\item \code{git_default_br()}: gets the default "main" branch, typically either
+\code{master}, \code{main}, or \code{trunk}.
 
 \item \code{git_current_br()}: gets the \emph{current} branch.
 

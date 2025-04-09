@@ -26,23 +26,24 @@ git_reset_hard()
 git_diffcommits(top = 1L, n = 2L)
 }
 \arguments{
-\item{sha}{Character. The commit SHA-1 hash to pull messages from.
+\item{sha}{\code{character(1)}. The commit SHA-1 hash to pull messages from.
 If \code{NULL}, the most recent commit on the current branch.}
 
-\item{n}{Numeric. How far back to go from current \code{HEAD}.
+\item{n}{\code{integer(1)}How far back to go from current \code{HEAD}.
 Same as the command line \verb{git log -n} parameter.
 For \verb{git stash} commands, zero-index into the stash list.}
 
-\item{file}{Character. The path name to a file.}
+\item{file}{\code{character(1)}. The path name to a file.}
 
-\item{top}{Numeric. The commit to consider the "top" of the commit stack.
+\item{top}{\code{integer(1)}The commit to consider the
+"top" of the commit stack.
 Defaults to \code{HEAD~0} or \code{top = 1}.}
 }
 \value{
 \code{NULL} ... invisibly.
 
-A list containing commit message entries. The \code{sha} and \code{author}
-of each commit is added as attributes.
+A list containing commit message entries.
+The \code{sha} and \code{author} of each commit is added as attributes.
 }
 \description{
 Git Commit Utilities
@@ -60,8 +61,9 @@ Default un-stages \emph{all} files.
 \item \code{git_reset_soft()}: un-commits the most recently committed file(s) and
 add them to the staging area.
 
-\item \code{git_uncommit()}: un-commits the most recently committed file(s) and
-add them to the staging area. Wrapper around \code{\link[=git_reset_soft]{git_reset_soft()}}
+\item \code{git_uncommit()}: un-commits the most recently committed
+file(s) and add them to the staging area.
+Wrapper around \code{\link[=git_reset_soft]{git_reset_soft()}}
 
 \item \code{git_reset_hard()}: \verb{git reset --hard origin/<branch>}.
 

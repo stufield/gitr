@@ -19,23 +19,26 @@ git_checkout(branch = NULL)
 \item{...}{Additional arguments passed to the system
 command-line \verb{git <command> [<args>]} call.}
 
-\item{echo_cmd}{Logical. Whether to print the command to run to the console.
-Can be over-ridden globally via \code{option(gitr.echo_cmd = FALSE)}.}
+\item{echo_cmd}{\code{logical(1)}. Whether to print the
+command to run to the console. Can be over-ridden
+globally via \code{option(gitr_echo_cmd = FALSE)}.}
 
-\item{branch}{Character. The name of a branch, typically a
+\item{branch}{\code{character(1)}. The name of a branch, typically a
 feature branch.}
 }
 \value{
 \code{\link[=git]{git()}}: The system call ... invisibly.
 
-\code{is_git()}: Logical.
+\code{is_git()}: \code{logical(1)}.
 
-\code{git_version()}: Character. The system version of \code{git}.
+\code{git_version()}: \code{character(1)}.
+The system version of \code{git}.
 
 \code{git_checkout()}: \code{NULL} ... invisibly.
 }
 \description{
-Provides functionality for system-level git commands from within R.
+Provides functionality for system-level
+Git commands from within R.
 }
 \section{Functions}{
 \itemize{
@@ -51,21 +54,21 @@ oriented workflow for switching between branches.
 }}
 \examples{
 \dontrun{
-git("status", "-s")
+  git("status", "-s")
 
-get_commit_msgs()
+  get_commit_msgs()
 
-get_commit_msgs(n = 3)
+  get_commit_msgs(n = 3)
 
-get_pr_msgs()
+  get_pr_msgs()
 
-# lint most recent 3 commit message
-lapply(get_commit_msgs(n = 3), lint_commit_msg)
+  # lint most recent 3 commit message
+  lapply(get_commit_msgs(n = 3), lint_commit_msg)
 
-# for a PR `branch` -> `remotes/origin/{main,master}`
-lapply(get_pr_msgs(), lint_commit_msg)           # current branch
-lapply(get_pr_msgs("feature"), lint_commit_msg)  # `feature` branch
+  # for a PR `branch` -> `remotes/origin/{main,master}`
+  lapply(get_pr_msgs(), lint_commit_msg)           # current branch
+  lapply(get_pr_msgs("feature"), lint_commit_msg)  # `feature` branch
 
-get_recent_tag()
+  get_recent_tag()
 }
 }

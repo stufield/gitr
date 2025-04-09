@@ -4,16 +4,16 @@
 \alias{params}
 \title{Common Parameters for gitr}
 \arguments{
-\item{n}{Numeric. How far back to go from current \code{HEAD}.
+\item{n}{\code{integer(1)}How far back to go from current \code{HEAD}.
 Same as the command line \verb{git log -n} parameter.
 For \verb{git stash} commands, zero-index into the stash list.}
 
-\item{file}{Character. The path name to a file.}
+\item{file}{\code{character(1)}. The path name to a file.}
 
-\item{branch}{Character. The name of a branch, typically a
+\item{branch}{\code{character(1)}. The name of a branch, typically a
 feature branch.}
 
-\item{sha}{Character. The commit SHA-1 hash to pull messages from.
+\item{sha}{\code{character(1)}. The commit SHA-1 hash to pull messages from.
 If \code{NULL}, the most recent commit on the current branch.}
 }
 \description{
