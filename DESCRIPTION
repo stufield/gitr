@@ -9,11 +9,11 @@ Authors@R: c(
            comment = c(ORCID = "0000-0002-1024-5859"))
     )
 Description: A light-weight, dependency-free, application programming interface
-    (API) to access system-level 'Git' commands from within 'R'.
-    Contains wrappers and defaults for common data science workflows as well as
-    'Zsh' <https://github.com/ohmyzsh/ohmyzsh> plugin aliases.
-    A generalized API syntax is also available.
-    A system installation of 'Git' <https://git-scm.com/downloads> is required.
+    (API) to access system-level 'Git' commands from within 'R'. Contains wrappers
+    and defaults for common data science workflows as well as 'Zsh'
+    <https://github.com/ohmyzsh/ohmyzsh> plugin aliases. A generalized API syntax
+    is also available. A system installation of 'Git'
+    <https://git-scm.com/downloads> is required.
 License: MIT + file LICENSE
 URL: https://stufield.github.io/gitr/
 BugReports: https://github.com/stufield/gitr/issues
@@ -29,7 +29,7 @@ VignetteBuilder:
     knitr
 Encoding: UTF-8
 LazyLoad: true
-Copyright: Stu Field 2023
+Copyright: Stu Field 2025
 Config/testthat/edition: 3
 Config/Needs/website: tidyverse/tidytemplate
 Roxygen: list(markdown = TRUE)
