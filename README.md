@@ -81,7 +81,7 @@ actions:
 
 ``` r
 git_version()
-#> [1] "2.45.1"
+#> [1] "2.49.0"
 ```
 
 ``` r
@@ -107,28 +107,23 @@ git_default_br()
 #> 
 #> $stderr
 #> [1] ""
-```
-
-``` r
 
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                                    a0d1d29 Bump roxygen version note
-#> * main                                   a0d1d29 Bump roxygen version note
+#>   foo                                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`
+#> * main                                   15eccf3 Cleaned up trailing single spaces in `git_sitrep()`
+#>   remotes/origin/HEAD                    -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
-#>   remotes/origin/gh-pages                82842fe Built site for gitr: 0.0.1@caea1a4
-#>   remotes/origin/main                    a0d1d29 Bump roxygen version note
+#>   remotes/origin/gh-pages                80805b5 Built site for gitr@0.0.1.9000: 2d487d7
+#>   remotes/origin/main                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`
 #>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
 #>   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1
 #>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
-```
-
-``` r
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was a0d1d29)."
+#> [1] "Deleted branch foo (was 15eccf3)."
 ```
 
 #### Committing
@@ -137,25 +132,31 @@ git("branch", "-D", "foo")$stdout
 get_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Bump roxygen version note" ""                         
+#> [1] "Cleaned up trailing single spaces in `git_sitrep()`"
+#> [2] ""                                                   
+#> [3] "- sep = \"\" in `cat()` calls"                      
+#> [4] ""                                                   
 #> attr(,"sha")
-#> [1] "a0d1d29"
+#> [1] "15eccf3"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Fix bug in git_diffcommits()"      ""                                 
-#> [3] "- indexing is now correct (x - 1)" ""                                 
+#> [1] "Minor clean up of `git_sitrep()` internals" ""                                          
 #> attr(,"sha")
-#> [1] "63bb196"
+#> [1] "2d487d7"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Don't show full diff-commit" ""                            "- too verbose"              
-#> [4] ""                           
+#> [1] "Added basic unit tests for `get_commit_msgs()` (#5)"
+#> [2] ""                                                   
+#> [3] "- fixed a bug in docs"                              
+#> [4] "- error catches unit tests"                         
+#> [5] "- other functionality might be difficult"           
+#> [6] ""                                                   
 #> attr(,"sha")
-#> [1] "aed1255"
+#> [1] "06b040f"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 ```
@@ -163,11 +164,11 @@ get_commit_msgs(n = 3)
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * a0d1d29 (HEAD -> main, origin/main) Bump roxygen version note
-#> * 63bb196 Fix bug in git_diffcommits()
-#> * aed1255 Don't show full diff-commit
-#> * a3497b4 Fix pipe escapes in README
-#> * 9d192e9 Fix Makefile recipe
+#> * 15eccf3 (HEAD -> main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`
+#> * 2d487d7 Minor clean up of `git_sitrep()` internals
+#> * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)
+#> * fd67ab9 Added branch unit tests (#5)
+#> * 402df75 Breaking changes! `gclean()` & `gitr.echo_cmd =`
 ```
 
 ``` r
@@ -195,21 +196,12 @@ git_unstage("DESCRIPTION")
 ``` r
 is_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 #> [1] TRUE
-```
-
-``` r
 
 is_sha("foo")
 #> [1] FALSE
-```
-
-``` r
 
 trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 #> [1] "d670c93"
-```
-
-``` r
 
 trim_sha("foo")
 #> [1] "foo"
@@ -219,7 +211,6 @@ trim_sha("foo")
 
 ``` r
 git_recent_tag()
-#> Running git tag -n
 #> [1] "v0.0.1"
 ```
 
@@ -235,10 +226,10 @@ git_tag_info()
 
 ``` r
 git_sitrep()
-#> Using Git version: 2.45.1 
+#> Using Git version: 2.49.0
 #> 
 #> Current branch: main
-#> Default branch: main 
+#> Default branch: main
 #> 
 #> Repo status:
 #> Running git status -s 
@@ -247,6 +238,7 @@ git_sitrep()
 #> Branches:
 #> Running git branch -a 
 #> * main
+#>   remotes/origin/HEAD -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha
 #>   remotes/origin/gh-pages
 #>   remotes/origin/main
@@ -257,16 +249,16 @@ git_sitrep()
 #> Local status:
 #> ✓ OK
 #> 
-#> Upstream remotes: origin 
-#> * main a0d1d29 [origin/main] Bump roxygen version note
+#> Upstream remotes: origin
+#> * main 15eccf3 [origin/main] Cleaned up trailing single spaces in `git_sitrep()`
 #> 
-#> Commit log: main 
+#> Commit log: main
 #> Running git log --oneline --graph --decorate -n 5 
-#> * a0d1d29 (HEAD -> main, origin/main) Bump roxygen version note
-#> * 63bb196 Fix bug in git_diffcommits()
-#> * aed1255 Don't show full diff-commit
-#> * a3497b4 Fix pipe escapes in README
-#> * 9d192e9 Fix Makefile recipe
+#> * 15eccf3 (HEAD -> main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`
+#> * 2d487d7 Minor clean up of `git_sitrep()` internals
+#> * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)
+#> * fd67ab9 Added branch unit tests (#5)
+#> * 402df75 Breaking changes! `gclean()` & `gitr.echo_cmd =`
 ```
 
 ------------------------------------------------------------------------
