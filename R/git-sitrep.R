@@ -25,15 +25,15 @@ git_sitrep <- function() {
     remote <- git("remote", "show", echo_cmd = FALSE)$stdout
 
     cat("\nLocal status:\n")
-    if ( ah == 0 && be == 0 ) {
+    if ( ah == "0" && be == "0" ) {
       done("OK")
     }
-    if ( ah > 0 ) {
+    if ( ah > "0" ) {
       cat("Your local branch", slug_color(br),
           "is ahead of", slug_color(paste0(remote, "/", br), "\033[34m"),
           "by", ah, "commits.\n")
     }
-    if ( be > 0 ) {
+    if ( be > "0" ) {
       cat("Your local branch", slug_color(br),
           "is behind", slug_color(paste0(remote, "/", br), "\033[34m"),
           "by", be, "commits.\n")
@@ -51,7 +51,7 @@ git_sitrep <- function() {
     }
 
     cat("\nCommit log:", slug_color(br, "\033[32m"), "\n")
-    glog(5)
+    glog(5L)
   } else {
     invisible(NULL)
   }
