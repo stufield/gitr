@@ -15,10 +15,16 @@ NULL
 #'
 #' @export
 get_commit_msgs <- function(sha = NULL, n = 1L) {
-  if ( is.null(sha) ) {
+  if ( is.null(sha) ) {  # do this first
     sha <- git("log", "--format=%H", "-n", n)$stdout
+  } else {
+    stopifnot(
+      "`sha` must be `character(1)`." = length(sha) == 1L,
+      "`sha` cannot be NA."           = !is.na(sha),
+      "`sha` cannot be empty ''."     = sha != "",
+      "`sha` must be `character(1)`." = is.character(sha)
+    )
   }
-  stopifnot(length(sha) > 0, sha != "", !is.na(sha), is.character(sha))
   lapply(sha, function(.x) {
     structure(
       git("log", "--format=%B", "-1", .x, echo_cmd = FALSE)$stdout,
@@ -48,7 +54,6 @@ scrape_commits <- function(n) {
       grepl("Bump to dev", .msg, ignore.case = TRUE) |
       grepl("Pull request #[0-9]+", .msg, ignore.case = TRUE) |
       grepl("Update README", .msg, ignore.case = TRUE) |
-      grepl("skip-edge", .msg, ignore.case = TRUE) |
       grepl("Increment version", .msg, ignore.case = TRUE) |
       grepl("Update.*pkgdown", .msg)
     (a || b)
@@ -118,9 +123,10 @@ git_reset_hard <- function() {
 }
 
 #' @describeIn commit
-#'   gets the diff of the corresponding 2 commits. Order matters.
+#'   gets the diff of the corresponding 2 commits.
+#'   Order matters!
 #'
-#' @param top `integer(1)`The commit to consider the
+#' @param top `integer(1)`. The commit to consider the
 #'   "top" of the commit stack.
 #'   Defaults to `HEAD~0` or `top = 1`.
 #'

@@ -35,7 +35,7 @@ For \verb{git stash} commands, zero-index into the stash list.}
 
 \item{file}{\code{character(1)}. The path name to a file.}
 
-\item{top}{\code{integer(1)}The commit to consider the
+\item{top}{\code{integer(1)}. The commit to consider the
 "top" of the commit stack.
 Defaults to \code{HEAD~0} or \code{top = 1}.}
 }
@@ -67,6 +67,7 @@ Wrapper around \code{\link[=git_reset_soft]{git_reset_soft()}}
 
 \item \code{git_reset_hard()}: \verb{git reset --hard origin/<branch>}.
 
-\item \code{git_diffcommits()}: gets the diff of the corresponding 2 commits. Order matters.
+\item \code{git_diffcommits()}: gets the diff of the corresponding 2 commits.
+Order matters!
 
 }}
