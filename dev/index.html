@@ -92,7 +92,7 @@
 </h4>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/git.html">git_version</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "2.45.1"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2.49.0"</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">git_current_br</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "main"</span></span></code></pre></div>
@@ -113,100 +113,101 @@
 <span><span class="co">#&gt; [1] ""</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $stderr</span></span>
-<span><span class="co">#&gt; [1] ""</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] ""</span></span>
+<span></span>
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch -av </span></span>
-<span><span class="co">#&gt;   foo                                    a0d1d29 Bump roxygen version note</span></span>
-<span><span class="co">#&gt; * main                                   a0d1d29 Bump roxygen version note</span></span>
+<span><span class="co">#&gt;   foo                                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`</span></span>
+<span><span class="co">#&gt; * main                                   15eccf3 Cleaned up trailing single spaces in `git_sitrep()`</span></span>
+<span><span class="co">#&gt;   remotes/origin/HEAD                    -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)</span></span>
-<span><span class="co">#&gt;   remotes/origin/gh-pages                82842fe Built site for gitr: 0.0.1@caea1a4</span></span>
-<span><span class="co">#&gt;   remotes/origin/main                    a0d1d29 Bump roxygen version note</span></span>
+<span><span class="co">#&gt;   remotes/origin/gh-pages                80805b5 Built site for gitr@0.0.1.9000: 2d487d7</span></span>
+<span><span class="co">#&gt;   remotes/origin/main                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs</span></span>
 <span><span class="co">#&gt;   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1</span></span>
-<span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span>
+<span></span>
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-D"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
 <span><span class="co">#&gt; Running git branch -D foo</span></span>
-<span><span class="co">#&gt; [1] "Deleted branch foo (was a0d1d29)."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Deleted branch foo (was 15eccf3)."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="committing">Committing<a class="anchor" aria-label="anchor" href="#committing"></a>
 </h4>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">get_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --format=%H -n 3</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "Bump roxygen version note" ""                         </span></span>
+<span><span class="co">#&gt; [1] "Cleaned up trailing single spaces in `git_sitrep()`"</span></span>
+<span><span class="co">#&gt; [2] ""                                                   </span></span>
+<span><span class="co">#&gt; [3] "- sep = \"\" in `cat()` calls"                      </span></span>
+<span><span class="co">#&gt; [4] ""                                                   </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "a0d1d29"</span></span>
+<span><span class="co">#&gt; [1] "15eccf3"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "Fix bug in git_diffcommits()"      ""                                 </span></span>
-<span><span class="co">#&gt; [3] "- indexing is now correct (x - 1)" ""                                 </span></span>
+<span><span class="co">#&gt; [1] "Minor clean up of `git_sitrep()` internals" ""                                          </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "63bb196"</span></span>
+<span><span class="co">#&gt; [1] "2d487d7"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "Don't show full diff-commit" ""                            "- too verbose"              </span></span>
-<span><span class="co">#&gt; [4] ""                           </span></span>
+<span><span class="co">#&gt; [1] "Added basic unit tests for `get_commit_msgs()` (#5)"</span></span>
+<span><span class="co">#&gt; [2] ""                                                   </span></span>
+<span><span class="co">#&gt; [3] "- fixed a bug in docs"                              </span></span>
+<span><span class="co">#&gt; [4] "- error catches unit tests"                         </span></span>
+<span><span class="co">#&gt; [5] "- other functionality might be difficult"           </span></span>
+<span><span class="co">#&gt; [6] ""                                                   </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "aed1255"</span></span>
+<span><span class="co">#&gt; [1] "06b040f"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * a0d1d29 (HEAD -&gt; main, origin/main) Bump roxygen version note</span></span>
-<span><span class="co">#&gt; * 63bb196 Fix bug in git_diffcommits()</span></span>
-<span><span class="co">#&gt; * aed1255 Don't show full diff-commit</span></span>
-<span><span class="co">#&gt; * a3497b4 Fix pipe escapes in README</span></span>
-<span><span class="co">#&gt; * 9d192e9 Fix Makefile recipe</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<span><span class="co">#&gt; * 15eccf3 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`</span></span>
+<span><span class="co">#&gt; * 2d487d7 Minor clean up of `git_sitrep()` internals</span></span>
+<span><span class="co">#&gt; * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)</span></span>
+<span><span class="co">#&gt; * fd67ab9 Added branch unit tests (#5)</span></span>
+<span><span class="co">#&gt; * 402df75 Breaking changes! `gclean()` &amp; `gitr.echo_cmd =`</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_diffcommits</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_reset_hard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_reset_soft</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_uncommit</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_unstage</a></span><span class="op">(</span><span class="st">"DESCRIPTION"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="sha1">SHA1<a class="anchor" aria-label="anchor" href="#sha1"></a>
 </h4>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="st">"d670c93733f3e1d7c95df7f61ebf6ca0476f14e3"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] TRUE</span></span>
+<span></span>
 <span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] FALSE</span></span>
+<span></span>
 <span><span class="fu"><a href="reference/sha.html">trim_sha</a></span><span class="op">(</span><span class="st">"d670c93733f3e1d7c95df7f61ebf6ca0476f14e3"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "d670c93"</span></span></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
+<span><span class="co">#&gt; [1] "d670c93"</span></span>
+<span></span>
 <span><span class="fu"><a href="reference/sha.html">trim_sha</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "foo"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="tags">Tags<a class="anchor" aria-label="anchor" href="#tags"></a>
 </h4>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">git_recent_tag</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Running git tag -n</span></span>
 <span><span class="co">#&gt; [1] "v0.0.1"</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">git_tag_info</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           tag tag_sha target_sha           message    author                   email        user</span></span>
 <span><span class="co">#&gt; v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
@@ -216,12 +217,12 @@
 <div class="section level4">
 <h4 id="situation-report">Situation Report<a class="anchor" aria-label="anchor" href="#situation-report"></a>
 </h4>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/git_sitrep.html">git_sitrep</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Using Git version: 2.45.1 </span></span>
+<span><span class="co">#&gt; Using Git version: 2.49.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Current branch: main</span></span>
-<span><span class="co">#&gt; Default branch: main </span></span>
+<span><span class="co">#&gt; Default branch: main</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Repo status:</span></span>
 <span><span class="co">#&gt; Running git status -s </span></span>
@@ -230,6 +231,7 @@
 <span><span class="co">#&gt; Branches:</span></span>
 <span><span class="co">#&gt; Running git branch -a </span></span>
 <span><span class="co">#&gt; * main</span></span>
+<span><span class="co">#&gt;   remotes/origin/HEAD -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha</span></span>
 <span><span class="co">#&gt;   remotes/origin/gh-pages</span></span>
 <span><span class="co">#&gt;   remotes/origin/main</span></span>
@@ -240,16 +242,16 @@
 <span><span class="co">#&gt; Local status:</span></span>
 <span><span class="co">#&gt; ✓ OK</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Upstream remotes: origin </span></span>
-<span><span class="co">#&gt; * main a0d1d29 [origin/main] Bump roxygen version note</span></span>
+<span><span class="co">#&gt; Upstream remotes: origin</span></span>
+<span><span class="co">#&gt; * main 15eccf3 [origin/main] Cleaned up trailing single spaces in `git_sitrep()`</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Commit log: main </span></span>
+<span><span class="co">#&gt; Commit log: main</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * a0d1d29 (HEAD -&gt; main, origin/main) Bump roxygen version note</span></span>
-<span><span class="co">#&gt; * 63bb196 Fix bug in git_diffcommits()</span></span>
-<span><span class="co">#&gt; * aed1255 Don't show full diff-commit</span></span>
-<span><span class="co">#&gt; * a3497b4 Fix pipe escapes in README</span></span>
-<span><span class="co">#&gt; * 9d192e9 Fix Makefile recipe</span></span></code></pre></div>
+<span><span class="co">#&gt; * 15eccf3 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`</span></span>
+<span><span class="co">#&gt; * 2d487d7 Minor clean up of `git_sitrep()` internals</span></span>
+<span><span class="co">#&gt; * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)</span></span>
+<span><span class="co">#&gt; * fd67ab9 Added branch unit tests (#5)</span></span>
+<span><span class="co">#&gt; * 402df75 Breaking changes! `gclean()` &amp; `gitr.echo_cmd =`</span></span></code></pre></div>
 <hr>
 </div>
 </div>
