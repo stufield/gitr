@@ -54,6 +54,7 @@ scrape_commits <- function(n) {
       grepl("Bump to dev", .msg, ignore.case = TRUE) |
       grepl("Pull request #[0-9]+", .msg, ignore.case = TRUE) |
       grepl("Update README", .msg, ignore.case = TRUE) |
+      grepl("Re-build README", .msg, ignore.case = TRUE) |
       grepl("Increment version", .msg, ignore.case = TRUE) |
       grepl("Update.*pkgdown", .msg)
     (a || b)
