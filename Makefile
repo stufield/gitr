@@ -42,9 +42,12 @@ build: docs
 	@ cd ..;\
 	$(RCMD) build --resave-data $(PKGSRC)
 
-check: build
+check:
 	@ cd ..;\
-	$(RCMD) check --no-manual $(PKGNAME)_$(PKGVERS).tar.gz
+	$(RSCRIPT) \
+	-e "args <- c('--no-manual', '--as-cran', '--no-build-vignettes', '--timings')" \
+	-e "build_args <- c('--no-manual', '--no-resave-data')" \
+	-e "rcmdcheck::rcmdcheck('$(PKGNAME)', args = args, build_args = build_args)"
 
 install:
 	@ R CMD INSTALL --use-vanilla --preclean --resave-data .
