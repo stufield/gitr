@@ -64,7 +64,8 @@ or
 ## Installing
 
 The easiest way to install `gitr` is to install directly from
-[CRAN](https://cran.r-project.org/web/packages/gitr/index.html):
+[CRAN](https://CRAN.R-project.org/package=gitr)
+
 
 ```{r install-cran, eval = FALSE}
 install.packages("gitr")
