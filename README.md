@@ -46,7 +46,7 @@ request](https://github.com/stufield/gitr/pulls/).
 ## Installing
 
 The easiest way to install `gitr` is to install directly from
-[CRAN](https://cran.r-project.org/web/packages/gitr/index.html):
+[CRAN](https://CRAN.R-project.org/package=gitr)
 
 ``` r
 install.packages("gitr")
@@ -111,19 +111,19 @@ git_default_br()
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`
-#> * main                                   15eccf3 Cleaned up trailing single spaces in `git_sitrep()`
+#>   foo                                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check
+#> * main                                   f2554e3 Makefile now uses `rcmdcheck` over R CMD check
 #>   remotes/origin/HEAD                    -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
-#>   remotes/origin/gh-pages                80805b5 Built site for gitr@0.0.1.9000: 2d487d7
-#>   remotes/origin/main                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`
+#>   remotes/origin/gh-pages                cc64a18 Built site for gitr@0.0.1.9000: f2554e3
+#>   remotes/origin/main                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check
 #>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
 #>   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1
 #>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was 15eccf3)."
+#> [1] "Deleted branch foo (was f2554e3)."
 ```
 
 #### Committing
@@ -132,31 +132,34 @@ git("branch", "-D", "foo")$stdout
 get_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Cleaned up trailing single spaces in `git_sitrep()`"
-#> [2] ""                                                   
-#> [3] "- sep = \"\" in `cat()` calls"                      
-#> [4] ""                                                   
+#> [1] "Makefile now uses `rcmdcheck` over R CMD check"
+#> [2] ""                                              
+#> [3] "- to match the checks in the GHA workflows"    
+#> [4] ""                                              
 #> attr(,"sha")
-#> [1] "15eccf3"
+#> [1] "f2554e3"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Minor clean up of `git_sitrep()` internals" ""                                          
+#> [1] "Fixed possibly broken URLs" ""                          
 #> attr(,"sha")
-#> [1] "2d487d7"
+#> [1] "7318385"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Added basic unit tests for `get_commit_msgs()` (#5)"
-#> [2] ""                                                   
-#> [3] "- fixed a bug in docs"                              
-#> [4] "- error catches unit tests"                         
-#> [5] "- other functionality might be difficult"           
-#> [6] ""                                                   
+#> [1] "Testing during R CMD Check can be difficult"                  
+#> [2] ""                                                             
+#> [3] "- because R CMD check doesn't copy over the .git"             
+#> [4] "  directory during build ... it's technically not a git repo!"
+#> [5] "- so we have to skip many of these tests if they're"          
+#> [6] "  outside of this scope"                                      
+#> [7] "- rely on `devtools::test()` ... aka `make test`"             
+#> [8] "- not ideal, may have to come up with another solution"       
+#> [9] ""                                                             
 #> attr(,"sha")
-#> [1] "06b040f"
+#> [1] "8525393"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 ```
@@ -164,11 +167,11 @@ get_commit_msgs(n = 3)
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 15eccf3 (HEAD -> main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`
-#> * 2d487d7 Minor clean up of `git_sitrep()` internals
-#> * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)
-#> * fd67ab9 Added branch unit tests (#5)
-#> * 402df75 Breaking changes! `gclean()` & `gitr.echo_cmd =`
+#> * f2554e3 (HEAD -> main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check
+#> * 7318385 Fixed possibly broken URLs
+#> * 8525393 Testing during R CMD Check can be difficult
+#> * 7973b17 Added unit tests for "commit" group
+#> * 78b3c85 Set up special gitr unit testing fixtures
 ```
 
 ``` r
@@ -250,15 +253,15 @@ git_sitrep()
 #> ✓ OK
 #> 
 #> Upstream remotes: origin
-#> * main 15eccf3 [origin/main] Cleaned up trailing single spaces in `git_sitrep()`
+#> * main f2554e3 [origin/main] Makefile now uses `rcmdcheck` over R CMD check
 #> 
 #> Commit log: main
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 15eccf3 (HEAD -> main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`
-#> * 2d487d7 Minor clean up of `git_sitrep()` internals
-#> * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)
-#> * fd67ab9 Added branch unit tests (#5)
-#> * 402df75 Breaking changes! `gclean()` & `gitr.echo_cmd =`
+#> * f2554e3 (HEAD -> main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check
+#> * 7318385 Fixed possibly broken URLs
+#> * 8525393 Testing during R CMD Check can be difficult
+#> * 7973b17 Added unit tests for "commit" group
+#> * 78b3c85 Set up special gitr unit testing fixtures
 ```
 
 ------------------------------------------------------------------------
