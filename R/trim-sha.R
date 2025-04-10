@@ -32,3 +32,15 @@ trim_sha <- function(sha) {
 is_sha <- function(sha) {
   grepl("^[a-f0-9]{5,40}$", sha)
 }
+
+#' @describeIn sha
+#'   gets the current (most recent commit) SHA.
+#'
+#' @return [git_current_sha()]: `character(1)`. The `sha`
+#'   of the current commit.
+#'
+#' @export
+git_current_sha <- function() {
+  sha <- git("rev-parse", "HEAD")$stdout
+  trim_sha(sha)
+}
