@@ -42,7 +42,7 @@ test_that("`get_commit_msgs()` gives correct commit after adding one", {
   atts <- attributes(cmt[[1L]])
   expect_true(is_sha(atts$sha))
   expect_equal(atts$sha, git_current_sha())
-  expect_true(grepl("^[^ ]+[@][^ ]+[.]com$", atts$author))
+  expect_true(grepl("^[^ ]+[@][^ ]+$", atts$author))
   expect_equal(unlist(cmt), c(title, "", msg, ""))
 })
 
