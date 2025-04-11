@@ -20,3 +20,18 @@
       [1] "whitewizard@isengard.com"
       
 
+# `git_diffcommits()` returns correct output diffing a recent commit
+
+    Code
+      git_diffcommits()
+    Output
+      diff --git a/gitr-diffcommit-file b/gitr-diffcommit-file
+      new file mode 100644
+      index 0000000..9990b67
+      --- /dev/null
+      +++ b/gitr-diffcommit-file
+      @@ -0,0 +1,3 @@
+      +This is a unit test for `git_diffcommit()`.
+      +
+      +This file should be deleted following unit test cleanup.
+
