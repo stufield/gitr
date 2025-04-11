@@ -48,9 +48,7 @@ Git commands from within R.</p>
 <span></span>
 <span><span class="fu">is_git</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">git_version</span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">git_checkout</span><span class="op">(</span>branch <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">git_version</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -67,11 +65,6 @@ command-line <code>git &lt;command&gt; [&lt;args&gt;]</code> call.</p></dd>
 command to run to the console. Can be over-ridden
 globally via <code>option(gitr_echo_cmd = FALSE)</code>.</p></dd>
 
-
-<dt id="arg-branch">branch<a class="anchor" aria-label="anchor" href="#arg-branch"></a></dt>
-<dd><p><code>character(1)</code>. The name of a branch, typically a
-feature branch.</p></dd>
-
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -79,7 +72,6 @@ feature branch.</p></dd>
 <p><code>is_git()</code>: <code>logical(1)</code>.</p>
 <p><code>git_version()</code>: <code>character(1)</code>.
 The system version of <code>git</code>.</p>
-<p><code>git_checkout()</code>: <code>NULL</code> ... invisibly.</p>
     </div>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
@@ -87,8 +79,6 @@ The system version of <code>git</code>.</p>
 <ul><li><p><code>git()</code>: executes a <code>git</code> command line call from within R.</p></li>
 <li><p><code>is_git()</code>: is current working directory a <code>git</code> repository?</p></li>
 <li><p><code>git_version()</code>: gets the version of git in use.</p></li>
-<li><p><code>git_checkout()</code>: <code>git checkout</code> as a branch if doesn't exist. Branch
-oriented workflow for switching between branches.</p></li>
 </ul></div>
 
     <div class="section level2">

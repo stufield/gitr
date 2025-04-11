@@ -66,7 +66,7 @@
 <div class="section level2">
 <h2 id="installing">Installing<a class="anchor" aria-label="anchor" href="#installing"></a>
 </h2>
-<p>The easiest way to install <code>gitr</code> is to install directly from <a href="https://cran.r-project.org/web/packages/gitr/index.html" class="external-link">CRAN</a>:</p>
+<p>The easiest way to install <code>gitr</code> is to install directly from <a href="https://CRAN.R-project.org/package=gitr" class="external-link">CRAN</a></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"gitr"</span><span class="op">)</span></span></code></pre></div>
 <p>Alternatively install the development version from GitHub:</p>
@@ -118,19 +118,19 @@
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch -av </span></span>
-<span><span class="co">#&gt;   foo                                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`</span></span>
-<span><span class="co">#&gt; * main                                   15eccf3 Cleaned up trailing single spaces in `git_sitrep()`</span></span>
+<span><span class="co">#&gt;   foo                                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check</span></span>
+<span><span class="co">#&gt; * main                                   f2554e3 Makefile now uses `rcmdcheck` over R CMD check</span></span>
 <span><span class="co">#&gt;   remotes/origin/HEAD                    -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)</span></span>
-<span><span class="co">#&gt;   remotes/origin/gh-pages                80805b5 Built site for gitr@0.0.1.9000: 2d487d7</span></span>
-<span><span class="co">#&gt;   remotes/origin/main                    15eccf3 Cleaned up trailing single spaces in `git_sitrep()`</span></span>
+<span><span class="co">#&gt;   remotes/origin/gh-pages                cc64a18 Built site for gitr@0.0.1.9000: f2554e3</span></span>
+<span><span class="co">#&gt;   remotes/origin/main                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs</span></span>
 <span><span class="co">#&gt;   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-D"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
 <span><span class="co">#&gt; Running git branch -D foo</span></span>
-<span><span class="co">#&gt; [1] "Deleted branch foo (was 15eccf3)."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Deleted branch foo (was f2554e3)."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="committing">Committing<a class="anchor" aria-label="anchor" href="#committing"></a>
@@ -139,41 +139,44 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">get_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --format=%H -n 3</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "Cleaned up trailing single spaces in `git_sitrep()`"</span></span>
-<span><span class="co">#&gt; [2] ""                                                   </span></span>
-<span><span class="co">#&gt; [3] "- sep = \"\" in `cat()` calls"                      </span></span>
-<span><span class="co">#&gt; [4] ""                                                   </span></span>
+<span><span class="co">#&gt; [1] "Makefile now uses `rcmdcheck` over R CMD check"</span></span>
+<span><span class="co">#&gt; [2] ""                                              </span></span>
+<span><span class="co">#&gt; [3] "- to match the checks in the GHA workflows"    </span></span>
+<span><span class="co">#&gt; [4] ""                                              </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "15eccf3"</span></span>
+<span><span class="co">#&gt; [1] "f2554e3"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "Minor clean up of `git_sitrep()` internals" ""                                          </span></span>
+<span><span class="co">#&gt; [1] "Fixed possibly broken URLs" ""                          </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "2d487d7"</span></span>
+<span><span class="co">#&gt; [1] "7318385"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "Added basic unit tests for `get_commit_msgs()` (#5)"</span></span>
-<span><span class="co">#&gt; [2] ""                                                   </span></span>
-<span><span class="co">#&gt; [3] "- fixed a bug in docs"                              </span></span>
-<span><span class="co">#&gt; [4] "- error catches unit tests"                         </span></span>
-<span><span class="co">#&gt; [5] "- other functionality might be difficult"           </span></span>
-<span><span class="co">#&gt; [6] ""                                                   </span></span>
+<span><span class="co">#&gt; [1] "Testing during R CMD Check can be difficult"                  </span></span>
+<span><span class="co">#&gt; [2] ""                                                             </span></span>
+<span><span class="co">#&gt; [3] "- because R CMD check doesn't copy over the .git"             </span></span>
+<span><span class="co">#&gt; [4] "  directory during build ... it's technically not a git repo!"</span></span>
+<span><span class="co">#&gt; [5] "- so we have to skip many of these tests if they're"          </span></span>
+<span><span class="co">#&gt; [6] "  outside of this scope"                                      </span></span>
+<span><span class="co">#&gt; [7] "- rely on `devtools::test()` ... aka `make test`"             </span></span>
+<span><span class="co">#&gt; [8] "- not ideal, may have to come up with another solution"       </span></span>
+<span><span class="co">#&gt; [9] ""                                                             </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "06b040f"</span></span>
+<span><span class="co">#&gt; [1] "8525393"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 15eccf3 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`</span></span>
-<span><span class="co">#&gt; * 2d487d7 Minor clean up of `git_sitrep()` internals</span></span>
-<span><span class="co">#&gt; * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)</span></span>
-<span><span class="co">#&gt; * fd67ab9 Added branch unit tests (#5)</span></span>
-<span><span class="co">#&gt; * 402df75 Breaking changes! `gclean()` &amp; `gitr.echo_cmd =`</span></span></code></pre></div>
+<span><span class="co">#&gt; * f2554e3 (HEAD -&gt; main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check</span></span>
+<span><span class="co">#&gt; * 7318385 Fixed possibly broken URLs</span></span>
+<span><span class="co">#&gt; * 8525393 Testing during R CMD Check can be difficult</span></span>
+<span><span class="co">#&gt; * 7973b17 Added unit tests for "commit" group</span></span>
+<span><span class="co">#&gt; * 78b3c85 Set up special gitr unit testing fixtures</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_diffcommits</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -243,15 +246,15 @@
 <span><span class="co">#&gt; ✓ OK</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Upstream remotes: origin</span></span>
-<span><span class="co">#&gt; * main 15eccf3 [origin/main] Cleaned up trailing single spaces in `git_sitrep()`</span></span>
+<span><span class="co">#&gt; * main f2554e3 [origin/main] Makefile now uses `rcmdcheck` over R CMD check</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Commit log: main</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 15eccf3 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up trailing single spaces in `git_sitrep()`</span></span>
-<span><span class="co">#&gt; * 2d487d7 Minor clean up of `git_sitrep()` internals</span></span>
-<span><span class="co">#&gt; * 06b040f Added basic unit tests for `get_commit_msgs()` (#5)</span></span>
-<span><span class="co">#&gt; * fd67ab9 Added branch unit tests (#5)</span></span>
-<span><span class="co">#&gt; * 402df75 Breaking changes! `gclean()` &amp; `gitr.echo_cmd =`</span></span></code></pre></div>
+<span><span class="co">#&gt; * f2554e3 (HEAD -&gt; main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check</span></span>
+<span><span class="co">#&gt; * 7318385 Fixed possibly broken URLs</span></span>
+<span><span class="co">#&gt; * 8525393 Testing during R CMD Check can be difficult</span></span>
+<span><span class="co">#&gt; * 7973b17 Added unit tests for "commit" group</span></span>
+<span><span class="co">#&gt; * 78b3c85 Set up special gitr unit testing fixtures</span></span></code></pre></div>
 <hr>
 </div>
 </div>
