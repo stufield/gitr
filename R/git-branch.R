@@ -43,3 +43,16 @@ git_current_br <- function() {
     invisible()
   }
 }
+
+#' @describeIn branch
+#'   gets all the *local* branches.
+#'
+#' @export
+git_local_br <- function() {
+  if ( is_git() ) {
+    ref <- git("branch", "--list", echo_cmd = FALSE)$stdout
+    gsub("^[^[:alnum:]]*(.*)[^[:alnum:]]*$", "\\1", ref)
+  } else {
+    invisible()
+  }
+}

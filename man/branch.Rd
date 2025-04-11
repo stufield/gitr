@@ -4,11 +4,14 @@
 \alias{branch}
 \alias{git_default_br}
 \alias{git_current_br}
+\alias{git_local_br}
 \title{Git Branch Utilities}
 \usage{
 git_default_br()
 
 git_current_br()
+
+git_local_br()
 }
 \value{
 \code{character(1)}. The name of the respective
@@ -23,5 +26,7 @@ Git Branch Utilities
 \code{master}, \code{main}, or \code{trunk}.
 
 \item \code{git_current_br()}: gets the \emph{current} branch.
+
+\item \code{git_local_br()}: gets all the \emph{local} branches.
 
 }}
