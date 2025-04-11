@@ -13,7 +13,7 @@
 #' @export
 lint_commit_msg <- function(x) {
   if ( length(x) == 0L ) {
-    return(0)
+    return(0L)
   }
   sha <- attr(x, "sha") %||% "\u2716"
   cnt <- 0L
@@ -49,9 +49,9 @@ lint_commit_msg <- function(x) {
     cnt <- cnt + 1L
   }
   y <- paste(x, collapse = "\n")
-  jira <- grepl("[A-Z]{2,10}-[0-9]{1,4}", y)
-  gh   <- grepl("fixes .*#[0-9]{1,4}|closes .*#[0-9]{1,4}", y, ignore.case = TRUE)
-  if ( !(jira || gh) ) {
+  issue <- grepl("[A-Z]{2,10}-[0-9]{1,4}", y)
+  gh    <- grepl("fixes .*#[0-9]{1,4}|closes .*#[0-9]{1,4}", y, ignore.case = TRUE)
+  if ( !(issue || gh) ) {
     warning("Could not find an issue number in commit message (", sha, ")",
             call. = FALSE)
     cnt <- cnt + 1L
