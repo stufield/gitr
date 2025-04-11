@@ -2,8 +2,13 @@
 test_that("`is_git()` can detect whether it is in a Git repo", {
   dir <- tempfile("gitr-is_git-")
   dir.create(dir)
+  # not git
   withr::with_dir(dir, expect_false(suppressMessages(is_git())))
-  withr::with_dir(".", expect_true(is_git()))
+  # now git
+  withr::with_dir(dir, {
+    git("init", echo_cmd = FALSE)
+    expect_true(is_git())
+  })
 })
 
 test_that("the basic functionality of `git()` works as expected", {
