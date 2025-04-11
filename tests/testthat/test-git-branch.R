@@ -1,6 +1,6 @@
 
 # Setup ----
-skip_if_not(is_git())   # skips is during R CMD check
+skip_if_not(is_git())
 dir <- local_create_worktree()
 
 
