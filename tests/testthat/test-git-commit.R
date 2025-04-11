@@ -50,8 +50,18 @@ test_that("`get_commit_msgs()` gives correct commit after adding one", {
 })
 
 test_that("`scrape_commits()` returns expected (must execute after above)", {
-  skip("figure out changing sha")
-  expect_snapshot(scrape_commits(1L))
+  # do this in 2 steps b/c the git-sha will fail with every snapshot
+  # step 1
+  expect_snapshot(commit <- scrape_commits(1L))
+
+  clean_commit_sha <- function(x, fake_sha = "abc1234") {
+    stopifnot(length(x) == 1L)
+    attr(x[[1L]], "sha") <- fake_sha  # clean attr of 1L
+    setNames(x, fake_sha)             # rename
+  }
+
+  # step 2
+  expect_snapshot(clean_commit_sha(commit))
 })
 
 test_that("`git_uncommit()` pops the current commit off the commit stack", {
