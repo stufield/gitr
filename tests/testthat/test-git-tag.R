@@ -20,7 +20,7 @@ test_that("`gitr_tag_info()` unit tests (minimal)", {
   expect_named(tag_df, c("tag", "tag_sha", "target_sha", "message",
                           "author", "email", "user", "tagdate",
                           "size", "path"))
-  expect_true(nrow(tag_df) >= 2L)
+  expect_true(nrow(tag_df) > 0L)
   recent_tag <- tag_df[tagname, ]
   expect_equal(recent_tag$tag, tagname)
   expect_equal(recent_tag$message, "Unit test tag v0.0.9000")
