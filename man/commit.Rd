@@ -27,7 +27,7 @@ git_diffcommits(top = 1L, n = 2L)
 }
 \arguments{
 \item{sha}{\code{character(1)}. The commit secure hash algorithm (SHA-1).
-If \code{NULL}, typicall reverts to the most recent commit on the current branch.}
+If \code{NULL}, typically points to the most recent commit on the current branch.}
 
 \item{n}{\code{integer(1)}. How far back to go from current \code{HEAD}.
 Same as the command line \verb{git log -n} parameter.

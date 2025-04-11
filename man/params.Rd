@@ -14,7 +14,7 @@ For \verb{git stash} commands, zero-index into the stash list.}
 feature branch.}
 
 \item{sha}{\code{character(1)}. The commit secure hash algorithm (SHA-1).
-If \code{NULL}, typicall reverts to the most recent commit on the current branch.}
+If \code{NULL}, typically points to the most recent commit on the current branch.}
 }
 \description{
 Common Parameters for gitr

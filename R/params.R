@@ -12,6 +12,6 @@
 #'   feature branch.
 #'
 #' @param sha `character(1)`. The commit secure hash algorithm (SHA-1).
-#'   If `NULL`, typicall reverts to the most recent commit on the current branch.
+#'   If `NULL`, typically points to the most recent commit on the current branch.
 #'
 NULL
