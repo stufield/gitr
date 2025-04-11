@@ -10,6 +10,10 @@
 #' @return `integer(1)`. Invisibly returns the
 #'   number of detected lints in the message.
 #'
+#' @examples
+#' \dontrun{
+#'   lapply(get_commit_msgs(7L), lint_commit_msg)
+#' }
 #' @export
 lint_commit_msg <- function(x) {
   if ( length(x) == 0L ) {

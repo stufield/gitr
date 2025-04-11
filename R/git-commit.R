@@ -4,6 +4,13 @@
 #'
 #' @inheritParams params
 #'
+#' @examples
+#' \dontrun{
+#'   get_commit_msgs()
+#'
+#'   get_commit_msgs(n = 3)
+#' }
+#'
 #' @return `NULL` ... invisibly.
 NULL
 

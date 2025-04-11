@@ -18,3 +18,8 @@ number of detected lints in the message.
 Lint a commit message for typical commit style and
 best practices for git.
 }
+\examples{
+\dontrun{
+  lapply(get_commit_msgs(7L), lint_commit_msg)
+}
+}

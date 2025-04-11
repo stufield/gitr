@@ -35,3 +35,16 @@ the \code{default} branch in the remote, usually either
 \code{origin/main} or \code{origin/master}. See \code{\link[=git_default_br]{git_default_br()}}.
 
 }}
+\examples{
+\dontrun{
+  # SHAs from feature branch differ from default br
+  get_pr_sha()
+
+  # commit messages from the SHAs above
+  # for a PR `branch` -> `remotes/origin/{main,master}`
+  get_pr_msgs()
+
+  # for a feature branch -> default branch
+  get_pr_msgs("feature")
+}
+}

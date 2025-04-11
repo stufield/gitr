@@ -15,6 +15,7 @@
 #' @examples
 #' \dontrun{
 #'   git_checkout("feature-br")
+#'
 #'   git_checkout(file = "DESCRIPTION")
 #' }
 #' @export

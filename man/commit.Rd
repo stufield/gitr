@@ -74,3 +74,11 @@ Wrapper around \code{\link[=git_reset_soft]{git_reset_soft()}}
 Order matters!
 
 }}
+\examples{
+\dontrun{
+  get_commit_msgs()
+
+  get_commit_msgs(n = 3)
+}
+
+}

@@ -1,6 +1,21 @@
 #' Git PR Utilities
 #'
 #' @name pr
+#'
+#' @inheritParams params
+#'
+#' @examples
+#' \dontrun{
+#'   # SHAs from feature branch differ from default br
+#'   get_pr_sha()
+#'
+#'   # commit messages from the SHAs above
+#'   # for a PR `branch` -> `remotes/origin/{main,master}`
+#'   get_pr_msgs()
+#'
+#'   # for a feature branch -> default branch
+#'   get_pr_msgs("feature")
+#' }
 NULL
 
 #' @describeIn pr
@@ -8,8 +23,6 @@ NULL
 #'   relative to the `origin/{main,master}` branch in
 #'   the remote. Typically these "new" commits
 #'   that would be merged as part of a PR to `origin/{main,master}`.
-#'
-#' @inheritParams params
 #'
 #' @return [get_pr_msgs()]: see [get_commit_msgs()].
 #'

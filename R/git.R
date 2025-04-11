@@ -9,20 +9,13 @@
 #' \dontrun{
 #'   git("status", "-s")
 #'
-#'   get_commit_msgs()
+#'   git("reset", "--soft", "HEAD~1")
 #'
-#'   get_commit_msgs(n = 3)
+#'   git("tag", "-n")
 #'
-#'   get_pr_msgs()
+#'   is_git()
 #'
-#'   # lint most recent 3 commit message
-#'   lapply(get_commit_msgs(n = 3), lint_commit_msg)
-#'
-#'   # for a PR `branch` -> `remotes/origin/{main,master}`
-#'   lapply(get_pr_msgs(), lint_commit_msg)           # current branch
-#'   lapply(get_pr_msgs("feature"), lint_commit_msg)  # `feature` branch
-#'
-#'   get_recent_tag()
+#'   git_version()
 #' }
 NULL
 

@@ -26,3 +26,10 @@ Git Tag Utilities
 the current git repository tags.
 
 }}
+\examples{
+\dontrun{
+  get_recent_tag()
+
+  get_tag_info()
+}
+}

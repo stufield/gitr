@@ -1,6 +1,13 @@
 #' Git Tag Utilities
 #'
 #' @name tag
+#'
+#' @examples
+#' \dontrun{
+#'   get_recent_tag()
+#'
+#'   get_tag_info()
+#' }
 NULL
 
 #' @describeIn tag
