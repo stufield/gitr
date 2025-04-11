@@ -76,7 +76,7 @@ test_that("`git_uncommit()` pops the current commit off the commit stack", {
 
 test_that("`git_unstage()` unstages a file from the staging area", {
   writeLines("This is a unit test for `git_unstage()`", con = "DESCRIPTION")
-  withr::defer(git_checkout("DESCRIPTION"))   # cleanup
+  withr::defer(git_checkout(file = "DESCRIPTION"))   # cleanup
   git("add", "DESCRIPTION")
   staged <- git("diff", "--name-only", "--cached")$stdout
   expect_equal(staged, "DESCRIPTION")  # check staged

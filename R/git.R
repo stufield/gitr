@@ -88,31 +88,3 @@ git_version <- function() {
   gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
 }
 
-#' @describeIn git
-#'   `git checkout` as a branch if doesn't exist. Branch
-#'   oriented workflow for switching between branches.
-#'
-#' @inheritParams params
-#'
-#' @return `git_checkout()`: `NULL` ... invisibly.
-#'
-#' @export
-git_checkout <- function(branch = NULL) {
-  if ( is.null(branch) ) {
-    stop("You must pass a branch to checkout.", call. = FALSE)
-  }
-  if ( is_git() ) {
-    br <- git("branch", "--list", branch, echo_cmd = FALSE)
-    files <- git("ls-files", echo_cmd = FALSE)$stdout
-    if ( !(branch %in% files) && identical(br$stdout, "") ) {
-      out <- git("checkout", "-b", branch)   # branch doesn't yet exist
-    } else {
-      out <- git("checkout", branch)
-    }
-    if ( getOption("gitr_echo_cmd", TRUE) ) {
-      cat(out$stdout, sep = "\n")
-      cat(out$stderr, sep = "\n")
-    }
-  }
-  invisible()
-}

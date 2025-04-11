@@ -40,6 +40,7 @@ Collate:
     'gitr-package.R'
     'git.R'
     'git-branch.R'
+    'git-checkout.R'
     'git-commit.R'
     'git-lint-commit.R'
     'git-pull-request.R'

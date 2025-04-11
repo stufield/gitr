@@ -4,7 +4,6 @@
 \alias{git}
 \alias{is_git}
 \alias{git_version}
-\alias{git_checkout}
 \title{Git Utilities}
 \usage{
 git(..., echo_cmd = TRUE)
@@ -12,8 +11,6 @@ git(..., echo_cmd = TRUE)
 is_git()
 
 git_version()
-
-git_checkout(branch = NULL)
 }
 \arguments{
 \item{...}{Additional arguments passed to the system
@@ -22,9 +19,6 @@ command-line \verb{git <command> [<args>]} call.}
 \item{echo_cmd}{\code{logical(1)}. Whether to print the
 command to run to the console. Can be over-ridden
 globally via \code{option(gitr_echo_cmd = FALSE)}.}
-
-\item{branch}{\code{character(1)}. The name of a branch, typically a
-feature branch.}
 }
 \value{
 \code{\link[=git]{git()}}: The system call ... invisibly.
@@ -33,8 +27,6 @@ feature branch.}
 
 \code{git_version()}: \code{character(1)}.
 The system version of \code{git}.
-
-\code{git_checkout()}: \code{NULL} ... invisibly.
 }
 \description{
 Provides functionality for system-level
@@ -47,9 +39,6 @@ Git commands from within R.
 \item \code{is_git()}: is current working directory a \code{git} repository?
 
 \item \code{git_version()}: gets the version of git in use.
-
-\item \code{git_checkout()}: \verb{git checkout} as a branch if doesn't exist. Branch
-oriented workflow for switching between branches.
 
 }}
 \examples{
