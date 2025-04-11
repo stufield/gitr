@@ -11,7 +11,8 @@
 #' @param branch `character(1)`. The name of a branch, typically a
 #'   feature branch.
 #'
-#' @param sha `character(1)`. The commit secure hash algorithm (SHA-1).
-#'   If `NULL`, typically points to the most recent commit on the current branch.
+#' @param sha `character(n)`. The commit secure hash algorithm (SHA-1).
+#'   If `NULL`, typically points to the most recent commit on
+#'   the current branch.
 #'
 NULL

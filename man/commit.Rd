@@ -26,8 +26,9 @@ git_reset_hard()
 git_diffcommits(top = 1L, n = 2L)
 }
 \arguments{
-\item{sha}{\code{character(1)}. The commit secure hash algorithm (SHA-1).
-If \code{NULL}, typically points to the most recent commit on the current branch.}
+\item{sha}{\code{character(n)}. The commit secure hash algorithm (SHA-1).
+If \code{NULL}, typically points to the most recent commit on
+the current branch.}
 
 \item{n}{\code{integer(1)}. How far back to go from current \code{HEAD}.
 Same as the command line \verb{git log -n} parameter.
@@ -51,6 +52,8 @@ Git Commit Utilities
 \section{Functions}{
 \itemize{
 \item \code{get_commit_msgs()}: gets the commit messages corresponding to the commit \code{sha}.
+\code{sha} can be \code{character(n)}, but must be valid SHAs
+corresponding to commits in the repository.
 
 \item \code{scrape_commits()}: scrapes \code{n} commit messages for useful change log commits
 to be used to create a \code{NEWS.md}.

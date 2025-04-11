@@ -9,6 +9,8 @@ NULL
 
 #' @describeIn commit
 #'   gets the commit messages corresponding to the commit `sha`.
+#'   `sha` can be `character(n)`, but must be valid SHAs
+#'   corresponding to commits in the repository.
 #'
 #' @return A list containing commit message entries.
 #'   The `sha` and `author` of each commit is added as attributes.
@@ -19,7 +21,7 @@ get_commit_msgs <- function(sha = NULL, n = 1L) {
     sha <- git("log", "--format=%H", "-n", n)$stdout
   } else {
     stopifnot(
-      "`sha` must be `character(1)`." = length(sha) == 1L,
+      "`sha` must be `character(1)`." = length(sha) > 0L,
       "`sha` cannot be NA."           = !is.na(sha),
       "`sha` cannot be empty ''."     = sha != "",
       "`sha` must be `character(1)`." = is.character(sha)

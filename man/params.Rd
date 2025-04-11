@@ -13,8 +13,9 @@ For \verb{git stash} commands, zero-index into the stash list.}
 \item{branch}{\code{character(1)}. The name of a branch, typically a
 feature branch.}
 
-\item{sha}{\code{character(1)}. The commit secure hash algorithm (SHA-1).
-If \code{NULL}, typically points to the most recent commit on the current branch.}
+\item{sha}{\code{character(n)}. The commit secure hash algorithm (SHA-1).
+If \code{NULL}, typically points to the most recent commit on
+the current branch.}
 }
 \description{
 Common Parameters for gitr
