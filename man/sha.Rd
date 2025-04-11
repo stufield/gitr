@@ -14,8 +14,8 @@ is_sha(sha)
 git_current_sha()
 }
 \arguments{
-\item{sha}{\code{character(1)}. The commit SHA-1 hash to pull messages from.
-If \code{NULL}, the most recent commit on the current branch.}
+\item{sha}{\code{character(1)}. The commit secure hash algorithm (SHA-1).
+If \code{NULL}, typicall reverts to the most recent commit on the current branch.}
 }
 \value{
 \code{\link[=trim_sha]{trim_sha()}}: \code{character(1)}. The trimmed \code{sha}.
