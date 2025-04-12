@@ -54,12 +54,6 @@ test_that("`scrape_commits()` returns expected (must execute after above)", {
   # step 1
   expect_snapshot(commit <- scrape_commits(1L))
 
-  clean_commit_sha <- function(x, fake_sha = "abc1234") {
-    stopifnot(length(x) == 1L)
-    attr(x[[1L]], "sha") <- fake_sha  # clean attr of 1L
-    setNames(x, fake_sha)             # rename
-  }
-
   # step 2
   expect_snapshot(clean_commit_sha(commit))
 })

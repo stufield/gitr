@@ -37,19 +37,24 @@ get_pr_msgs <- function(branch = NULL) {
 }
 
 #' @describeIn pr
-#'   gets the commit SHA1 *current* branch relative to
-#'   the `default` branch in the remote, usually either
+#'   gets the commit SHA-1 a branch (by default *current*)
+#'   relative to the `default` branch in the remote, usually either
 #'   `origin/main` or `origin/master`. See [git_default_br()].
+#'   If there are un-pushed commit on the current default branch,
+#'   it returns them.
 #'
 #' @inheritParams params
 #'
-#' @return [get_pr_sha()]: character vector of `sha`s
+#' @return [get_pr_sha()]: character vector of SHAs
 #'   corresponding to the PR (relative to the default branch).
 #'
 #' @export
 get_pr_sha <- function(branch = NULL) {
-  if ( is.null(branch) ) {
+  if ( is.null(branch) ) {   # do this first; default
     branch <- git_current_br()
+  } else if ( length(branch) == 0L || !branch %in% git_local_br() ) {
+    stop("`branch` must be a local branch. See `git_local_br()`\n",
+         "You passed: ", slug_color(branch), call. = FALSE)
   }
   default <- git_default_br()
   sha_vec <- git("rev-list", "--right-only",

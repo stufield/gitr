@@ -33,3 +33,9 @@ local_create_worktree <- function(dir    = tempfile("gitr-"),
   invisible(dir)
 }
 
+
+clean_commit_sha <- function(x, fake_sha = "abc1234") {
+  stopifnot(length(x) == 1L)
+  attr(x[[1L]], "sha") <- fake_sha  # clean attr of 1L
+  setNames(x, fake_sha)             # rename
+}

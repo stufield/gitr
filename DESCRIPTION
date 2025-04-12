@@ -43,7 +43,7 @@ Collate:
     'git-checkout.R'
     'git-commit.R'
     'git-lint-commit.R'
-    'git-pull-request.R'
+    'git-pr.R'
     'git-sitrep.R'
     'git-tag.R'
     'trim-sha.R'
