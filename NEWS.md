@@ -1,3 +1,8 @@
+# gitr (development version)
+
+* Major reconstruction and renaming coming! :construction:
+
+
 # gitr 0.0.2
 
 ## Features :rocket:
