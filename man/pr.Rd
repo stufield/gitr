@@ -2,22 +2,22 @@
 % Please edit documentation in R/git-pr.R
 \name{pr}
 \alias{pr}
-\alias{get_pr_msgs}
-\alias{get_pr_sha}
+\alias{gitr_pr_msgs}
+\alias{gitr_pr_sha}
 \title{Git PR Utilities}
 \usage{
-get_pr_msgs(branch = NULL)
+gitr_pr_msgs(branch = NULL)
 
-get_pr_sha(branch = NULL)
+gitr_pr_sha(branch = NULL)
 }
 \arguments{
 \item{branch}{\code{character(1)}. The name of a branch, typically a
 feature branch.}
 }
 \value{
-\code{\link[=get_pr_msgs]{get_pr_msgs()}}: see \code{\link[=get_commit_msgs]{get_commit_msgs()}}.
+\code{\link[=gitr_pr_msgs]{gitr_pr_msgs()}}: see \code{\link[=gitr_commit_msgs]{gitr_commit_msgs()}}.
 
-\code{\link[=get_pr_sha]{get_pr_sha()}}: character vector of SHAs
+\code{\link[=gitr_pr_sha]{gitr_pr_sha()}}: character vector of SHAs
 corresponding to the PR (relative to the default branch).
 }
 \description{
@@ -25,14 +25,14 @@ Git PR Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{get_pr_msgs()}: gets the commit messages for the \emph{current} branch
+\item \code{gitr_pr_msgs()}: gets the commit messages for the \emph{current} branch
 relative to the \verb{origin/\{main,master\}} branch in
 the remote. Typically these "new" commits
 that would be merged as part of a PR to \verb{origin/\{main,master\}}.
 
-\item \code{get_pr_sha()}: gets the commit SHA-1 a branch (by default \emph{current})
+\item \code{gitr_pr_sha()}: gets the commit SHA-1 a branch (by default \emph{current})
 relative to the \code{default} branch in the remote, usually either
-\code{origin/main} or \code{origin/master}. See \code{\link[=git_default_br]{git_default_br()}}.
+\code{origin/main} or \code{origin/master}. See \code{\link[=gitr_default_br]{gitr_default_br()}}.
 If there are un-pushed commit on the current default branch,
 it returns them.
 
@@ -40,13 +40,13 @@ it returns them.
 \examples{
 \dontrun{
   # SHAs from feature branch differ from default br
-  get_pr_sha()
+  gitr_pr_sha()
 
   # commit messages from the SHAs above
   # for a PR `branch` -> `remotes/origin/{main,master}`
-  get_pr_msgs()
+  gitr_pr_msgs()
 
   # for a feature branch -> default branch
-  get_pr_msgs("feature")
+  gitr_pr_msgs("feature")
 }
 }

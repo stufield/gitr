@@ -6,9 +6,9 @@
 #'
 #' @examples
 #' \dontrun{
-#'   get_commit_msgs()
+#'   gitr_commit_msgs()
 #'
-#'   get_commit_msgs(n = 3)
+#'   gitr_commit_msgs(n = 3)
 #' }
 #'
 #' @return `NULL` ... invisibly.
@@ -23,7 +23,7 @@ NULL
 #'   The `sha` and `author` of each commit is added as attributes.
 #'
 #' @export
-get_commit_msgs <- function(sha = NULL, n = 1L) {
+gitr_commit_msgs <- function(sha = NULL, n = 1L) {
   if ( is.null(sha) ) {  # do this first
     sha <- git("log", "--format=%H", "-n", n)$stdout
   } else {
@@ -37,7 +37,7 @@ get_commit_msgs <- function(sha = NULL, n = 1L) {
   lapply(sha, function(.x) {
     structure(
       git("log", "--format=%B", "-1", .x, echo_cmd = FALSE)$stdout,
-      sha    = trim_sha(.x),
+      sha    = gitr_trim_sha(.x),
       author = git("log", "--format=%ae", "-1", .x, echo_cmd = FALSE)$stdout
     )
   })
@@ -49,7 +49,7 @@ get_commit_msgs <- function(sha = NULL, n = 1L) {
 #'
 #' @export
 scrape_commits <- function(n) {
-  commit_list <- get_commit_msgs(n = n)
+  commit_list <- gitr_commit_msgs(n = n)
   todo("Scraping",  n, "commit messages")
   names(commit_list) <- vapply(commit_list, attr, which = "sha", "a")
   # discard uninformative commits:
@@ -79,7 +79,7 @@ scrape_commits <- function(n) {
 #' @inheritParams params
 #'
 #' @export
-git_unstage <- function(file = NULL) {
+gitr_unstage <- function(file = NULL) {
   if ( is_git() ) {
     if ( is.null(file) ) {
       out <- git("reset", "HEAD")
@@ -98,7 +98,7 @@ git_unstage <- function(file = NULL) {
 #'   add them to the staging area.
 #'
 #' @export
-git_reset_soft <- function(n = 1L) {
+gitr_reset_soft <- function(n = 1L) {
   if ( is_git() ) {
     out <- git("reset", "--soft", paste0("HEAD~", n))
     cat(out$stdout, sep = "\n")
@@ -111,20 +111,20 @@ git_reset_soft <- function(n = 1L) {
 #' @describeIn commit
 #'   un-commits the most recently committed
 #'   file(s) and add them to the staging area.
-#'   Wrapper around [git_reset_soft()]
+#'   Wrapper around [gitr_reset_soft()]
 #'
 #' @export
-git_uncommit <- function() {
-  git_reset_soft("1")
+gitr_uncommit <- function() {
+  gitr_reset_soft("1")
 }
 
 #' @describeIn commit
 #'   `git reset --hard origin/<branch>`.
 #'
 #' @export
-git_reset_hard <- function() {
+gitr_reset_hard <- function() {
   if ( is_git() ) {
-    out <- git("reset", "--hard", paste0("origin/", git_current_br()))
+    out <- git("reset", "--hard", paste0("origin/", gitr_current_br()))
     cat(out$stdout, sep = "\n")
     invisible(out)
   } else {
@@ -141,7 +141,7 @@ git_reset_hard <- function() {
 #'   Defaults to `HEAD~0` or `top = 1`.
 #'
 #' @export
-git_diffcommits <- function(top = 1L, n = 2L) {
+gitr_diff_commits <- function(top = 1L, n = 2L) {
   if ( is_git() ) {
     out <- git("diff", sprintf("HEAD~%i..HEAD~%i", n - 1L, top - 1L))
     if ( not_interactive() ) {

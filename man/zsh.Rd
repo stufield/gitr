@@ -73,9 +73,9 @@ gba()
 
 gbd(branch = NULL, force = FALSE)
 
-gbmm(branch = git_default_br())
+gbmm(branch = gitr_default_br())
 
-gbnm(branch = git_default_br())
+gbnm(branch = gitr_default_br())
 
 gbm(branch = NULL)
 
@@ -256,7 +256,7 @@ this alias has been re-mapped to \code{\link[=gcc]{gcc()}}.
 
 \item \code{grbs()}: \verb{git rebase --skip}.
 
-\item \code{grbm()}: \verb{git rebase git_default_br()}.
+\item \code{grbm()}: \verb{git rebase gitr_default_br()}.
 
 \item \code{grv()}: \verb{git remote -v}.
 

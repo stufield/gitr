@@ -4,19 +4,19 @@
 #'
 #' @examples
 #' \dontrun{
-#'   get_recent_tag()
+#'   gitr_recent_tag()
 #'
-#'   get_tag_info()
+#'   gitr_tag_info()
 #' }
 NULL
 
 #' @describeIn tag
 #'   gets the *most* recent `git` tag.
 #'
-#' @return [git_recent_tag()]: `character(1)`. The most recent tag.
+#' @return [gitr_recent_tag()]: `character(1)`. The most recent tag.
 #'
 #' @export
-git_recent_tag <- function() {
+gitr_recent_tag <- function() {
   utils::head(git("tag", "--sort=-taggerdate", echo_cmd = FALSE)$stdout, 1L)
 }
 
@@ -24,10 +24,10 @@ git_recent_tag <- function() {
 #'   gets a data frame summary of
 #'   the current git repository tags.
 #'
-#' @return [git_tag_info()]: A data frame summarizing the repository tags.
+#' @return [gitr_tag_info()]: A data frame summarizing the repository tags.
 #'
 #' @export
-git_tag_info <- function() {
+gitr_tag_info <- function() {
   is_git()
   no_tags <- identical(git("tag", "-l", echo_cmd = FALSE)$stdout, "")
   if ( no_tags ) {
@@ -42,7 +42,7 @@ git_tag_info <- function() {
   names(ret) <- c("tag", "tag_sha", "target_sha", "message",
                   "author", "email", "user", "tagdate", "size")
   rownames(ret)  <- ret$tag
-  ret$target_sha <- trim_sha(ret$target_sha)
+  ret$target_sha <- gitr_trim_sha(ret$target_sha)
   ret$path       <- file.path(normalizePath("."), ".git")
   ret
 }

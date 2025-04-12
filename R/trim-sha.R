@@ -9,11 +9,11 @@ NULL
 #'   trims the `SHA-1` hash from the default full
 #'   length to the human-readable short version.
 #'
-#' @return [trim_sha()]: `character(1)`. The trimmed `sha`.
+#' @return [gitr_trim_sha()]: `character(1)`. The trimmed `sha`.
 #'   If `sha` is not a `SHA1` hash, the identical string unchanged.
 #'
 #' @export
-trim_sha <- function(sha) {
+gitr_trim_sha <- function(sha) {
   idx <- which(is_sha(sha))
   sha[idx] <- substr(sha[idx], start = 1L, stop = 7L)
   sha
@@ -36,11 +36,11 @@ is_sha <- function(sha) {
 #' @describeIn sha
 #'   gets the current (most recent commit) SHA.
 #'
-#' @return [git_current_sha()]: `character(1)`. The `sha`
+#' @return [gitr_current_sha()]: `character(1)`. The `sha`
 #'   of the current commit.
 #'
 #' @export
-git_current_sha <- function() {
+gitr_current_sha <- function() {
   sha <- git("rev-parse", "HEAD")$stdout
-  trim_sha(sha)
+  gitr_trim_sha(sha)
 }

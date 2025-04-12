@@ -59,7 +59,7 @@ gcmsg <- function(msg = "wip") {
 #'
 #' @export
 gco <- function(branch = NULL) {
-  git_checkout(branch)
+  gitr_checkout(branch)
 }
 
 #' @describeIn zsh `git checkout -b <branch>`.
@@ -171,7 +171,7 @@ gbd <- function(branch = NULL, force = FALSE) {
 #' @describeIn zsh `git branch --merged <branch>`.
 #'
 #' @export
-gbmm <- function(branch = git_default_br()) {
+gbmm <- function(branch = gitr_default_br()) {
   if ( is_git() ) {
     out <- git("branch", "--merged", branch)
     if ( not_interactive() ) {
@@ -186,7 +186,7 @@ gbmm <- function(branch = git_default_br()) {
 #' @describeIn zsh `git branch --no-merged <branch>`.
 #'
 #' @export
-gbnm <- function(branch = git_default_br()) {
+gbnm <- function(branch = gitr_default_br()) {
   if ( is_git() ) {
     out <- git("branch", "--no-merged", branch)
     if ( not_interactive() ) {
@@ -487,7 +487,7 @@ gcf <- function(global = FALSE) {
 #' @export
 gcm <- function() {
   if ( is_git() ) {
-    git_checkout(git_default_br())
+    gitr_checkout(gitr_default_br())
   }
   invisible()
 }
@@ -538,12 +538,12 @@ grbs <- function() {
   }
 }
 
-#' @describeIn zsh `git rebase git_default_br()`.
+#' @describeIn zsh `git rebase gitr_default_br()`.
 #'
 #' @export
 grbm <- function() {
   if ( is_git() ) {
-    invisible(git("rebase", git_default_br()))
+    invisible(git("rebase", gitr_default_br()))
   } else {
     invisible()
   }

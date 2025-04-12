@@ -11,7 +11,7 @@ NULL
 #'   `master`, `main`, or `trunk`.
 #'
 #' @export
-git_default_br <- function() {
+gitr_default_br <- function() {
   if ( is_git() ) {
     sink(tempfile())
     on.exit(sink())
@@ -34,7 +34,7 @@ git_default_br <- function() {
 #'   gets the *current* branch.
 #'
 #' @export
-git_current_br <- function() {
+gitr_current_br <- function() {
   if ( is_git() ) {
     #git("rev-parse", "--abbrev-ref", "HEAD", echo_cmd = FALSE)$stdout
     ref <- git("symbolic-ref --quiet HEAD", echo_cmd = FALSE)$stdout
@@ -48,7 +48,7 @@ git_current_br <- function() {
 #'   gets all the *local* branches.
 #'
 #' @export
-git_local_br <- function() {
+gitr_local_br <- function() {
   if ( is_git() ) {
     ref <- git("branch", "--list", echo_cmd = FALSE)$stdout
     gsub("^[^[:alnum:]]*(.*)[^[:alnum:]]*$", "\\1", ref)

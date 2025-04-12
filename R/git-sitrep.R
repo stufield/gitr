@@ -2,14 +2,16 @@
 #'
 #' Get a situation report of the current git repository.
 #'
+#' @name sitrep
+#'
 #' @return `NULL` ... invisibly.
 #'
 #' @export
-git_sitrep <- function() {
+gitr_sitrep <- function() {
   if ( is_git() ) {
     cat("Using Git version: ", slug_color(git_version(), "\033[34m"), "\n\n", sep = "")
-    cat("Current branch: ", slug_color(git_current_br(), "\033[32m"), "\n", sep = "")
-    cat("Default branch: ", slug_color(git_default_br(), "\033[36m"), "\n", sep = "")
+    cat("Current branch: ", slug_color(gitr_current_br(), "\033[32m"), "\n", sep = "")
+    cat("Default branch: ", slug_color(gitr_default_br(), "\033[36m"), "\n", sep = "")
 
     cat("\nRepo status:\n")
     gss()
@@ -17,7 +19,7 @@ git_sitrep <- function() {
     cat("\nBranches:\n")
     gba()
 
-    br <- git_current_br()
+    br <- gitr_current_br()
     be <- git("rev-list", "--count", paste0(br, "..@{upstream}"),
               echo_cmd = FALSE)$stdout
     ah <- git("rev-list", "--count", paste0("@{upstream}..", br),

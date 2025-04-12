@@ -8,7 +8,7 @@
 lint_commit_msg(x)
 }
 \arguments{
-\item{x}{A single commit message from \code{\link[=get_commit_msgs]{get_commit_msgs()}}.}
+\item{x}{A single commit message from \code{\link[=gitr_commit_msgs]{gitr_commit_msgs()}}.}
 }
 \value{
 \code{integer(1)}. Invisibly returns the
@@ -20,6 +20,6 @@ best practices for git.
 }
 \examples{
 \dontrun{
-  lapply(get_commit_msgs(7L), lint_commit_msg)
+  lapply(gitr_commit_msgs(7L), lint_commit_msg)
 }
 }

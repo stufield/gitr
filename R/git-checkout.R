@@ -14,12 +14,12 @@
 #'
 #' @examples
 #' \dontrun{
-#'   git_checkout("feature-br")
+#'   gitr_checkout("feature-br")
 #'
-#'   git_checkout(file = "DESCRIPTION")
+#'   gitr_checkout(file = "DESCRIPTION")
 #' }
 #' @export
-git_checkout <- function(branch = NULL, file = NULL) {
+gitr_checkout <- function(branch = NULL, file = NULL) {
   if ( !is_git() ) {
     return(invisible())
   }
@@ -54,7 +54,7 @@ gitr_checkout_file <- function(file) {
 }
 
 gitr_checkout_branch <- function(branch) {
-  br_exists <- branch %in% git_local_br()
+  br_exists <- branch %in% gitr_local_br()
   tracked_files <- git("ls-files", echo_cmd = FALSE)$stdout
 
   if ( branch %in% tracked_files ) {

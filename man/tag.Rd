@@ -2,34 +2,34 @@
 % Please edit documentation in R/git-tag.R
 \name{tag}
 \alias{tag}
-\alias{git_recent_tag}
-\alias{git_tag_info}
+\alias{gitr_recent_tag}
+\alias{gitr_tag_info}
 \title{Git Tag Utilities}
 \usage{
-git_recent_tag()
+gitr_recent_tag()
 
-git_tag_info()
+gitr_tag_info()
 }
 \value{
-\code{\link[=git_recent_tag]{git_recent_tag()}}: \code{character(1)}. The most recent tag.
+\code{\link[=gitr_recent_tag]{gitr_recent_tag()}}: \code{character(1)}. The most recent tag.
 
-\code{\link[=git_tag_info]{git_tag_info()}}: A data frame summarizing the repository tags.
+\code{\link[=gitr_tag_info]{gitr_tag_info()}}: A data frame summarizing the repository tags.
 }
 \description{
 Git Tag Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{git_recent_tag()}: gets the \emph{most} recent \code{git} tag.
+\item \code{gitr_recent_tag()}: gets the \emph{most} recent \code{git} tag.
 
-\item \code{git_tag_info()}: gets a data frame summary of
+\item \code{gitr_tag_info()}: gets a data frame summary of
 the current git repository tags.
 
 }}
 \examples{
 \dontrun{
-  get_recent_tag()
+  gitr_recent_tag()
 
-  get_tag_info()
+  gitr_tag_info()
 }
 }

@@ -1,7 +1,7 @@
-# `git_checkout()` checks out a file when asked
+# `gitr_checkout()` checks out a file when asked
 
     Code
-      git_checkout(file = "DESCRIPTION")
+      gitr_checkout(file = "DESCRIPTION")
     Output
       Running git ls-files 
       Running git checkout DESCRIPTION 
@@ -10,7 +10,7 @@
 ---
 
     Code
-      git_checkout(file = files)
+      gitr_checkout(file = files)
     Output
       Running git ls-files 
       Running git checkout NAMESPACE DESCRIPTION NEWS.md README.Rmd 

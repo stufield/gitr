@@ -2,16 +2,16 @@
 % Please edit documentation in R/git-branch.R
 \name{branch}
 \alias{branch}
-\alias{git_default_br}
-\alias{git_current_br}
-\alias{git_local_br}
+\alias{gitr_default_br}
+\alias{gitr_current_br}
+\alias{gitr_local_br}
 \title{Git Branch Utilities}
 \usage{
-git_default_br()
+gitr_default_br()
 
-git_current_br()
+gitr_current_br()
 
-git_local_br()
+gitr_local_br()
 }
 \value{
 \code{character(1)}. The name of the respective
@@ -22,11 +22,11 @@ Git Branch Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{git_default_br()}: gets the default "main" branch, typically either
+\item \code{gitr_default_br()}: gets the default "main" branch, typically either
 \code{master}, \code{main}, or \code{trunk}.
 
-\item \code{git_current_br()}: gets the \emph{current} branch.
+\item \code{gitr_current_br()}: gets the \emph{current} branch.
 
-\item \code{git_local_br()}: gets all the \emph{local} branches.
+\item \code{gitr_local_br()}: gets all the \emph{local} branches.
 
 }}

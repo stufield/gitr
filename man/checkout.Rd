@@ -2,10 +2,10 @@
 % Please edit documentation in R/git-checkout.R
 \name{checkout}
 \alias{checkout}
-\alias{git_checkout}
+\alias{gitr_checkout}
 \title{Git Checkout}
 \usage{
-git_checkout(branch = NULL, file = NULL)
+gitr_checkout(branch = NULL, file = NULL)
 }
 \arguments{
 \item{branch}{\code{character(1)}. The name of a branch, typically a
@@ -25,8 +25,8 @@ Can be a vector of multiple files.
 }
 \examples{
 \dontrun{
-  git_checkout("feature-br")
+  gitr_checkout("feature-br")
 
-  git_checkout(file = "DESCRIPTION")
+  gitr_checkout(file = "DESCRIPTION")
 }
 }

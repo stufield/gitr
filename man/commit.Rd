@@ -2,28 +2,28 @@
 % Please edit documentation in R/git-commit.R
 \name{commit}
 \alias{commit}
-\alias{get_commit_msgs}
+\alias{gitr_commit_msgs}
 \alias{scrape_commits}
-\alias{git_unstage}
-\alias{git_reset_soft}
-\alias{git_uncommit}
-\alias{git_reset_hard}
-\alias{git_diffcommits}
+\alias{gitr_unstage}
+\alias{gitr_reset_soft}
+\alias{gitr_uncommit}
+\alias{gitr_reset_hard}
+\alias{gitr_diff_commits}
 \title{Git Commit Utilities}
 \usage{
-get_commit_msgs(sha = NULL, n = 1L)
+gitr_commit_msgs(sha = NULL, n = 1L)
 
 scrape_commits(n)
 
-git_unstage(file = NULL)
+gitr_unstage(file = NULL)
 
-git_reset_soft(n = 1L)
+gitr_reset_soft(n = 1L)
 
-git_uncommit()
+gitr_uncommit()
 
-git_reset_hard()
+gitr_reset_hard()
 
-git_diffcommits(top = 1L, n = 2L)
+gitr_diff_commits(top = 1L, n = 2L)
 }
 \arguments{
 \item{sha}{\code{character(n)}. The commit secure hash algorithm (SHA-1).
@@ -51,34 +51,34 @@ Git Commit Utilities
 }
 \section{Functions}{
 \itemize{
-\item \code{get_commit_msgs()}: gets the commit messages corresponding to the commit \code{sha}.
+\item \code{gitr_commit_msgs()}: gets the commit messages corresponding to the commit \code{sha}.
 \code{sha} can be \code{character(n)}, but must be valid SHAs
 corresponding to commits in the repository.
 
 \item \code{scrape_commits()}: scrapes \code{n} commit messages for useful change log commits
 to be used to create a \code{NEWS.md}.
 
-\item \code{git_unstage()}: un-stages a file from the index to the working directory.
+\item \code{gitr_unstage()}: un-stages a file from the index to the working directory.
 Default un-stages \emph{all} files.
 
-\item \code{git_reset_soft()}: un-commits the most recently committed file(s) and
+\item \code{gitr_reset_soft()}: un-commits the most recently committed file(s) and
 add them to the staging area.
 
-\item \code{git_uncommit()}: un-commits the most recently committed
+\item \code{gitr_uncommit()}: un-commits the most recently committed
 file(s) and add them to the staging area.
-Wrapper around \code{\link[=git_reset_soft]{git_reset_soft()}}
+Wrapper around \code{\link[=gitr_reset_soft]{gitr_reset_soft()}}
 
-\item \code{git_reset_hard()}: \verb{git reset --hard origin/<branch>}.
+\item \code{gitr_reset_hard()}: \verb{git reset --hard origin/<branch>}.
 
-\item \code{git_diffcommits()}: gets the diff of the corresponding 2 commits.
+\item \code{gitr_diff_commits()}: gets the diff of the corresponding 2 commits.
 Order matters!
 
 }}
 \examples{
 \dontrun{
-  get_commit_msgs()
+  gitr_commit_msgs()
 
-  get_commit_msgs(n = 3)
+  gitr_commit_msgs(n = 3)
 }
 
 }

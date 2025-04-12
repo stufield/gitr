@@ -5,14 +5,14 @@
 #'
 #' @name lint
 #'
-#' @param x A single commit message from [get_commit_msgs()].
+#' @param x A single commit message from [gitr_commit_msgs()].
 #'
 #' @return `integer(1)`. Invisibly returns the
 #'   number of detected lints in the message.
 #'
 #' @examples
 #' \dontrun{
-#'   lapply(get_commit_msgs(7L), lint_commit_msg)
+#'   lapply(gitr_commit_msgs(7L), lint_commit_msg)
 #' }
 #' @export
 lint_commit_msg <- function(x) {
