@@ -22,6 +22,7 @@ test_that("`is_sha()` works as expected", {
   expect_true(is_sha("854ec871fbb8f2593275b"))
   expect_false(is_sha("854ec871fbb8f2593275b077d596987cede73261a"))  # too long
   expect_false(is_sha("foo"))
-  expect_false(is_sha("854e"))    # too short
+  expect_false(is_sha("a3c4u395230"))  # 'u' is not 'abcdef'
+  expect_false(is_sha("854e"))         # too short
   expect_equal(is_sha(c("foo", "854ec87")), c(FALSE, TRUE))  # vector
 })
