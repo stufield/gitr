@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 ![GitHub
-version](https://img.shields.io/badge/Version-0.0.1.9000-success.svg?style=flat&logo=github)
+version](https://img.shields.io/badge/Version-0.0.2.9000-success.svg?style=flat&logo=github)
 [![CRAN
 status](http://www.r-pkg.org/badges/version/gitr)](https://cran.r-project.org/package=gitr)
 [![R-CMD-check](https://github.com/stufield/gitr/workflows/R-CMD-check/badge.svg)](https://github.com/stufield/gitr/actions)
@@ -111,19 +111,18 @@ git_default_br()
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check
-#> * main                                   f2554e3 Makefile now uses `rcmdcheck` over R CMD check
+#>   foo                                    9b2fdbb Increment version number
+#> * main                                   9b2fdbb Increment version number
 #>   remotes/origin/HEAD                    -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
-#>   remotes/origin/gh-pages                cc64a18 Built site for gitr@0.0.1.9000: f2554e3
-#>   remotes/origin/main                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check
+#>   remotes/origin/gh-pages                be34c7e Built site for gitr@0.0.2.9000: 9b2fdbb
+#>   remotes/origin/main                    9b2fdbb Increment version number
 #>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
-#>   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1
 #>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was f2554e3)."
+#> [1] "Deleted branch foo (was 9b2fdbb)."
 ```
 
 #### Committing
@@ -132,34 +131,23 @@ git("branch", "-D", "foo")$stdout
 get_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Makefile now uses `rcmdcheck` over R CMD check"
-#> [2] ""                                              
-#> [3] "- to match the checks in the GHA workflows"    
-#> [4] ""                                              
+#> [1] "Increment version number" ""                        
 #> attr(,"sha")
-#> [1] "f2554e3"
+#> [1] "9b2fdbb"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Fixed possibly broken URLs" ""                          
+#> [1] "Increment version number" ""                        
 #> attr(,"sha")
-#> [1] "7318385"
+#> [1] "2ffe6bd"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Testing during R CMD Check can be difficult"                  
-#> [2] ""                                                             
-#> [3] "- because R CMD check doesn't copy over the .git"             
-#> [4] "  directory during build ... it's technically not a git repo!"
-#> [5] "- so we have to skip many of these tests if they're"          
-#> [6] "  outside of this scope"                                      
-#> [7] "- rely on `devtools::test()` ... aka `make test`"             
-#> [8] "- not ideal, may have to come up with another solution"       
-#> [9] ""                                                             
+#> [1] "Updated CRAN comments file" ""                          
 #> attr(,"sha")
-#> [1] "8525393"
+#> [1] "29b8d28"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 ```
@@ -167,11 +155,11 @@ get_commit_msgs(n = 3)
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * f2554e3 (HEAD -> main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check
-#> * 7318385 Fixed possibly broken URLs
-#> * 8525393 Testing during R CMD Check can be difficult
-#> * 7973b17 Added unit tests for "commit" group
-#> * 78b3c85 Set up special gitr unit testing fixtures
+#> * 9b2fdbb (HEAD -> main, origin/main, origin/HEAD) Increment version number
+#> * 2ffe6bd (tag: v0.0.2) Increment version number
+#> * 29b8d28 Updated CRAN comments file
+#> * 9a73584 Updated NEWS.md in prep for v0.0.2 release
+#> * 93e3bcd Added rhub GHA workflow
 ```
 
 ``` r
@@ -214,14 +202,16 @@ trim_sha("foo")
 
 ``` r
 git_recent_tag()
-#> [1] "v0.0.1"
+#> [1] "v0.0.2"
 ```
 
 ``` r
 git_tag_info()
 #>           tag tag_sha target_sha           message    author                   email        user
+#> v0.0.2 v0.0.2 4c4805d    2ffe6bd Release of v0.0.2 Stu Field <stu.g.field@gmail.com> stu.g.field
 #> v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field <stu.g.field@gmail.com> stu.g.field
 #>                               tagdate size                              path
+#> v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /Users/runner/work/gitr/gitr/.git
 #> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git
 ```
 
@@ -246,22 +236,21 @@ git_sitrep()
 #>   remotes/origin/gh-pages
 #>   remotes/origin/main
 #>   remotes/origin/prep-for-cran
-#>   remotes/origin/submit-cran
 #>   remotes/origin/update-pkgdown-new-look
 #> 
 #> Local status:
 #> ✓ OK
 #> 
 #> Upstream remotes: origin
-#> * main f2554e3 [origin/main] Makefile now uses `rcmdcheck` over R CMD check
+#> * main 9b2fdbb [origin/main] Increment version number
 #> 
 #> Commit log: main
 #> Running git log --oneline --graph --decorate -n 5 
-#> * f2554e3 (HEAD -> main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check
-#> * 7318385 Fixed possibly broken URLs
-#> * 8525393 Testing during R CMD Check can be difficult
-#> * 7973b17 Added unit tests for "commit" group
-#> * 78b3c85 Set up special gitr unit testing fixtures
+#> * 9b2fdbb (HEAD -> main, origin/main, origin/HEAD) Increment version number
+#> * 2ffe6bd (tag: v0.0.2) Increment version number
+#> * 29b8d28 Updated CRAN comments file
+#> * 9a73584 Updated NEWS.md in prep for v0.0.2 release
+#> * 93e3bcd Added rhub GHA workflow
 ```
 
 ------------------------------------------------------------------------
