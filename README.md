@@ -96,7 +96,7 @@ gitr_default_br()
 
 ``` r
 gitr_local_br()
-#> [1] "main"               "renaming-framework"
+#> [1] "main"
 ```
 
 #### The Core Engine
@@ -116,20 +116,18 @@ gitr_local_br()
 git("branch", "-av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                                    0511e8b Updated README and pkg vignette following name changes
-#> * main                                   0511e8b [ahead 4] Updated README and pkg vignette following name changes
-#>   renaming-framework                     07725c3 Renamed files with new naming convention
+#>   foo                                    d517d3b Updated pkgdown.yml to fix web deploy
+#> * main                                   d517d3b Updated pkgdown.yml to fix web deploy
 #>   remotes/origin/HEAD                    -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
-#>   remotes/origin/gh-pages                be34c7e Built site for gitr@0.0.2.9000: 9b2fdbb
-#>   remotes/origin/main                    357e01d Re-build README.Rmd
+#>   remotes/origin/gh-pages                1265386 Built site for gitr@0.0.2.9000: d517d3b
+#>   remotes/origin/main                    d517d3b Updated pkgdown.yml to fix web deploy
 #>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
-#>   remotes/origin/renaming-framework      07725c3 Renamed files with new naming convention
 #>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
 
 git("branch", "-D", "foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was 0511e8b)."
+#> [1] "Deleted branch foo (was d517d3b)."
 ```
 
 #### Committing
@@ -138,14 +136,21 @@ git("branch", "-D", "foo")$stdout
 gitr_commit_msgs(n = 3)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Updated README and pkg vignette following name changes"
-#> [2] ""                                                      
+#> [1] "Updated pkgdown.yml to fix web deploy" ""                                     
 #> attr(,"sha")
-#> [1] "0511e8b"
+#> [1] "d517d3b"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
+#> [1] "Updated README and pkg vignette following name changes"
+#> [2] ""                                                      
+#> attr(,"sha")
+#> [1] "68283a6"
+#> attr(,"author")
+#> [1] "stu.g.field@gmail.com"
+#> 
+#> [[3]]
 #> [1] "Renamed files with new naming convention" ""                                        
 #> [3] "- prefix *.R files with \"gitr*.R\""      "- renamed 'test-*.R' suite of files"     
 #> [5] ""                                        
@@ -153,33 +158,16 @@ gitr_commit_msgs(n = 3)
 #> [1] "07725c3"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
-#> 
-#> [[3]]
-#>  [1] "Major renaming package function infrastructure"  
-#>  [2] ""                                                
-#>  [3] "- most function names that began with `git_*()`" 
-#>  [4] "  are now `gitr_*()`"                            
-#>  [5] "- functions that previously were `get_*()`"      
-#>  [6] "  are now unified towards `gitr_*()`"            
-#>  [7] "- this involves renaming, NAMESPACE update,"     
-#>  [8] "  file renaming, unit test upgrades, etc."       
-#>  [9] "- many BREAKING(!) changes in this single commit"
-#> [10] "- closes #18"                                    
-#> [11] ""                                                
-#> attr(,"sha")
-#> [1] "d59d5c6"
-#> attr(,"author")
-#> [1] "stu.g.field@gmail.com"
 ```
 
 ``` r
 glog(5)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 0511e8b (HEAD -> main) Updated README and pkg vignette following name changes
-#> * 07725c3 (origin/renaming-framework, renaming-framework) Renamed files with new naming convention
+#> * d517d3b (HEAD -> main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy
+#> * 68283a6 Updated README and pkg vignette following name changes
+#> * 07725c3 Renamed files with new naming convention
 #> * d59d5c6 Major renaming package function infrastructure
 #> * 8aab6c8 Fixed `git_version()` unit test for CRAN checks
-#> * 357e01d (origin/main, origin/HEAD) Re-build README.Rmd
 ```
 
 ``` r
@@ -202,24 +190,24 @@ git_uncommit()
 git_unstage("DESCRIPTION")
 ```
 
-#### SHA-1
+#### Secure Hash Algorithm (SHA-1)
 
 ``` r
 is_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 #> [1] TRUE
 
-is_sha(c("foo", "d670c93"))
+is_sha(c("foo", "d670c93"))   # vectorized
 #> [1] FALSE  TRUE
 
 gitr_trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 #> [1] "d670c93"
 
-gitr_trim_sha(c("foo", "d670c93"))
+gitr_trim_sha(c("foo", "d670c93"))   # vectorized
 #> [1] "foo"     "d670c93"
 
 gitr_current_sha()
 #> Running git rev-parse HEAD
-#> [1] "0511e8b"
+#> [1] "d517d3b"
 ```
 
 #### Tags
@@ -234,9 +222,9 @@ gitr_tag_info()
 #>           tag tag_sha target_sha           message    author                   email        user
 #> v0.0.2 v0.0.2 4c4805d    2ffe6bd Release of v0.0.2 Stu Field <stu.g.field@gmail.com> stu.g.field
 #> v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field <stu.g.field@gmail.com> stu.g.field
-#>                               tagdate size                        path
-#> v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /home/jack/github/gitr/.git
-#> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /home/jack/github/gitr/.git
+#>                               tagdate size                              path
+#> v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /Users/runner/work/gitr/gitr/.git
+#> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git
 ```
 
 #### Situation Report
@@ -255,29 +243,26 @@ gitr_sitrep()
 #> Branches:
 #> Running git branch -a 
 #> * main
-#>   renaming-framework
 #>   remotes/origin/HEAD -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha
 #>   remotes/origin/gh-pages
 #>   remotes/origin/main
 #>   remotes/origin/prep-for-cran
-#>   remotes/origin/renaming-framework
 #>   remotes/origin/update-pkgdown-new-look
 #> 
 #> Local status:
-#> Your local branch main is ahead of origin/main by 4 commit(s).
+#> ✓ OK
 #> 
 #> Upstream remotes: origin
-#> * main               0511e8b [origin/main: ahead 4] Updated README and pkg vignette following name changes
-#>   renaming-framework 07725c3 [origin/renaming-framework] Renamed files with new naming convention
+#> * main d517d3b [origin/main] Updated pkgdown.yml to fix web deploy
 #> 
 #> Commit log: main
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 0511e8b (HEAD -> main) Updated README and pkg vignette following name changes
-#> * 07725c3 (origin/renaming-framework, renaming-framework) Renamed files with new naming convention
+#> * d517d3b (HEAD -> main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy
+#> * 68283a6 Updated README and pkg vignette following name changes
+#> * 07725c3 Renamed files with new naming convention
 #> * d59d5c6 Major renaming package function infrastructure
 #> * 8aab6c8 Fixed `git_version()` unit test for CRAN checks
-#> * 357e01d (origin/main, origin/HEAD) Re-build README.Rmd
 ```
 
 ------------------------------------------------------------------------
