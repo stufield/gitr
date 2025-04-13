@@ -19,10 +19,10 @@ knitr::opts_chunk$set(
 # Overview
 
 The `gitr` package is a light-weight, dependency-free, API to access
-system-level git commands from within `R`. Contains wrappers
-and defaults for common data science workflows as well as
-Z-shell plugin aliases. Generalized API syntax is also available.
-A system installation of `git` is required.
+system-level git commands from within `R`. Contains wrappers and defaults for
+common data science workflows as well as Z-shell plugin aliases. Generalized
+API syntax is also available.
+A system installation of [Git](https://git-scm.com/downloads) is required.
 
 
 
@@ -47,9 +47,11 @@ A system installation of `git` is required.
 ----------------------
 
 ## Workflows and examples (TODO)
+
 This section will become more fleshed out in future versions of `gitr`
 
-In the meantime please see the package [README](https://github.com/stufield/gitr/blob/main/README.md)
+In the meantime please see the package
+[README](https://github.com/stufield/gitr/blob/main/README.md)
 
 
 ---------------------

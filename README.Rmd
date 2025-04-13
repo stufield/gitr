@@ -77,10 +77,10 @@ Alternatively install the development version from GitHub:
 remotes::install_github("stufield/gitr")
 ```
 
-To install a _specific_ tagged release, use:
+To install a *specific* tagged release, use:
 
 ```{r install-version, eval = FALSE}
-remotes::install_github("stufield/gitr@v0.0.1")
+remotes::install_github("stufield/gitr@v0.0.2")
 ```
 
 
@@ -104,14 +104,20 @@ git_version()
 ```
 
 ```{r current}
-git_current_br()
+gitr_current_br()
 ```
 
 ```{r default}
-git_default_br()
+gitr_default_br()
 ```
 
+```{r local}
+gitr_local_br()
+```
+
+
 #### The Core Engine
+
 ```{r git-core}
 (git("branch", "foo"))
 
@@ -123,8 +129,9 @@ git("branch", "-D", "foo")$stdout
 
 
 #### Committing
+
 ```{r commit-msgs}
-get_commit_msgs(n = 3)
+gitr_commit_msgs(n = 3)
 ```
 
 ```{r glog}
@@ -152,31 +159,36 @@ git_unstage("DESCRIPTION")
 ```
 
 
-#### SHA1
-```{r trim}
+#### Secure Hash Algorithm (SHA-1)
+
+```{r sha}
 is_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 
-is_sha("foo")
+is_sha(c("foo", "d670c93"))   # vectorized
 
-trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
+gitr_trim_sha("d670c93733f3e1d7c95df7f61ebf6ca0476f14e3")
 
-trim_sha("foo")
+gitr_trim_sha(c("foo", "d670c93"))   # vectorized
+
+gitr_current_sha()
 ```
 
 
 #### Tags
+
 ```{r tag-recent}
-git_recent_tag()
+gitr_recent_tag()
 ```
 
 ```{r tag-info}
-git_tag_info()
+gitr_tag_info()
 ```
 
 
 #### Situation Report
+
 ```{r sitrep}
-git_sitrep()
+gitr_sitrep()
 ```
 
 
