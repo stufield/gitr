@@ -31,7 +31,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>SHA1 Utilities</h1>
-      <small class="dont-index">Source: <a href="https://github.com/stufield/gitr/blob/main/R/trim-sha.R" class="external-link"><code>R/trim-sha.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/stufield/gitr/blob/main/R/gitr-trim-sha.R" class="external-link"><code>R/gitr-trim-sha.R</code></a></small>
       <div class="d-none name"><code>sha.Rd</code></div>
     </div>
 
@@ -41,11 +41,11 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">trim_sha</span><span class="op">(</span><span class="va">sha</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gitr_trim_sha</span><span class="op">(</span><span class="va">sha</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">is_sha</span><span class="op">(</span><span class="va">sha</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">git_current_sha</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">gitr_current_sha</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -60,21 +60,21 @@ the current branch.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>trim_sha()</code>: <code>character(1)</code>. The trimmed <code>sha</code>.
+    <p><code>gitr_trim_sha()</code>: <code>character(1)</code>. The trimmed <code>sha</code>.
 If <code>sha</code> is not a <code>SHA1</code> hash, the identical string unchanged.</p>
 <p><code>is_sha()</code>: <code>logical(1)</code>. If <code>sha</code> matches the
 <code>SHA1</code> expected pattern.</p>
-<p><code>git_current_sha()</code>: <code>character(1)</code>. The <code>sha</code>
+<p><code>gitr_current_sha()</code>: <code>character(1)</code>. The <code>sha</code>
 of the current commit.</p>
     </div>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
 
-<ul><li><p><code>trim_sha()</code>: trims the <code>SHA-1</code> hash from the default full
+<ul><li><p><code>gitr_trim_sha()</code>: trims the <code>SHA-1</code> hash from the default full
 length to the human-readable short version.</p></li>
 <li><p><code>is_sha()</code>: determines whether strings to be tested are a <code>SHA1</code> hash
 via regular expression (<code>"^[a-f0-9]{5,40}$"</code>) match.</p></li>
-<li><p><code>git_current_sha()</code>: gets the current (most recent commit) SHA.</p></li>
+<li><p><code>gitr_current_sha()</code>: gets the current (most recent commit) SHA.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

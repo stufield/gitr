@@ -44,7 +44,7 @@
 <div class="section level3">
 <h3 id="features-rocket-0-0-2">Features <span class="emoji" data-emoji="rocket">🚀</span>
 <a class="anchor" aria-label="anchor" href="#features-rocket-0-0-2"></a></h3>
-<ul><li>Feature upgrade for <code><a href="../reference/checkout.html">git_checkout()</a></code> (<a href="https://github.com/stufield/gitr/issues/2" class="external-link">#2</a>)
+<ul><li>Feature upgrade for <code>git_checkout()</code> (<a href="https://github.com/stufield/gitr/issues/2" class="external-link">#2</a>)
 <ul><li>you can now checkout <em>either</em> a “branch” or a “file”. File checkout is commonly used to revert local changes to that file to the most recent commit state.</li>
 <li>improved edge-case catches and unit testing</li>
 </ul></li>
@@ -53,11 +53,11 @@
 <h3 id="new-functions-sparkles-0-0-2">New Functions <span class="emoji" data-emoji="sparkles">✨</span>
 <a class="anchor" aria-label="anchor" href="#new-functions-sparkles-0-0-2"></a></h3>
 <ul><li>
-<code><a href="../reference/sha.html">git_current_sha()</a></code>
+<code>git_current_sha()</code>
 <ul><li>self explanatory, gets current commit sha</li>
 </ul></li>
 <li>
-<code><a href="../reference/branch.html">git_local_br()</a></code>
+<code>git_local_br()</code>
 <ul><li>gets all the local branches</li>
 </ul></li>
 <li>
@@ -85,15 +85,15 @@
 </ul></li>
 </ul></li>
 <li>New unit tests for:
-<ul><li><code><a href="../reference/commit.html">get_commit_msgs()</a></code></li>
+<ul><li><code>get_commit_msgs()</code></li>
 <li><code>get_recent_tag()</code></li>
-<li><code><a href="../reference/checkout.html">git_checkout()</a></code></li>
-<li><code><a href="../reference/tag.html">git_tag_info()</a></code></li>
-<li><code><a href="../reference/tag.html">git_recent_tag()</a></code></li>
-<li><code><a href="../reference/checkout.html">git_checkout()</a></code></li>
-<li><code><a href="../reference/branch.html">git_current_br()</a></code></li>
+<li><code>git_checkout()</code></li>
+<li><code>git_tag_info()</code></li>
+<li><code>git_recent_tag()</code></li>
+<li><code>git_checkout()</code></li>
+<li><code>git_current_br()</code></li>
 <li><code>git_defaults_br()</code></li>
-<li><code><a href="../reference/sha.html">git_current_sha()</a></code></li>
+<li><code>git_current_sha()</code></li>
 <li><code><a href="../reference/git.html">git_version()</a></code></li>
 </ul></li>
 <li>Updated <code><a href="../reference/git.html">git()</a></code> unit tests
@@ -123,19 +123,19 @@
 <div class="section level3">
 <h3 id="bug-fixes-bug-0-0-2">Bug Fixes <span class="emoji" data-emoji="bug">🐛</span>
 <a class="anchor" aria-label="anchor" href="#bug-fixes-bug-0-0-2"></a></h3>
-<ul><li>Make <code><a href="../reference/tag.html">git_recent_tag()</a></code> more robust (<a href="https://github.com/malcook" class="external-link">@malcook</a>; <a href="https://github.com/stufield/gitr/issues/16" class="external-link">#16</a>)
+<ul><li>Make <code>git_recent_tag()</code> more robust (<a href="https://github.com/malcook" class="external-link">@malcook</a>; <a href="https://github.com/stufield/gitr/issues/16" class="external-link">#16</a>)
 <ul><li>allow for asynchronous date tagging, aka the most “recent” tag, rather than the alpha-numeric sorting</li>
 <li>thanks <a href="https://github.com/malcook" class="external-link">@malcook</a>!</li>
 <li>
-<code><a href="../reference/tag.html">git_recent_tag()</a></code> no longer echos command by default
+<code>git_recent_tag()</code> no longer echos command by default
 <ul><li>small, possibly breaking, change depending on unit tests</li>
 <li>mostly a UI change at the console</li>
 </ul></li>
 </ul></li>
-<li>Fixed a bug in <code><a href="../reference/commit.html">git_diffcommits()</a></code>
+<li>Fixed a bug in <code>git_diffcommits()</code>
 <ul><li>indexing is now correct (<code>x - 1</code>)</li>
 </ul></li>
-<li>Fix bug in <code><a href="../reference/pr.html">get_pr_sha()</a></code> (<a href="https://github.com/stu" class="external-link">@stu</a>.g.field; <a href="https://github.com/stufield/gitr/issues/10" class="external-link">#10</a>, <a href="https://github.com/stufield/gitr/issues/11" class="external-link">#11</a>)
+<li>Fix bug in <code>get_pr_sha()</code> (<a href="https://github.com/stu" class="external-link">@stu</a>.g.field; <a href="https://github.com/stufield/gitr/issues/10" class="external-link">#10</a>, <a href="https://github.com/stufield/gitr/issues/11" class="external-link">#11</a>)
 <ul><li>index the <code>stdout</code> properly in the <code>if-else</code> so that the function returns <code>NULL</code> rather than <code>""</code> if there is no SHA to find</li>
 <li>the presence/absence of <code>NULL</code> can then be tested for in downstream code</li>
 </ul></li>
@@ -164,7 +164,7 @@
 <ul><li>for the <code>gitr</code> vignette introduction</li>
 <li>more vignettes/articles to come</li>
 </ul></li>
-<li>Minor tweak to <code><a href="../reference/sha.html">trim_sha()</a></code> (<a href="https://github.com/stufield/gitr/issues/9" class="external-link">#9</a>)
+<li>Minor tweak to <code>trim_sha()</code> (<a href="https://github.com/stufield/gitr/issues/9" class="external-link">#9</a>)
 <ul><li>returns <code>char(7)</code> if a sha</li>
 <li>otherwise no trim occurs (orig string)</li>
 <li>overall: <code><a href="../reference/sha.html">is_sha()</a></code> must be <code>TRUE</code> for any trimming</li>

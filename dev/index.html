@@ -74,7 +74,7 @@
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stufield/gitr"</span><span class="op">)</span></span></code></pre></div>
 <p>To install a <em>specific</em> tagged release, use:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stufield/gitr@v0.0.1"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"stufield/gitr@v0.0.2"</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level2">
@@ -94,16 +94,19 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/git.html">git_version</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2.49.0"</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">git_current_br</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">gitr_current_br</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "main"</span></span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">git_default_br</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">gitr_default_br</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "main"</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">gitr_local_br</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "main"               "renaming-framework"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="the-core-engine">The Core Engine<a class="anchor" aria-label="anchor" href="#the-core-engine"></a>
 </h4>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch foo</span></span>
 <span><span class="co">#&gt; $status</span></span>
@@ -118,110 +121,119 @@
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch -av </span></span>
-<span><span class="co">#&gt;   foo                                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check</span></span>
-<span><span class="co">#&gt; * main                                   f2554e3 Makefile now uses `rcmdcheck` over R CMD check</span></span>
+<span><span class="co">#&gt;   foo                                    0511e8b Updated README and pkg vignette following name changes</span></span>
+<span><span class="co">#&gt; * main                                   0511e8b [ahead 4] Updated README and pkg vignette following name changes</span></span>
+<span><span class="co">#&gt;   renaming-framework                     07725c3 Renamed files with new naming convention</span></span>
 <span><span class="co">#&gt;   remotes/origin/HEAD                    -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)</span></span>
-<span><span class="co">#&gt;   remotes/origin/gh-pages                cc64a18 Built site for gitr@0.0.1.9000: f2554e3</span></span>
-<span><span class="co">#&gt;   remotes/origin/main                    f2554e3 Makefile now uses `rcmdcheck` over R CMD check</span></span>
+<span><span class="co">#&gt;   remotes/origin/gh-pages                be34c7e Built site for gitr@0.0.2.9000: 9b2fdbb</span></span>
+<span><span class="co">#&gt;   remotes/origin/main                    357e01d Re-build README.Rmd</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs</span></span>
-<span><span class="co">#&gt;   remotes/origin/submit-cran             378ef59 Increment version number to 0.0.1</span></span>
+<span><span class="co">#&gt;   remotes/origin/renaming-framework      07725c3 Renamed files with new naming convention</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-D"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
 <span><span class="co">#&gt; Running git branch -D foo</span></span>
-<span><span class="co">#&gt; [1] "Deleted branch foo (was f2554e3)."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Deleted branch foo (was 0511e8b)."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="committing">Committing<a class="anchor" aria-label="anchor" href="#committing"></a>
 </h4>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">get_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">gitr_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --format=%H -n 3</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "Makefile now uses `rcmdcheck` over R CMD check"</span></span>
-<span><span class="co">#&gt; [2] ""                                              </span></span>
-<span><span class="co">#&gt; [3] "- to match the checks in the GHA workflows"    </span></span>
-<span><span class="co">#&gt; [4] ""                                              </span></span>
+<span><span class="co">#&gt; [1] "Updated README and pkg vignette following name changes"</span></span>
+<span><span class="co">#&gt; [2] ""                                                      </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "f2554e3"</span></span>
+<span><span class="co">#&gt; [1] "0511e8b"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "Fixed possibly broken URLs" ""                          </span></span>
+<span><span class="co">#&gt; [1] "Renamed files with new naming convention" ""                                        </span></span>
+<span><span class="co">#&gt; [3] "- prefix *.R files with \"gitr*.R\""      "- renamed 'test-*.R' suite of files"     </span></span>
+<span><span class="co">#&gt; [5] ""                                        </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "7318385"</span></span>
+<span><span class="co">#&gt; [1] "07725c3"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "Testing during R CMD Check can be difficult"                  </span></span>
-<span><span class="co">#&gt; [2] ""                                                             </span></span>
-<span><span class="co">#&gt; [3] "- because R CMD check doesn't copy over the .git"             </span></span>
-<span><span class="co">#&gt; [4] "  directory during build ... it's technically not a git repo!"</span></span>
-<span><span class="co">#&gt; [5] "- so we have to skip many of these tests if they're"          </span></span>
-<span><span class="co">#&gt; [6] "  outside of this scope"                                      </span></span>
-<span><span class="co">#&gt; [7] "- rely on `devtools::test()` ... aka `make test`"             </span></span>
-<span><span class="co">#&gt; [8] "- not ideal, may have to come up with another solution"       </span></span>
-<span><span class="co">#&gt; [9] ""                                                             </span></span>
+<span><span class="co">#&gt;  [1] "Major renaming package function infrastructure"  </span></span>
+<span><span class="co">#&gt;  [2] ""                                                </span></span>
+<span><span class="co">#&gt;  [3] "- most function names that began with `git_*()`" </span></span>
+<span><span class="co">#&gt;  [4] "  are now `gitr_*()`"                            </span></span>
+<span><span class="co">#&gt;  [5] "- functions that previously were `get_*()`"      </span></span>
+<span><span class="co">#&gt;  [6] "  are now unified towards `gitr_*()`"            </span></span>
+<span><span class="co">#&gt;  [7] "- this involves renaming, NAMESPACE update,"     </span></span>
+<span><span class="co">#&gt;  [8] "  file renaming, unit test upgrades, etc."       </span></span>
+<span><span class="co">#&gt;  [9] "- many BREAKING(!) changes in this single commit"</span></span>
+<span><span class="co">#&gt; [10] "- closes #18"                                    </span></span>
+<span><span class="co">#&gt; [11] ""                                                </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "8525393"</span></span>
+<span><span class="co">#&gt; [1] "d59d5c6"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * f2554e3 (HEAD -&gt; main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check</span></span>
-<span><span class="co">#&gt; * 7318385 Fixed possibly broken URLs</span></span>
-<span><span class="co">#&gt; * 8525393 Testing during R CMD Check can be difficult</span></span>
-<span><span class="co">#&gt; * 7973b17 Added unit tests for "commit" group</span></span>
-<span><span class="co">#&gt; * 78b3c85 Set up special gitr unit testing fixtures</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_diffcommits</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt; * 0511e8b (HEAD -&gt; main) Updated README and pkg vignette following name changes</span></span>
+<span><span class="co">#&gt; * 07725c3 (origin/renaming-framework, renaming-framework) Renamed files with new naming convention</span></span>
+<span><span class="co">#&gt; * d59d5c6 Major renaming package function infrastructure</span></span>
+<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span>
+<span><span class="co">#&gt; * 357e01d (origin/main, origin/HEAD) Re-build README.Rmd</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_reset_hard</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">git_diffcommits</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_reset_soft</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">git_reset_hard</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_uncommit</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">git_reset_soft</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">git_unstage</a></span><span class="op">(</span><span class="st">"DESCRIPTION"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">git_uncommit</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">git_unstage</span><span class="op">(</span><span class="st">"DESCRIPTION"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="sha1">SHA1<a class="anchor" aria-label="anchor" href="#sha1"></a>
+<h4 id="sha-1">SHA-1<a class="anchor" aria-label="anchor" href="#sha-1"></a>
 </h4>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="st">"d670c93733f3e1d7c95df7f61ebf6ca0476f14e3"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] FALSE</span></span>
+<span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"d670c93"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] FALSE  TRUE</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/sha.html">trim_sha</a></span><span class="op">(</span><span class="st">"d670c93733f3e1d7c95df7f61ebf6ca0476f14e3"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/sha.html">gitr_trim_sha</a></span><span class="op">(</span><span class="st">"d670c93733f3e1d7c95df7f61ebf6ca0476f14e3"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "d670c93"</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/sha.html">trim_sha</a></span><span class="op">(</span><span class="st">"foo"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "foo"</span></span></code></pre></div>
+<span><span class="fu"><a href="reference/sha.html">gitr_trim_sha</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"d670c93"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "foo"     "d670c93"</span></span>
+<span></span>
+<span><span class="fu"><a href="reference/sha.html">gitr_current_sha</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Running git rev-parse HEAD</span></span>
+<span><span class="co">#&gt; [1] "0511e8b"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="tags">Tags<a class="anchor" aria-label="anchor" href="#tags"></a>
 </h4>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">git_recent_tag</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "v0.0.1"</span></span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">git_tag_info</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">gitr_recent_tag</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "v0.0.2"</span></span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">gitr_tag_info</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           tag tag_sha target_sha           message    author                   email        user</span></span>
+<span><span class="co">#&gt; v0.0.2 v0.0.2 4c4805d    2ffe6bd Release of v0.0.2 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
 <span><span class="co">#&gt; v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
-<span><span class="co">#&gt;                               tagdate size                              path</span></span>
-<span><span class="co">#&gt; v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git</span></span></code></pre></div>
+<span><span class="co">#&gt;                               tagdate size                        path</span></span>
+<span><span class="co">#&gt; v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /home/jack/github/gitr/.git</span></span>
+<span><span class="co">#&gt; v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /home/jack/github/gitr/.git</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="situation-report">Situation Report<a class="anchor" aria-label="anchor" href="#situation-report"></a>
 </h4>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/git_sitrep.html">git_sitrep</a></span><span class="op">(</span><span class="op">)</span></span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/sitrep.html">gitr_sitrep</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Using Git version: 2.49.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Current branch: main</span></span>
@@ -234,27 +246,29 @@
 <span><span class="co">#&gt; Branches:</span></span>
 <span><span class="co">#&gt; Running git branch -a </span></span>
 <span><span class="co">#&gt; * main</span></span>
+<span><span class="co">#&gt;   renaming-framework</span></span>
 <span><span class="co">#&gt;   remotes/origin/HEAD -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha</span></span>
 <span><span class="co">#&gt;   remotes/origin/gh-pages</span></span>
 <span><span class="co">#&gt;   remotes/origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran</span></span>
-<span><span class="co">#&gt;   remotes/origin/submit-cran</span></span>
+<span><span class="co">#&gt;   remotes/origin/renaming-framework</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Local status:</span></span>
-<span><span class="co">#&gt; ✓ OK</span></span>
+<span><span class="co">#&gt; Your local branch main is ahead of origin/main by 4 commit(s).</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Upstream remotes: origin</span></span>
-<span><span class="co">#&gt; * main f2554e3 [origin/main] Makefile now uses `rcmdcheck` over R CMD check</span></span>
+<span><span class="co">#&gt; * main               0511e8b [origin/main: ahead 4] Updated README and pkg vignette following name changes</span></span>
+<span><span class="co">#&gt;   renaming-framework 07725c3 [origin/renaming-framework] Renamed files with new naming convention</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Commit log: main</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * f2554e3 (HEAD -&gt; main, origin/main, origin/HEAD) Makefile now uses `rcmdcheck` over R CMD check</span></span>
-<span><span class="co">#&gt; * 7318385 Fixed possibly broken URLs</span></span>
-<span><span class="co">#&gt; * 8525393 Testing during R CMD Check can be difficult</span></span>
-<span><span class="co">#&gt; * 7973b17 Added unit tests for "commit" group</span></span>
-<span><span class="co">#&gt; * 78b3c85 Set up special gitr unit testing fixtures</span></span></code></pre></div>
+<span><span class="co">#&gt; * 0511e8b (HEAD -&gt; main) Updated README and pkg vignette following name changes</span></span>
+<span><span class="co">#&gt; * 07725c3 (origin/renaming-framework, renaming-framework) Renamed files with new naming convention</span></span>
+<span><span class="co">#&gt; * d59d5c6 Major renaming package function infrastructure</span></span>
+<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span>
+<span><span class="co">#&gt; * 357e01d (origin/main, origin/HEAD) Re-build README.Rmd</span></span></code></pre></div>
 <hr>
 </div>
 </div>
