@@ -1,7 +1,24 @@
-# silencing the git echo is possible via the `gitr_echo_cmd` global option
+# silencing the echo is possible via `gitr_echo_cmd=` global option
 
     Code
-      ver <- git("--version", echo_cmd = FALSE)$stdout
+      ver <- git("--version")
     Output
       Running git --version 
+
+---
+
+    Code
+      ver <- git("--version", echo_cmd = FALSE)
+
+---
+
+    Code
+      ver <- git("--version", echo_cmd = FALSE)
+    Output
+      Running git --version 
+
+---
+
+    Code
+      ver <- git("--version", echo_cmd = FALSE)
 

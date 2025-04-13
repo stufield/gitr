@@ -19,29 +19,37 @@ test_that("the basic functionality of `git()` works as expected", {
   expect_equal(out$stderr, "")
 })
 
-test_that("silencing the git echo is possible via the `gitr_echo_cmd` global option", {
-  # use `git("--version")` for testing b/c doesn't require a git repository
-  # default; TRUE
-  true <- system2("git", "--version", stdout = TRUE)
-  expect_equal(git("--version", echo_cmd = FALSE)$stdout, true)
+test_that("silencing the echo is possible via `gitr_echo_cmd=` global option", {
+  # use `git("--version")` for testing b/c does not
+  # require a git repository
 
-  # over-ride default; FALSE
+  # default; NULL (unset); TRUE
   withr::with_options(
-    list(gitr_echo_cmd = FALSE),
-    ver <- git("--version")$stdout
+    list(gitr_echo_cmd = NULL),
+    expect_snapshot(ver <- git("--version"))
   )
-  expect_equal(ver, true)
+
+  # passed param; FALSE
+  withr::with_options(
+    list(gitr_echo_cmd = NULL),
+    expect_snapshot(ver <- git("--version", echo_cmd = FALSE))
+  )
 
   # over-ride passed param; TRUE
   withr::with_options(
     list(gitr_echo_cmd = TRUE),
-    expect_snapshot(ver <- git("--version", echo_cmd = FALSE)$stdout)
+    expect_snapshot(ver <- git("--version", echo_cmd = FALSE))
   )
-  expect_equal(ver, true)
+
+  # over-ride default; FALSE
+  withr::with_options(
+    list(gitr_echo_cmd = FALSE),
+    expect_snapshot(ver <- git("--version", echo_cmd = FALSE))
+  )
 })
 
-test_that("git_version() returns the correct expected value", {
-  true <- system2("git", "--version", stdout = TRUE)
-  true <- gsub("git version *([^ ]*)", "\\1", true)
-  expect_equal(git_version(), true)
+test_that("`git_version()` returns the correct expected value", {
+  ver <- system2("git", "--version", stdout = TRUE)
+  ver <- gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
+  expect_equal(git_version(), ver)
 })

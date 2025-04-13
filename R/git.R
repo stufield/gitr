@@ -62,7 +62,7 @@ git <- function(..., echo_cmd = TRUE) {
 is_git <- function() {
   dir <- base::system2("git", "rev-parse --git-dir",
                        stdout = FALSE, stderr = FALSE)
-  in_repo  <- dir.exists(".git") || (dir == 0L)
+  in_repo  <- dir.exists(".git") || ( dir == 0L )
   if ( !in_repo ) {
     oops("Not a git repository")
   }
@@ -80,4 +80,3 @@ git_version <- function() {
   ver <- git("--version", echo_cmd = FALSE)$stdout
   gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)
 }
-
