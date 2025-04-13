@@ -43,7 +43,7 @@ reference:
       A listing of the most common Git commands available in 'gitr'.
     contents:
     - git
-    - git_sitrep
+    - gitr_sitrep
     - pr
     - branch
     - commit
