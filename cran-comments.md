@@ -1,17 +1,20 @@
 
 # This is a re-release to CRAN
 
-* version: `v0.0.1` -> `v0.0.2`
+* version: `v0.0.2` -> `v0.1.0`
 
-* this submission updates functionality and
-  fixes minor bugs that have been reported by
-  users.
+* this submission involves a major
+  renaming of functions that should
+  be captured in a versioned release.
+  As such, resubmitting to CRAN so
+  users will have access to a frozen
+  version of `v0.1.0` which still being
+  able to access `v0.0.2`.
 
-* since it is a minor submission, I do not
-  anticipate major concerns from CRAN.
+* since there are mostly API and internal
+  changes, I do not a anticipate major
+  concerns from CRAN.
 
-* *note*: this is a presubmission for an
-  eventual `v0.1.0` release in the coming weeks
 
 ## R CMD check results
 

@@ -1,7 +1,27 @@
-# gitr (development version)
+# gitr 0.1.0 :construction:
 
-* Major reconstruction and renaming coming! :construction:
+## Breaking Changes :warning:
 
+* Major naming convention change to package function infrastructure (#18)
+  - most function names that began with `git_*()` are now `gitr_*()`
+  - functions that previously were `get_*()`
+    are now unified towards `gitr_*()`
+  - this involves renaming prefix `*.R` files with `"gitr_*.R`"
+  - renamed `'test-*.R`' suite of files
+  - many BREAKING changes! Please bear with me and be aware
+  - this results in a minor version increment
+    to indicate that the API has changed but without
+    committing to a full major version increment
+    indicating an API lock.
+
+## Bugs :bug:
+
+* Fixed `git_version()` unit test for CRAN checks
+  - edge-case for Apple/Mac systems with non-standard
+    git version strings
+  - `git` regex needed to be more robust and is now fixed
+
+------------------
 
 # gitr 0.0.2
 
