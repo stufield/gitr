@@ -13,8 +13,8 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="A Lightweight API for Git">
-<meta name="description" content="A light-weight, dependency-free, application programming interface (API) to access system-level Git commands from within R. Contains wrappers and defaults for common data science workflows as well as Zsh &lt;https://github.com/ohmyzsh/ohmyzsh&gt; plugin aliases. A generalized API syntax is also available. A system installation of Git &lt;https://git-scm.com/downloads&gt; is required.">
-<meta property="og:description" content="A light-weight, dependency-free, application programming interface (API) to access system-level Git commands from within R. Contains wrappers and defaults for common data science workflows as well as Zsh &lt;https://github.com/ohmyzsh/ohmyzsh&gt; plugin aliases. A generalized API syntax is also available. A system installation of Git &lt;https://git-scm.com/downloads&gt; is required.">
+<meta name="description" content="A light-weight, dependency-free, application programming interface (API) to access system-level Git &lt;https://git-scm.com/downloads&gt; commands from within R. Contains wrappers and defaults for common data science workflows as well as Zsh &lt;https://github.com/ohmyzsh/ohmyzsh&gt; plugin aliases. A generalized API syntax is also available.">
+<meta property="og:description" content="A light-weight, dependency-free, application programming interface (API) to access system-level Git &lt;https://git-scm.com/downloads&gt; commands from within R. Contains wrappers and defaults for common data science workflows as well as Zsh &lt;https://github.com/ohmyzsh/ohmyzsh&gt; plugin aliases. A generalized API syntax is also available.">
 <meta name="robots" content="noindex">
 </head>
 <body>
@@ -101,7 +101,7 @@
 <span><span class="co">#&gt; [1] "main"</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/branch.html">gitr_local_br</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "main"               "renaming-framework"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "main"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="the-core-engine">The Core Engine<a class="anchor" aria-label="anchor" href="#the-core-engine"></a>
@@ -121,20 +121,18 @@
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch -av </span></span>
-<span><span class="co">#&gt;   foo                                    0511e8b Updated README and pkg vignette following name changes</span></span>
-<span><span class="co">#&gt; * main                                   0511e8b [ahead 4] Updated README and pkg vignette following name changes</span></span>
-<span><span class="co">#&gt;   renaming-framework                     07725c3 Renamed files with new naming convention</span></span>
+<span><span class="co">#&gt;   foo                                    d517d3b Updated pkgdown.yml to fix web deploy</span></span>
+<span><span class="co">#&gt; * main                                   d517d3b Updated pkgdown.yml to fix web deploy</span></span>
 <span><span class="co">#&gt;   remotes/origin/HEAD                    -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)</span></span>
-<span><span class="co">#&gt;   remotes/origin/gh-pages                be34c7e Built site for gitr@0.0.2.9000: 9b2fdbb</span></span>
-<span><span class="co">#&gt;   remotes/origin/main                    357e01d Re-build README.Rmd</span></span>
+<span><span class="co">#&gt;   remotes/origin/gh-pages                1265386 Built site for gitr@0.0.2.9000: d517d3b</span></span>
+<span><span class="co">#&gt;   remotes/origin/main                    d517d3b Updated pkgdown.yml to fix web deploy</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs</span></span>
-<span><span class="co">#&gt;   remotes/origin/renaming-framework      07725c3 Renamed files with new naming convention</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-D"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
 <span><span class="co">#&gt; Running git branch -D foo</span></span>
-<span><span class="co">#&gt; [1] "Deleted branch foo (was 0511e8b)."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Deleted branch foo (was d517d3b)."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="committing">Committing<a class="anchor" aria-label="anchor" href="#committing"></a>
@@ -143,46 +141,36 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">gitr_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --format=%H -n 3</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "Updated README and pkg vignette following name changes"</span></span>
-<span><span class="co">#&gt; [2] ""                                                      </span></span>
+<span><span class="co">#&gt; [1] "Updated pkgdown.yml to fix web deploy" ""                                     </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "0511e8b"</span></span>
+<span><span class="co">#&gt; [1] "d517d3b"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
+<span><span class="co">#&gt; [1] "Updated README and pkg vignette following name changes"</span></span>
+<span><span class="co">#&gt; [2] ""                                                      </span></span>
+<span><span class="co">#&gt; attr(,"sha")</span></span>
+<span><span class="co">#&gt; [1] "68283a6"</span></span>
+<span><span class="co">#&gt; attr(,"author")</span></span>
+<span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; [[3]]</span></span>
 <span><span class="co">#&gt; [1] "Renamed files with new naming convention" ""                                        </span></span>
 <span><span class="co">#&gt; [3] "- prefix *.R files with \"gitr*.R\""      "- renamed 'test-*.R' suite of files"     </span></span>
 <span><span class="co">#&gt; [5] ""                                        </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
 <span><span class="co">#&gt; [1] "07725c3"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
-<span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt;  [1] "Major renaming package function infrastructure"  </span></span>
-<span><span class="co">#&gt;  [2] ""                                                </span></span>
-<span><span class="co">#&gt;  [3] "- most function names that began with `git_*()`" </span></span>
-<span><span class="co">#&gt;  [4] "  are now `gitr_*()`"                            </span></span>
-<span><span class="co">#&gt;  [5] "- functions that previously were `get_*()`"      </span></span>
-<span><span class="co">#&gt;  [6] "  are now unified towards `gitr_*()`"            </span></span>
-<span><span class="co">#&gt;  [7] "- this involves renaming, NAMESPACE update,"     </span></span>
-<span><span class="co">#&gt;  [8] "  file renaming, unit test upgrades, etc."       </span></span>
-<span><span class="co">#&gt;  [9] "- many BREAKING(!) changes in this single commit"</span></span>
-<span><span class="co">#&gt; [10] "- closes #18"                                    </span></span>
-<span><span class="co">#&gt; [11] ""                                                </span></span>
-<span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "d59d5c6"</span></span>
-<span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 0511e8b (HEAD -&gt; main) Updated README and pkg vignette following name changes</span></span>
-<span><span class="co">#&gt; * 07725c3 (origin/renaming-framework, renaming-framework) Renamed files with new naming convention</span></span>
+<span><span class="co">#&gt; * d517d3b (HEAD -&gt; main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy</span></span>
+<span><span class="co">#&gt; * 68283a6 Updated README and pkg vignette following name changes</span></span>
+<span><span class="co">#&gt; * 07725c3 Renamed files with new naming convention</span></span>
 <span><span class="co">#&gt; * d59d5c6 Major renaming package function infrastructure</span></span>
-<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span>
-<span><span class="co">#&gt; * 357e01d (origin/main, origin/HEAD) Re-build README.Rmd</span></span></code></pre></div>
+<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">git_diffcommits</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -195,24 +183,24 @@
 <code class="sourceCode R"><span><span class="fu">git_unstage</span><span class="op">(</span><span class="st">"DESCRIPTION"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
-<h4 id="sha-1">SHA-1<a class="anchor" aria-label="anchor" href="#sha-1"></a>
+<h4 id="secure-hash-algorithm-sha-1">Secure Hash Algorithm (SHA-1)<a class="anchor" aria-label="anchor" href="#secure-hash-algorithm-sha-1"></a>
 </h4>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="st">"d670c93733f3e1d7c95df7f61ebf6ca0476f14e3"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"d670c93"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/sha.html">is_sha</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"d670c93"</span><span class="op">)</span><span class="op">)</span>   <span class="co"># vectorized</span></span>
 <span><span class="co">#&gt; [1] FALSE  TRUE</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/sha.html">gitr_trim_sha</a></span><span class="op">(</span><span class="st">"d670c93733f3e1d7c95df7f61ebf6ca0476f14e3"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "d670c93"</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/sha.html">gitr_trim_sha</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"d670c93"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/sha.html">gitr_trim_sha</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"foo"</span>, <span class="st">"d670c93"</span><span class="op">)</span><span class="op">)</span>   <span class="co"># vectorized</span></span>
 <span><span class="co">#&gt; [1] "foo"     "d670c93"</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/sha.html">gitr_current_sha</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git rev-parse HEAD</span></span>
-<span><span class="co">#&gt; [1] "0511e8b"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "d517d3b"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="tags">Tags<a class="anchor" aria-label="anchor" href="#tags"></a>
@@ -225,9 +213,9 @@
 <span><span class="co">#&gt;           tag tag_sha target_sha           message    author                   email        user</span></span>
 <span><span class="co">#&gt; v0.0.2 v0.0.2 4c4805d    2ffe6bd Release of v0.0.2 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
 <span><span class="co">#&gt; v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
-<span><span class="co">#&gt;                               tagdate size                        path</span></span>
-<span><span class="co">#&gt; v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /home/jack/github/gitr/.git</span></span>
-<span><span class="co">#&gt; v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /home/jack/github/gitr/.git</span></span></code></pre></div>
+<span><span class="co">#&gt;                               tagdate size                              path</span></span>
+<span><span class="co">#&gt; v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /Users/runner/work/gitr/gitr/.git</span></span>
+<span><span class="co">#&gt; v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="situation-report">Situation Report<a class="anchor" aria-label="anchor" href="#situation-report"></a>
@@ -246,29 +234,26 @@
 <span><span class="co">#&gt; Branches:</span></span>
 <span><span class="co">#&gt; Running git branch -a </span></span>
 <span><span class="co">#&gt; * main</span></span>
-<span><span class="co">#&gt;   renaming-framework</span></span>
 <span><span class="co">#&gt;   remotes/origin/HEAD -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha</span></span>
 <span><span class="co">#&gt;   remotes/origin/gh-pages</span></span>
 <span><span class="co">#&gt;   remotes/origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran</span></span>
-<span><span class="co">#&gt;   remotes/origin/renaming-framework</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Local status:</span></span>
-<span><span class="co">#&gt; Your local branch main is ahead of origin/main by 4 commit(s).</span></span>
+<span><span class="co">#&gt; ✓ OK</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Upstream remotes: origin</span></span>
-<span><span class="co">#&gt; * main               0511e8b [origin/main: ahead 4] Updated README and pkg vignette following name changes</span></span>
-<span><span class="co">#&gt;   renaming-framework 07725c3 [origin/renaming-framework] Renamed files with new naming convention</span></span>
+<span><span class="co">#&gt; * main d517d3b [origin/main] Updated pkgdown.yml to fix web deploy</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Commit log: main</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 0511e8b (HEAD -&gt; main) Updated README and pkg vignette following name changes</span></span>
-<span><span class="co">#&gt; * 07725c3 (origin/renaming-framework, renaming-framework) Renamed files with new naming convention</span></span>
+<span><span class="co">#&gt; * d517d3b (HEAD -&gt; main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy</span></span>
+<span><span class="co">#&gt; * 68283a6 Updated README and pkg vignette following name changes</span></span>
+<span><span class="co">#&gt; * 07725c3 Renamed files with new naming convention</span></span>
 <span><span class="co">#&gt; * d59d5c6 Major renaming package function infrastructure</span></span>
-<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span>
-<span><span class="co">#&gt; * 357e01d (origin/main, origin/HEAD) Re-build README.Rmd</span></span></code></pre></div>
+<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span></code></pre></div>
 <hr>
 </div>
 </div>
