@@ -52,7 +52,8 @@ gcc <- function(...) {
 #'
 #' @export
 gcmsg <- function(msg = "wip") {
-  git("commit", "--no-verify", "-m", encodeString(msg, quote = "'"))
+  quote <- ifelse(.Platform$OS.type == "windows", "\"", "'")
+  git("commit", "--no-verify", "-m", encodeString(msg, quote = quote))
 }
 
 #' @describeIn zsh `git checkout`.

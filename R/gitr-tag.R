@@ -34,8 +34,9 @@ gitr_tag_info <- function() {
     info("No tags in repository ...")
     return(invisible(NULL))
   }
-  tags <- git("tag", "--sort=-v:refname",
-    "--format='%(tag)\t%(objectname:short)\t%(object)\t%(subject)\t%(taggername)\t%(taggeremail)\t%(taggeremail:localpart)\t%(taggerdate)\t%(objectsize)'",
+  tags <- git("tag",
+              "--sort=-v:refname",
+    "--format=\"%(tag)\t%(objectname:short)\t%(object)\t%(subject)\t%(taggername)\t%(taggeremail)\t%(taggeremail:localpart)\t%(taggerdate)\t%(objectsize)\"",
     echo_cmd = FALSE)$stdout
   tags <- strsplit(tags, "\t")
   ret  <- data.frame(do.call(rbind, tags))

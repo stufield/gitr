@@ -17,8 +17,8 @@ local_create_worktree <- function(dir    = tempfile("gitr-"),
   git("worktree", "add", "--track", "-B", branch, dir)
   user <- "Gandalf White"
   email <- "whitewizard@middleearth.com"
-  git("config", "--local", "user.name", encodeString(user, quote = "'"))
-  git("config", "--local", "user.email", encodeString(email, quote = "'"))
+  git("config", "--local", "user.name", encodeString(user, quote = quote))
+  git("config", "--local", "user.email", encodeString(email, quote = quote))
 
   # rm local branch (last)
   # local branch created automatically as worktree added
@@ -37,9 +37,14 @@ local_create_worktree <- function(dir    = tempfile("gitr-"),
   invisible(dir)
 }
 
-
+# helper for standardizing non-standard
+# sha entries
 clean_commit_sha <- function(x, fake_sha = "abc1234") {
   stopifnot(length(x) == 1L)
   attr(x[[1L]], "sha") <- fake_sha  # clean attr of 1L
   setNames(x, fake_sha)             # rename
 }
+
+# this is for command line quoting
+# around encoded strings; see encodeString()
+quote <- ifelse(.Platform$OS.type == "windows", "\"", "'")

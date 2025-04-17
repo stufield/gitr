@@ -32,8 +32,8 @@ test_that("`gitr_pr_sha()` returns proper default", {
   expect_equal(cur_br, "gitr-test-br")
 
   git("commit", "--allow-empty",
-    "-m", encodeString(title, quote = "'"),
-    "-m", encodeString(msg, quote = "'")
+    "-m", encodeString(title, quote = quote),
+    "-m", encodeString(msg, quote = quote)
   )
 
   # here simply take the first sha in case

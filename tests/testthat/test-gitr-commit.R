@@ -36,8 +36,8 @@ test_that("`gitr_commit_msgs()` gives correct commit after adding one", {
   msg   <- "- and here are some details"
 
   git("commit", "--allow-empty",
-    "-m", encodeString(title, quote = "'"),
-    "-m", encodeString(msg, quote = "'")
+    "-m", encodeString(title, quote = quote),
+    "-m", encodeString(msg, quote = quote)
   )
 
   cmt <- gitr_commit_msgs(n = 1L)
@@ -63,7 +63,7 @@ test_that("`scrape_commits()` returns expected (must execute after above)", {
 test_that("`gitr_uncommit()` pops the current commit off the commit stack", {
   sha0  <- gitr_current_sha()
   title <- "New empty commit for gitr_uncommit() testing"
-  git("commit", "--allow-empty", "-m", encodeString(title, quote = "'"))
+  git("commit", "--allow-empty", "-m", encodeString(title, quote = quote))
   sha1  <- gitr_current_sha()
   expect_false(sha0 == sha1) # ensure new commit was added
   capture_output(gitr_uncommit()) # pop stack; silence cat()
@@ -93,6 +93,6 @@ test_that("`gitr_diff_commits()` returns correct output diffing a recent commit"
     con = file
   )
   git("add", file)
-  git("commit", "-m", encodeString("Add temp unit test file", quote = "'"))
+  git("commit", "-m", encodeString("Add temp unit test file", quote = quote))
   expect_snapshot(gitr_diff_commits())
 })
