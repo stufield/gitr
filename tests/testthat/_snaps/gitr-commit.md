@@ -4,7 +4,7 @@
       commit <- scrape_commits(1L)
     Message
       • Scraping 1 commit messages
-      ✓ Found 1 NEWS-worthy entries
+      ✓ Found 1 NEWS-worthy entry
 
 ---
 

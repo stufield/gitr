@@ -31,14 +31,16 @@ gitr_sitrep <- function() {
       done("OK")
     }
     if ( ah > "0" ) {
+      plur <- ifelse(ah == "1", "commit.\n", "commits.\n")
       cat("Your local branch", slug_color(br),
           "is ahead of", slug_color(paste0(remote, "/", br), "\033[34m"),
-          "by", ah, "commit(s).\n")
+          "by", ah, plur)
     }
     if ( be > "0" ) {
+      plur <- ifelse(be == "1", "commit.\n", "commits.\n")
       cat("Your local branch", slug_color(br),
           "is behind", slug_color(paste0(remote, "/", br), "\033[34m"),
-          "by", be, "commit(s).\n")
+          "by", be, plur)
     }
 
     cat("\nUpstream remotes: ", slug_color(remote, "\033[33m"), "\n", sep = "")

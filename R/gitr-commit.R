@@ -68,7 +68,8 @@ scrape_commits <- function(n) {
       grepl("Update.*pkgdown", .msg)
     (a || b)
     }, FUN.VALUE = NA)
-  done("Found", sum(keep_lgl), "NEWS-worthy entries")
+  ent <- ifelse(sum(keep_lgl) == 1, "entry", "entries")
+  done("Found", sum(keep_lgl), "NEWS-worthy", ent)
   commit_list[keep_lgl]
 }
 
