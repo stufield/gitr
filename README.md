@@ -102,7 +102,7 @@ gitr_local_br()
 #### The Core Engine
 
 ``` r
-(git("branch", "foo"))
+(git("branch foo"))
 #> Running git branch foo
 #> $status
 #> [1] 0
@@ -113,61 +113,67 @@ gitr_local_br()
 #> $stderr
 #> [1] ""
 
-git("branch", "-av")$stdout |>
+git("branch -av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                                    d517d3b Updated pkgdown.yml to fix web deploy
-#> * main                                   d517d3b Updated pkgdown.yml to fix web deploy
+#>   foo                                    87e64a7 Cleaned up and simplified `git()` calls in unit tests
+#> * main                                   87e64a7 Cleaned up and simplified `git()` calls in unit tests
 #>   remotes/origin/HEAD                    -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
-#>   remotes/origin/gh-pages                1265386 Built site for gitr@0.0.2.9000: d517d3b
-#>   remotes/origin/main                    d517d3b Updated pkgdown.yml to fix web deploy
+#>   remotes/origin/gh-pages                bbc7019 Built site for gitr@0.0.2.9000: c804b77
+#>   remotes/origin/main                    87e64a7 Cleaned up and simplified `git()` calls in unit tests
 #>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
+#>   remotes/origin/submit-cran-0.1.0       1fd2ebd Increment version number
 #>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
 
-git("branch", "-D", "foo")$stdout
+git("branch -D foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was d517d3b)."
+#> [1] "Deleted branch foo (was 87e64a7)."
 ```
 
 #### Committing
 
 ``` r
-gitr_commit_msgs(n = 3)
+gitr_commit_msgs(n = 3L)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Updated pkgdown.yml to fix web deploy" ""                                     
+#> [1] "Cleaned up and simplified `git()` calls in unit tests"
+#> [2] ""                                                     
 #> attr(,"sha")
-#> [1] "d517d3b"
+#> [1] "87e64a7"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Updated README and pkg vignette following name changes"
-#> [2] ""                                                      
+#> [1] "Cleaned up and simplified `git()` calls full package"
+#> [2] ""                                                    
+#> [3] "- internal functions, README, etc."                  
+#> [4] ""                                                    
 #> attr(,"sha")
-#> [1] "68283a6"
+#> [1] "06ff16b"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Renamed files with new naming convention" ""                                        
-#> [3] "- prefix *.R files with \"gitr*.R\""      "- renamed 'test-*.R' suite of files"     
-#> [5] ""                                        
+#> [1] "Fix plural note in `scrape_commits()` & `gitr_sitrep()`"
+#> [2] ""                                                       
+#> [3] "- \"NEWS-worthy entry/entries\""                        
+#> [4] "- \"commit(s)\""                                        
+#> [5] ""                                                       
 #> attr(,"sha")
-#> [1] "07725c3"
+#> [1] "f7c6eab"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 ```
 
 ``` r
-glog(5)
+glog(5L)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * d517d3b (HEAD -> main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy
-#> * 68283a6 Updated README and pkg vignette following name changes
-#> * 07725c3 Renamed files with new naming convention
-#> * d59d5c6 Major renaming package function infrastructure
-#> * 8aab6c8 Fixed `git_version()` unit test for CRAN checks
+#> * 87e64a7 (HEAD -> main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests
+#> * 06ff16b Cleaned up and simplified `git()` calls full package
+#> * f7c6eab Fix plural note in `scrape_commits()` & `gitr_sitrep()`
+#> * 8000441 Configure Git User in GHA check-standard.yaml
+#> * 20f9046 Cleaned up commit authorship within worktree test fixture
 ```
 
 ``` r
@@ -207,7 +213,7 @@ gitr_trim_sha(c("foo", "d670c93"))   # vectorized
 
 gitr_current_sha()
 #> Running git rev-parse HEAD
-#> [1] "d517d3b"
+#> [1] "87e64a7"
 ```
 
 #### Tags
@@ -248,21 +254,22 @@ gitr_sitrep()
 #>   remotes/origin/gh-pages
 #>   remotes/origin/main
 #>   remotes/origin/prep-for-cran
+#>   remotes/origin/submit-cran-0.1.0
 #>   remotes/origin/update-pkgdown-new-look
 #> 
 #> Local status:
 #> ✓ OK
 #> 
 #> Upstream remotes: origin
-#> * main d517d3b [origin/main] Updated pkgdown.yml to fix web deploy
+#> * main 87e64a7 [origin/main] Cleaned up and simplified `git()` calls in unit tests
 #> 
 #> Commit log: main
 #> Running git log --oneline --graph --decorate -n 5 
-#> * d517d3b (HEAD -> main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy
-#> * 68283a6 Updated README and pkg vignette following name changes
-#> * 07725c3 Renamed files with new naming convention
-#> * d59d5c6 Major renaming package function infrastructure
-#> * 8aab6c8 Fixed `git_version()` unit test for CRAN checks
+#> * 87e64a7 (HEAD -> main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests
+#> * 06ff16b Cleaned up and simplified `git()` calls full package
+#> * f7c6eab Fix plural note in `scrape_commits()` & `gitr_sitrep()`
+#> * 8000441 Configure Git User in GHA check-standard.yaml
+#> * 20f9046 Cleaned up commit authorship within worktree test fixture
 ```
 
 ------------------------------------------------------------------------
