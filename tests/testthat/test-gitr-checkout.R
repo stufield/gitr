@@ -27,7 +27,7 @@ test_that("`gitr_checkout()` errors when params are bad", {
 
 test_that("`gitr_checkout()` checks out a branch when asked", {
   new_br <- "feature-wip"
-  withr::defer(git("branch", "-D", new_br)) # delete the 'new_br' branch
+  withr::defer(git("branch -D", new_br)) # delete the 'new_br' branch
   gitr_checkout(new_br)
   expect_true(new_br %in% gitr_local_br())   # new br is created
   expect_equal(gitr_current_br(), new_br)    # switched to new br

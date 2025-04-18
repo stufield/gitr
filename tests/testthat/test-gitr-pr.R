@@ -31,10 +31,8 @@ test_that("`gitr_pr_sha()` returns proper default", {
   cur_br <- gitr_current_br()
   expect_equal(cur_br, "gitr-test-br")
 
-  git("commit", "--allow-empty",
-    "-m", encodeString(title, quote = quote),
-    "-m", encodeString(msg, quote = quote)
-  )
+  git("commit", "--allow-empty -m", encodeString(title, quote = quote),
+      "-m", encodeString(msg, quote = quote))
 
   # here simply take the first sha in case
   # there are local commits that also differ

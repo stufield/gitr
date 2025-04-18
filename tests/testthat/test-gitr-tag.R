@@ -6,11 +6,9 @@ withr::local_options(list(gitr_echo_cmd = FALSE))
 tagname <- "gitr-unit-tag"
 
 # create a new tag
-git("tag",
-    "-a", tagname,
-    "-m", encodeString("Unit test tag v0.0.9000", quote = quote))
+git("tag -a", tagname, "-m", encodeString("Unit test tag v0.0.9000", quote = quote))
 
-withr::defer(git("tag", "--delete", tagname))
+withr::defer(git("tag --delete", tagname))
 
 
 # Testing ----
