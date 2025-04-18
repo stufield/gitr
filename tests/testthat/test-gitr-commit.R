@@ -32,8 +32,6 @@ test_that("`gitr_commit_msgs()` gives correct commit after adding one", {
   msg   <- "- and here are some details"
 
   git("commit", "--allow-empty",
-    # override commit author for test below
-    "--author='Saruman <whitewizard@isengard.com>'",
     "-m", encodeString(title, quote = "'"),
     "-m", encodeString(msg, quote = "'")
   )
@@ -45,7 +43,7 @@ test_that("`gitr_commit_msgs()` gives correct commit after adding one", {
   atts <- attributes(cmt[[1L]])
   expect_true(is_sha(atts$sha))
   expect_equal(atts$sha, gitr_current_sha())
-  expect_equal("whitewizard@isengard.com", atts$author)
+  expect_equal(atts$author, "whitewizard@middleearth.com")
   expect_equal(unlist(cmt), c(title, "", msg, ""))
 })
 

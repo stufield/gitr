@@ -6,8 +6,8 @@ test_that("`gitr_trim_sha()` works as expected", {
   expect_equal(gitr_trim_sha("hello"), "hello")
   expect_equal(gitr_trim_sha(c("foo", "bar")), c("foo", "bar"))
   expect_equal(gitr_trim_sha(c("foo",
-                          "854ec871fbb8f2593275b077d596987cede73261",
-                          "bar")),
+                               "854ec871fbb8f2593275b077d596987cede73261",
+                               "bar")),
                         c("foo", "854ec87", "bar")
   )
   expect_equal(gitr_trim_sha(""), "")

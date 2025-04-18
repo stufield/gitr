@@ -29,11 +29,9 @@ test_that("`gitr_pr_sha()` errors when not passing a local branch", {
 
 test_that("`gitr_pr_sha()` returns proper default", {
   cur_br <- gitr_current_br()
-  expect_equal("gitr-test-br", cur_br)
+  expect_equal(cur_br, "gitr-test-br")
 
   git("commit", "--allow-empty",
-    # override commit author for test below
-    "--author='Saruman <whitewizard@isengard.com>'",
     "-m", encodeString(title, quote = "'"),
     "-m", encodeString(msg, quote = "'")
   )
@@ -57,6 +55,6 @@ test_that("`gitr_pr_msgs()` returns proper default", {
   atts <- attributes(pr_msg[[1L]])
   expect_true(is_sha(atts$sha))
   expect_equal(atts$sha, gitr_current_sha())
-  expect_equal("whitewizard@isengard.com", atts$author)
+  expect_equal(atts$author, "whitewizard@middleearth.com")
   expect_equal(unlist(pr_msg), c(title, "", msg, ""))
 })

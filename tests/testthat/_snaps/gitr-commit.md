@@ -17,7 +17,7 @@
       attr(,"sha")
       [1] "abc1234"
       attr(,"author")
-      [1] "whitewizard@isengard.com"
+      [1] "whitewizard@middleearth.com"
       
 
 # `gitr_diff_commits()` returns correct output diffing a recent commit

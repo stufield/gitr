@@ -15,6 +15,10 @@ local_create_worktree <- function(dir    = tempfile("gitr-"),
 
   # initialize testing git worktree repo
   git("worktree", "add", "--track", "-B", branch, dir)
+  user <- "Gandalf White"
+  email <- "whitewizard@middleearth.com"
+  git("config", "--local", "user.name", encodeString(user, quote = "'"))
+  git("config", "--local", "user.email", encodeString(email, quote = "'"))
 
   # rm local branch (last)
   # local branch created automatically as worktree added
