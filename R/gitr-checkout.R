@@ -65,7 +65,7 @@ gitr_checkout_branch <- function(branch) {
   if ( br_exists ) {
     out <- git("checkout", branch)
   } else {
-    out <- git("checkout", "-b", branch)
+    out <- git("checkout -b", branch)
   }
 
   if ( getOption("gitr_echo_cmd", TRUE) ) {

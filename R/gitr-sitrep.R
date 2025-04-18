@@ -20,11 +20,11 @@ gitr_sitrep <- function() {
     gba()
 
     br <- gitr_current_br()
-    be <- git("rev-list", "--count", paste0(br, "..@{upstream}"),
+    be <- git("rev-list --count", paste0(br, "..@{upstream}"),
               echo_cmd = FALSE)$stdout
-    ah <- git("rev-list", "--count", paste0("@{upstream}..", br),
+    ah <- git("rev-list --count", paste0("@{upstream}..", br),
               echo_cmd = FALSE)$stdout
-    remote <- git("remote", "show", echo_cmd = FALSE)$stdout
+    remote <- git("remote show", echo_cmd = FALSE)$stdout
 
     cat("\nLocal status:\n")
     if ( ah == "0" && be == "0" ) {
@@ -44,7 +44,7 @@ gitr_sitrep <- function() {
     }
 
     cat("\nUpstream remotes: ", slug_color(remote, "\033[33m"), "\n", sep = "")
-    br_verb <- git("branch", "-vv", echo_cmd = FALSE)$stdout
+    br_verb <- git("branch -vv", echo_cmd = FALSE)$stdout
     if ( not_interactive() ) {
       cat(br_verb, sep = "\n")
     } else {

@@ -17,7 +17,7 @@ NULL
 #'
 #' @export
 gitr_recent_tag <- function() {
-  utils::head(git("tag", "--sort=-taggerdate", echo_cmd = FALSE)$stdout, 1L)
+  utils::head(git("tag --sort=-taggerdate", echo_cmd = FALSE)$stdout, 1L)
 }
 
 #' @describeIn tag
@@ -29,13 +29,12 @@ gitr_recent_tag <- function() {
 #' @export
 gitr_tag_info <- function() {
   is_git()
-  no_tags <- identical(git("tag", "-l", echo_cmd = FALSE)$stdout, "")
+  no_tags <- identical(git("tag -l", echo_cmd = FALSE)$stdout, "")
   if ( no_tags ) {
     info("No tags in repository ...")
     return(invisible(NULL))
   }
-  tags <- git("tag",
-              "--sort=-v:refname",
+  tags <- git("tag --sort=-v:refname",
     "--format=\"%(tag)\t%(objectname:short)\t%(object)\t%(subject)\t%(taggername)\t%(taggeremail)\t%(taggeremail:localpart)\t%(taggerdate)\t%(objectsize)\"",
     echo_cmd = FALSE)$stdout
   tags <- strsplit(tags, "\t")

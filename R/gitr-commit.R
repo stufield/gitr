@@ -25,7 +25,7 @@ NULL
 #' @export
 gitr_commit_msgs <- function(sha = NULL, n = 1L) {
   if ( is.null(sha) ) {  # do this first
-    sha <- git("log", "--format=%H", "-n", n)$stdout
+    sha <- git("log --format=%H -n", n)$stdout
   } else {
     stopifnot(
       "`sha` must be `character(1)`." = length(sha) > 0L,
@@ -36,9 +36,9 @@ gitr_commit_msgs <- function(sha = NULL, n = 1L) {
   }
   lapply(sha, function(.x) {
     structure(
-      git("log", "--format=%B", "-1", .x, echo_cmd = FALSE)$stdout,
+      git("log --format=%B -1", .x, echo_cmd = FALSE)$stdout,
       sha    = gitr_trim_sha(.x),
-      author = git("log", "--format=%ae", "-1", .x, echo_cmd = FALSE)$stdout
+      author = git("log --format=%ae -1", .x, echo_cmd = FALSE)$stdout
     )
   })
 }
@@ -83,9 +83,9 @@ scrape_commits <- function(n) {
 gitr_unstage <- function(file = NULL) {
   if ( is_git() ) {
     if ( is.null(file) ) {
-      out <- git("reset", "HEAD")
+      out <- git("reset HEAD")
     } else {
-      out <- git("reset", "HEAD", file)
+      out <- git("reset HEAD", file)
     }
     cat(out$stdout, sep = "\n")
     invisible(out)
@@ -101,7 +101,7 @@ gitr_unstage <- function(file = NULL) {
 #' @export
 gitr_reset_soft <- function(n = 1L) {
   if ( is_git() ) {
-    out <- git("reset", "--soft", paste0("HEAD~", n))
+    out <- git("reset --soft", paste0("HEAD~", n))
     cat(out$stdout, sep = "\n")
     invisible(out)
   } else {
@@ -125,7 +125,7 @@ gitr_uncommit <- function() {
 #' @export
 gitr_reset_hard <- function() {
   if ( is_git() ) {
-    out <- git("reset", "--hard", paste0("origin/", gitr_current_br()))
+    out <- git("reset --hard", paste0("origin/", gitr_current_br()))
     cat(out$stdout, sep = "\n")
     invisible(out)
   } else {

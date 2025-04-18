@@ -7,11 +7,11 @@
 #'
 #' @examples
 #' \dontrun{
-#'   git("status", "-s")
+#'   git("status -s")
 #'
-#'   git("reset", "--soft", "HEAD~1")
+#'   git("reset --soft HEAD~1")
 #'
-#'   git("tag", "-n")
+#'   git("tag -n")
 #'
 #'   is_git()
 #'

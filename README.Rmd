@@ -119,23 +119,23 @@ gitr_local_br()
 #### The Core Engine
 
 ```{r git-core}
-(git("branch", "foo"))
+(git("branch foo"))
 
-git("branch", "-av")$stdout |>
+git("branch -av")$stdout |>
   cat(sep = "\n")
 
-git("branch", "-D", "foo")$stdout
+git("branch -D foo")$stdout
 ```
 
 
 #### Committing
 
 ```{r commit-msgs}
-gitr_commit_msgs(n = 3)
+gitr_commit_msgs(n = 3L)
 ```
 
 ```{r glog}
-glog(5)
+glog(5L)
 ```
 
 ```{r commit-diff, eval = FALSE}

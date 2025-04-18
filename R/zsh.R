@@ -22,7 +22,7 @@ NULL
 #' @export
 glog <- function(n = 10L) {
   if ( is_git() ) {
-    out <- git("log", "--oneline", "--graph", "--decorate", "-n", n)$stdout
+    out <- git("log --oneline --graph --decorate -n", n)$stdout
     if ( not_interactive() ) {
       cat(out, sep = "\n")
     } else {
@@ -53,7 +53,7 @@ gcc <- function(...) {
 #' @export
 gcmsg <- function(msg = "wip") {
   quote <- ifelse(.Platform$OS.type == "windows", "\"", "'")
-  git("commit", "--no-verify", "-m", encodeString(msg, quote = quote))
+  git("commit --no-verify -m", encodeString(msg, quote = quote))
 }
 
 #' @describeIn zsh `git checkout`.
@@ -68,7 +68,7 @@ gco <- function(branch = NULL) {
 #' @export
 gcb <- function(branch = NULL) {
   stopifnot(!is.null(branch))
-  git("checkout", "-b", branch)
+  git("checkout -b", branch)
 }
 
 #' @describeIn zsh `git pull --rebase`.
@@ -76,7 +76,7 @@ gcb <- function(branch = NULL) {
 #' @export
 gpr <- function() {
   if ( is_git() ) {
-    git("pull", "--rebase", "--autostash", "-v")
+    git("pull --rebase --autostash -v")
   }
   invisible()
 }
@@ -96,7 +96,7 @@ gp <- function(...) {
 #' @export
 gpu <- function() {
   if ( is_git() ) {
-    git("push", "-u", "origin")
+    git("push -u origin")
   }
   invisible()
 }
@@ -106,7 +106,7 @@ gpu <- function() {
 #' @export
 gpd <- function() {
   if ( is_git() ) {
-    out <- git("push", "--dry-run")$stdout
+    out <- git("push --dry-run")$stdout
     cat(out, sep = "\n")
   }
   invisible()
@@ -128,7 +128,7 @@ gst <- function() {
 #' @export
 gss <- function() {
   if ( is_git() ) {
-    out <- git("status", "-s")$stdout
+    out <- git("status -s")$stdout
     if ( not_interactive() ) {
       cat(out, sep = "\n")
     } else {
@@ -143,7 +143,7 @@ gss <- function() {
 #' @export
 gba <- function() {
   if ( is_git() ) {
-    out <- git("branch", "-a")$stdout
+    out <- git("branch -a")$stdout
     if ( not_interactive() ) {
       cat(out, sep = "\n")
     } else {
@@ -174,7 +174,7 @@ gbd <- function(branch = NULL, force = FALSE) {
 #' @export
 gbmm <- function(branch = gitr_default_br()) {
   if ( is_git() ) {
-    out <- git("branch", "--merged", branch)
+    out <- git("branch --merged", branch)
     if ( not_interactive() ) {
       cat(out$stdout, sep = "\n")
     } else {
@@ -189,7 +189,7 @@ gbmm <- function(branch = gitr_default_br()) {
 #' @export
 gbnm <- function(branch = gitr_default_br()) {
   if ( is_git() ) {
-    out <- git("branch", "--no-merged", branch)
+    out <- git("branch --no-merged", branch)
     if ( not_interactive() ) {
       cat(out$stdout, sep = "\n")
     } else {
@@ -205,7 +205,7 @@ gbnm <- function(branch = gitr_default_br()) {
 gbm <- function(branch = NULL) {
   if ( is_git() ) {
     stopifnot(!is.null(branch))
-    git("branch", "-m", branch)
+    git("branch -m", branch)
   }
   invisible()
 }
@@ -226,7 +226,7 @@ ga <- function(...) {
 #' @export
 gaa <- function() {
   if ( is_git() ) {
-    invisible(git("add", "--all"))
+    invisible(git("add --all"))
   } else {
     invisible()
   }
@@ -237,7 +237,7 @@ gaa <- function() {
 #' @export
 gau <- function() {
   if ( is_git() ) {
-    invisible(git("add", "-u"))
+    invisible(git("add -u"))
   } else {
     invisible()
   }
@@ -259,7 +259,7 @@ gsta <- function() {
 #' @export
 gstl <- function() {
   if ( is_git() ) {
-    out <- git("stash", "list")
+    out <- git("stash list")
     cat(out$stdout, sep = "\n")
     invisible(out)
   } else {
@@ -271,9 +271,9 @@ gstl <- function() {
 #'   **Note** zero-indexing!
 #'
 #' @export
-gstaa <- function(n = 0) {
+gstaa <- function(n = 0L) {
   if ( is_git() ) {
-    invisible(git("stash", "apply", paste0("stash@{", n, "}")))
+    invisible(git("stash apply", paste0("stash@{", n, "}")))
   } else {
     invisible()
   }
@@ -283,9 +283,9 @@ gstaa <- function(n = 0) {
 #'   **Note** zero-indexing!
 #'
 #' @export
-gstd <- function(n = 0) {
+gstd <- function(n = 0L) {
   if ( is_git() ) {
-    invisible(git("stash", "drop", paste0("stash@{", n, "}")))
+    invisible(git("stash drop", paste0("stash@{", n, "}")))
   } else {
     invisible()
   }
@@ -296,7 +296,7 @@ gstd <- function(n = 0) {
 #' @export
 gstc <- function() {
   if ( is_git() ) {
-    invisible(git("stash", "clear"))
+    invisible(git("stash clear"))
   } else {
     invisible()
   }
@@ -310,11 +310,11 @@ gstc <- function() {
 gsts <- function(text = FALSE) {
   if ( is_git() ) {
     if ( text ) {
-      out <- git("stash", "show", "--text")$stdout
+      out <- git("stash show --text")$stdout
       tmp <- gsub("(^\\+.*$)", "\033[32m\\1\033[0m", out)
       tmp <- gsub("(^\\-.*$)", "\033[31m\\1\033[0m", tmp)
     } else {
-      out <- git("stash", "show")$stdout
+      out <- git("stash show")$stdout
       tmp <- gsub("(\\+)", "\033[32m\\1\033[0m", out)
       tmp <- gsub("(\\-)", "\033[31m\\1\033[0m", tmp)
     }
@@ -330,7 +330,7 @@ gsts <- function(text = FALSE) {
 #' @export
 gpop <- function() {
   if ( is_git() ) {
-    invisible(git("stash", "pop", "--quiet", "--index"))
+    invisible(git("stash pop --quiet --index"))
   } else {
     invisible()
   }
@@ -346,7 +346,7 @@ gstp <- gpop
 #' @export
 gtn <- function() {
   if ( is_git() ) {
-    out <- rev(git("tag", "-n")$stdout)
+    out <- rev(git("tag -n")$stdout)
     if ( not_interactive() ) {
       cat(out, sep = "\n")
     } else {
@@ -362,7 +362,7 @@ gtn <- function() {
 #' @export
 gfa <- function() {
   if ( is_git() ) {
-    out <- git("fetch", "--all", "--prune")
+    out <- git("fetch --all --prune")
     cat(out$stdout, "\n")
     cat(out$stderr)
     invisible(out)
@@ -376,7 +376,7 @@ gfa <- function() {
 #' @export
 gac <- function() {
   if ( is_git() ) {
-    invisible(git("commit", "--no-verify", "--amend", "--no-edit"))
+    invisible(git("commit --no-verify --amend --no-edit"))
   } else {
     invisible()
   }
@@ -402,9 +402,9 @@ gwip <- function() {
 gclean <- function(dry_run = TRUE) {
   if ( is_git() ) {
     if ( dry_run ) {
-      out <- git("clean", "-f", "-d", "-n")$stdout
+      out <- git("clean -f -d -n")$stdout
     } else {
-      out <- git("clean", "-f", "-d")$stdout
+      out <- git("clean -f -d")$stdout
     }
     cat(out, sep = "\n")
     invisible(out)
@@ -426,7 +426,7 @@ gdf <- function(file = NULL, staged = FALSE) {
   stopifnot(!is.null(file))
   if ( is_git() ) {
     if ( staged ) {
-      out <- git("diff", "--cached", file)$stdout
+      out <- git("diff --cached", file)$stdout
     } else {
       out <- git("diff", file)$stdout
     }
@@ -444,7 +444,7 @@ gdf <- function(file = NULL, staged = FALSE) {
 #' @export
 gpf <- function() {
   if ( is_git() ) {
-    out <- git("push", "--force-with-lease")
+    out <- git("push --force-with-lease")
     cat(out$stdout, sep = "\n")
     invisible(out)
   } else {
@@ -457,7 +457,7 @@ gpf <- function() {
 #' @export
 gnuke <- function() {
   if ( is_git() ) {
-    out <- git("reset", "--hard")$stdout
+    out <- git("reset --hard")$stdout
     cat(out, sep = "\n")
     gclean(FALSE)
     invisible(out)
@@ -474,9 +474,9 @@ gnuke <- function() {
 #' @export
 gcf <- function(global = FALSE) {
   if ( !global && is_git() ) {
-    out <- git("config", "--list", "--local")
+    out <- git("config --list --local")
   } else {
-    out <- git("config", "--list", "--global")
+    out <- git("config --list --global")
   }
   gsub("(^.*)=(.*$)", "\033[31m\\1\033[0m = \033[36m\\2\033[0m", out$stdout) |>
     cat(sep = "\n")
@@ -511,7 +511,7 @@ grm <- function(...) {
 #' @export
 grbc <- function() {
   if ( is_git() ) {
-    invisible(git("rebase", "--continue"))
+    invisible(git("rebase --continue"))
   } else {
     invisible()
   }
@@ -522,7 +522,7 @@ grbc <- function() {
 #' @export
 grba <- function() {
   if ( is_git() ) {
-    invisible(git("rebase", "--abort"))
+    invisible(git("rebase --abort"))
   } else {
     invisible()
   }
@@ -533,7 +533,7 @@ grba <- function() {
 #' @export
 grbs <- function() {
   if ( is_git() ) {
-    invisible(git("rebase", "--skip"))
+    invisible(git("rebase --skip"))
   } else {
     invisible()
   }
@@ -555,7 +555,7 @@ grbm <- function() {
 #' @export
 grv <- function() {
   if ( is_git() ) {
-    out <- git("remote", "-v")
+    out <- git("remote -v")
     cat(out$stdout, sep = "\n")
     invisible(out)
   } else {

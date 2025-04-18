@@ -41,6 +41,6 @@ is_sha <- function(sha) {
 #'
 #' @export
 gitr_current_sha <- function() {
-  sha <- git("rev-parse", "HEAD")$stdout
+  sha <- git("rev-parse HEAD")$stdout
   gitr_trim_sha(sha)
 }

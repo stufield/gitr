@@ -57,7 +57,7 @@ gitr_pr_sha <- function(branch = NULL) {
          "You passed: ", slug_color(branch), call. = FALSE)
   }
   default <- gitr_default_br()
-  sha_vec <- git("rev-list", "--right-only",
+  sha_vec <- git("rev-list --right-only",
                  paste0("remotes/origin/", default, "..", branch),
                  echo_cmd = FALSE)
   if ( sha_vec$status != 0L || isTRUE(sha_vec$stdout == "") ) {

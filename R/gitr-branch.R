@@ -18,7 +18,7 @@ gitr_default_br <- function() {
     root <- c("refs/heads/", "refs/remotes/origin/", "refs/remotes/upstream/")
     refs <- paste0(rep(root, each = 3L), c("main", "trunk", "master"))
     for ( ref in refs ) {
-      st <- git("show-ref", "-q", "--verify", ref, echo_cmd = FALSE)$status
+      st <- git("show-ref -q --verify", ref, echo_cmd = FALSE)$status
       if ( st == 0L ) {
         return(basename(ref))
       } else {
@@ -36,7 +36,7 @@ gitr_default_br <- function() {
 #' @export
 gitr_current_br <- function() {
   if ( is_git() ) {
-    #git("rev-parse", "--abbrev-ref", "HEAD", echo_cmd = FALSE)$stdout
+    #git("rev-parse --abbrev-ref HEAD", echo_cmd = FALSE)$stdout
     ref <- git("symbolic-ref --quiet HEAD", echo_cmd = FALSE)$stdout
     gsub("refs/heads/", "", ref)
   } else {
@@ -50,7 +50,7 @@ gitr_current_br <- function() {
 #' @export
 gitr_local_br <- function() {
   if ( is_git() ) {
-    ref <- git("branch", "--list", echo_cmd = FALSE)$stdout
+    ref <- git("branch --list", echo_cmd = FALSE)$stdout
     gsub("^[^[:alnum:]]*(.*)[^[:alnum:]]*$", "\\1", ref)
   } else {
     invisible()
