@@ -37,8 +37,16 @@ jobs:
       matrix:
         config:
           - {os: macos-latest, r: 'release'}
-          #- {os: windows-latest, r: 'release'}
-          #- {os: ubuntu-latest, r: 'release'}
+
+          - {os: windows-latest, r: 'release'}
+          - {os: windows-latest, r: '4.1'}    # use 4.1 to check with rtools40's older compiler
+
+          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'release'}
+          - {os: ubuntu-latest,  r: 'oldrel-1'}
+          - {os: ubuntu-latest,  r: 'oldrel-2'}
+          - {os: ubuntu-latest,  r: 'oldrel-3'}
+          - {os: ubuntu-latest,  r: 'oldrel-4'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -67,10 +75,15 @@ jobs:
             any::rmarkdown
           needs: check
 
+      - name: Configure Git User
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - uses: r-lib/actions/check-r-package@v2
         with:
-          args: 'c("--no-manual", "--as-cran", "--no-build-vignettes", "--timings")'
-          build_args: 'c("--no-manual", "--no-resave-data")'
+          args: 'c("--no-manual", "--as-cran", "--timings")'
+          build_args: 'c("--no-manual", "--no-resave-data", "--compact-vignettes=gs+qpdf")'
           upload-snapshots: false
           upload-results: false
           error-on: '"warning"'
