@@ -1,19 +1,21 @@
 
 # Setup ----
 skip_if_not(is_git())
-withr::local_options(list(gitr_echo_cmd = FALSE))
 
-tagname <- "gitr-unit-tag"
+dir <- local_create_worktree()
+
+tag_name <- "gitr-unit-tag"
 
 # create a new tag
-git("tag -a", tagname, "-m", encodeString("Unit test tag v0.0.9000", quote = quote))
+git("tag -a", tag_name, "-m", encodeString("Unit test tag v0.0.9000",
+                                          quote = quote))
 
-withr::defer(git("tag --delete", tagname))
+withr::defer(git("tag --delete", tag_name))
 
 
 # Testing ----
 test_that("`gitr_recent_tag()` gets the most recent tag", {
-  expect_equal(gitr_recent_tag(), tagname)
+  expect_equal(gitr_recent_tag(), tag_name)
 })
 
 test_that("`gitr_tag_info()` unit tests (minimal)", {
@@ -23,7 +25,7 @@ test_that("`gitr_tag_info()` unit tests (minimal)", {
                           "author", "email", "user", "tagdate",
                           "size", "path"))
   expect_true(nrow(tag_df) > 0L)
-  recent_tag <- tag_df[tagname, ]
-  expect_equal(recent_tag$tag, tagname)
+  recent_tag <- tag_df[tag_name, ]
+  expect_equal(recent_tag$tag, tag_name)
   expect_equal(recent_tag$message, "Unit test tag v0.0.9000")
 })
