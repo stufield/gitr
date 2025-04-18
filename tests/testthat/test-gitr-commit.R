@@ -1,6 +1,10 @@
 
 # Setup ----
 skip_if_not(is_git())
+
+# testthat snapshot consistency
+skip_if_not(packageVersion("testthat") >= "3.2.1")
+
 dir <- local_create_worktree()
 
 
