@@ -14,22 +14,32 @@ local_create_worktree <- function(dir    = tempfile("gitr-"),
   dir.create(dir)
 
   # initialize testing git worktree repo
-  git("worktree", "add", "--track", "-B", branch, dir)
-  user <- "Gandalf White"
-  email <- "whitewizard@middleearth.com"
-  git("config", "--local", "user.name", encodeString(user, quote = quote))
-  git("config", "--local", "user.email", encodeString(email, quote = quote))
+  git("worktree add --track -B", branch, dir)
 
   # rm local branch (last)
   # local branch created automatically as worktree added
   # remove local branch connected to worktree
-  withr::defer(git("branch", "-D", branch), envir = env)
+  withr::defer(git("branch -D", branch), envir = env)
 
   # delete git worktree and delete directory when done
-  withr::defer(git("worktree", "remove", "--force", dir), envir = env)
+  withr::defer(git("worktree remove --force", dir), envir = env)
 
   # change working directory to worktree
   setwd(dir)
+
+  # temp change commit authorship for worktree during fixture
+  user  <- "Gandalf White"
+  email <- "whitewizard@middleearth.com"
+  git("config --local user.name", encodeString(user, quote = quote))
+  git("config --local user.email", encodeString(email, quote = quote))
+
+  # return to original (global) authorship
+  # warning! this removes any local user configs
+  # you may have in the repository; be careful running tests!
+  withr::defer({
+    git("config --unset user.name")
+    git("config --unset user.email")
+  }, envir = env)
 
   # return to original pwd when done
   withr::defer(setwd(pwd), envir = env)
