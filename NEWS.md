@@ -1,7 +1,7 @@
-# gitr (development version)
+# gitr 0.0.2.1
 
-* Major reconstruction and renaming coming! :construction:
-
+* Re-submission of `0.0.2` to CRAN due to failing unit test
+  - now fixed
 
 # gitr 0.0.2
 
