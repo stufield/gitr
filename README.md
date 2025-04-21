@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 ![GitHub
-version](https://img.shields.io/badge/Version-0.0.2.9000-success.svg?style=flat&logo=github)
+version](https://img.shields.io/badge/Version-0.1.0.9000-success.svg?style=flat&logo=github)
 [![CRAN
 status](http://www.r-pkg.org/badges/version/gitr)](https://cran.r-project.org/package=gitr)
 [![R-CMD-check](https://github.com/stufield/gitr/workflows/R-CMD-check/badge.svg)](https://github.com/stufield/gitr/actions)
@@ -116,19 +116,19 @@ gitr_local_br()
 git("branch -av")$stdout |>
   cat(sep = "\n")
 #> Running git branch -av 
-#>   foo                                    87e64a7 Cleaned up and simplified `git()` calls in unit tests
-#> * main                                   87e64a7 Cleaned up and simplified `git()` calls in unit tests
+#>   foo                                    c3b92f7 Added release_notes to Makefile
+#> * main                                   c3b92f7 Added release_notes to Makefile
 #>   remotes/origin/HEAD                    -> origin/main
 #>   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)
-#>   remotes/origin/gh-pages                bbc7019 Built site for gitr@0.0.2.9000: c804b77
-#>   remotes/origin/main                    87e64a7 Cleaned up and simplified `git()` calls in unit tests
+#>   remotes/origin/gh-pages                7b2749c Built site for gitr@0.1.0.9000: c3b92f7
+#>   remotes/origin/main                    c3b92f7 Added release_notes to Makefile
 #>   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs
-#>   remotes/origin/submit-cran-0.1.0       1fd2ebd Increment version number
+#>   remotes/origin/submit-cran-0.1.0       9d30397 Increment version number
 #>   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs
 
 git("branch -D foo")$stdout
 #> Running git branch -D foo
-#> [1] "Deleted branch foo (was 87e64a7)."
+#> [1] "Deleted branch foo (was c3b92f7)."
 ```
 
 #### Committing
@@ -137,31 +137,23 @@ git("branch -D foo")$stdout
 gitr_commit_msgs(n = 3L)
 #> Running git log --format=%H -n 3
 #> [[1]]
-#> [1] "Cleaned up and simplified `git()` calls in unit tests"
-#> [2] ""                                                     
+#> [1] "Added release_notes to Makefile" ""                               
 #> attr(,"sha")
-#> [1] "87e64a7"
+#> [1] "c3b92f7"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[2]]
-#> [1] "Cleaned up and simplified `git()` calls full package"
-#> [2] ""                                                    
-#> [3] "- internal functions, README, etc."                  
-#> [4] ""                                                    
+#> [1] "Bump to dev version" ""                   
 #> attr(,"sha")
-#> [1] "06ff16b"
+#> [1] "e8843c7"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 #> 
 #> [[3]]
-#> [1] "Fix plural note in `scrape_commits()` & `gitr_sitrep()`"
-#> [2] ""                                                       
-#> [3] "- \"NEWS-worthy entry/entries\""                        
-#> [4] "- \"commit(s)\""                                        
-#> [5] ""                                                       
+#> [1] "Increment version number" ""                        
 #> attr(,"sha")
-#> [1] "f7c6eab"
+#> [1] "9d30397"
 #> attr(,"author")
 #> [1] "stu.g.field@gmail.com"
 ```
@@ -169,11 +161,11 @@ gitr_commit_msgs(n = 3L)
 ``` r
 glog(5L)
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 87e64a7 (HEAD -> main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests
-#> * 06ff16b Cleaned up and simplified `git()` calls full package
-#> * f7c6eab Fix plural note in `scrape_commits()` & `gitr_sitrep()`
-#> * 8000441 Configure Git User in GHA check-standard.yaml
-#> * 20f9046 Cleaned up commit authorship within worktree test fixture
+#> * c3b92f7 (HEAD -> main, origin/main, origin/HEAD) Added release_notes to Makefile
+#> * e8843c7 Bump to dev version
+#> * 9d30397 (tag: v0.1.0, origin/submit-cran-0.1.0) Increment version number
+#> * dac226e Update CRAN comments for release
+#> * a475a5e Update NEWS for v0.1.0
 ```
 
 ``` r
@@ -213,22 +205,24 @@ gitr_trim_sha(c("foo", "d670c93"))   # vectorized
 
 gitr_current_sha()
 #> Running git rev-parse HEAD
-#> [1] "87e64a7"
+#> [1] "c3b92f7"
 ```
 
 #### Tags
 
 ``` r
 gitr_recent_tag()
-#> [1] "v0.0.2"
+#> [1] "v0.1.0"
 ```
 
 ``` r
 gitr_tag_info()
 #>           tag tag_sha target_sha           message    author                   email        user
+#> v0.1.0 v0.1.0 160b5d7    9d30397 Release of v0.1.0 Stu Field <stu.g.field@gmail.com> stu.g.field
 #> v0.0.2 v0.0.2 4c4805d    2ffe6bd Release of v0.0.2 Stu Field <stu.g.field@gmail.com> stu.g.field
 #> v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field <stu.g.field@gmail.com> stu.g.field
 #>                               tagdate size                              path
+#> v0.1.0 Mon Apr 21 08:44:43 2025 -0600  148 /Users/runner/work/gitr/gitr/.git
 #> v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /Users/runner/work/gitr/gitr/.git
 #> v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git
 ```
@@ -261,15 +255,15 @@ gitr_sitrep()
 #> ✓ OK
 #> 
 #> Upstream remotes: origin
-#> * main 87e64a7 [origin/main] Cleaned up and simplified `git()` calls in unit tests
+#> * main c3b92f7 [origin/main] Added release_notes to Makefile
 #> 
 #> Commit log: main
 #> Running git log --oneline --graph --decorate -n 5 
-#> * 87e64a7 (HEAD -> main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests
-#> * 06ff16b Cleaned up and simplified `git()` calls full package
-#> * f7c6eab Fix plural note in `scrape_commits()` & `gitr_sitrep()`
-#> * 8000441 Configure Git User in GHA check-standard.yaml
-#> * 20f9046 Cleaned up commit authorship within worktree test fixture
+#> * c3b92f7 (HEAD -> main, origin/main, origin/HEAD) Added release_notes to Makefile
+#> * e8843c7 Bump to dev version
+#> * 9d30397 (tag: v0.1.0, origin/submit-cran-0.1.0) Increment version number
+#> * dac226e Update CRAN comments for release
+#> * a475a5e Update NEWS for v0.1.0
 ```
 
 ------------------------------------------------------------------------
