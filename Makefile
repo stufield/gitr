@@ -67,6 +67,11 @@ release:
 	@ git push origin v$(PKGVERS)
 	@ echo "Remember to bump the DESCRIPTION file with bump_to_dev()"
 
+release_notes:
+	@ echo "Creating Release notes from NEWS.md:\n\n"
+	@ $(RSCRIPT) -e "cat(megaverse::latest_news())"
+	@ echo "\n\n"
+
 clean:
 	@ cd ..;\
 	$(RM) $(PKGNAME)_$(PKGVERS).tar.gz $(PKGNAME).Rcheck
