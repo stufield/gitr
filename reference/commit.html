@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gitr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Git Commit Utilities</h1>
-      <small class="dont-index">Source: <a href="https://github.com/stufield/gitr/blob/main/R/git-commit.R" class="external-link"><code>R/git-commit.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/stufield/gitr/blob/main/R/gitr-commit.R" class="external-link"><code>R/gitr-commit.R</code></a></small>
       <div class="d-none name"><code>commit.Rd</code></div>
     </div>
 
@@ -41,19 +41,19 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_commit_msgs</span><span class="op">(</span>sha <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gitr_commit_msgs</span><span class="op">(</span>sha <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">scrape_commits</span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">git_unstage</span><span class="op">(</span>file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span><span class="fu">gitr_unstage</span><span class="op">(</span>file <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">git_reset_soft</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span>
+<span><span class="fu">gitr_reset_soft</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">git_uncommit</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">gitr_uncommit</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">git_reset_hard</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">gitr_reset_hard</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">git_diffcommits</span><span class="op">(</span>top <span class="op">=</span> <span class="fl">1L</span>, n <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">gitr_diff_commits</span><span class="op">(</span>top <span class="op">=</span> <span class="fl">1L</span>, n <span class="op">=</span> <span class="fl">2L</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -91,29 +91,29 @@ The <code>sha</code> and <code>author</code> of each commit is added as attribut
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
 
-<ul><li><p><code>get_commit_msgs()</code>: gets the commit messages corresponding to the commit <code>sha</code>.
+<ul><li><p><code>gitr_commit_msgs()</code>: gets the commit messages corresponding to the commit <code>sha</code>.
 <code>sha</code> can be <code>character(n)</code>, but must be valid SHAs
 corresponding to commits in the repository.</p></li>
 <li><p><code>scrape_commits()</code>: scrapes <code>n</code> commit messages for useful change log commits
 to be used to create a <code>NEWS.md</code>.</p></li>
-<li><p><code>git_unstage()</code>: un-stages a file from the index to the working directory.
+<li><p><code>gitr_unstage()</code>: un-stages a file from the index to the working directory.
 Default un-stages <em>all</em> files.</p></li>
-<li><p><code>git_reset_soft()</code>: un-commits the most recently committed file(s) and
+<li><p><code>gitr_reset_soft()</code>: un-commits the most recently committed file(s) and
 add them to the staging area.</p></li>
-<li><p><code>git_uncommit()</code>: un-commits the most recently committed
+<li><p><code>gitr_uncommit()</code>: un-commits the most recently committed
 file(s) and add them to the staging area.
-Wrapper around <code>git_reset_soft()</code></p></li>
-<li><p><code>git_reset_hard()</code>: <code>git reset --hard origin/&lt;branch&gt;</code>.</p></li>
-<li><p><code>git_diffcommits()</code>: gets the diff of the corresponding 2 commits.
+Wrapper around <code>gitr_reset_soft()</code></p></li>
+<li><p><code>gitr_reset_hard()</code>: <code>git reset --hard origin/&lt;branch&gt;</code>.</p></li>
+<li><p><code>gitr_diff_commits()</code>: gets the diff of the corresponding 2 commits.
 Order matters!</p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_commit_msgs</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">gitr_commit_msgs</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">get_commit_msgs</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">gitr_commit_msgs</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

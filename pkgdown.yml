@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   gitr: gitr.html
-last_built: 2025-04-12T21:52Z
+last_built: 2025-04-21T14:46Z
 urls:
   reference: https://stufield.github.io/gitr/reference
   article: https://stufield.github.io/gitr/articles

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">gitr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">0.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Git PR Utilities</h1>
-      <small class="dont-index">Source: <a href="https://github.com/stufield/gitr/blob/main/R/git-pr.R" class="external-link"><code>R/git-pr.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/stufield/gitr/blob/main/R/gitr-pr.R" class="external-link"><code>R/gitr-pr.R</code></a></small>
       <div class="d-none name"><code>pr.Rd</code></div>
     </div>
 
@@ -41,9 +41,9 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_pr_msgs</span><span class="op">(</span>branch <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gitr_pr_msgs</span><span class="op">(</span>branch <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">get_pr_sha</span><span class="op">(</span>branch <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">gitr_pr_sha</span><span class="op">(</span>branch <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -57,20 +57,20 @@ feature branch.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p><code>get_pr_msgs()</code>: see <code><a href="commit.html">get_commit_msgs()</a></code>.</p>
-<p><code>get_pr_sha()</code>: character vector of SHAs
+    <p><code>gitr_pr_msgs()</code>: see <code><a href="commit.html">gitr_commit_msgs()</a></code>.</p>
+<p><code>gitr_pr_sha()</code>: character vector of SHAs
 corresponding to the PR (relative to the default branch).</p>
     </div>
     <div class="section level2">
     <h2 id="functions">Functions<a class="anchor" aria-label="anchor" href="#functions"></a></h2>
 
-<ul><li><p><code>get_pr_msgs()</code>: gets the commit messages for the <em>current</em> branch
+<ul><li><p><code>gitr_pr_msgs()</code>: gets the commit messages for the <em>current</em> branch
 relative to the <code>origin/{main,master}</code> branch in
 the remote. Typically these "new" commits
 that would be merged as part of a PR to <code>origin/{main,master}</code>.</p></li>
-<li><p><code>get_pr_sha()</code>: gets the commit SHA-1 a branch (by default <em>current</em>)
+<li><p><code>gitr_pr_sha()</code>: gets the commit SHA-1 a branch (by default <em>current</em>)
 relative to the <code>default</code> branch in the remote, usually either
-<code>origin/main</code> or <code>origin/master</code>. See <code><a href="branch.html">git_default_br()</a></code>.
+<code>origin/main</code> or <code>origin/master</code>. See <code><a href="branch.html">gitr_default_br()</a></code>.
 If there are un-pushed commit on the current default branch,
 it returns them.</p></li>
 </ul></div>
@@ -79,14 +79,14 @@ it returns them.</p></li>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span>  <span class="co"># SHAs from feature branch differ from default br</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_pr_sha</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">gitr_pr_sha</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># commit messages from the SHAs above</span></span></span>
 <span class="r-in"><span>  <span class="co"># for a PR `branch` -&gt; `remotes/origin/{main,master}`</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_pr_msgs</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">gitr_pr_msgs</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># for a feature branch -&gt; default branch</span></span></span>
-<span class="r-in"><span>  <span class="fu">get_pr_msgs</span><span class="op">(</span><span class="st">"feature"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">gitr_pr_msgs</span><span class="op">(</span><span class="st">"feature"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
