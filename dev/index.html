@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="index.html">gitr</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.0.2.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.1.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -107,7 +107,7 @@
 <h4 id="the-core-engine">The Core Engine<a class="anchor" aria-label="anchor" href="#the-core-engine"></a>
 </h4>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="op">(</span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch foo"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch foo</span></span>
 <span><span class="co">#&gt; $status</span></span>
 <span><span class="co">#&gt; [1] 0</span></span>
@@ -118,59 +118,65 @@
 <span><span class="co">#&gt; $stderr</span></span>
 <span><span class="co">#&gt; [1] ""</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
+<span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch -av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch -av </span></span>
-<span><span class="co">#&gt;   foo                                    d517d3b Updated pkgdown.yml to fix web deploy</span></span>
-<span><span class="co">#&gt; * main                                   d517d3b Updated pkgdown.yml to fix web deploy</span></span>
+<span><span class="co">#&gt;   foo                                    87e64a7 Cleaned up and simplified `git()` calls in unit tests</span></span>
+<span><span class="co">#&gt; * main                                   87e64a7 Cleaned up and simplified `git()` calls in unit tests</span></span>
 <span><span class="co">#&gt;   remotes/origin/HEAD                    -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)</span></span>
-<span><span class="co">#&gt;   remotes/origin/gh-pages                1265386 Built site for gitr@0.0.2.9000: d517d3b</span></span>
-<span><span class="co">#&gt;   remotes/origin/main                    d517d3b Updated pkgdown.yml to fix web deploy</span></span>
+<span><span class="co">#&gt;   remotes/origin/gh-pages                bbc7019 Built site for gitr@0.0.2.9000: c804b77</span></span>
+<span><span class="co">#&gt;   remotes/origin/main                    87e64a7 Cleaned up and simplified `git()` calls in unit tests</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs</span></span>
+<span><span class="co">#&gt;   remotes/origin/submit-cran-0.1.0       1fd2ebd Increment version number</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span>
 <span></span>
-<span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch"</span>, <span class="st">"-D"</span>, <span class="st">"foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
+<span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch -D foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
 <span><span class="co">#&gt; Running git branch -D foo</span></span>
-<span><span class="co">#&gt; [1] "Deleted branch foo (was d517d3b)."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Deleted branch foo (was 87e64a7)."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="committing">Committing<a class="anchor" aria-label="anchor" href="#committing"></a>
 </h4>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">gitr_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">gitr_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --format=%H -n 3</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "Updated pkgdown.yml to fix web deploy" ""                                     </span></span>
+<span><span class="co">#&gt; [1] "Cleaned up and simplified `git()` calls in unit tests"</span></span>
+<span><span class="co">#&gt; [2] ""                                                     </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "d517d3b"</span></span>
+<span><span class="co">#&gt; [1] "87e64a7"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "Updated README and pkg vignette following name changes"</span></span>
-<span><span class="co">#&gt; [2] ""                                                      </span></span>
+<span><span class="co">#&gt; [1] "Cleaned up and simplified `git()` calls full package"</span></span>
+<span><span class="co">#&gt; [2] ""                                                    </span></span>
+<span><span class="co">#&gt; [3] "- internal functions, README, etc."                  </span></span>
+<span><span class="co">#&gt; [4] ""                                                    </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "68283a6"</span></span>
+<span><span class="co">#&gt; [1] "06ff16b"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "Renamed files with new naming convention" ""                                        </span></span>
-<span><span class="co">#&gt; [3] "- prefix *.R files with \"gitr*.R\""      "- renamed 'test-*.R' suite of files"     </span></span>
-<span><span class="co">#&gt; [5] ""                                        </span></span>
+<span><span class="co">#&gt; [1] "Fix plural note in `scrape_commits()` &amp; `gitr_sitrep()`"</span></span>
+<span><span class="co">#&gt; [2] ""                                                       </span></span>
+<span><span class="co">#&gt; [3] "- \"NEWS-worthy entry/entries\""                        </span></span>
+<span><span class="co">#&gt; [4] "- \"commit(s)\""                                        </span></span>
+<span><span class="co">#&gt; [5] ""                                                       </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "07725c3"</span></span>
+<span><span class="co">#&gt; [1] "f7c6eab"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * d517d3b (HEAD -&gt; main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy</span></span>
-<span><span class="co">#&gt; * 68283a6 Updated README and pkg vignette following name changes</span></span>
-<span><span class="co">#&gt; * 07725c3 Renamed files with new naming convention</span></span>
-<span><span class="co">#&gt; * d59d5c6 Major renaming package function infrastructure</span></span>
-<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span></code></pre></div>
+<span><span class="co">#&gt; * 87e64a7 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests</span></span>
+<span><span class="co">#&gt; * 06ff16b Cleaned up and simplified `git()` calls full package</span></span>
+<span><span class="co">#&gt; * f7c6eab Fix plural note in `scrape_commits()` &amp; `gitr_sitrep()`</span></span>
+<span><span class="co">#&gt; * 8000441 Configure Git User in GHA check-standard.yaml</span></span>
+<span><span class="co">#&gt; * 20f9046 Cleaned up commit authorship within worktree test fixture</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">git_diffcommits</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -200,7 +206,7 @@
 <span></span>
 <span><span class="fu"><a href="reference/sha.html">gitr_current_sha</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git rev-parse HEAD</span></span>
-<span><span class="co">#&gt; [1] "d517d3b"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "87e64a7"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="tags">Tags<a class="anchor" aria-label="anchor" href="#tags"></a>
@@ -239,21 +245,22 @@
 <span><span class="co">#&gt;   remotes/origin/gh-pages</span></span>
 <span><span class="co">#&gt;   remotes/origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran</span></span>
+<span><span class="co">#&gt;   remotes/origin/submit-cran-0.1.0</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Local status:</span></span>
 <span><span class="co">#&gt; ✓ OK</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Upstream remotes: origin</span></span>
-<span><span class="co">#&gt; * main d517d3b [origin/main] Updated pkgdown.yml to fix web deploy</span></span>
+<span><span class="co">#&gt; * main 87e64a7 [origin/main] Cleaned up and simplified `git()` calls in unit tests</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Commit log: main</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * d517d3b (HEAD -&gt; main, origin/main, origin/HEAD) Updated pkgdown.yml to fix web deploy</span></span>
-<span><span class="co">#&gt; * 68283a6 Updated README and pkg vignette following name changes</span></span>
-<span><span class="co">#&gt; * 07725c3 Renamed files with new naming convention</span></span>
-<span><span class="co">#&gt; * d59d5c6 Major renaming package function infrastructure</span></span>
-<span><span class="co">#&gt; * 8aab6c8 Fixed `git_version()` unit test for CRAN checks</span></span></code></pre></div>
+<span><span class="co">#&gt; * 87e64a7 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests</span></span>
+<span><span class="co">#&gt; * 06ff16b Cleaned up and simplified `git()` calls full package</span></span>
+<span><span class="co">#&gt; * f7c6eab Fix plural note in `scrape_commits()` &amp; `gitr_sitrep()`</span></span>
+<span><span class="co">#&gt; * 8000441 Configure Git User in GHA check-standard.yaml</span></span>
+<span><span class="co">#&gt; * 20f9046 Cleaned up commit authorship within worktree test fixture</span></span></code></pre></div>
 <hr>
 </div>
 </div>
