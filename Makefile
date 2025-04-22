@@ -43,11 +43,10 @@ build: docs
 	$(RCMD) build --resave-data $(PKGSRC)
 
 check:
-	@ cd ..;\
-	$(RSCRIPT) \
+	@ $(RSCRIPT) \
 	-e "args <- c('--no-manual', '--as-cran', '--no-build-vignettes', '--timings')" \
 	-e "build_args <- c('--no-manual', '--no-resave-data')" \
-	-e "rcmdcheck::rcmdcheck('$(PKGNAME)', args = args, build_args = build_args)"
+	-e "rcmdcheck::rcmdcheck(args = args, build_args = build_args)"
 
 install:
 	@ R CMD INSTALL --use-vanilla --preclean --resave-data .
@@ -68,7 +67,7 @@ release:
 	@ echo "Remember to bump the DESCRIPTION file with bump_to_dev()"
 
 release_notes:
-	@ echo "Creating Release notes from NEWS.md:\n\n"
+	@ echo "Creating release notes from NEWS.md:\n\n"
 	@ $(RSCRIPT) -e "cat(megaverse::latest_news())"
 	@ echo "\n\n"
 
