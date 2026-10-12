@@ -47,8 +47,12 @@ git <- function(..., echo_cmd = TRUE) {
   } else {
     res$status <- status
     res$stderr <- as.character(call)
-    cat(slug_color("System command 'git' failed:\n"),
-        slug_color(res$stderr, "\033[036m"), sep = "\n")
+    # quiet cmds (e.g. `diff --quiet`, `show-ref -q`) answer via
+    #   exit status with no output; that is not a failure to echo
+    if ( length(call) ) {
+      cat(slug_color("System command 'git' failed:\n"),
+          slug_color(res$stderr, "\033[036m"), sep = "\n")
+    }
   }
   invisible(res)
 }

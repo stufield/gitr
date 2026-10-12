@@ -48,6 +48,21 @@ test_that("silencing the echo is possible via `gitr_echo_cmd=` global option", {
   )
 })
 
+test_that("`git()` echoes failure only when the command has output", {
+  # neither command needs a repo; no snapshot b/c stderr text
+  #   varies by git version
+  withr::local_options(list(gitr_echo_cmd = FALSE))
+
+  # quiet: `config --get` of an unset key (empty config file)
+  #   exits 1 with no output; an answer, not a failure
+  expect_silent(res <- git("config --file", nullfile(), "--get gitr.nope"))
+  expect_equal(res$status, 1L)
+
+  # real error: unknown flag exits 129 with usage text
+  expect_output(res <- git("--gitr-bogus-flag"), "System command 'git' failed")
+  expect_true(res$status != 0L)
+})
+
 test_that("`git_version()` returns the correct expected value", {
   ver <- system2("git", "--version", stdout = TRUE)
   ver <- gsub(".*([1-3]\\.[0-9]{1,3}\\.[0-9]{1,3}).*", "\\1", ver)

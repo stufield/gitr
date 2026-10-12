@@ -6,6 +6,13 @@
   - returns `character(0)` if nothing is staged
   - non-ASCII file names are returned as-is (not octal-escaped)
 
+* `git()` no longer prints "System command 'git' failed" when a
+  command exits non-zero *without* any output
+  - quiet commands (e.g. `git diff --quiet`, `git show-ref -q`)
+    answer via exit status only; this is not a failure
+  - real errors still print, as they always produce output
+  - exit status is still returned in `$status`
+
 # gitr 0.1.0 :construction:
 
 ## Breaking Changes :warning:
