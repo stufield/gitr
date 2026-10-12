@@ -5,6 +5,7 @@
 \alias{gitr_commit_msgs}
 \alias{scrape_commits}
 \alias{gitr_unstage}
+\alias{gitr_staged}
 \alias{gitr_reset_soft}
 \alias{gitr_uncommit}
 \alias{gitr_reset_hard}
@@ -16,6 +17,8 @@ gitr_commit_msgs(sha = NULL, n = 1L)
 scrape_commits(n)
 
 gitr_unstage(file = NULL)
+
+gitr_staged()
 
 gitr_reset_soft(n = 1L)
 
@@ -45,6 +48,9 @@ Defaults to \code{HEAD~0} or \code{top = 1}.}
 
 A list containing commit message entries.
 The \code{sha} and \code{author} of each commit is added as attributes.
+
+\code{gitr_staged()}: \code{character(n)} of staged file paths;
+\code{character(0)} if nothing is staged.
 }
 \description{
 Git Commit Utilities
@@ -60,6 +66,9 @@ to be used to create a \code{NEWS.md}.
 
 \item \code{gitr_unstage()}: un-stages a file from the index to the working directory.
 Default un-stages \emph{all} files.
+
+\item \code{gitr_staged()}: gets the files currently staged for commit.
+Paths are relative to the repository root.
 
 \item \code{gitr_reset_soft()}: un-commits the most recently committed file(s) and
 add them to the staging area.

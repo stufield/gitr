@@ -95,6 +95,26 @@ gitr_unstage <- function(file = NULL) {
 }
 
 #' @describeIn commit
+#'   gets the files currently staged for commit.
+#'   Paths are relative to the repository root.
+#'
+#' @return `gitr_staged()`: `character(n)` of staged file paths;
+#'   `character(0)` if nothing is staged.
+#'
+#' @export
+gitr_staged <- function() {
+  if ( is_git() ) {
+    # core.quotePath=false: keep non-ASCII names as-is,
+    #   otherwise git returns e.g. "\303\251.qmd"
+    out <- git("-c core.quotePath=false diff --cached --name-only",
+               echo_cmd = FALSE)$stdout
+    out[nzchar(out)]   # nothing staged: "" -> character(0)
+  } else {
+    invisible()
+  }
+}
+
+#' @describeIn commit
 #'   un-commits the most recently committed file(s) and
 #'   add them to the staging area.
 #'

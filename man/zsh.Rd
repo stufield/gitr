@@ -89,9 +89,9 @@ gsta()
 
 gstl()
 
-gstaa(n = 0)
+gstaa(n = 0L)
 
-gstd(n = 0)
+gstd(n = 0L)
 
 gstc()
 

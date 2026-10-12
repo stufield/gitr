@@ -1,6 +1,10 @@
 # gitr (development version)
 
-*
+* New `gitr_staged()` returns the files currently staged
+  for commit
+  - paths are relative to the repository root
+  - returns `character(0)` if nothing is staged
+  - non-ASCII file names are returned as-is (not octal-escaped)
 
 # gitr 0.1.0 :construction:
 
