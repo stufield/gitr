@@ -37,7 +37,6 @@ jobs:
       matrix:
         config:
           - {os: macos-latest, r: 'release'}
-
           - {os: windows-latest, r: 'release'}
           - {os: windows-latest, r: '4.1'}    # use 4.1 to check with rtools40's older compiler
 
