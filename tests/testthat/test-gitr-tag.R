@@ -8,7 +8,7 @@ tag_name <- "gitr-unit-tag"
 
 # create a new tag
 git("tag -a", tag_name, "-m", encodeString("Unit test tag v0.0.9000",
-                                          quote = quote))
+                                          quote = sh_quote))
 
 withr::defer(git("tag --delete", tag_name))
 

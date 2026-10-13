@@ -30,8 +30,8 @@ local_create_worktree <- function(dir    = tempfile("gitr-"),
   # temp change commit authorship for worktree during fixture
   user  <- "Gandalf White"
   email <- "whitewizard@middleearth.com"
-  git("config --local user.name", encodeString(user, quote = quote))
-  git("config --local user.email", encodeString(email, quote = quote))
+  git("config --local user.name", encodeString(user, quote = sh_quote))
+  git("config --local user.email", encodeString(email, quote = sh_quote))
 
   # return to original (global) authorship
   # warning! this removes any local user configs
@@ -57,4 +57,4 @@ clean_commit_sha <- function(x, fake_sha = "abc1234") {
 
 # this is for command line quoting
 # around encoded strings; see encodeString()
-quote <- ifelse(.Platform$OS.type == "windows", "\"", "'")
+sh_quote <- ifelse(.Platform$OS.type == "windows", "\"", "'")
