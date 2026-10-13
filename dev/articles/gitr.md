@@ -1,0 +1,47 @@
+# Introduction to gitr
+
+## Overview
+
+The `gitr` package is a light-weight, dependency-free, API to access
+system-level git commands from within `R`. Contains wrappers and
+defaults for common data science workflows as well as Z-shell plugin
+aliases. Generalized API syntax is also available.
+
+See [Git](https://git-scm.com/downloads) for details about version
+control.
+
+------------------------------------------------------------------------
+
+### Main Features
+
+- The system call wrapper: \[git()\]
+
+- Common git tasks:
+
+  - committing and commit stack
+  - branches
+  - pull requests
+  - tags
+  - situation report
+
+- ZSH git plugin aliases
+
+  - all the common aliases from the ZSH-git-plugin
+
+------------------------------------------------------------------------
+
+### Workflows and examples (TODO)
+
+This section will become more fleshed out in future versions of `gitr`
+
+In the meantime please see the package
+[README](https://github.com/stufield/gitr/blob/main/README.md)
+
+------------------------------------------------------------------------
+
+### MIT LICENSE
+
+- See [LICENSE](https://github.com/stufield/gitr/blob/main/LICENSE.md)
+- The MIT License:
+  - <https://choosealicense.com/licenses/mit/>
+  - [https://tldrlegal.com/license/mit-license/](https://www.tldrlegal.com/license/mit-license)

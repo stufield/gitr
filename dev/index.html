@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>A Lightweight API for Git • gitr</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.10/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.10/font.css" rel="stylesheet">
 <link href="deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -121,19 +121,19 @@
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch -av"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git branch -av </span></span>
-<span><span class="co">#&gt;   foo                                    87e64a7 Cleaned up and simplified `git()` calls in unit tests</span></span>
-<span><span class="co">#&gt; * main                                   87e64a7 Cleaned up and simplified `git()` calls in unit tests</span></span>
+<span><span class="co">#&gt;   foo                                    c3b92f7 Added release_notes to Makefile</span></span>
+<span><span class="co">#&gt; * main                                   c3b92f7 Added release_notes to Makefile</span></span>
 <span><span class="co">#&gt;   remotes/origin/HEAD                    -&gt; origin/main</span></span>
 <span><span class="co">#&gt;   remotes/origin/bugfix-get-pr-sha       ce27db7 Fix bug in get_pr_sha() (#11)</span></span>
-<span><span class="co">#&gt;   remotes/origin/gh-pages                bbc7019 Built site for gitr@0.0.2.9000: c804b77</span></span>
-<span><span class="co">#&gt;   remotes/origin/main                    87e64a7 Cleaned up and simplified `git()` calls in unit tests</span></span>
+<span><span class="co">#&gt;   remotes/origin/gh-pages                7b2749c Built site for gitr@0.1.0.9000: c3b92f7</span></span>
+<span><span class="co">#&gt;   remotes/origin/main                    c3b92f7 Added release_notes to Makefile</span></span>
 <span><span class="co">#&gt;   remotes/origin/prep-for-cran           bb5a9bf Clean up URLs</span></span>
-<span><span class="co">#&gt;   remotes/origin/submit-cran-0.1.0       1fd2ebd Increment version number</span></span>
+<span><span class="co">#&gt;   remotes/origin/submit-cran-0.1.0       9d30397 Increment version number</span></span>
 <span><span class="co">#&gt;   remotes/origin/update-pkgdown-new-look 0018001 Update GHAs</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/git.html">git</a></span><span class="op">(</span><span class="st">"branch -D foo"</span><span class="op">)</span><span class="op">$</span><span class="va">stdout</span></span>
 <span><span class="co">#&gt; Running git branch -D foo</span></span>
-<span><span class="co">#&gt; [1] "Deleted branch foo (was 87e64a7)."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "Deleted branch foo (was c3b92f7)."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="committing">Committing<a class="anchor" aria-label="anchor" href="#committing"></a>
@@ -142,41 +142,33 @@
 <code class="sourceCode R"><span><span class="fu"><a href="reference/commit.html">gitr_commit_msgs</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --format=%H -n 3</span></span>
 <span><span class="co">#&gt; [[1]]</span></span>
-<span><span class="co">#&gt; [1] "Cleaned up and simplified `git()` calls in unit tests"</span></span>
-<span><span class="co">#&gt; [2] ""                                                     </span></span>
+<span><span class="co">#&gt; [1] "Added release_notes to Makefile" ""                               </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "87e64a7"</span></span>
+<span><span class="co">#&gt; [1] "c3b92f7"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[2]]</span></span>
-<span><span class="co">#&gt; [1] "Cleaned up and simplified `git()` calls full package"</span></span>
-<span><span class="co">#&gt; [2] ""                                                    </span></span>
-<span><span class="co">#&gt; [3] "- internal functions, README, etc."                  </span></span>
-<span><span class="co">#&gt; [4] ""                                                    </span></span>
+<span><span class="co">#&gt; [1] "Bump to dev version" ""                   </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "06ff16b"</span></span>
+<span><span class="co">#&gt; [1] "e8843c7"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; [[3]]</span></span>
-<span><span class="co">#&gt; [1] "Fix plural note in `scrape_commits()` &amp; `gitr_sitrep()`"</span></span>
-<span><span class="co">#&gt; [2] ""                                                       </span></span>
-<span><span class="co">#&gt; [3] "- \"NEWS-worthy entry/entries\""                        </span></span>
-<span><span class="co">#&gt; [4] "- \"commit(s)\""                                        </span></span>
-<span><span class="co">#&gt; [5] ""                                                       </span></span>
+<span><span class="co">#&gt; [1] "Increment version number" ""                        </span></span>
 <span><span class="co">#&gt; attr(,"sha")</span></span>
-<span><span class="co">#&gt; [1] "f7c6eab"</span></span>
+<span><span class="co">#&gt; [1] "9d30397"</span></span>
 <span><span class="co">#&gt; attr(,"author")</span></span>
 <span><span class="co">#&gt; [1] "stu.g.field@gmail.com"</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/zsh.html">glog</a></span><span class="op">(</span><span class="fl">5L</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 87e64a7 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests</span></span>
-<span><span class="co">#&gt; * 06ff16b Cleaned up and simplified `git()` calls full package</span></span>
-<span><span class="co">#&gt; * f7c6eab Fix plural note in `scrape_commits()` &amp; `gitr_sitrep()`</span></span>
-<span><span class="co">#&gt; * 8000441 Configure Git User in GHA check-standard.yaml</span></span>
-<span><span class="co">#&gt; * 20f9046 Cleaned up commit authorship within worktree test fixture</span></span></code></pre></div>
+<span><span class="co">#&gt; * c3b92f7 (HEAD -&gt; main, origin/main, origin/HEAD) Added release_notes to Makefile</span></span>
+<span><span class="co">#&gt; * e8843c7 Bump to dev version</span></span>
+<span><span class="co">#&gt; * 9d30397 (tag: v0.1.0, origin/submit-cran-0.1.0) Increment version number</span></span>
+<span><span class="co">#&gt; * dac226e Update CRAN comments for release</span></span>
+<span><span class="co">#&gt; * a475a5e Update NEWS for v0.1.0</span></span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">git_diffcommits</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -206,20 +198,22 @@
 <span></span>
 <span><span class="fu"><a href="reference/sha.html">gitr_current_sha</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Running git rev-parse HEAD</span></span>
-<span><span class="co">#&gt; [1] "87e64a7"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "c3b92f7"</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="tags">Tags<a class="anchor" aria-label="anchor" href="#tags"></a>
 </h4>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">gitr_recent_tag</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "v0.0.2"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "v0.1.0"</span></span></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/tag.html">gitr_tag_info</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;           tag tag_sha target_sha           message    author                   email        user</span></span>
+<span><span class="co">#&gt; v0.1.0 v0.1.0 160b5d7    9d30397 Release of v0.1.0 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
 <span><span class="co">#&gt; v0.0.2 v0.0.2 4c4805d    2ffe6bd Release of v0.0.2 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
 <span><span class="co">#&gt; v0.0.1 v0.0.1 fc7e99a    5e98f89 Release of v0.0.1 Stu Field &lt;stu.g.field@gmail.com&gt; stu.g.field</span></span>
 <span><span class="co">#&gt;                               tagdate size                              path</span></span>
+<span><span class="co">#&gt; v0.1.0 Mon Apr 21 08:44:43 2025 -0600  148 /Users/runner/work/gitr/gitr/.git</span></span>
 <span><span class="co">#&gt; v0.0.2 Sat Apr 12 15:50:09 2025 -0600  148 /Users/runner/work/gitr/gitr/.git</span></span>
 <span><span class="co">#&gt; v0.0.1 Wed Feb 15 12:53:58 2023 -0700  148 /Users/runner/work/gitr/gitr/.git</span></span></code></pre></div>
 </div>
@@ -252,15 +246,15 @@
 <span><span class="co">#&gt; ✓ OK</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Upstream remotes: origin</span></span>
-<span><span class="co">#&gt; * main 87e64a7 [origin/main] Cleaned up and simplified `git()` calls in unit tests</span></span>
+<span><span class="co">#&gt; * main c3b92f7 [origin/main] Added release_notes to Makefile</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Commit log: main</span></span>
 <span><span class="co">#&gt; Running git log --oneline --graph --decorate -n 5 </span></span>
-<span><span class="co">#&gt; * 87e64a7 (HEAD -&gt; main, origin/main, origin/HEAD) Cleaned up and simplified `git()` calls in unit tests</span></span>
-<span><span class="co">#&gt; * 06ff16b Cleaned up and simplified `git()` calls full package</span></span>
-<span><span class="co">#&gt; * f7c6eab Fix plural note in `scrape_commits()` &amp; `gitr_sitrep()`</span></span>
-<span><span class="co">#&gt; * 8000441 Configure Git User in GHA check-standard.yaml</span></span>
-<span><span class="co">#&gt; * 20f9046 Cleaned up commit authorship within worktree test fixture</span></span></code></pre></div>
+<span><span class="co">#&gt; * c3b92f7 (HEAD -&gt; main, origin/main, origin/HEAD) Added release_notes to Makefile</span></span>
+<span><span class="co">#&gt; * e8843c7 Bump to dev version</span></span>
+<span><span class="co">#&gt; * 9d30397 (tag: v0.1.0, origin/submit-cran-0.1.0) Increment version number</span></span>
+<span><span class="co">#&gt; * dac226e Update CRAN comments for release</span></span>
+<span><span class="co">#&gt; * a475a5e Update NEWS for v0.1.0</span></span></code></pre></div>
 <hr>
 </div>
 </div>
@@ -269,184 +263,184 @@
 <a class="anchor" aria-label="anchor" href="#zsh-aliases-available-in-gitr"></a>
 </h2>
 <table class="table">
-<thead><tr class="header">
+<thead><tr>
 <th align="left">alias</th>
 <th align="left">git command</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">ga()</a></code></td>
 <td align="left"><code>git add</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gst()</a></code></td>
 <td align="left"><code>git status</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gss()</a></code></td>
 <td align="left"><code>git status -s</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gau()</a></code></td>
 <td align="left"><code>git add -u</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gaa()</a></code></td>
 <td align="left"><code>git add --all</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gb()</code></td>
 <td align="left"><code>git branch</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gba()</a></code></td>
 <td align="left"><code>git branch -a</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gbd()</a></code></td>
 <td align="left"><code>git branch -d/-D</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gdf()</a></code></td>
 <td align="left"><code>git diff &lt;file&gt;</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gbnm()</a></code></td>
 <td align="left"><code>git branch --no-merged</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gbmm()</a></code></td>
 <td align="left"><code>git branch --merged</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gbr()</code></td>
 <td align="left"><code>git branch --remote</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">
 <code><a href="reference/zsh.html">gac()</a></code>, <code>gcn</code>
 </td>
 <td align="left"><code>git commit --no-verify --no-edit --amend</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gcc()</a></code></td>
 <td align="left"><code>git commit</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gco()</a></code></td>
 <td align="left"><code>git checkout</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gcb()</a></code></td>
 <td align="left"><code>git checkout -b</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gcm()</a></code></td>
 <td align="left"><code>git checkout git_default_br()</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gcf()</a></code></td>
 <td align="left"><code>git config --list</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gnuke()</a></code></td>
 <td align="left"><code>git reset --hard &amp;&amp; git clean -dfx</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gcmsg()</a></code></td>
 <td align="left"><code>git commit -m</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gp()</a></code></td>
 <td align="left"><code>git push</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gpu()</a></code></td>
 <td align="left"><code>git push -u</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gpd()</a></code></td>
 <td align="left"><code>git push --dry-run</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gpf()</a></code></td>
 <td align="left"><code>git push --force-with-lease</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gpr()</a></code></td>
 <td align="left"><code>git pull --rebase --autostash -v</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">glog()</a></code></td>
 <td align="left"><code>git log --oneline --decorate --graph</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gwip()</a></code></td>
 <td align="left"><code>git add -u &amp;&amp; commit --no-verify -m "wip"</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gclean()</a></code></td>
 <td align="left"><code>git clean -f -d</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">grm()</a></code></td>
 <td align="left"><code>git rm</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>grmc()</code></td>
 <td align="left"><code>git rm --cached</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gsta()</a></code></td>
 <td align="left"><code>git stash</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gstl()</a></code></td>
 <td align="left"><code>git stash list</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left">
 <code><a href="reference/zsh.html">gpop()</a></code>,<code><a href="reference/zsh.html">gstp()</a></code>
 </td>
 <td align="left"><code>git stash pop</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gstaa()</a></code></td>
 <td align="left"><code>git stash apply</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gstd()</a></code></td>
 <td align="left"><code>git stash drop</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gstc()</a></code></td>
 <td align="left"><code>git stash clear</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gsts()</a></code></td>
 <td align="left"><code>git stash show --text</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">gtn()</a></code></td>
 <td align="left"><code>git tag -n</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">grba()</a></code></td>
 <td align="left"><code>git rebase --abort</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">grbc()</a></code></td>
 <td align="left"><code>git rebase --continue</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">grbs()</a></code></td>
 <td align="left"><code>git rebase --skip</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">grbm()</a></code></td>
 <td align="left"><code>git rebase git_default_br()</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code><a href="reference/zsh.html">grv()</a></code></td>
 <td align="left"><code>git remote -v</code></td>
 </tr>
@@ -467,488 +461,488 @@
 <col width="17%">
 <col width="82%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th align="left">alias</th>
 <th align="left">git command</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td align="left"><code>gapa</code></td>
 <td align="left"><code>git add --patch</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gav</code></td>
 <td align="left"><code>git add --verbose</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gloga</code></td>
 <td align="left"><code>git log --oneline --decorate --graph --all</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gup</code></td>
 <td align="left"><code>git pull --rebase</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gupv</code></td>
 <td align="left"><code>git pull --rebase -v</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gupa</code></td>
 <td align="left"><code>git pull --rebase --autostash</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gupav</code></td>
 <td align="left"><code>git pull --rebase --autostash -v</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gap</code></td>
 <td align="left"><code>git apply</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gapt</code></td>
 <td align="left"><code>git apply --3way</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gbda</code></td>
 <td align="left"><code>git branch --no-color --merged \| command grep -vE ^([+*] \| \s*($(git_main_branch) \| $(git_develop_branch))\s*$) \| command xargs git branch -d 2&gt;/dev/null</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gbl</code></td>
 <td align="left"><code>git blame -b -w</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gbs</code></td>
 <td align="left"><code>git bisect</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gbsb</code></td>
 <td align="left"><code>git bisect bad</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gbsg</code></td>
 <td align="left"><code>git bisect good</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gbsr</code></td>
 <td align="left"><code>git bisect reset</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gbss</code></td>
 <td align="left"><code>git bisect start</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gca</code></td>
 <td align="left"><code>git commit -v -a</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gca!</code></td>
 <td align="left"><code>git commit -v -a --amend</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcan!</code></td>
 <td align="left"><code>git commit -v -a --no-edit --amend</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcans!</code></td>
 <td align="left"><code>git commit -v -a -s --no-edit --amend</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcam</code></td>
 <td align="left"><code>git commit -a -m</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcsm</code></td>
 <td align="left"><code>git commit -s -m</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcas</code></td>
 <td align="left"><code>git commit -a -s</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcasm</code></td>
 <td align="left"><code>git commit -a -s -m</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcl</code></td>
 <td align="left"><code>git clone --recurse-submodules</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcor</code></td>
 <td align="left"><code>git checkout --recurse-submodules</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcd</code></td>
 <td align="left"><code>git checkout $(git_develop_branch)</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcount</code></td>
 <td align="left"><code>git shortlog -sn</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcp</code></td>
 <td align="left"><code>git cherry-pick</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcpa</code></td>
 <td align="left"><code>git cherry-pick --abort</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcpc</code></td>
 <td align="left"><code>git cherry-pick --continue</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcs</code></td>
 <td align="left"><code>git commit -S</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gcss</code></td>
 <td align="left"><code>git commit -S -s</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gcssm</code></td>
 <td align="left"><code>git commit -S -s -m</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gdca</code></td>
 <td align="left"><code>git diff --cached</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gdcw</code></td>
 <td align="left"><code>git diff --cached --word-diff</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gdct</code></td>
 <td align="left"><code>git describe --tags $(git rev-list --tags --max-count=1)</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gds</code></td>
 <td align="left"><code>git diff --staged</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gdt</code></td>
 <td align="left"><code>git diff-tree --no-commit-id --name-only -r</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gdup</code></td>
 <td align="left"><code>git diff @{upstream}</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gdw</code></td>
 <td align="left"><code>git diff --word-diff</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gf</code></td>
 <td align="left"><code>git fetch</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gfo</code></td>
 <td align="left"><code>git fetch origin</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gfg</code></td>
 <td align="left"><code>git ls-files \| grep</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gg</code></td>
 <td align="left"><code>git gui citool</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gga</code></td>
 <td align="left"><code>git gui citool --amend</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>ggpur</code></td>
 <td align="left"><code>ggu</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>ggpull</code></td>
 <td align="left"><code>git pull origin $(git_current_branch)</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>ggpush</code></td>
 <td align="left"><code>git push origin $(git_current_branch)</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>ggsup</code></td>
 <td align="left"><code>git branch --set-upstream-to=origin/$(git_current_branch)</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gpsup</code></td>
 <td align="left"><code>git push --set-upstream origin $(git_current_branch)</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>ghh</code></td>
 <td align="left"><code>git help</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gignore</code></td>
 <td align="left"><code>git update-index --assume-unchanged</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gignored</code></td>
 <td align="left"><code>git ls-files -v \| grep "^[[:lower:]]"</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>git-svn-dcommit-push</code></td>
 <td align="left"><code>git svn dcommit &amp;&amp; git push github $(git_main_branch):svntrunk</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gl</code></td>
 <td align="left"><code>git pull</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>glg</code></td>
 <td align="left"><code>git log --stat</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>glgp</code></td>
 <td align="left"><code>git log --stat -p</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>glgg</code></td>
 <td align="left"><code>git log --graph</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>glgga</code></td>
 <td align="left"><code>git log --graph --decorate --all</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>glgm</code></td>
 <td align="left"><code>git log --graph --max-count=10</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>glo</code></td>
 <td align="left"><code>git log --oneline --decorate</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>glol</code></td>
 <td align="left"><code>git log --graph --pretty</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>glols="git log --graph --pretty</code></td>
 <td align="left"><code>%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)&lt;%an&gt;%Creset' --stat"</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>glod="git log --graph --pretty</code></td>
 <td align="left"><code>%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)&lt;%an&gt;%Creset'"</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>glods="git log --graph --pretty</code></td>
 <td align="left"><code>%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)&lt;%an&gt;%Creset' --date=short"</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>glola="git log --graph --pretty</code></td>
 <td align="left"><code>%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)&lt;%an&gt;%Creset' --all"</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gm</code></td>
 <td align="left"><code>git merge</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gmom</code></td>
 <td align="left"><code>git merge origin/$(git_main_branch)</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gmtl</code></td>
 <td align="left"><code>git mergetool --no-prompt</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gmtlvim</code></td>
 <td align="left"><code>git mergetool --no-prompt --tool=vimdiff</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gmum</code></td>
 <td align="left"><code>git merge upstream/$(git_main_branch)</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gma</code></td>
 <td align="left"><code>git merge --abort</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gpf!</code></td>
 <td align="left"><code>git push --force</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gpoat</code></td>
 <td align="left"><code>git push origin --all &amp;&amp; git push origin --tags</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gpv</code></td>
 <td align="left"><code>git push -v</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gr</code></td>
 <td align="left"><code>git remote</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gra</code></td>
 <td align="left"><code>git remote add</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grb</code></td>
 <td align="left"><code>git rebase</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>grbd</code></td>
 <td align="left"><code>git rebase $(git_develop_branch)</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grbi</code></td>
 <td align="left"><code>git rebase -i</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>grbo</code></td>
 <td align="left"><code>git rebase --onto</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grev</code></td>
 <td align="left"><code>git revert</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>grh</code></td>
 <td align="left"><code>git reset</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grhh</code></td>
 <td align="left"><code>git reset --hard</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>groh</code></td>
 <td align="left"><code>git reset origin/$(git_current_branch) --hard</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grmv</code></td>
 <td align="left"><code>git remote rename</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>grrm</code></td>
 <td align="left"><code>git remote remove</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grs</code></td>
 <td align="left"><code>git restore</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>grset</code></td>
 <td align="left"><code>git remote set-url</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grss</code></td>
 <td align="left"><code>git restore --source</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>grst</code></td>
 <td align="left"><code>git restore --staged</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grt</code></td>
 <td align="left"><code>cd $(git rev-parse --show-toplevel \|\| echo .)</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gru</code></td>
 <td align="left"><code>git reset --</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>grup</code></td>
 <td align="left"><code>git remote update</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gsb</code></td>
 <td align="left"><code>git status -sb</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gsd</code></td>
 <td align="left"><code>git svn dcommit</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gsh</code></td>
 <td align="left"><code>git show</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gsi</code></td>
 <td align="left"><code>git submodule init</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gsps</code></td>
 <td align="left"><code>git show --pretty=short --show-signature</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gsr</code></td>
 <td align="left"><code>git svn rebase</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gstu</code></td>
 <td align="left"><code>gsta --include-untracked</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gstall</code></td>
 <td align="left"><code>git stash --all</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gsu</code></td>
 <td align="left"><code>git submodule update</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gsw</code></td>
 <td align="left"><code>git switch</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gswc</code></td>
 <td align="left"><code>git switch -c</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gswm</code></td>
 <td align="left"><code>git switch $(git_main_branch)</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gswd</code></td>
 <td align="left"><code>git switch $(git_develop_branch)</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gts</code></td>
 <td align="left"><code>git tag -s</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gtv</code></td>
 <td align="left"><code>git tag \| sort -V</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gtl</code></td>
 <td align="left"><code>gtl(){ git tag --sort=-v:refname -n -l ${1}* }; noglob gtl</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gunignore</code></td>
 <td align="left"><code>git update-index --no-assume-unchanged</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gunwip</code></td>
 <td align="left"><code>git log -n 1 \| grep -q -c "\-\-wip\-\-" &amp;&amp; git reset HEAD~1</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>glum</code></td>
 <td align="left"><code>git pull upstream $(git_main_branch)</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gwch</code></td>
 <td align="left"><code>git whatchanged -p --abbrev-commit --pretty=medium</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gam</code></td>
 <td align="left"><code>git am</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gamc</code></td>
 <td align="left"><code>git am --continue</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gams</code></td>
 <td align="left"><code>git am --skip</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td align="left"><code>gama</code></td>
 <td align="left"><code>git am --abort</code></td>
 </tr>
-<tr class="even">
+<tr>
 <td align="left"><code>gamscp</code></td>
 <td align="left"><code>git am --show-current-patch</code></td>
 </tr>
@@ -998,7 +992,7 @@
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://github.com/stufield" class="external-link">Stu Field</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-1024-5859" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<a href="https://github.com/stufield" class="external-link">Stu Field</a> <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0002-1024-5859" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 </ul>
 </div>
 
@@ -1025,7 +1019,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
   </div></footer>
